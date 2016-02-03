@@ -1,0 +1,63 @@
+<div class="modal-header">
+  <h2 class="modal-title">PLANILLAS</h2>
+  <h4 class="modal-title">REGISTRO DE PLANILLA</h4>
+</div>
+<div class="modal-body">
+  <div class="form-horizontal">
+    <div class="">
+      <label class="col-md-5">Docente:</label>
+
+      <p class="col-md-7">{{docente.Grado + '. '+docente.Nombres}}</p>
+    </div>
+    <div class="">
+      <label class="col-md-5">Carnet:</label>
+
+      <p class="col-md-7">{{docente.CI}}</p>
+    </div>
+    <div class="">
+      <label class="col-md-5">Categoria:</label>
+
+      <p class="col-md-7">{{docente.Categoria}}</p>
+    </div>
+    <div class="">
+      <label class="col-md-5">Cuenta bancaria:</label>
+
+      <p class="col-md-7">{{docente.CuentaBancaria}}</p>
+    </div>
+    <div class="">
+      <label class="col-md-5">Materia:</label>
+
+      <p class="col-md-7">{{docente.Materia + ' - '+docente.Tipo}}</p>
+    </div>
+    <div class="">
+      <label class="col-md-5">Horas Semanales:</label>
+
+      <p class="col-md-7">{{docente.HorasSemanales + ' - '+docente.Monto}}</p>
+    </div>
+    <div class="">
+      <label class="col-md-5">Curso:</label>
+
+      <p class="col-md-7">{{docente.Semestre+ ' Semestre - "'+docente.Paralelo+'"'}} (Sin relevancia)</p>
+    </div>
+    <div class="">
+      <label class="col-md-5">Pensul:</label>
+
+      <p class="col-md-7">
+        <!--{{docente.Pensul == 1?"Objetivos":"Competencias"}}-->
+        <span editable-select="docente.Pensul" onbeforesave="updatePensul(docente,$data)"
+            e-ng-options="g.id as g.name for g in GLOBALS.PENSUL" buttons="no">
+              {{docente.Pensul==1?"Objetivos":"Competencias"}}
+        </span>
+<!--
+        <select class="fullWidth" ng-model="NUEVO_DOCENTE.Pensul"
+
+                ng-options="fac.id as fac.name for fac in GLOBALS.PENSUL">
+        </select>-->
+      </p>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success right" ng-click="cancel()">Aceptar</button>
+</div>

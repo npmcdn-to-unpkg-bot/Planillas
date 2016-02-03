@@ -1,0 +1,12 @@
+.btn{
+  border-radius: 0;
+  @include transition(all,$buttons-transitions-time);
+}
+
+.btn:hover{
+  @include transition(all,$buttons-transitions-time);
+}
+.btn:active, .btn:focus{
+  //@include box-shadow(-2px 2px 2px 0 black);
+  @include transition(all,$buttons-transitions-time);
+}

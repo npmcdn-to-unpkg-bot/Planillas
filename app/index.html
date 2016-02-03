@@ -1,0 +1,121 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Planillas</title>
+    <meta name="description" content="Sistema de planillas, Escuela Militar de Ingenieria">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/animate.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="planillasApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+
+    <img src="images/loading.gif" ng-show="LOADER_ASYNC && !FIRST_REQUEST"
+         style="position:fixed;top: 60px;right: 10px;width: 40px;height: 40px;z-index: 10000;">
+    <script type="text/ng-template" id="ModalConfirm.html">
+      <div class="modal-header text-center">
+        <h4>{{title}}</h4>
+      </div>
+      <div class="modal-body text-center PV40">
+        <p>{{mensaje}}</p>
+      </div>
+      <div class="modal-footer text-center">
+        <button class="btn btn-success" ng-click="ok()">Aceptar</button>
+        <button class="btn btn-danger" ng-click="cancel()">Cancelar</button>
+      </div>
+    </script>
+
+    <!-- Add your site or application content here -->
+    <div ng-view=""></div>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <!--<script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>-->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/toastr/toastr.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+
+        <script src="scripts/controllers/home.js"></script>
+
+        <script src="scripts/services/urls.js"></script>
+        <script src="scripts/services/$http2.js"></script>
+        <script src="scripts/controllers/menu.js"></script>
+
+        <script src="scripts/controllers/modals/ModalProfile.js"></script>
+        <script src="scripts/controllers/modals/ModalAbout.js"></script>
+        <script src="scripts/controllers/modals/ModalDatosPago.js"></script>
+        <script src="scripts/controllers/modals/ModalUpdateMonto.js"></script>
+        <script src="scripts/controllers/modals/ModalUpdateDocente.js"></script>
+        <script src="scripts/controllers/modals/ModalNewDocente.js"></script>
+        <script src="scripts/controllers/modals/ModalNewMateria.js"></script>
+        <script src="scripts/controllers/modals/ModalSetFooter.js"></script>
+        <script src="scripts/controllers/modals/ModalNewUsuario.js"></script>
+        <script src="scripts/controllers/modals/ModalViewCourse.js"></script>
+        <script src="scripts/controllers/modals/ModalRestartPassword.js"></script>
+
+        <script src="scripts/filters/ingenieria.js"></script>
+        <script src="scripts/filters/momentdate.js"></script>
+        <script src="scripts/filters/mount.js"></script>
+        <script src="scripts/filters/mountcurrency.js"></script>
+
+    <!--<script src="scripts/controllers/modals/ModalProfile.js"></script>
+    <script src="scripts/controllers/modals/ModalProfile.js"></script>-->
+        <script src="scripts/controllers/startgestion.js"></script>
+        <script src="scripts/controllers/gestionold.js"></script>
+        <script src="scripts/controllers/eliminarregistros.js"></script>
+        <script src="scripts/controllers/usuarios.js"></script>
+        <script src="scripts/controllers/sincronizacion.js"></script>
+        <script src="scripts/controllers/reportes.js"></script>
+        <script src="scripts/controllers/generarplanilla.js"></script>
+        <script src="scripts/controllers/verplanilla.js"></script>
+        <script src="scripts/controllers/docentes.js"></script>
+        <script src="scripts/controllers/materias.js"></script>
+        <script src="scripts/reports/FileSaver.js"></script>
+        <script src="scripts/controllers/querybuild.js"></script>
+        <script src="scripts/controllers/restartpassword.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

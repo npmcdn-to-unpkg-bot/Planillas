@@ -1,0 +1,46 @@
+<div ng-controller="QuerybuildCtrl">
+  <div class="col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info">
+      <div class="panel-heading center">
+        <label class="panel-title text-uppercase">Query - Solution</label>
+      </div>
+      <div class="panel-body">
+        <form ng-submit="ejecutarQuery(queryB)">
+          <div class="form-group">
+            <label class="col-sm-5">Tipo de query</label>
+
+            <div class="col-sm-7">
+              <select class="form-control" ng-model="queryB.type">
+                <option value="1">Insert</option>
+                <option value="2">Select</option>
+                <option value="3">Update</option>
+                <option value="4">Delete</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-5">Query</label>
+
+            <div class="col-sm-7">
+              <label class="fullWidth">
+                <textarea class="form-control" rows="5" class="fullWidth" ng-model="queryB.query"
+                          placeholder="[SELECT][INSERT][UPDATE][DELETE] * FROM [TABLE]"></textarea>
+              </label>
+            </div>
+          </div>
+          <div class="form-group right">
+            <button class="btn btn-warning" type="submit">Ejecutar</button>
+          </div>
+        </form>
+        <div class="" >
+          <p class="fullWidth">{{result}}</p>
+        </div>
+        <!--<textarea datatype="" ng-model="result" rows="5" class="fullWidth" placeholder="Results">
+
+        </textarea>-->
+      </div>
+
+    </div>
+  </div>
+</div>

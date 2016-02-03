@@ -1,0 +1,45 @@
+@mixin transition($type, $time) {
+  -webkit-transition: $type $time;
+  -moz-transition: $type $time;
+  -ms-transition: $type $time;
+  -o-transition: $type $time;
+  transition: $type $time;
+}
+
+@mixin border-radius($with) {
+  -webkit-border-radius: $with;
+  -moz-border-radius: $with;
+  -ms-border-radius: $with;
+  -o-border-radius: $with;
+  border-radius: $with;
+}
+
+@mixin animation($animation) {
+  -webkit-animation: $animation;
+  -moz-animation: $animation;
+  -o-animation: $animation;
+  animation: $animation;
+}
+
+@mixin rotate($degrees) {
+  -webkit-transform: rotate($degrees);
+  -ms-transform: rotate($degrees);
+  -o-transform: rotate($degrees);
+  transform: rotate($degrees);
+}
+
+@mixin selectable($selectable){
+  -webkit-user-select: $selectable;
+  -moz-user-select: $selectable;
+  -khtml-user-select: $selectable;
+  -ms-user-select:$selectable;
+  -o-user-select:$selectable;
+}
+@mixin spanItem(){
+  text-align: center;
+  width: 100%;
+  height: $planillas-height-row - 1px;
+  padding: $planillas-padding-base-all;
+  display: block;
+  vertical-align: middle;
+}

@@ -1,0 +1,1043 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+// endbower
+@charset "utf-8";
+//@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";// org
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// not
+
+@import "_variables";
+@import "_mixins";
+
+@import "_buttons";
+//@import "_checkbox";
+//@import "_error404";
+@import "_loader";
+@import "_login";
+@import "_modal";
+@import "_nav";
+@import "_panel";
+@import "_scrollBar";
+//@import "_sbAdmin";
+
+html, body {
+  background: $backgroud-app;
+}
+
+.FZ14{
+  font-size: 14px !important;
+}
+.FZ13{
+  font-size: 13px !important;
+}
+.FZ12{
+  font-size: 12px !important;
+}
+.FZ10{
+  font-size: 10px !important;
+}
+.FZ9{
+  font-size: 9px !important;
+}
+table{
+  font-size: $table-font-size;
+}
+.background-app {
+  background: rgba(52, 73, 94, 1.0);
+  @include transition(all, 1s);
+}
+
+.mainBody {
+  background: rgba(52, 73, 94, 1.0); //  background-color: rgba(236, 240, 241,1);
+}
+
+.show-hide {
+  @include transition(all linear, 0.5s);
+}
+
+.show-hide.ng-hide {
+  @include transition(all linear, 0.5s);
+  opacity: 0;
+}
+
+.animateItemAbout {
+  @include transition(all linear, 1s);
+}
+
+.animateItemAbout.ng-hide {
+  opacity: 0;
+  @include transition(all linnar, 1s);
+}
+
+.icon-report {
+  width: 25px;
+}
+
+.iconLogo {
+  width: 60px;
+  margin-top: -6px;
+  box-shadow: black 0 0 15px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  @include transition(all, 1s);
+}
+
+.iconLogo:hover {
+  background: white;
+  @include transition(all, 1s);
+  width: 65px;
+}
+
+#background-container {;
+  @include transition(all, 1s);
+  margin: 10px;
+  padding: 0 !important;
+  @include border-radius(5px);
+  background-color: rgba(255, 255, 255, 1);
+  @include transition(all, 1s);
+}
+
+.paddingV40 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.marginV40 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.marginH40 {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.center {
+  text-align: center;
+}
+
+.VAT {
+  vertical-align: top !important;
+}
+
+.fullWidth {
+  width: 100% !important;;
+}
+
+.fullHeight {
+  height: 100%;
+}
+
+.mediumWidth {
+  width: 50%;
+}
+
+.PV0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+.PH20{
+  padding-left: 20;
+  padding-right: 20;
+}
+.PH40{
+  padding-left: 40;
+  padding-right: 40;
+}
+.MT10 {
+  margin-top: 10px;
+}
+
+.login-footer {
+  .text-info {
+    color: white;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: italic;
+  }
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.bold {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.fz15 {
+  font-size: 14.3px;
+}
+
+.MT15 {
+  margin-top: 15px;
+}
+
+.right {
+  float: right;
+}
+
+.table-planillas .rotate90 {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -moz-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -o-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  vertical-align: middle;
+}
+
+.table-planillas .rotate45 {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -moz-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -o-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  vertical-align: middle;
+}
+
+.table-planillas {
+  font-size: $planillas-font-size;
+  //text-transform: uppercase;
+  @include selectable(none);
+  cursor: context-menu;
+}
+
+.table-planillas th {
+  vertical-align: middle !important;
+}
+
+.table-planillas > tbody > tr > td > input, .table-planillas input {
+  margin: 0 !important;
+  font-size: inherit !important;
+  width: 100% !important;
+  padding: 3px;
+  border-radius: 0px !important;
+  height: 100%;
+}
+
+.table-planillas form {
+  margin: 0 !important;
+  width: 100% !important;
+  padding: 0 !important;
+  border-radius: 0px !important;
+  height: 100% !important;
+  position: inherit !important;
+}
+
+.table-planillas form div ,.table-planillas tfoot div {
+  //width: 100% !important;
+  //height: 100% !important;
+}
+
+.table-planillas form div select {
+  position: absolute;
+}
+
+.tdEditable {
+  @include transition(all, 0.2s);
+
+}
+
+.table-planillas form {
+  position: absolute;
+}
+.table-planillas form div{
+  height: 100%;
+}
+.table-planillas form div input{
+  height: 100%;
+  display: block;
+}
+.table-planillas .thCuenta {
+  max-width: 75px !important;
+  width: 75px !important;
+}
+
+.table-planillas .thNombres {
+  max-width: 180px !important;
+  width: 180px !important;
+}
+
+.table-planillas .thAmount {
+  max-width: 30px !important;
+  width: 30px !important;
+}
+
+.table-planillas .thItem {
+  max-width: 28px !important;
+  width: 28px !important;
+}
+
+.table-planillas th div {
+  //width: 100% !important;
+  height: 100%;
+
+}
+.table-planillas th input {
+  //width: 100% !important;
+  height: 100%;
+  display: block;
+
+}
+
+.table-planillas > tbody td {
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.table-planillas > tfoot {
+  font-size: $planillas-font-size !important;
+}
+
+.table-planillas > tfoot td {
+  padding: 0 !important;
+  vertical-align: middle;
+  text-align: center !important;
+}
+
+.table-planillas > tfoot select {
+  padding: 12px 2px 12px 2px;
+  width: auto;
+  height: 100%;
+  font-size: $planillas-font-size !important;
+  display: block;
+}
+
+.table-planillas > tfoot textarea {
+  padding: 0;
+  font-size: $planillas-font-size !important;
+}
+
+.PF0 {
+  padding: 0 !important;
+  vertical-align: middle !important;
+}
+.PF5 {
+  padding: 5px !important;
+  vertical-align: middle !important;
+}
+.PF10 {
+  padding: 15px !important;
+  vertical-align: middle !important;
+}
+.PF20 {
+  padding: 20px !important;
+  vertical-align: middle !important;
+}
+.PR5{
+  padding-right: 5px !important;
+}
+.PL5{
+  padding-left: 5px !important;
+}
+.PL0{
+  padding-left: 5px !important;
+}
+.ui-select-bootstrap .ui-select-choices-row > a {
+  font-size: 11px;
+}
+
+.ui-select-bootstrap {
+  font-size: $planillas-font-size;
+}
+
+.ui-select-bootstrap > .ui-select-match > .btn {
+  font-size: $planillas-font-size;
+  //padding: 9px 20px 9px 1px;
+}
+
+.ui-select-bootstrap .ui-select-choices-row > a {
+  font-size: $planillas-font-size;
+  padding: 0;
+}
+
+.ui-select-bootstrap > .ui-select-choices {
+  width: 100%
+}
+
+.ui-select-bootstrap .ui-select-choices-row.active > a {
+  color: none;
+}
+.cursorCell{
+  cursor: cell;
+}
+.noSelectable{
+  @include selectable(none);
+}
+/*
+
+.mainBody {
+  background:  rgba(52, 73, 94,1.0);//  background-color: rgba(236, 240, 241,1);
+}
+body {
+ */
+/* background-color: #34495e;
+  color: #000;
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.5em;*//*
+
+}
+.loginWrapper{
+  @include transition(all,1s);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background:  rgba(52, 73, 94,1.0);
+}
+#login .inputLogin {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  -webkit-appearance: none;
+}
+
+*//*
+*/
+/* ---------- LOGIN ---------- *//*
+*/
+/*
+#login form {
+  position: absolute;
+  z-index: 0;
+}
+
+#login {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 380px;
+}
+
+#login h2 {
+  background-color: #2980b9;
+  -webkit-border-radius: 20px 20px 0 0;
+  -moz-border-radius: 20px 20px 0 0;
+  border-radius: 20px 20px 0 0;
+  color: #fff;
+  font-size: 28px;
+  padding: 20px 26px;
+  margin-bottom: 10px
+}
+
+#login img {
+  z-index: 1;
+  margin: 0px auto;
+  width: 160px;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  margin-top: -30px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+
+#login h2 span[class*="fontawesome-look"] {
+  margin-right: 14px;
+  margin-bottom: 1px;
+  position: absolute;
+}
+
+#login fieldset {
+  background-color: rgba(44, 62, 80,1.0);
+  -webkit-border-radius: 0 0 20px 20px;
+  -moz-border-radius: 0 0 20px 20px;
+  border-radius: 0 0 20px 20px;
+  padding: 20px 26px;
+}
+
+#login fieldset p {
+  //color: #000;
+  margin-bottom: 14px;
+}
+
+#login fieldset p:last-child {
+  margin-bottom: 0;
+}
+
+#login fieldset input {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+#login fieldset input[type="name"], #login fieldset input[type="password"] {
+  //background-color: #eee;
+  //color: #777;
+  padding: 4px 10px;
+  width: 328px;
+}
+
+#login fieldset input[type="submit"] {
+  display: block;
+  margin: 0 auto;
+  padding: 4px 0;
+  width: 100px;
+}
+
+.login-loading {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: rgba(33, 33, 33, 0.5);
+  margin-left: -26px;
+  padding-top: 70px;
+  -webkit-border-radius: 0 0 20px 20px;
+  -moz-border-radius: 0 0 20px 20px;
+}
+
+.error-login {
+  background: rgba(250, 32, 42, 0.8);
+  margin: 0;
+  margin-left: -25px;
+  margin-right: -25px;
+  padding: 10px;
+  text-align: center;
+}
+.error-login > label {
+  color: lavender;
+}
+
+.image-background {
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 110px;
+  height: 110px;
+  margin: -70px 0 0 -55px;
+  border-radius: 51%;
+  background: rgba(255, 255, 255, 0.71);
+  z-index: 1;
+}
+
+.show-hide {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+}
+
+.show-hide.ng-hide {
+  opacity: 0;
+}
+
+.animateItemAbout {
+  -webkit-transition: all linear 1s;
+  -mox-transition: all linear 1s;
+  -o-transition: all linear 1s;
+  -ms-transition: all linear 1s;
+  transition: all linear 1s;
+}
+
+.animateItemAbout.ng-hide {
+  opacity: 0;
+}
+.icon-report {
+  width: 25px;
+}
+
+
+
+.tdEditable:hover {
+  background-color: rgba(46, 204, 113, 0.3) !important;
+  color: #000000;
+  @include transition(all,0.5s);
+}
+
+
+td{
+  vertical-align: middle !important;
+}
+.myinput-sm {
+  font-size: inherit !important;
+  width: 100% !important;
+  padding: 3px !important;
+  border-radius: 0px !important;
+}
+
+.noSelectable{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select:none;
+  -o-user-select:none;
+}
+.iconLogo{
+  width: 70px;
+  box-shadow: black 0px 0px 15px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 5px;
+  @include transition(all,1s);
+}
+.iconLogo:hover{
+  background: white;
+  @include transition(all,1s);
+  width: 90px;
+}
+.information-text{
+  font-size: 11px;
+}
+
+.side-nav li a:hover, .side-nav li a:focus:hover{
+  @include transition(all,.5s);
+}
+.side-nav li a, .side-nav li a:focus{
+  @include transition(all,.5s);
+}
+.top-nav > li > a:hover, .top-nav > li > a:focus, .top-nav > .open > a, .top-nav > .open > a:hover, .top-nav > .open > a:focus {
+  @include transition(all,.5s);
+  //background-color: #0d2d4a !important;
+}
+.top-nav > li > a, .top-nav > li > a, .top-nav > .open > a, .top-nav > .open > a, .top-nav > .open > a {
+  @include transition(all,.5s);
+}
+
+.miNav{
+  @include transition(all,0.5s);
+}
+.miNav li a:hover,
+.miNav li a:focus {
+  outline: none !important;
+  background-color: darken($adminBar_background,10%) !important;
+  @include transition(all,0.5s);
+}
+.miNav ul{
+  @include transition(all,0.5s);
+  background-color: $adminBar_background !important;
+  color:white;
+  padding: 0px;
+  min-width: 100%;
+}
+.miNav ul a{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.miNav a{
+  color:white !important;
+}
+.divide{
+  background-color: darken($adminBar_background,50%) !important;
+}
+
+.miContainer{
+  @include transition(all,1s);
+  margin: 10px;
+  padding: 10px !important;
+  @include border-radius(5px);
+}
+.background-container{
+  background:  white;
+  @include transition(all,1s);
+}
+.background-app{
+  background:  rgba(52, 73, 94,1.0);
+  @include transition(all,1s);
+}
+.navbar{
+  @include transition(all,1s);
+}
+*/
+
+
+
+
+.table-planillas-f {
+  width: 100%;
+  max-width: 100%;
+  //margin-bottom: $line-height-computed;
+  // Cells
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        padding: 0;
+        line-height: 1.428571429;
+        vertical-align: middle;
+        //border-top: 1px solid $table-border-color;
+      }
+    }
+  }
+
+  > thead > tr > th {
+    vertical-align: middle;
+    border-bottom: 2px solid $table-border-color;
+  }
+}
+.rotate45{
+  @include rotate(-45deg);
+}
+.rotate90{
+  @include rotate(-90deg);
+}
+$planillas-width-n:21px;
+$planillas-width-ci:70px;
+$planillas-width-cuenta:100px;
+$planillas-width-grado:35px;
+$planillas-width-nombres:155px;
+$planillas-width-carrera:120px;
+$planillas-width-materia:175px;
+$planillas-width-tipo:70px;
+$planillas-width-horas:35px;
+$planillas-width-categoria:30px;
+
+$planillas-width-reintegro:70px;
+$planillas-width-atrasos:40px;
+
+$planillas-width-factura:30px;
+$planillas-width-number:49px;
+
+
+$planillas-padding-base-all:5px 3px 5px 3px;
+$planillas-padding-base-all-2:13px 3px 5px 3px;
+$planillas-height-row:45px;
+.table-planillas-f{
+  overflow: hidden;
+  overflow-x: scroll;
+}
+.table-planillas-f {
+  @include selectable(none);
+  border: 1px solid $table-border-color;
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      @include selectable(none);
+      height: $planillas-height-row !important;
+      > th,
+      > td {
+        border: 1px solid $table-border-color;
+      }
+      .tN{
+        text-transform: uppercase;
+        width: $planillas-width-n;
+        max-width: $planillas-width-n;
+        min-width: $planillas-width-n;
+        padding: $planillas-padding-base-all;
+      }
+      .tCi{
+        text-transform: uppercase;
+        width: $planillas-width-ci;
+        max-width: $planillas-width-ci;
+        min-width: $planillas-width-ci;
+        padding: $planillas-padding-base-all;
+      }
+      .tCuenta{
+        text-transform: uppercase;
+        width: $planillas-width-cuenta;
+        max-width: $planillas-width-cuenta;
+        min-width: $planillas-width-cuenta;
+        *{
+          width: $planillas-width-cuenta;
+        }
+        span{
+          width: 100%;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all-2;
+          display: block;
+          vertical-align: middle;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          @extend .cursorCell;
+        }
+        input,select{
+          display: block;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all;
+        }
+      }
+      .tGrado{
+        text-transform: uppercase;
+        width: $planillas-width-grado;
+        max-width: $planillas-width-grado;
+        min-width: $planillas-width-grado;
+        padding: $planillas-padding-base-all;
+      }
+      .tNombres{
+        text-transform: uppercase;
+        width: $planillas-width-nombres;
+        padding: $planillas-padding-base-all;
+      }
+      .tCarrera{
+        text-transform: uppercase;
+        width: $planillas-width-carrera;
+        padding: $planillas-padding-base-all;
+      }
+      .tMateria{
+        text-transform: uppercase;
+        width: $planillas-width-materia;
+        max-width: $planillas-width-materia;
+        min-width: $planillas-width-materia;
+        *{
+          width: $planillas-width-materia;
+        }
+        span{
+          width: 100%;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all;
+          display: block;
+          vertical-align: middle;
+          @extend .cursorCell;
+        }
+        input,select{
+          display: block;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all;
+        }
+      }
+      .tTipo{
+        text-transform: uppercase;
+        width:$planillas-width-tipo;
+        max-width: $planillas-width-tipo;
+        min-width: $planillas-width-tipo;
+        *{
+          width: $planillas-width-tipo;
+        }
+        span{
+          width: 100%;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all-2;
+          display: block;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          vertical-align: middle;
+          @extend .cursorCell;
+        }
+        input,select{
+          display: block;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all;
+        }
+        select{
+          width: auto;
+        }
+      }
+      .tHoras{
+        text-transform: uppercase;
+        width:$planillas-width-horas;
+        max-width: $planillas-width-horas;
+        min-width: $planillas-width-horas;
+        *{
+          width: $planillas-width-horas;
+        }
+        span{
+          text-align: center;
+          width: 100%;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all-2;
+          display: block;
+          vertical-align: middle;
+          @extend .cursorCell;
+        }
+        input,select{
+          display: block;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all;
+        }
+        select{
+          width: auto;
+        }
+      }
+      .tCategoria{
+        text-transform: uppercase;
+        width:$planillas-width-categoria;
+        max-width: $planillas-width-categoria;
+        min-width: $planillas-width-categoria;
+        *{
+          width: $planillas-width-categoria;
+        }
+        span{
+          text-align: center;
+          width: 100%;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all-2;
+          display: block;
+          vertical-align: middle;
+          @extend .cursorCell;
+        }
+        input,select{
+          display: block;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all;
+        }
+        select{
+          width: auto;
+        }
+      }
+
+      .tReintegro{
+        text-transform: uppercase;
+        width:$planillas-width-reintegro;
+        max-width: $planillas-width-reintegro;
+        //        min-width: $planillas-width-reintegro;
+        *{
+          width: $planillas-width-reintegro;
+        }
+        span{
+          text-align: center;
+          width: 100%;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all-2;
+          display: block;
+          vertical-align: middle;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          @extend .cursorCell;
+        }
+        input,select{
+          display: block;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all;
+        }
+      }
+
+      .tAtrasos{
+        text-transform: uppercase;
+        width:$planillas-width-atrasos;
+        max-width: $planillas-width-atrasos;
+        min-width: $planillas-width-atrasos;
+        *{
+          width: $planillas-width-atrasos;
+        }
+        span{
+          text-align: center;
+          width: 100%;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all-2;
+          display: block;
+          vertical-align: middle;
+          @extend .cursorCell;
+        }
+        input,select{
+          display: block;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all;
+        }
+      }
+
+      .tFactura{
+        text-transform: uppercase;
+        width:$planillas-width-factura;
+        max-width: $planillas-width-factura;
+        min-width: $planillas-width-factura;
+        *{
+          width: $planillas-width-factura;
+        }
+        span{
+          text-align: center;
+          width: 100%;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all-2;
+          display: block;
+          vertical-align: middle;
+          @extend .cursorCell;
+        }
+        input,select{
+          display: block;
+          height: $planillas-height-row - 1px;
+          padding: $planillas-padding-base-all;
+        }
+        select{
+          width: auto;
+        }
+      }
+
+      .tNumber{
+        text-transform: uppercase;
+        text-align: right;
+        width:$planillas-width-number;
+        max-width: $planillas-width-number;
+        min-width: $planillas-width-number;
+        padding: $planillas-padding-base-all;
+        *{
+          width: $planillas-width-number;
+        }
+      }
+      .tLiquido{
+        padding: $planillas-padding-base-all;
+        text-align: right;
+      }
+    }
+  }
+  > thead > tr {
+    > th,
+    > td {
+      border-bottom-width: 2px;
+      text-align: center;
+    }
+  }
+  input{
+    height: inherit;
+    padding: 0;
+    line-height: normal;
+  }
+}
+.table-generar{
+  overflow-x: hidden;
+}
+.table-generar {
+  @include selectable(none);
+  border: 1px solid $table-border-color;
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      height: 45px !important;
+      *{
+        height: 45px !important;
+
+      }
+      button {
+        height: 30px !important;
+      }
+      button *{
+        height: 30px !important;
+      }
+    }
+    *{
+      height: 45px !important;
+      overflow: hidden;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+}
+
+.table-planillas-f {
+  overflow-x: hidden;
+  > tbody > tr:nth-of-type(odd) {
+    background-color: $table-bg-accent;
+  }
+}
+.table-planillas-f {
+  > tbody > tr:hover {
+    background-color: $table-bg-hover;
+    //@include transition(all,0.2s);
+  }
+  > tbody > tr{
+    //@include transition(all,0.2s);
+  }
+}
+
+.toast-top-right {
+  top: 50px !important;
+  right: 0 !important;
+}
+#toast-container > div{
+  box-shadow: 0 0 6px 2px #111 !important;
+  //opacity: 0.9 !important;
+}

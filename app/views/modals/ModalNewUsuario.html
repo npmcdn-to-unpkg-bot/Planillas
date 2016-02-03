@@ -1,0 +1,107 @@
+<div class="modal-header">
+  <h2 class="modal-title">GESTION DE USUARIOS</h2>
+  <h4 class="modal-title">{{items?"MODIFICAR USUARIO":"AGREGAR NUEVO USUARIO"}}</h4>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal paddingV40" ng-submit="guardar(nuevo_usuario)">
+
+    <div class="form-group  form-group-sm">
+      <label class="col-sm-2">Tipo: </label>
+
+      <div class="col-sm-4">
+        <select class="form-control" ng-model="nuevo_usuario.idTipoUsuario"
+                ng-options="tipo.idTipoUsuario as tipo.tipo for tipo in GLOBALS.TIPOS_USUARIO" required>
+        </select>
+      </div>
+      <label class="col-sm-3">Unidad Academica: </label>
+
+      <div class="col-sm-3">
+        <label ng-if="!GF.isRoot()">
+          {{nuevo_usuario.UnidadAcademica}}
+        </label>
+        <select ng-if="GF.isRoot()" class="form-control" ng-model="nuevo_usuario.idUnidadAcademica"
+                ng-options="tipo.idUnidadAcademica as tipo.UnidadAcademica for tipo in GLOBALS.UNIDADES_ACADEMICAS" required>
+        </select>
+      </div>
+    </div>
+    <div class="form-group  form-group-sm">
+      <label class="col-sm-4">Carrera: </label>
+
+      <div class="col-sm-8">
+        <label ng-if="!(GF.isRoot() || GF.isAdmin())">
+          {{nuevo_usuario.Especialidad}}
+        </label>
+        <select ng-if="GF.isRoot() || GF.isAdmin()" class="form-control" ng-model="nuevo_usuario.idEspecialidad"
+                ng-options="especialidad.idEspecialidad as especialidad.Especialidad for especialidad in GLOBALS.ESPECIALIDADES" required>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group  form-group-sm ">
+      <label class="col-sm-4">Nombres:</label>
+
+      <div class="col-sm-8">
+        <input ng-model="nuevo_usuario.Nombres" class="form-control" placeholder="Nombres" required>
+      </div>
+    </div>
+    <div class="form-group  form-group-sm">
+      <label class="col-sm-4">Apellido Paterno: </label>
+
+      <div class="col-sm-8">
+        <input ng-model="nuevo_usuario.apPaterno" class="form-control " placeholder="Apellido Paterno" required>
+      </div>
+    </div>
+    <div class="form-group  form-group-sm">
+      <label class="col-sm-4">Apellido Materno: </label>
+
+      <div class="col-sm-8">
+        <input ng-model="nuevo_usuario.apMaterno" class="form-control " placeholder="Apellido Materno" required>
+      </div>
+    </div>
+    <div class="form-group  form-group-sm">
+      <label class="col-sm-4">Carnet </label>
+
+      <div class="col-sm-8">
+        <input ng-model="nuevo_usuario.Celular" class="form-control " placeholder="Numero de carnet" required>
+      </div>
+    </div>
+    <div class="form-group  form-group-sm">
+      <label class="col-sm-4">Correo: </label>
+
+      <div class="col-sm-8">
+        <input ng-model="nuevo_usuario.email" class="form-control" type="email" name="email"
+               placeholder="Correo Electronico" required>
+      </div>
+    </div>
+
+    <div class="form-group  form-group-sm">
+      <label class="col-sm-4">Nombre de Usuario: </label>
+
+      <div class="col-sm-8">
+        <input ng-model="nuevo_usuario.name" class="form-control" type="text" placeholder="Nombre de Usuario" required>
+      </div>
+    </div>
+    <div class="form-group  form-group-sm text-center" ng-show="items">
+      <button type="button" class="btn btn-info btn-sm" ng-click="modPass = !modPass;delete (nuevo_usuario.password)">{{modPass?"No
+        modificar contraseña":"Modificar contraseña"}}
+      </button>
+    </div>
+    <div class="form-group  form-group-sm" ng-show="modPass || !items">
+      <label class="col-sm-4">Nueva Contraseña: </label>
+
+      <div class="col-sm-8">
+        <input ng-model="nuevo_usuario.password" class="form-control" type="password" name="password"
+               placeholder="Password"/>
+      </div>
+    </div>
+    <div class="form-group  form-group-sm">
+      <div class="text-center">
+        <button type="submit" class="btn btn-success PH40 right">GUARDAR</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>
+<!--<div class="modal-footer">
+</div>-->

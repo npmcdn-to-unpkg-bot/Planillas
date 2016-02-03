@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <h2 class="modal-title">GENERAR PLANILLA</h2>
+  <h4 class="modal-title">REPORTE DE PLANILLAS DE PAGO</h4>
+</div>
+<div class="modal-body">
+  <div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <textarea class="fullWidth fullHeight" ng-model="footers.header" placeholder="Cabezera"></textarea>
+      </div>
+    </div>
+    <div class="row text-center" style="font-size: 12px" >
+
+      <div class="col-md-3">
+        <textarea class="fullWidth fullHeight" ng-model="footers.name1" placeholder="RESP DE INFORMATICA"></textarea>
+        <label class="cursorCell" ng-model="footers.cargo1" ng-init="footers.cargo1 = 'RESP. DE INFORMATICA'" editable-textarea="footers.cargo1">{{footers.cargo1}}</label>
+      </div>
+      <div class="col-md-3">
+        <textarea class="fullWidth fullHeight" ng-model="footers.name2" placeholder="JEFA DE ASULTOS ADMINISTRATIVOS"></textarea>
+        <label class="cursorCell" ng-model="footers.cargo2" ng-init="footers.cargo2 = 'JEFA DE ASULTOS ADMINISTRATIVOS'" editable-textarea="footers.cargo2">{{footers.cargo2}}</label>
+      </div>
+      <div class="col-md-3">
+        <textarea class="fullWidth fullHeight" ng-model="footers.name3" ng-init="footers.name3='Cnl. DIM. Julio Cesar Narvaez Tamayo'" placeholder="DIRECTOR NACIONAL DE INFORMATICA"></textarea>
+        <label class="cursorCell" ng-model="footers.cargo3" ng-init="footers.cargo3 = 'DIRECTOR NACIONAL DE INFORMATICA'" editable-textarea="footers.cargo3">{{footers.cargo3}}</label>
+      </div>
+      <div class="col-md-3">
+        <textarea class="fullWidth fullHeight" ng-model="footers.name4" ng-init="footers.name4 = 'Cnl. DAEN. John Williams De la Barra Sanjines'" placeholder="DIRECTOR UNIDAD ACADEMICA"></textarea>
+        <label class="cursorCell" ng-model="footers.cargo4" ng-init="footers.cargo4 = 'DIRECTOR UNIDAD ACADEMICA'" editable-textarea="footers.cargo4">{{footers.cargo4}}</label>
+      </div>
+    </div>
+    <div class="row"></div>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="text-center">
+    <button class="btn btn-success PH40" ng-click="ok(footers)">ACEPTAR Y GENERAR REPORTE</button>
+  </div>
+</div>

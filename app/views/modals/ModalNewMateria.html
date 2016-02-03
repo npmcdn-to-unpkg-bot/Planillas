@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h2 class="modal-title">MATERIAS</h2>
+  <h4 class="modal-title">AGREGAR NUEVA MATERIA A PLANILLAS</h4>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal paddingV40">
+    <div class="form-group  form-group-sm myForm-group">
+      <label class="col-sm-5">Materia:</label>
+      <div class="col-sm-7">
+        <input ng-model="nueva_materia.Materia" class="form-control" placeholder="Nombre completo de la materia"/>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success right" ng-click="guardarMateria(nueva_materia,true)">Guardar</button>
+</div>

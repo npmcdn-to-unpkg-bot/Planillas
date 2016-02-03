@@ -1,0 +1,43 @@
+@import "mixins";
+@import "variables";
+.login{
+  margin-top: 50px;
+  @include transition(all,0.5s);
+  @include border-radius($principal-border-radius);
+  color: $principal-text;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  collapse: green(#fff);
+  max-width: 600px;
+  display: inline-block;
+  .login-header{
+    padding: 15px;
+    text-align: center;
+    background-color: $adminBar_background;
+  }
+  .login-body{
+    background-color: $background-login-body;
+    padding: 45px 50px 45px 50px;
+    text-align: left;
+    a{
+      display: block;
+      margin-top: 15px;
+      margin-bottom: -10px;
+      color: $principal-text;
+      text-align: center;
+    }
+  }
+  .login-footer{
+    text-align: center;
+    background-color: $adminBar_background;
+    padding: 15px;
+
+  }
+  .glyphicon{
+    color: $principal-background;;
+  }
+  .btn{
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+

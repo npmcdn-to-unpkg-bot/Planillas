@@ -1,0 +1,81 @@
+<div ng-controller="UsuariosCtrl">
+  <div class="col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info">
+      <div class="panel-heading center">
+        <label class="panel-title text-uppercase">Lista de Docentes</label>
+        <div class="pull-right" ng-show="!GF.isSecre()">
+          <button class="btn btn-success btn-sm" ng-click="openModalNewDocente()">
+            <span class="glyphicon glyphicon-plus"></span>
+            Agregar nuevo Docente
+          </button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="form-group-sm">
+          <div class="col-sm-3">
+            <p class="">Unidad Academica</p>
+            <label ng-show="!GF.isRoot()">{{GF.getUnidadAcademicaName()}}</label>
+            <select ng-show="GF.isRoot()" class="form-control" ng-model="filter_uuaa" >
+              <option value="">-- Todos --</option>
+              <option ng-repeat="carrera in GLOBALS.UNIDADES_ACADEMICAS">{{carrera.UnidadAcademica}}</option>
+            </select>
+          </div>
+          <div class="col-sm-7">
+            <p class="">Nombre de docente</p>
+            <div class="col-sm-7" ng-init="filter_docente = {}">
+              <input class="form-control" ng-model="filter_docente.Docente" placeholder="Buscar docente">
+              <!--<ui-select tagging tagging-label="('new')" ng-model="filter_docente.Docente">
+                <ui-select-match allow-clear="true" placeholder="Buscar docente"><span class="FZ13">{{$select.selected.Docente}}</span></ui-select-match>
+                <ui-select-choices repeat="docente in GLOBALS.LISTA_DOCENTES | filter: $select.search">
+                  <div ng-bind-html="docente.Docente | highlight: $select.search" class="FZ13"></div>
+                </ui-select-choices>
+              </ui-select>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table class="table table-bordered table-hover FZ13">
+        <thead>
+
+        <tr>
+          <th  class="text-center">N</th>
+          <th  class="text-center">Docente</th>
+          <th  class="text-center">Carnet</th>
+          <th  class="text-center">Unidad Academica</th>
+          <th  class="text-center" ng-if="!GF.isSecre()">Modificar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="docente in GLOBALS.LISTA_DOCENTES | filter:filter_uuaa | filter:filter_docente.Docente">
+          <td>{{$index+1}}</td>
+          <td>{{docente.ApPaterno+' '+docente.ApMaterno+' '+docente.Nombre}}</td>
+          <td>{{docente.CI}}</td>
+          <td>{{docente.UnidadAcademica}}</td>
+          <td ng-if="!GF.isSecre()">
+            <button class="btn btn-primary btn-sm" ng-click="modificarDocente(docente)" tooltip="Editar docente"><span class="glyphicon glyphicon-edit"></span></button>
+            <button class="btn btn-danger btn-sm" ng-click="eliminarDocente(docente)" tooltip="Eliminar docente"><span class="glyphicon glyphicon-trash"></span></button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+<!--      <nav ng-init="lists.docentes.items = 0">
+        <ul class="pagination">
+          <li>
+            <a aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li ng-repeat="num in LISTS.docentes_page" ng-class="(lists.docentes == $index)?'active':''">
+            <a href="" ng-click="GF.load_lista_docentes();lists.docentes = $index">{{ $index +1 }}</a>
+          </li>
+          <li>
+            <a aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>-->
+    </div>
+  </div>
+</div>

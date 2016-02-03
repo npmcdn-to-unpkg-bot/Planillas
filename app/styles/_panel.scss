@@ -1,0 +1,31 @@
+.panel-group{
+  margin-bottom: 1px !important;
+}
+.panel-group a{
+  display: block;
+  width: 100%;
+}
+.panel-group a:focus,.panel-group a:hover{
+  outline: none !important;
+  text-decoration: none !important;
+}
+.panel-group .panel-heading{
+  color: $principal-text;
+  background-color: $principal-background;
+  @include transition(all,0.6s);
+}
+.panel-group .panel-heading:hover{
+  background-color: darken($principal-background,5%) !important;
+  @include transition(all,0.6s);
+}
+.panel-heading{
+  color: $principal-text !important;
+  background-color: lighten($principal-background,10%) !important;
+}
+
+.panel-left{
+  background-color: lighten($principal-background,50%);
+}
+.panel-body{
+  background-color: lighten($principal-background,70%);
+}
