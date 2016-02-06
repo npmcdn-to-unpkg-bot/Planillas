@@ -5,7 +5,7 @@
  * @description
  * # FileModel
  */
-angular.module('emiApp')
+angular.module('planillasApp')
     .directive('fileModel', function ($parse) {
         return {
             restrict: 'A',

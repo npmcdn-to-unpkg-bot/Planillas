@@ -1,10 +1,10 @@
-@mixin transition($type, $time) {
-  -webkit-transition: $type $time;
-  -moz-transition: $type $time;
-  -ms-transition: $type $time;
-  -o-transition: $type $time;
-  transition: $type $time;
-}
+//@mixin transition($type, $time) {
+//  -webkit-transition: $type $time;
+//  -moz-transition: $type $time;
+//  -ms-transition: $type $time;
+//  -o-transition: $type $time;
+//  transition: $type $time;
+//}
 
 @mixin border-radius($with) {
   -webkit-border-radius: $with;
@@ -42,4 +42,75 @@
   padding: $planillas-padding-base-all;
   display: block;
   vertical-align: middle;
+}
+
+
+@mixin animation($animation) {
+    -webkit-animation: $animation;
+    -moz-animation: $animation;
+    -ms-animation: $animation;
+    -o-animation: $animation;
+    animation: $animation;
+}
+
+@mixin animation-delay($delay) {
+    -webkit-animation-delay: $delay;
+    -moz-animation-delay: $delay;
+    -ms-animation-delay: $delay;
+    -o-animation-delay: $delay;
+    animation-delay: $delay;
+}
+
+@mixin animation-fill-mode($mode) {
+    -webkit-animation-fill-mode: $mode;
+    -moz-animation-fill-mode: $mode;
+    -ms-animation-fill-mode: $mode;
+    -o-animation-fill-mode: $mode;
+    animation-fill-mode: $mode;
+}
+
+@mixin border-radius($border-radius) {
+    -webkit-border-radius: $border-radius !important;
+    -moz-border-radius: $border-radius !important;
+    -ms-border-radius: $border-radius !important;
+    -o-border-radius: $border-radius !important;
+    border-radius: $border-radius !important;
+}
+
+@mixin box-shadow($box-shadow) {
+    -webkit-box-shadow: $box-shadow !important;
+    -moz-box-shadow: $box-shadow !important;
+    -ms-box-shadow: $box-shadow !important;
+    -o-box-shadow: $box-shadow !important;
+    box-shadow: $box-shadow !important;
+}
+
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+@mixin transform($transform) {
+    -webkit-transform: $transform !important;
+    -moz-transform: $transform !important;
+    -ms-transformn: $transform !important;
+    -o-transform: $transform !important;
+    transform: $transform !important;
+}
+
+@mixin transform-origin($position) {
+    -webkit-transform-origin: $position;
+    -moz-transform-origin: $position;
+    -o-transform-origin: $position;
+    -ms-transform-origin: $position;
+    transform-origin: $position;
+}
+
+@mixin width-static($width) {
+    min-width: $width !important;
+    max-width: $width !important;
+    width: $width !important;
 }

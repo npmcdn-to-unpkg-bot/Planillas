@@ -1,4 +1,8 @@
 <div ng-controller="UsuariosCtrl">
+    <div ng-controller="MateriasCtrl">
+        <div class="col-sm-8 col-sm-offset-2" crud-directive="materiasModel"></div>
+    </div>
+<!--
   <div class="col-sm-8 col-sm-offset-2">
     <div class="panel panel-info">
       <div class="panel-heading center">
@@ -16,17 +20,18 @@
             <p class="">Nombre de materia</p>
             <div class="col-sm-7" ng-init="filter_materia = {}">
               <input class="form-control" ng-model="filter_materia.Materia" placeholder="Buscar materia">
-              <!--<ui-select tagging tagging-label="('new')" ng-model="filter_materia.Materia">
+              &lt;!&ndash;<ui-select tagging tagging-label="('new')" ng-model="filter_materia.Materia">
                 <ui-select-match allow-clear="true" placeholder="Buscar materia"><span class="FZ13">{{$select.selected.Materia}}</span></ui-select-match>
                 <ui-select-choices repeat="mat in GLOBALS.LISTA_MATERIAS | filter: $select.search">
                   <div ng-bind-html="mat.Materia | highlight: $select.search" class="FZ13"></div>
                 </ui-select-choices>
-              </ui-select>-->
+              </ui-select>&ndash;&gt;
             </div>
           </div>
         </div>
       </div>
-      <table class="table table-bordered table-hover FZ13">
+
+      &lt;!&ndash;<table class="table table-bordered table-hover FZ13">
         <thead>
         <tr>
           <th  class="text-center">N</th>
@@ -44,7 +49,9 @@
           </td>
         </tr>
         </tbody>
-      </table>
+      </table>&ndash;&gt;
     </div>
   </div>
+-->
+
 </div>

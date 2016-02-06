@@ -12,11 +12,11 @@
 .panel-group .panel-heading{
   color: $principal-text;
   background-color: $principal-background;
-  @include transition(all,0.6s);
+  @include transition(all  0.6s);
 }
 .panel-group .panel-heading:hover{
   background-color: darken($principal-background,5%) !important;
-  @include transition(all,0.6s);
+  @include transition(all 0.6s);
 }
 .panel-heading{
   color: $principal-text !important;

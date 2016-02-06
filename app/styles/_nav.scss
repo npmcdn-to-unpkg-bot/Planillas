@@ -1,40 +1,43 @@
-.navbar{
-  background-color:$adminBar_background;
-  color: white;
-}
-.nav {
-  @include transition(all, 0.5s);
-}
 
-.nav li a,
-.nav li a {
-  @include transition(all, 0.5s);
-}
+#menu{
+    .navbar{
+        background-color:$adminBar_background;
+        color: white;
+    }
+    .nav {
+        @include transition(all 0.5s);
+    }
 
-.nav li a:hover,
-.nav li a:focus {
-  outline: none !important;
-  background-color: darken($adminBar_background, 10%) !important;
-  @include transition(all, 0.5s);
-}
+    .nav li a,
+    .nav li a {
+        @include transition(all 0.5s);
+    }
 
-.nav ul {
-  @include transition(all, 0.5s);
-  background-color: $adminBar_background !important;
-  color: white;
-  padding: 0;
-  min-width: 100%;
-}
+    .nav li a:hover,
+    .nav li a:focus {
+        outline: none !important;
+        background-color: darken($adminBar_background, 10%) !important;
+        @include transition(all 0.5s);
+    }
 
-.nav ul a {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
+    .nav ul {
+        @include transition(all 0.5s);
+        background-color: $adminBar_background !important;
+        color: white;
+        padding: 0;
+        min-width: 100%;
+    }
 
-.nav a {
-  color: white !important;
-}
+    .nav ul a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 
-.divide {
-  background-color: darken($adminBar_background, 50%) !important;
+    .nav a {
+        color: white !important;
+    }
+
+    .divide {
+        background-color: darken($adminBar_background, 50%) !important;
+    }
 }

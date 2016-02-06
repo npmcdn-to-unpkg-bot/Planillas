@@ -8,7 +8,7 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-  .controller('DocentesCtrl', function ($scope,URLS,$http2,$rootScope) {
+  .controller('DocentesCtrl', function ($scope,URLS,$http2,$rootScope, ModelService) {
     $scope.eliminarDocente = function(docente){
       $rootScope.openModalConfirm(function(){
         $http2.patch(URLS.LISTA_DOCENTES,{idDocente:docente.idDocente},
@@ -19,4 +19,5 @@ angular.module('planillasApp')
           })
       },function(){},"ELIMINAR DOCENTE","Seguro que desea eliminar docente?");
     };
+      $scope.especialidadModel = new ModelService.DocentesModel();
   });

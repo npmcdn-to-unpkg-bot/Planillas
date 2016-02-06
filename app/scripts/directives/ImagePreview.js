@@ -6,7 +6,7 @@
  * @description
  * # imagePreview
  */
-angular.module('emiApp')
+angular.module('planillasApp')
     .directive('imagePreview', function () {
         return {
             restrict: 'A',

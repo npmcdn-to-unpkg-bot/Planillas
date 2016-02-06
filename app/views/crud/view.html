@@ -1,5 +1,5 @@
-<div class="small">
-    <div class="row">
+<div class="panel panel-info small">
+    <!--<div class="row">
 
         <div class="col-xs-12">
             <span class="clearfix"></span>
@@ -15,8 +15,26 @@
             </h3>
             <span class="clearfix"></span>
         </div>
+    </div>-->
+
+
+    <div class="panel-heading center">
+        <label class="panel-title text-uppercase">{{ Model.config.title }}</label>
+        <div class="pull-right">
+            <button data-ng-show="Model.add_new"
+                    ng-click="openModalCreate(Model)" class="btn btn-success btn-sm"
+                    title="Nuevo {{Model.config.title}}">
+                <span class="glyphicon glyphicon-plus"></span>
+                Nuevo
+            </button>
+            <!--<button class="btn btn-success btn-sm" ng-click="openModalNewMateria()">
+                <span class="glyphicon glyphicon-plus"></span>
+                Agregar nueva materia
+            </button>-->
+        </div>
     </div>
-    <div class="row" ng-show="Model.searchEnabled">
+
+    <div class="panel-body" ng-show="Model.searchEnabled">
         <div class="col-xs-12 col-sm-5">
             <form style="max-width:300px" data-ng-submit="loadData()">
                 <div class="input-group">
@@ -37,7 +55,7 @@
                 {{Model['collapseFilterSearch'] ? 'Menos opciones de busqueda':'Mas opciones de busqueda'}}</a>
         </div>
     </div>
-    <div class="row" ng-show="Model.filterFields" uib-collapse="!Model['collapseFilterSearch']">
+    <div class="clearfix" ng-show="Model.filterFields" uib-collapse="!Model['collapseFilterSearch']">
         <hr>
         <div class="col-xs-12 col-sm-8">
             <form ng-submit="loadFilterFields()">
@@ -54,7 +72,7 @@
                                autocomplete="on">
                         <datalist id="{{'filter_' + filterField}}">
                             <option
-                                ng-repeat="result in (((Model.fields | filter:{name:filterField})[0]).dataFilter.results)"
+                                ng-repeat="result in (((Model.fields | filter:{name:filterField})[0]).dataFilter.data)"
                                 ng-value="result[filterField]">
                             </option>
                         </datalist>
@@ -72,13 +90,13 @@
             </form>
         </div>
     </div>
-    <div class="row">
+    <div class="clearfix">
         <hr class="mV10">
         <div class="col-xs-12">
-            <div class="alert-info p20 text-center" ng-show="!Model.data.results.length">
+            <div class="alert-info p20 text-center" ng-show="!Model.dataResponse.data.length">
                 <i> - No se encontraron coincidencias - </i>
             </div>
-            <table class="table table-bordered table-striped" ng-show="Model.data.results.length > 0">
+            <table class="table table-bordered table-striped" ng-show="Model.dataResponse.data.length > 0">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -89,7 +107,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="rowItem in Model.data.results">
+                <tr ng-repeat="rowItem in Model.dataResponse.data">
                     <td ng-bind="$index + 1"></td>
                     <td ng-repeat="param in Model.showFields"
                         item-crud="(Model.fields | filter:{name:param})[0]"
@@ -114,8 +132,8 @@
                 </tbody>
             </table>
 
-            <div class="text-center" ng-show="Model.data.results.length && (Model.data.next || Model.data.previous)">
-                <uib-pagination total-items="Model.data.count" items-per-page="paginationParams.page_size"
+            <div class="text-center" ng-show="Model.dataResponse.data.length && (Model.dataResponse.next_page_url || Model.dataResponse.prev_page_url)">
+                <uib-pagination total-items="Model.dataResponse.total" items-per-page="paginationParams.page_size"
                                 ng-model="currentPage" class="pagination-sm" previous-text="Anterior"
                                 ng-change="changePage()"
                                 next-text="Siguiente"></uib-pagination>

@@ -2,7 +2,7 @@
 @import "variables";
 .login{
   margin-top: 50px;
-  @include transition(all,0.5s);
+  @include transition(all 0.5s);
   @include border-radius($principal-border-radius);
   color: $principal-text;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);

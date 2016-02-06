@@ -7,7 +7,7 @@
  * # CrudDirective
  */
 
-angular.module('emiApp')
+angular.module('planillasApp')
     .directive('crudDirective', function ($compile, $templateRequest, $uibModal) {
         return {
             restrict: 'A',
@@ -32,7 +32,7 @@ angular.module('emiApp')
                     scope.formFilterFields = {};
 
                     scope.paginationParams = {
-                        page_size: 10,
+                        page_size: 15,
                         page: 1,
                         search: ''
                     };
@@ -116,7 +116,8 @@ angular.module('emiApp')
                         });
                         scope.Model.paginationParams = scope.paginationParams;
                         (new scope.Model.resource()).$get(scope.paginationParams).then(function (data) {
-                            scope.Model.data = data;
+                            console.log(scope, data);
+                            scope.Model.dataResponse = data;
                         }, function () {
                             scope.paginationParams.page = 1;
                             scope.Model.paginationParams = scope.paginationParams;
@@ -189,8 +190,8 @@ angular.module('emiApp')
                         (new scope.itemCrud.model.resource()).$get(
                             {id: scope.itemCrudModel[scope.itemCrud.name]}
                         ).then(function (data) {
-                            scope.itemCrud.model.data = data;
-                            text = scope.itemCrud.model.data[scope.itemCrud.model.nameView];
+                            scope.itemCrud.model.dataResponse = data;
+                            text = scope.itemCrud.model.dataResponse[scope.itemCrud.model.nameView];
                             element.html(text || '-');
                             $compile(element.contents())(scope);
                         });
@@ -284,6 +285,7 @@ angular.module('emiApp')
                     '</div>' +
                     '</form>';
                 scope.saveForm = function (formDataModels) {
+                    console.log(formDataModels);
                     var formData = new FormData();
 
                     angular.forEach(formDataModels, function (value, key) {
@@ -363,7 +365,10 @@ angular.module('emiApp')
                     }
 
                     if (scope.initForm) {
-                        sendData.patch({id: formDataModels.id}, formData, successRequest, errorRequest);
+                        var aa = angular.copy(formDataModels);
+                        aa.id = formDataModels[scope.ngModel.id_name];
+                        //sendData.patch({id: formDataModels[scope.ngModel.id_name]}, formData, successRequest, errorRequest);
+                        sendData.patch(aa, formData, successRequest, errorRequest);
                     } else {
                         sendData.create(formData, successRequest, errorRequest);
                     }
@@ -437,19 +442,25 @@ angular.module('emiApp')
                      else*/
                     if (scope.formItemCrud.model) {
                         (new scope.formItemCrud.model.resource()).$get().then(function (data) {
-                            scope.formItemCrud.model.data = data;
+                            scope.formItemCrud.model.dataResponse = data;
                             if (scope.formItemCrud.required && !scope.formModel[scope.formItemCrud.name]) {
                                 /** @namespace data.results */
-                                scope.formModel[scope.formItemCrud.name] = data.results[0].id;
+                                scope.formModel[scope.formItemCrud.name] = (data.data[0])[scope.formItemCrud.model.id_name];
+                                //console.log(scope);
+                                //scope.formModel[scope.formItemCrud.name] = (data.results[0])[scope.Model.id_name];
                             }
-                            templateReturn = '<select class="form-control" data-ng-model="formModel[formItemCrud.name]" data-ng-options="item.id as item.name for item in formItemCrud.model.data.results" data-ng-required="formItemCrud.required" data-ng-disabled="formItemDisabled"';
+                            //console.log(scope.formItemCrud.model);
+                            templateReturn = '<select class="form-control" data-ng-model="formModel[formItemCrud.name]"' +
+                                'data-ng-options="item[formItemCrud.model.id_name] as item[formItemCrud.model.nameView] for item in formItemCrud.model.dataResponse.data"' +
+                                'data-ng-required="formItemCrud.required"' +
+                                'data-ng-disabled="formItemDisabled"';
                             if (scope.formItemCrud.multiple) {
                                 templateReturn += ' multiple ';
                             }
                             templateReturn += '></select>';
                             compileTemplate(templateReturn);
                         });
-                    } else if (scope.formItemCrud.choices) {
+                    } else if (scope.formItemCrud.choices) { // not implemented choices
                         if (scope.formItemCrud.required && !scope.formModel[scope.formItemCrud.name]) {
                             scope.formModel[scope.formItemCrud.name] = scope.formItemCrud.choices[0].value;
                         }
@@ -486,7 +497,9 @@ angular.module('emiApp')
 
         $scope.delete = function () {
             //noinspection JSUnresolvedFunction
-            (new $scope.Model.resource()).$delete({id: $scope.rowItem.id})
+            console.log($scope);
+            //(new $scope.Model.resource()).$delete({id: .id})
+            (new $scope.Model.resource()).$delete({id: $scope.rowItem[$scope.Model.id_name]})
                 .then(function () {
                     toastr.success('Se ha eliminado registro');
                     $scope.ok();

@@ -8,7 +8,7 @@
  * # CrudFilter
  * Filter in the simuladorTiroApp.
  */
-angular.module('emiApp')
+angular.module('planillasApp')
     .filter('CrudFilter', function () {
         return function (input, type) {
             var filtered = input;

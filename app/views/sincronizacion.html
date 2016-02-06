@@ -1,14 +1,135 @@
 <div ng-controller="SincronizacionCtrl">
-  <div class="col-sm-10 col-sm-offset-1">
-    <div class="panel panel-info">
-      <div class="panel-heading text-center text-uppercase">
-        SINCRONIZACION
-      </div>
-      <div class="panel-body">
-        <div class="form-group-sm text-center">
-          -- No implementado --
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="panel panel-info">
+            <div class="panel-heading text-center text-uppercase">
+                SINCRONIZACION
+            </div>
+            <div class="panel-body">
+                <uib-tabset>
+                    <uib-tab heading="Docentes">
+                        <div class="inline-block">
+                            <ng-csv-import content="csv.content"
+                                           header="csv.header"
+                                           separator="csv.separator"
+                                           result="csv.resultDocentes"
+                                           accept="csv.accept"></ng-csv-import>
+                        </div>
+                        <div class="inline-block">
+                            <button class="btn btn-default">
+                                <span class="glyphicon glyphicon-dashboard"></span> Desde servicios
+                            </button>
+                        </div>
+                        <div class="inline-block">
+                            <button class="btn btn-info" ng-click="sincronizar_docentes(csv.resultDocentes)"><span
+                                class="glyphicon glyphicon-refresh"></span> Sincronizar
+                            </button>
+                        </div>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>ID</td>
+                                <td>Apellido Materno</td>
+                                <td>Apellido Paterno</td>
+                                <td>Nombres</td>
+                                <td>Ci</td>
+                                <td>Estado</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="docente in csv.resultDocentes">
+                                <td><span ng-bind="$index+1"></span></td>
+                                <td><span ng-bind="docente.idDocente"></span></td>
+                                <td><span ng-bind="docente.ApMaterno"></span></td>
+                                <td><span ng-bind="docente.ApPaterno"></span></td>
+                                <td><span ng-bind="docente.Nombre"></span></td>
+                                <td><span ng-bind="docente.CI"></span></td>
+                                <td><span class="p5" ng-class="docente.actualizado?'btn-success':'btn-warning'"
+                                          ng-bind="docente.actualizado?'Guardado':'Pendiente'"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </uib-tab>
+                    <uib-tab heading="Materias">
+                        <div class="inline-block">
+                            <ng-csv-import content="csv.content"
+                                           header="csv.header"
+                                           separator="csv.separator"
+                                           result="csv.resultMaterias"
+                                           accept="csv.accept"></ng-csv-import>
+                        </div>
+                        <div class="inline-block">
+                            <button class="btn btn-default">
+                                <span class="glyphicon glyphicon-dashboard"></span> Desde servicios
+                            </button>
+                        </div>
+                        <div class="inline-block">
+                            <button class="btn btn-info" ng-click="sincronizar_materias(csv.resultMaterias)"><span
+                                class="glyphicon glyphicon-refresh"></span> Sincronizar
+                            </button>
+                        </div>
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>ID</td>
+                                <td>Materia</td>
+                                <td>Estado</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="materia in csv.resultMaterias">
+                                <td><span ng-bind="$index+1"></span></td>
+                                <td><span ng-bind="materia.idMateria"></span></td>
+                                <td><span ng-bind="materia.Materia"></span></td>
+                                <td><span class="p5" ng-class="materia.actualizado?'btn-success':'btn-warning'"
+                                          ng-bind="materia.actualizado?'Guardado':'Pendiente'"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </uib-tab>
+                    <uib-tab heading="Carreras">
+                        <div class="inline-block">
+                            Desde Archivo (.csv)
+                            <ng-csv-import content="csv.content"
+                                           header="csv.header"
+                                           separator="csv.separator"
+                                           result="csv.resultCarreras"
+                                           accept="csv.accept"></ng-csv-import>
+                        </div>
+                        <div class="inline-block">
+                            <button class="btn btn-default">
+                                <span class="glyphicon glyphicon-dashboard"></span> Desde servicios
+                            </button>
+                        </div>
+                        <div class="inline-block">
+                            <button class="btn btn-info" ng-click="sincronizar_especialidades(csv.resultCarreras)"><span
+                                class="glyphicon glyphicon-refresh"></span> Sincronizar
+                            </button>
+                        </div>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>ID</td>
+                                <td>Carrera</td>
+                                <td>Estado</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="carrera in csv.resultCarreras">
+                                <td><span ng-bind="$index+1"></span></td>
+                                <td><span ng-bind="carrera.idEspecialidad"></span></td>
+                                <td><span ng-bind="carrera.Especialidad"></span></td>
+                                <td><span class="p5" ng-class="carrera.actualizado?'btn-success':'btn-warning'"
+                                          ng-bind="carrera.actualizado?'Guardado':'Pendiente'"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

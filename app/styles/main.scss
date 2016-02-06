@@ -1,379 +1,406 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
+@import "font-awesome/scss/font-awesome.scss";
 // endbower
 @charset "utf-8";
 //@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";// org
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // not
 
-@import "_variables";
-@import "_mixins";
+@import "variables";
+@import "mixins";
 
-@import "_buttons";
+@import "buttons";
+@import "basic";
 //@import "_checkbox";
 //@import "_error404";
-@import "_loader";
-@import "_login";
-@import "_modal";
-@import "_nav";
-@import "_panel";
-@import "_scrollBar";
+@import "loader";
+@import "login";
+@import "modal";
+@import "nav";
+@import "panel";
+@import "scrollBar";
+@import "sheets";
 //@import "_sbAdmin";
 
 html, body {
-  background: $backgroud-app;
+    background: $backgroud-app;
 }
 
-.FZ14{
-  font-size: 14px !important;
+.FZ14 {
+    font-size: 14px !important;
 }
-.FZ13{
-  font-size: 13px !important;
+
+.FZ13 {
+    font-size: 13px !important;
 }
-.FZ12{
-  font-size: 12px !important;
+
+.FZ12 {
+    font-size: 12px !important;
 }
-.FZ10{
-  font-size: 10px !important;
+
+.FZ10 {
+    font-size: 10px !important;
 }
-.FZ9{
-  font-size: 9px !important;
+
+.FZ9 {
+    font-size: 9px !important;
 }
-table{
-  font-size: $table-font-size;
+
+table {
+    font-size: $table-font-size;
 }
+
 .background-app {
-  background: rgba(52, 73, 94, 1.0);
-  @include transition(all, 1s);
+    background: rgba(52, 73, 94, 1.0);
+    @include transition(all 1s);
 }
 
 .mainBody {
-  background: rgba(52, 73, 94, 1.0); //  background-color: rgba(236, 240, 241,1);
+    background: rgba(52, 73, 94, 1.0); //  background-color: rgba(236, 240, 241,1);
 }
 
 .show-hide {
-  @include transition(all linear, 0.5s);
+    @include transition(all linear 0.5s);
 }
 
 .show-hide.ng-hide {
-  @include transition(all linear, 0.5s);
-  opacity: 0;
+    @include transition(all linear 0.5s);
+    opacity: 0;
 }
 
 .animateItemAbout {
-  @include transition(all linear, 1s);
+    @include transition(all linear 1s);
 }
 
 .animateItemAbout.ng-hide {
-  opacity: 0;
-  @include transition(all linnar, 1s);
+    opacity: 0;
+    @include transition(all linnar 1s);
 }
 
 .icon-report {
-  width: 25px;
+    width: 25px;
 }
 
 .iconLogo {
-  width: 60px;
-  margin-top: -6px;
-  box-shadow: black 0 0 15px;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 5px;
-  @include transition(all, 1s);
+    width: 60px;
+    margin-top: -6px;
+    box-shadow: black 0 0 15px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
+    @include transition(all 1s);
 }
 
 .iconLogo:hover {
-  background: white;
-  @include transition(all, 1s);
-  width: 65px;
+    background: white;
+    @include transition(all 1s);
+    width: 65px;
 }
 
 #background-container {;
-  @include transition(all, 1s);
-  margin: 10px;
-  padding: 0 !important;
-  @include border-radius(5px);
-  background-color: rgba(255, 255, 255, 1);
-  @include transition(all, 1s);
+    @include transition(all 1s);
+    margin: 10px;
+    padding: 0 !important;
+    @include border-radius(5px);
+    background-color: rgba(255, 255, 255, 1);
+    @include transition(all 1s);
 }
 
 .paddingV40 {
-  padding-left: 40px;
-  padding-right: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .marginV40 {
-  padding-left: 40px;
-  padding-right: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
+
 .marginH40 {
-  padding-top: 40px;
-  padding-bottom: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .center {
-  text-align: center;
+    text-align: center;
 }
 
 .VAT {
-  vertical-align: top !important;
+    vertical-align: top !important;
 }
 
 .fullWidth {
-  width: 100% !important;;
+    width: 100% !important;;
 }
 
 .fullHeight {
-  height: 100%;
+    height: 100%;
 }
 
 .mediumWidth {
-  width: 50%;
+    width: 50%;
 }
 
 .PV0 {
-  padding-left: 0;
-  padding-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
-.PH20{
-  padding-left: 20;
-  padding-right: 20;
+
+.PH20 {
+    padding-left: 20;
+    padding-right: 20;
 }
-.PH40{
-  padding-left: 40;
-  padding-right: 40;
+
+.PH40 {
+    padding-left: 40;
+    padding-right: 40;
 }
+
 .MT10 {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .login-footer {
-  .text-info {
-    color: white;
-    font-size: 13px;
-    font-weight: normal;
-    font-style: italic;
-  }
+    .text-info {
+        color: white;
+        font-size: 13px;
+        font-weight: normal;
+        font-style: italic;
+    }
 }
 
 .underline {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .bold {
-  font-size: 14px;
-  font-weight: bold;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .fz15 {
-  font-size: 14.3px;
+    font-size: 14.3px;
 }
 
 .MT15 {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .right {
-  float: right;
+    float: right;
 }
 
 .table-planillas .rotate90 {
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-  -webkit-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  -moz-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  -o-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  vertical-align: middle;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    -webkit-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+    -moz-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+    -o-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+    vertical-align: middle;
 }
 
 .table-planillas .rotate45 {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-  -webkit-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  -moz-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  -o-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  vertical-align: middle;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    -webkit-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+    -moz-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+    -o-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+    vertical-align: middle;
 }
 
 .table-planillas {
-  font-size: $planillas-font-size;
-  //text-transform: uppercase;
-  @include selectable(none);
-  cursor: context-menu;
+    font-size: $planillas-font-size;
+    //text-transform: uppercase;
+    @include selectable(none);
+    cursor: context-menu;
 }
 
 .table-planillas th {
-  vertical-align: middle !important;
+    vertical-align: middle !important;
 }
 
 .table-planillas > tbody > tr > td > input, .table-planillas input {
-  margin: 0 !important;
-  font-size: inherit !important;
-  width: 100% !important;
-  padding: 3px;
-  border-radius: 0px !important;
-  height: 100%;
+    margin: 0 !important;
+    font-size: inherit !important;
+    width: 100% !important;
+    padding: 3px;
+    border-radius: 0px !important;
+    height: 100%;
 }
 
 .table-planillas form {
-  margin: 0 !important;
-  width: 100% !important;
-  padding: 0 !important;
-  border-radius: 0px !important;
-  height: 100% !important;
-  position: inherit !important;
+    margin: 0 !important;
+    width: 100% !important;
+    padding: 0 !important;
+    border-radius: 0px !important;
+    height: 100% !important;
+    position: inherit !important;
 }
 
-.table-planillas form div ,.table-planillas tfoot div {
-  //width: 100% !important;
-  //height: 100% !important;
+.table-planillas form div, .table-planillas tfoot div {
+    //width: 100% !important;
+    //height: 100% !important;
 }
 
 .table-planillas form div select {
-  position: absolute;
+    position: absolute;
 }
 
 .tdEditable {
-  @include transition(all, 0.2s);
+    @include transition(all 0.2s);
 
 }
 
 .table-planillas form {
-  position: absolute;
+    position: absolute;
 }
-.table-planillas form div{
-  height: 100%;
+
+.table-planillas form div {
+    height: 100%;
 }
-.table-planillas form div input{
-  height: 100%;
-  display: block;
+
+.table-planillas form div input {
+    height: 100%;
+    display: block;
 }
+
 .table-planillas .thCuenta {
-  max-width: 75px !important;
-  width: 75px !important;
+    max-width: 75px !important;
+    width: 75px !important;
 }
 
 .table-planillas .thNombres {
-  max-width: 180px !important;
-  width: 180px !important;
+    max-width: 180px !important;
+    width: 180px !important;
 }
 
 .table-planillas .thAmount {
-  max-width: 30px !important;
-  width: 30px !important;
+    max-width: 30px !important;
+    width: 30px !important;
 }
 
 .table-planillas .thItem {
-  max-width: 28px !important;
-  width: 28px !important;
+    max-width: 28px !important;
+    width: 28px !important;
 }
 
 .table-planillas th div {
-  //width: 100% !important;
-  height: 100%;
+    //width: 100% !important;
+    height: 100%;
 
 }
+
 .table-planillas th input {
-  //width: 100% !important;
-  height: 100%;
-  display: block;
+    //width: 100% !important;
+    height: 100%;
+    display: block;
 
 }
 
 .table-planillas > tbody td {
-  padding: 5px;
-  vertical-align: middle;
+    padding: 5px;
+    vertical-align: middle;
 }
 
 .table-planillas > tfoot {
-  font-size: $planillas-font-size !important;
+    font-size: $planillas-font-size !important;
 }
 
 .table-planillas > tfoot td {
-  padding: 0 !important;
-  vertical-align: middle;
-  text-align: center !important;
+    padding: 0 !important;
+    vertical-align: middle;
+    text-align: center !important;
 }
 
 .table-planillas > tfoot select {
-  padding: 12px 2px 12px 2px;
-  width: auto;
-  height: 100%;
-  font-size: $planillas-font-size !important;
-  display: block;
+    padding: 12px 2px 12px 2px;
+    width: auto;
+    height: 100%;
+    font-size: $planillas-font-size !important;
+    display: block;
 }
 
 .table-planillas > tfoot textarea {
-  padding: 0;
-  font-size: $planillas-font-size !important;
+    padding: 0;
+    font-size: $planillas-font-size !important;
 }
 
 .PF0 {
-  padding: 0 !important;
-  vertical-align: middle !important;
+    padding: 0 !important;
+    vertical-align: middle !important;
 }
+
 .PF5 {
-  padding: 5px !important;
-  vertical-align: middle !important;
+    padding: 5px !important;
+    vertical-align: middle !important;
 }
+
 .PF10 {
-  padding: 15px !important;
-  vertical-align: middle !important;
+    padding: 15px !important;
+    vertical-align: middle !important;
 }
+
 .PF20 {
-  padding: 20px !important;
-  vertical-align: middle !important;
+    padding: 20px !important;
+    vertical-align: middle !important;
 }
-.PR5{
-  padding-right: 5px !important;
+
+.PR5 {
+    padding-right: 5px !important;
 }
-.PL5{
-  padding-left: 5px !important;
+
+.PL5 {
+    padding-left: 5px !important;
 }
-.PL0{
-  padding-left: 5px !important;
+
+.PL0 {
+    padding-left: 5px !important;
 }
+
 .ui-select-bootstrap .ui-select-choices-row > a {
-  font-size: 11px;
+    font-size: 11px;
 }
 
 .ui-select-bootstrap {
-  font-size: $planillas-font-size;
+    font-size: $planillas-font-size;
 }
 
 .ui-select-bootstrap > .ui-select-match > .btn {
-  font-size: $planillas-font-size;
-  //padding: 9px 20px 9px 1px;
+    font-size: $planillas-font-size;
+    //padding: 9px 20px 9px 1px;
 }
 
 .ui-select-bootstrap .ui-select-choices-row > a {
-  font-size: $planillas-font-size;
-  padding: 0;
+    font-size: $planillas-font-size;
+    padding: 0;
 }
 
 .ui-select-bootstrap > .ui-select-choices {
-  width: 100%
+    width: 100%
 }
 
 .ui-select-bootstrap .ui-select-choices-row.active > a {
-  color: none;
+    color: none;
 }
-.cursorCell{
-  cursor: cell;
+
+.cursorCell {
+    cursor: cell;
 }
-.noSelectable{
-  @include selectable(none);
+
+.noSelectable {
+    @include selectable(none);
 }
+
 /*
 
 .mainBody {
@@ -651,393 +678,397 @@ td{
 }
 */
 
-
-
-
 .table-planillas-f {
-  width: 100%;
-  max-width: 100%;
-  //margin-bottom: $line-height-computed;
-  // Cells
-  > thead,
-  > tbody,
-  > tfoot {
-    > tr {
-      > th,
-      > td {
-        padding: 0;
-        line-height: 1.428571429;
+    width: 100%;
+    max-width: 100%;
+    //margin-bottom: $line-height-computed;
+    // Cells
+    > thead,
+    > tbody,
+    > tfoot {
+        > tr {
+            > th,
+            > td {
+                padding: 0;
+                line-height: 1.428571429;
+                vertical-align: middle;
+                //border-top: 1px solid $table-border-color;
+            }
+        }
+    }
+
+    > thead > tr > th {
         vertical-align: middle;
-        //border-top: 1px solid $table-border-color;
-      }
+        border-bottom: 2px solid $table-border-color;
     }
-  }
-
-  > thead > tr > th {
-    vertical-align: middle;
-    border-bottom: 2px solid $table-border-color;
-  }
 }
-.rotate45{
-  @include rotate(-45deg);
+
+.rotate45 {
+    @include rotate(-45deg);
 }
-.rotate90{
-  @include rotate(-90deg);
+
+.rotate90 {
+    @include rotate(-90deg);
 }
-$planillas-width-n:21px;
-$planillas-width-ci:70px;
-$planillas-width-cuenta:100px;
-$planillas-width-grado:35px;
-$planillas-width-nombres:155px;
-$planillas-width-carrera:120px;
-$planillas-width-materia:175px;
-$planillas-width-tipo:70px;
-$planillas-width-horas:35px;
-$planillas-width-categoria:30px;
 
-$planillas-width-reintegro:70px;
-$planillas-width-atrasos:40px;
+$planillas-width-n: 21px;
+$planillas-width-ci: 70px;
+$planillas-width-cuenta: 100px;
+$planillas-width-grado: 35px;
+$planillas-width-nombres: 155px;
+$planillas-width-carrera: 120px;
+$planillas-width-materia: 175px;
+$planillas-width-tipo: 70px;
+$planillas-width-horas: 35px;
+$planillas-width-categoria: 30px;
 
-$planillas-width-factura:30px;
-$planillas-width-number:49px;
+$planillas-width-reintegro: 70px;
+$planillas-width-atrasos: 40px;
 
+$planillas-width-factura: 30px;
+$planillas-width-number: 49px;
 
-$planillas-padding-base-all:5px 3px 5px 3px;
-$planillas-padding-base-all-2:13px 3px 5px 3px;
-$planillas-height-row:45px;
-.table-planillas-f{
-  overflow: hidden;
-  overflow-x: scroll;
-}
+$planillas-padding-base-all: 5px 3px 5px 3px;
+$planillas-padding-base-all-2: 13px 3px 5px 3px;
+$planillas-height-row: 45px;
 .table-planillas-f {
-  @include selectable(none);
-  border: 1px solid $table-border-color;
-  > thead,
-  > tbody,
-  > tfoot {
-    > tr {
-      @include selectable(none);
-      height: $planillas-height-row !important;
-      > th,
-      > td {
-        border: 1px solid $table-border-color;
-      }
-      .tN{
-        text-transform: uppercase;
-        width: $planillas-width-n;
-        max-width: $planillas-width-n;
-        min-width: $planillas-width-n;
-        padding: $planillas-padding-base-all;
-      }
-      .tCi{
-        text-transform: uppercase;
-        width: $planillas-width-ci;
-        max-width: $planillas-width-ci;
-        min-width: $planillas-width-ci;
-        padding: $planillas-padding-base-all;
-      }
-      .tCuenta{
-        text-transform: uppercase;
-        width: $planillas-width-cuenta;
-        max-width: $planillas-width-cuenta;
-        min-width: $planillas-width-cuenta;
-        *{
-          width: $planillas-width-cuenta;
-        }
-        span{
-          width: 100%;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all-2;
-          display: block;
-          vertical-align: middle;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          @extend .cursorCell;
-        }
-        input,select{
-          display: block;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all;
-        }
-      }
-      .tGrado{
-        text-transform: uppercase;
-        width: $planillas-width-grado;
-        max-width: $planillas-width-grado;
-        min-width: $planillas-width-grado;
-        padding: $planillas-padding-base-all;
-      }
-      .tNombres{
-        text-transform: uppercase;
-        width: $planillas-width-nombres;
-        padding: $planillas-padding-base-all;
-      }
-      .tCarrera{
-        text-transform: uppercase;
-        width: $planillas-width-carrera;
-        padding: $planillas-padding-base-all;
-      }
-      .tMateria{
-        text-transform: uppercase;
-        width: $planillas-width-materia;
-        max-width: $planillas-width-materia;
-        min-width: $planillas-width-materia;
-        *{
-          width: $planillas-width-materia;
-        }
-        span{
-          width: 100%;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all;
-          display: block;
-          vertical-align: middle;
-          @extend .cursorCell;
-        }
-        input,select{
-          display: block;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all;
-        }
-      }
-      .tTipo{
-        text-transform: uppercase;
-        width:$planillas-width-tipo;
-        max-width: $planillas-width-tipo;
-        min-width: $planillas-width-tipo;
-        *{
-          width: $planillas-width-tipo;
-        }
-        span{
-          width: 100%;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all-2;
-          display: block;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          vertical-align: middle;
-          @extend .cursorCell;
-        }
-        input,select{
-          display: block;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all;
-        }
-        select{
-          width: auto;
-        }
-      }
-      .tHoras{
-        text-transform: uppercase;
-        width:$planillas-width-horas;
-        max-width: $planillas-width-horas;
-        min-width: $planillas-width-horas;
-        *{
-          width: $planillas-width-horas;
-        }
-        span{
-          text-align: center;
-          width: 100%;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all-2;
-          display: block;
-          vertical-align: middle;
-          @extend .cursorCell;
-        }
-        input,select{
-          display: block;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all;
-        }
-        select{
-          width: auto;
-        }
-      }
-      .tCategoria{
-        text-transform: uppercase;
-        width:$planillas-width-categoria;
-        max-width: $planillas-width-categoria;
-        min-width: $planillas-width-categoria;
-        *{
-          width: $planillas-width-categoria;
-        }
-        span{
-          text-align: center;
-          width: 100%;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all-2;
-          display: block;
-          vertical-align: middle;
-          @extend .cursorCell;
-        }
-        input,select{
-          display: block;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all;
-        }
-        select{
-          width: auto;
-        }
-      }
-
-      .tReintegro{
-        text-transform: uppercase;
-        width:$planillas-width-reintegro;
-        max-width: $planillas-width-reintegro;
-        //        min-width: $planillas-width-reintegro;
-        *{
-          width: $planillas-width-reintegro;
-        }
-        span{
-          text-align: center;
-          width: 100%;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all-2;
-          display: block;
-          vertical-align: middle;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          @extend .cursorCell;
-        }
-        input,select{
-          display: block;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all;
-        }
-      }
-
-      .tAtrasos{
-        text-transform: uppercase;
-        width:$planillas-width-atrasos;
-        max-width: $planillas-width-atrasos;
-        min-width: $planillas-width-atrasos;
-        *{
-          width: $planillas-width-atrasos;
-        }
-        span{
-          text-align: center;
-          width: 100%;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all-2;
-          display: block;
-          vertical-align: middle;
-          @extend .cursorCell;
-        }
-        input,select{
-          display: block;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all;
-        }
-      }
-
-      .tFactura{
-        text-transform: uppercase;
-        width:$planillas-width-factura;
-        max-width: $planillas-width-factura;
-        min-width: $planillas-width-factura;
-        *{
-          width: $planillas-width-factura;
-        }
-        span{
-          text-align: center;
-          width: 100%;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all-2;
-          display: block;
-          vertical-align: middle;
-          @extend .cursorCell;
-        }
-        input,select{
-          display: block;
-          height: $planillas-height-row - 1px;
-          padding: $planillas-padding-base-all;
-        }
-        select{
-          width: auto;
-        }
-      }
-
-      .tNumber{
-        text-transform: uppercase;
-        text-align: right;
-        width:$planillas-width-number;
-        max-width: $planillas-width-number;
-        min-width: $planillas-width-number;
-        padding: $planillas-padding-base-all;
-        *{
-          width: $planillas-width-number;
-        }
-      }
-      .tLiquido{
-        padding: $planillas-padding-base-all;
-        text-align: right;
-      }
-    }
-  }
-  > thead > tr {
-    > th,
-    > td {
-      border-bottom-width: 2px;
-      text-align: center;
-    }
-  }
-  input{
-    height: inherit;
-    padding: 0;
-    line-height: normal;
-  }
+    overflow: hidden;
+    overflow-x: scroll;
 }
-.table-generar{
-  overflow-x: hidden;
+
+.table-planillas-f {
+    @include selectable(none);
+    border: 1px solid $table-border-color;
+    > thead,
+    > tbody,
+    > tfoot {
+        > tr {
+            @include selectable(none);
+            height: $planillas-height-row !important;
+            > th,
+            > td {
+                border: 1px solid $table-border-color;
+            }
+            .tN {
+                text-transform: uppercase;
+                width: $planillas-width-n;
+                max-width: $planillas-width-n;
+                min-width: $planillas-width-n;
+                padding: $planillas-padding-base-all;
+            }
+            .tCi {
+                text-transform: uppercase;
+                width: $planillas-width-ci;
+                max-width: $planillas-width-ci;
+                min-width: $planillas-width-ci;
+                padding: $planillas-padding-base-all;
+            }
+            .tCuenta {
+                text-transform: uppercase;
+                width: $planillas-width-cuenta;
+                max-width: $planillas-width-cuenta;
+                min-width: $planillas-width-cuenta;
+                * {
+                    width: $planillas-width-cuenta;
+                }
+                span {
+                    width: 100%;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all-2;
+                    display: block;
+                    vertical-align: middle;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    @extend .cursorCell;
+                }
+                input, select {
+                    display: block;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all;
+                }
+            }
+            .tGrado {
+                text-transform: uppercase;
+                width: $planillas-width-grado;
+                max-width: $planillas-width-grado;
+                min-width: $planillas-width-grado;
+                padding: $planillas-padding-base-all;
+            }
+            .tNombres {
+                text-transform: uppercase;
+                width: $planillas-width-nombres;
+                padding: $planillas-padding-base-all;
+            }
+            .tCarrera {
+                text-transform: uppercase;
+                width: $planillas-width-carrera;
+                padding: $planillas-padding-base-all;
+            }
+            .tMateria {
+                text-transform: uppercase;
+                width: $planillas-width-materia;
+                max-width: $planillas-width-materia;
+                min-width: $planillas-width-materia;
+                * {
+                    width: $planillas-width-materia;
+                }
+                span {
+                    width: 100%;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all;
+                    display: block;
+                    vertical-align: middle;
+                    @extend .cursorCell;
+                }
+                input, select {
+                    display: block;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all;
+                }
+            }
+            .tTipo {
+                text-transform: uppercase;
+                width: $planillas-width-tipo;
+                max-width: $planillas-width-tipo;
+                min-width: $planillas-width-tipo;
+                * {
+                    width: $planillas-width-tipo;
+                }
+                span {
+                    width: 100%;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all-2;
+                    display: block;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    vertical-align: middle;
+                    @extend .cursorCell;
+                }
+                input, select {
+                    display: block;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all;
+                }
+                select {
+                    width: auto;
+                }
+            }
+            .tHoras {
+                text-transform: uppercase;
+                width: $planillas-width-horas;
+                max-width: $planillas-width-horas;
+                min-width: $planillas-width-horas;
+                * {
+                    width: $planillas-width-horas;
+                }
+                span {
+                    text-align: center;
+                    width: 100%;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all-2;
+                    display: block;
+                    vertical-align: middle;
+                    @extend .cursorCell;
+                }
+                input, select {
+                    display: block;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all;
+                }
+                select {
+                    width: auto;
+                }
+            }
+            .tCategoria {
+                text-transform: uppercase;
+                width: $planillas-width-categoria;
+                max-width: $planillas-width-categoria;
+                min-width: $planillas-width-categoria;
+                * {
+                    width: $planillas-width-categoria;
+                }
+                span {
+                    text-align: center;
+                    width: 100%;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all-2;
+                    display: block;
+                    vertical-align: middle;
+                    @extend .cursorCell;
+                }
+                input, select {
+                    display: block;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all;
+                }
+                select {
+                    width: auto;
+                }
+            }
+
+            .tReintegro {
+                text-transform: uppercase;
+                width: $planillas-width-reintegro;
+                max-width: $planillas-width-reintegro;
+                //        min-width: $planillas-width-reintegro;
+                * {
+                    width: $planillas-width-reintegro;
+                }
+                span {
+                    text-align: center;
+                    width: 100%;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all-2;
+                    display: block;
+                    vertical-align: middle;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    @extend .cursorCell;
+                }
+                input, select {
+                    display: block;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all;
+                }
+            }
+
+            .tAtrasos {
+                text-transform: uppercase;
+                width: $planillas-width-atrasos;
+                max-width: $planillas-width-atrasos;
+                min-width: $planillas-width-atrasos;
+                * {
+                    width: $planillas-width-atrasos;
+                }
+                span {
+                    text-align: center;
+                    width: 100%;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all-2;
+                    display: block;
+                    vertical-align: middle;
+                    @extend .cursorCell;
+                }
+                input, select {
+                    display: block;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all;
+                }
+            }
+
+            .tFactura {
+                text-transform: uppercase;
+                width: $planillas-width-factura;
+                max-width: $planillas-width-factura;
+                min-width: $planillas-width-factura;
+                * {
+                    width: $planillas-width-factura;
+                }
+                span {
+                    text-align: center;
+                    width: 100%;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all-2;
+                    display: block;
+                    vertical-align: middle;
+                    @extend .cursorCell;
+                }
+                input, select {
+                    display: block;
+                    height: $planillas-height-row - 1px;
+                    padding: $planillas-padding-base-all;
+                }
+                select {
+                    width: auto;
+                }
+            }
+
+            .tNumber {
+                text-transform: uppercase;
+                text-align: right;
+                width: $planillas-width-number;
+                max-width: $planillas-width-number;
+                min-width: $planillas-width-number;
+                padding: $planillas-padding-base-all;
+                * {
+                    width: $planillas-width-number;
+                }
+            }
+            .tLiquido {
+                padding: $planillas-padding-base-all;
+                text-align: right;
+            }
+        }
+    }
+    > thead > tr {
+        > th,
+        > td {
+            border-bottom-width: 2px;
+            text-align: center;
+        }
+    }
+    input {
+        height: inherit;
+        padding: 0;
+        line-height: normal;
+    }
 }
+
 .table-generar {
-  @include selectable(none);
-  border: 1px solid $table-border-color;
-  > thead,
-  > tbody,
-  > tfoot {
-    > tr {
-      height: 45px !important;
-      *{
-        height: 45px !important;
+    overflow-x: hidden;
+}
 
-      }
-      button {
-        height: 30px !important;
-      }
-      button *{
-        height: 30px !important;
-      }
+.table-generar {
+    @include selectable(none);
+    border: 1px solid $table-border-color;
+    > thead,
+    > tbody,
+    > tfoot {
+        > tr {
+            height: 45px !important;
+            * {
+                height: 45px !important;
+
+            }
+            button {
+                height: 30px !important;
+            }
+            button * {
+                height: 30px !important;
+            }
+        }
+        * {
+            height: 45px !important;
+            overflow: hidden;
+            vertical-align: middle;
+            text-align: center;
+        }
     }
-    *{
-      height: 45px !important;
-      overflow: hidden;
-      vertical-align: middle;
-      text-align: center;
-    }
-  }
 }
 
 .table-planillas-f {
-  overflow-x: hidden;
-  > tbody > tr:nth-of-type(odd) {
-    background-color: $table-bg-accent;
-  }
+    overflow-x: hidden;
+    > tbody > tr:nth-of-type(odd) {
+        background-color: $table-bg-accent;
+    }
 }
+
 .table-planillas-f {
-  > tbody > tr:hover {
-    background-color: $table-bg-hover;
-    //@include transition(all,0.2s);
-  }
-  > tbody > tr{
-    //@include transition(all,0.2s);
-  }
+    > tbody > tr:hover {
+        background-color: $table-bg-hover;
+        //@include transition(all,0.2s);
+    }
+    > tbody > tr {
+        //@include transition(all,0.2s);
+    }
 }
 
 .toast-top-right {
-  top: 50px !important;
-  right: 0 !important;
+    top: 50px !important;
+    right: 0 !important;
 }
-#toast-container > div{
-  box-shadow: 0 0 6px 2px #111 !important;
-  //opacity: 0.9 !important;
+
+#toast-container > div {
+    box-shadow: 0 0 6px 2px #111 !important;
+    //opacity: 0.9 !important;
 }

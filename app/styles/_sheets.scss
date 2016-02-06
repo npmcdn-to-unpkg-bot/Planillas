@@ -1,0 +1,432 @@
+@import "mixins";
+
+$width-col-0: 30px; //number
+$width-col-1: 40px; //enabled
+$width-col-2: 80px; //ci
+$width-col-3: 110px; //banck
+$width-col-4: 60px; //grade
+$width-col-5: 130px; //app y nom
+$width-col-6: 130px; //speciality
+$width-col-7: 150px; //mather
+$width-col-8: 50px; //type
+$width-col-9: 40px; //hours
+$width-col-10: 35px; //category
+$width-col-11: 50px; //INGRESOS PERIODOS
+$width-col-11-1: 50px; //total1
+$width-col-11-2: 50px; //reinte
+$width-col-11-3: 50px; //total2
+$width-col-11-4: 50px; //atrasos
+$width-col-12: 50px; //total
+$width-col-13: 50px; //iu
+$width-col-14: 50px; //it
+$width-col-14-1: 50px; //total
+$width-col-14-2: 50px; //fac
+$width-col-14-3: 50px; //fac
+$width-col-15: 50px; //fac
+$width-col-16: 60px; //fac
+
+$height-row: 45px;
+.container-sheets {
+    min-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    overflow-x: scroll;
+    padding: 15px 0;
+    display: flex;
+}
+
+#sheets {
+    font-size: 11px !important;
+    background: inherit;
+    margin: 0 auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    table, th, td {
+        border: 1px solid;
+    }
+
+    .table_add {
+        background: #fff;
+        margin: 0 auto;
+        thead, tfoot {
+            tr {
+                background-color: #2980b9;
+                color: #fff;
+                th, td {
+                    border-color: #000 !important;
+                }
+            }
+            .newPayrollSpecialty {
+                display: inline-block;
+                span.ui-select-toggle {
+                    font-size: 14px;
+                    font-weight: normal;
+                }
+            }
+        }
+        input, select, span.form-control.ui-select-toggle {
+            outline: none !important;
+            border: none !important;
+            @include box-shadow(none);
+            border-right: 1px solid !important;
+            border-color: inherit;
+        }
+        .input-preselected, input[disabled], select[disabled] {
+            font-weight: bold;
+            background-color: lighten(gold, 35%);
+            border-right: 1px solid !important;
+        }
+        td {
+            overflow: visible;
+        }
+        div {
+            outline: none;
+        }
+        tbody {
+            tr {
+                background: #f8f8f8;
+            }
+            tr:hover {
+                background: darken(#fff, 2%) !important;
+            }
+        }
+    }
+
+    table {
+        tbody tr:nth-child(odd) {
+            background: #f8f8f8;
+        }
+        tbody {
+            tr:hover {
+                background: #ddd !important;
+            }
+        }
+        th {
+            text-align: center;
+            padding: 5px;
+            font-style: italic;
+        }
+        .vertical {
+            vertical-align: bottom;
+            padding: 1px;
+            span {
+                @include transform(rotate(-90deg));
+                display: flex;
+                margin-bottom: 13px;
+            }
+        }
+        .diagonal {
+            vertical-align: bottom;
+            padding: 1px;
+            span {
+                @include transform(rotate(-45deg));
+                display: block;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                margin-bottom: 13px;
+            }
+        }
+        tr, td {
+            height: $height-row !important;
+            min-height: $height-row !important;
+            max-height: $height-row !important;
+        }
+
+        tr {
+            position: static;
+            .edit {
+                cursor: cell;
+            }
+            .edit:hover {
+                background: #ccc;
+            }
+            .edit:active {
+                @include box-shadow(0 0 2px 1px rgba(0, 0, 255, 0.3));
+            }
+            .edit.select {
+                div {
+                    overflow: visible;
+                    display: block;
+                    padding: 0;
+                    font-size: inherit;
+                }
+                span {
+                    font-size: inherit;
+                    padding: 0;
+                }
+                span.match {
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 0 5px;
+                }
+                ul {
+                    width: auto;
+                }
+                .btn, input {
+                    @include border-radius(0px);
+                }
+            }
+            td {
+                cursor: default;
+                position: relative;
+                overflow: hidden;
+                div {
+                    width: inherit;
+                    max-width: inherit;
+                    border-bottom: none !important;
+                    text-overflow: ellipsis;
+                    vertical-align: middle;
+                    display: table-cell;
+                    overflow: hidden;
+                    height: inherit;
+                    padding: 0 4px;
+                    //white-space: pre-wrap;
+                }
+
+                form, span, input, textarea, select {
+                    height: $height-row !important;
+                    width: inherit;
+                }
+
+                form {
+                    display: block !important;
+                    select {
+                        height: inherit;
+                        min-width: 100%;
+                    }
+                }
+
+                input {
+                    padding: 0 3px;
+                }
+            }
+            .col-0 {
+                min-width: $width-col-0 !important;
+                max-width: $width-col-0 !important;
+                width: $width-col-0 !important;
+            }
+            .col-1 {
+                min-width: $width-col-1 !important;
+                max-width: $width-col-1 !important;
+                width: $width-col-1 !important;
+            }
+            .col-2 {
+                min-width: $width-col-2 !important;
+                max-width: $width-col-2 !important;
+                width: $width-col-2 !important;
+            }
+            .col-3 {
+                min-width: $width-col-3 !important;
+                max-width: $width-col-3 !important;
+                width: $width-col-3 !important;
+            }
+            .col-4 {
+                min-width: $width-col-4 !important;
+                max-width: $width-col-4 !important;
+                width: $width-col-4 !important;
+            }
+            .col-5 {
+                min-width: $width-col-5 !important;
+                max-width: $width-col-5 !important;
+                width: $width-col-5 !important;
+            }
+            .col-6 {
+                min-width: $width-col-6 !important;
+                max-width: $width-col-6 !important;
+                width: $width-col-6 !important;
+            }
+            .col-7 {
+                min-width: $width-col-7 !important;
+                max-width: $width-col-7 !important;
+                width: $width-col-7 !important;
+            }
+            .col-8 {
+                min-width: $width-col-8 !important;
+                max-width: $width-col-8 !important;
+                width: $width-col-8 !important;
+            }
+            .col-9 {
+                min-width: $width-col-9 !important;
+                max-width: $width-col-9 !important;
+                width: $width-col-9 !important;
+            }
+            .col-10 {
+                min-width: $width-col-10 !important;
+                max-width: $width-col-10 !important;
+                width: $width-col-10 !important;
+            }
+            .col-11 {
+                min-width: $width-col-11 !important;
+                max-width: $width-col-11 !important;
+                width: $width-col-11 !important;
+            }
+            .col-11-1 {
+                min-width: $width-col-11-1 !important;
+                max-width: $width-col-11-1 !important;
+                width: $width-col-11-1 !important;
+            }
+            .col-11-2 {
+                min-width: $width-col-11-2 !important;
+                max-width: $width-col-11-2 !important;
+                width: $width-col-11-2 !important;
+            }
+            .col-11-3 {
+                min-width: $width-col-11-3 !important;
+                max-width: $width-col-11-3 !important;
+                width: $width-col-11-3 !important;
+            }
+            .col-11-4 {
+                min-width: $width-col-11-4 !important;
+                max-width: $width-col-11-4 !important;
+                width: $width-col-11-4 !important;
+            }
+            .col-12 {
+                min-width: $width-col-12 !important;
+                max-width: $width-col-12 !important;
+                width: $width-col-12 !important;
+            }
+            .col-13 {
+                min-width: $width-col-13 !important;
+                max-width: $width-col-13 !important;
+                width: $width-col-13 !important;
+            }
+            .col-14 {
+                min-width: $width-col-14 !important;
+                max-width: $width-col-14 !important;
+                width: $width-col-14 !important;
+            }
+            .col-14-1 {
+                min-width: $width-col-14-1 !important;
+                max-width: $width-col-14-1 !important;
+                width: $width-col-14-1 !important;
+            }
+            .col-14-2 {
+                min-width: $width-col-14-2 !important;
+                max-width: $width-col-14-2 !important;
+                width: $width-col-14-2 !important;
+            }
+            .col-14-3 {
+                min-width: $width-col-14-3 !important;
+                max-width: $width-col-14-3 !important;
+                width: $width-col-14-3 !important;
+            }
+            .col-15 {
+                min-width: $width-col-15 !important;
+                max-width: $width-col-15 !important;
+                width: $width-col-15 !important;
+            }
+            .col-16 {
+                min-width: $width-col-16 !important;
+                max-width: $width-col-16 !important;
+                width: $width-col-16 !important;
+            }
+            .col-px-40 {
+                @include width-static(40px);
+            }
+            .col-px-50 {
+                @include width-static(50px);
+            }
+            .col-px-60 {
+                @include width-static(60px);
+            }
+            .col-px-70 {
+                @include width-static(70px);
+            }
+            .col-px-80 {
+                @include width-static(80px);
+            }
+            .col-px-90 {
+                @include width-static(90px);
+            }
+            .col-px-100 {
+                @include width-static(100px);
+            }
+            .col-px-150 {
+                min-width: 150px !important;
+                max-width: 150px !important;
+                width: 150px !important;
+            }
+
+            .col-px-200 {
+                min-width: 200px !important;
+                max-width: 200px !important;
+                width: 200px !important;
+            }
+            .col-px-250 {
+                min-width: 250px !important;
+                max-width: 250px !important;
+                width: 250px !important;
+            }
+            .col-px-300 {
+                min-width: 300px !important;
+                max-width: 300px !important;
+                width: 300px !important;
+            }
+        }
+    }
+}
+
+#menu-toolbar {
+    width: 100%;
+    background: #3F51B5;
+    position: relative;
+    padding-left: 90px;
+    font-size: 14px;
+    .block-menu {
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+    }
+    .block-menu.icon {
+        background: #3F51B5;
+        position: absolute;
+        padding: 20px 15px;
+        left: 0;
+        display: table;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        img {
+            width: 70px;
+            height: 70px;
+            @include border-radius(50%);
+        }
+    }
+    .block-menu.titles {
+        background: #fff;
+        width: 100%;
+        padding-left: 12px;
+        .menu-title {
+            padding: 30px 0 5px 15px;
+            height: 60px;
+            color: #000;
+            h3 {
+                margin: 0;
+                color: #000;
+                display: inline-block;
+            }
+            h3.none {
+                color: #7f8c8d !important;
+                font-style: italic !important;
+            }
+        }
+        .menu-items {
+            padding: 10px 0 0 0;
+            ul {
+                li {
+                    a {
+                        color: #000;
+                        padding-top: 12px;
+                        padding-bottom: 12px
+                    }
+                    .dropdown-menu {
+                        padding: 0;
+                        margin: -1px 0 0 0;
+                        @include border-radius(0);
+                        border: 0;
+                    }
+                }
+            }
+        }
+    }
+}
