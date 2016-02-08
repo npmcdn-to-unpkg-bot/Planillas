@@ -12300,6 +12300,146 @@ button.close {
   cursor: pointer;
 }
 
+/* line 95, ../../app/styles/_basic.scss */
+.w10 {
+  width: 10px !important;
+  min-width: 10px !important;
+  max-width: 10px !important;
+}
+
+/* line 96, ../../app/styles/_basic.scss */
+.w20 {
+  width: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+}
+
+/* line 97, ../../app/styles/_basic.scss */
+.w30 {
+  width: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
+}
+
+/* line 98, ../../app/styles/_basic.scss */
+.w40 {
+  width: 40px !important;
+  min-width: 40px !important;
+  max-width: 40px !important;
+}
+
+/* line 99, ../../app/styles/_basic.scss */
+.w50 {
+  width: 50px !important;
+  min-width: 50px !important;
+  max-width: 50px !important;
+}
+
+/* line 100, ../../app/styles/_basic.scss */
+.w60 {
+  width: 60px !important;
+  min-width: 60px !important;
+  max-width: 60px !important;
+}
+
+/* line 101, ../../app/styles/_basic.scss */
+.w70 {
+  width: 70px !important;
+  min-width: 70px !important;
+  max-width: 70px !important;
+}
+
+/* line 102, ../../app/styles/_basic.scss */
+.w80 {
+  width: 80px !important;
+  min-width: 80px !important;
+  max-width: 80px !important;
+}
+
+/* line 103, ../../app/styles/_basic.scss */
+.w90 {
+  width: 90px !important;
+  min-width: 90px !important;
+  max-width: 90px !important;
+}
+
+/* line 104, ../../app/styles/_basic.scss */
+.w100 {
+  width: 100px !important;
+  min-width: 100px !important;
+  max-width: 100px !important;
+}
+
+/* line 105, ../../app/styles/_basic.scss */
+.w110 {
+  width: 110px !important;
+  min-width: 110px !important;
+  max-width: 110px !important;
+}
+
+/* line 106, ../../app/styles/_basic.scss */
+.w120 {
+  width: 120px !important;
+  min-width: 120px !important;
+  max-width: 120px !important;
+}
+
+/* line 107, ../../app/styles/_basic.scss */
+.w130 {
+  width: 130px !important;
+  min-width: 130px !important;
+  max-width: 130px !important;
+}
+
+/* line 108, ../../app/styles/_basic.scss */
+.w140 {
+  width: 140px !important;
+  min-width: 140px !important;
+  max-width: 140px !important;
+}
+
+/* line 109, ../../app/styles/_basic.scss */
+.w150 {
+  width: 150px !important;
+  min-width: 150px !important;
+  max-width: 150px !important;
+}
+
+/* line 110, ../../app/styles/_basic.scss */
+.w160 {
+  width: 160px !important;
+  min-width: 160px !important;
+  max-width: 160px !important;
+}
+
+/* line 111, ../../app/styles/_basic.scss */
+.w170 {
+  width: 170px !important;
+  min-width: 170px !important;
+  max-width: 170px !important;
+}
+
+/* line 112, ../../app/styles/_basic.scss */
+.w180 {
+  width: 180px !important;
+  min-width: 180px !important;
+  max-width: 180px !important;
+}
+
+/* line 113, ../../app/styles/_basic.scss */
+.w190 {
+  width: 190px !important;
+  min-width: 190px !important;
+  max-width: 190px !important;
+}
+
+/* line 114, ../../app/styles/_basic.scss */
+.w200 {
+  width: 200px !important;
+  min-width: 200px !important;
+  max-width: 200px !important;
+}
+
 /* line 2, ../../app/styles/_loader.scss */
 .loader-wrapper {
   position: fixed;
@@ -12639,26 +12779,26 @@ button.close {
   background: #fafafa !important;
 }
 /* line 96, ../../app/styles/_sheets.scss */
-#sheets table tbody tr:nth-child(odd) {
+#sheets table.payroll tbody tr:nth-child(odd) {
   background: #f8f8f8;
 }
 /* line 100, ../../app/styles/_sheets.scss */
-#sheets table tbody tr:hover {
+#sheets table.payroll tbody tr:hover {
   background: #ddd !important;
 }
 /* line 104, ../../app/styles/_sheets.scss */
-#sheets table th {
+#sheets table.payroll th {
   text-align: center;
   padding: 5px;
   font-style: italic;
 }
 /* line 109, ../../app/styles/_sheets.scss */
-#sheets table .vertical {
+#sheets table.payroll .vertical {
   vertical-align: bottom;
   padding: 1px;
 }
 /* line 112, ../../app/styles/_sheets.scss */
-#sheets table .vertical span {
+#sheets table.payroll .vertical span {
   -webkit-transform: rotate(-90deg) !important;
   -moz-transform: rotate(-90deg) !important;
   -ms-transformn: rotate(-90deg) !important;
@@ -12667,12 +12807,12 @@ button.close {
   margin-bottom: 13px;
 }
 /* line 118, ../../app/styles/_sheets.scss */
-#sheets table .diagonal {
+#sheets table.payroll .diagonal {
   vertical-align: bottom;
   padding: 1px;
 }
 /* line 121, ../../app/styles/_sheets.scss */
-#sheets table .diagonal span {
+#sheets table.payroll .diagonal span {
   -webkit-transform: rotate(-45deg) !important;
   -moz-transform: rotate(-45deg) !important;
   -ms-transformn: rotate(-45deg) !important;
@@ -12683,63 +12823,63 @@ button.close {
   margin-bottom: 13px;
 }
 /* line 129, ../../app/styles/_sheets.scss */
-#sheets table tr, #sheets table td {
+#sheets table.payroll tr, #sheets table.payroll td {
   height: 45px !important;
   min-height: 45px !important;
   max-height: 45px !important;
 }
 /* line 135, ../../app/styles/_sheets.scss */
-#sheets table tr {
+#sheets table.payroll tr {
   position: static;
 }
 /* line 137, ../../app/styles/_sheets.scss */
-#sheets table tr .edit {
+#sheets table.payroll tr .edit {
   cursor: cell;
 }
 /* line 140, ../../app/styles/_sheets.scss */
-#sheets table tr .edit:hover {
+#sheets table.payroll tr .edit:hover {
   background: #ccc;
 }
 /* line 143, ../../app/styles/_sheets.scss */
-#sheets table tr .edit:active {
+#sheets table.payroll tr .edit:active {
   -ms-box-shadow: 0 0 2px 1px rgba(0, 0, 255, 0.3) !important;
   -o-box-shadow: 0 0 2px 1px rgba(0, 0, 255, 0.3) !important;
   box-shadow: 0 0 2px 1px rgba(0, 0, 255, 0.3) !important;
 }
 /* line 147, ../../app/styles/_sheets.scss */
-#sheets table tr .edit.select div {
+#sheets table.payroll tr .edit.select div {
   overflow: visible;
   display: block;
   padding: 0;
   font-size: inherit;
 }
 /* line 153, ../../app/styles/_sheets.scss */
-#sheets table tr .edit.select span {
+#sheets table.payroll tr .edit.select span {
   font-size: inherit;
   padding: 0;
 }
 /* line 157, ../../app/styles/_sheets.scss */
-#sheets table tr .edit.select span.match {
+#sheets table.payroll tr .edit.select span.match {
   display: table-cell;
   vertical-align: middle;
   padding: 0 5px;
 }
 /* line 162, ../../app/styles/_sheets.scss */
-#sheets table tr .edit.select ul {
+#sheets table.payroll tr .edit.select ul {
   width: auto;
 }
 /* line 165, ../../app/styles/_sheets.scss */
-#sheets table tr .edit.select .btn, #sheets table tr .edit.select input {
+#sheets table.payroll tr .edit.select .btn, #sheets table.payroll tr .edit.select input {
   border-radius: 0px !important;
 }
 /* line 169, ../../app/styles/_sheets.scss */
-#sheets table tr td {
+#sheets table.payroll tr td {
   cursor: default;
   position: relative;
   overflow: hidden;
 }
 /* line 173, ../../app/styles/_sheets.scss */
-#sheets table tr td div {
+#sheets table.payroll tr td div {
   width: inherit;
   max-width: inherit;
   border-bottom: none !important;
@@ -12751,229 +12891,229 @@ button.close {
   padding: 0 4px;
 }
 /* line 186, ../../app/styles/_sheets.scss */
-#sheets table tr td form, #sheets table tr td span, #sheets table tr td input, #sheets table tr td textarea, #sheets table tr td select {
+#sheets table.payroll tr td form, #sheets table.payroll tr td span, #sheets table.payroll tr td input, #sheets table.payroll tr td textarea, #sheets table.payroll tr td select {
   height: 45px !important;
   width: inherit;
 }
 /* line 191, ../../app/styles/_sheets.scss */
-#sheets table tr td form {
+#sheets table.payroll tr td form {
   display: block !important;
 }
 /* line 193, ../../app/styles/_sheets.scss */
-#sheets table tr td form select {
+#sheets table.payroll tr td form select {
   height: inherit;
   min-width: 100%;
 }
 /* line 199, ../../app/styles/_sheets.scss */
-#sheets table tr td input {
+#sheets table.payroll tr td input {
   padding: 0 3px;
 }
 /* line 203, ../../app/styles/_sheets.scss */
-#sheets table tr .col-0 {
+#sheets table.payroll tr .col-0 {
   min-width: 30px !important;
   max-width: 30px !important;
   width: 30px !important;
 }
 /* line 208, ../../app/styles/_sheets.scss */
-#sheets table tr .col-1 {
+#sheets table.payroll tr .col-1 {
   min-width: 40px !important;
   max-width: 40px !important;
   width: 40px !important;
 }
 /* line 213, ../../app/styles/_sheets.scss */
-#sheets table tr .col-2 {
+#sheets table.payroll tr .col-2 {
   min-width: 80px !important;
   max-width: 80px !important;
   width: 80px !important;
 }
 /* line 218, ../../app/styles/_sheets.scss */
-#sheets table tr .col-3 {
+#sheets table.payroll tr .col-3 {
   min-width: 110px !important;
   max-width: 110px !important;
   width: 110px !important;
 }
 /* line 223, ../../app/styles/_sheets.scss */
-#sheets table tr .col-4 {
+#sheets table.payroll tr .col-4 {
   min-width: 60px !important;
   max-width: 60px !important;
   width: 60px !important;
 }
 /* line 228, ../../app/styles/_sheets.scss */
-#sheets table tr .col-5 {
+#sheets table.payroll tr .col-5 {
   min-width: 130px !important;
   max-width: 130px !important;
   width: 130px !important;
 }
 /* line 233, ../../app/styles/_sheets.scss */
-#sheets table tr .col-6 {
+#sheets table.payroll tr .col-6 {
   min-width: 130px !important;
   max-width: 130px !important;
   width: 130px !important;
 }
 /* line 238, ../../app/styles/_sheets.scss */
-#sheets table tr .col-7 {
+#sheets table.payroll tr .col-7 {
   min-width: 150px !important;
   max-width: 150px !important;
   width: 150px !important;
 }
 /* line 243, ../../app/styles/_sheets.scss */
-#sheets table tr .col-8 {
+#sheets table.payroll tr .col-8 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 248, ../../app/styles/_sheets.scss */
-#sheets table tr .col-9 {
+#sheets table.payroll tr .col-9 {
   min-width: 40px !important;
   max-width: 40px !important;
   width: 40px !important;
 }
 /* line 253, ../../app/styles/_sheets.scss */
-#sheets table tr .col-10 {
+#sheets table.payroll tr .col-10 {
   min-width: 35px !important;
   max-width: 35px !important;
   width: 35px !important;
 }
 /* line 258, ../../app/styles/_sheets.scss */
-#sheets table tr .col-11 {
+#sheets table.payroll tr .col-11 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 263, ../../app/styles/_sheets.scss */
-#sheets table tr .col-11-1 {
+#sheets table.payroll tr .col-11-1 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 268, ../../app/styles/_sheets.scss */
-#sheets table tr .col-11-2 {
+#sheets table.payroll tr .col-11-2 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 273, ../../app/styles/_sheets.scss */
-#sheets table tr .col-11-3 {
+#sheets table.payroll tr .col-11-3 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 278, ../../app/styles/_sheets.scss */
-#sheets table tr .col-11-4 {
+#sheets table.payroll tr .col-11-4 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 283, ../../app/styles/_sheets.scss */
-#sheets table tr .col-12 {
+#sheets table.payroll tr .col-12 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 288, ../../app/styles/_sheets.scss */
-#sheets table tr .col-13 {
+#sheets table.payroll tr .col-13 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 293, ../../app/styles/_sheets.scss */
-#sheets table tr .col-14 {
+#sheets table.payroll tr .col-14 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 298, ../../app/styles/_sheets.scss */
-#sheets table tr .col-14-1 {
+#sheets table.payroll tr .col-14-1 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 303, ../../app/styles/_sheets.scss */
-#sheets table tr .col-14-2 {
+#sheets table.payroll tr .col-14-2 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 308, ../../app/styles/_sheets.scss */
-#sheets table tr .col-14-3 {
+#sheets table.payroll tr .col-14-3 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 313, ../../app/styles/_sheets.scss */
-#sheets table tr .col-15 {
+#sheets table.payroll tr .col-15 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 318, ../../app/styles/_sheets.scss */
-#sheets table tr .col-16 {
+#sheets table.payroll tr .col-16 {
   min-width: 60px !important;
   max-width: 60px !important;
   width: 60px !important;
 }
 /* line 323, ../../app/styles/_sheets.scss */
-#sheets table tr .col-px-40 {
+#sheets table.payroll tr .col-px-40 {
   min-width: 40px !important;
   max-width: 40px !important;
   width: 40px !important;
 }
 /* line 326, ../../app/styles/_sheets.scss */
-#sheets table tr .col-px-50 {
+#sheets table.payroll tr .col-px-50 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
 /* line 329, ../../app/styles/_sheets.scss */
-#sheets table tr .col-px-60 {
+#sheets table.payroll tr .col-px-60 {
   min-width: 60px !important;
   max-width: 60px !important;
   width: 60px !important;
 }
 /* line 332, ../../app/styles/_sheets.scss */
-#sheets table tr .col-px-70 {
+#sheets table.payroll tr .col-px-70 {
   min-width: 70px !important;
   max-width: 70px !important;
   width: 70px !important;
 }
 /* line 335, ../../app/styles/_sheets.scss */
-#sheets table tr .col-px-80 {
+#sheets table.payroll tr .col-px-80 {
   min-width: 80px !important;
   max-width: 80px !important;
   width: 80px !important;
 }
 /* line 338, ../../app/styles/_sheets.scss */
-#sheets table tr .col-px-90 {
+#sheets table.payroll tr .col-px-90 {
   min-width: 90px !important;
   max-width: 90px !important;
   width: 90px !important;
 }
 /* line 341, ../../app/styles/_sheets.scss */
-#sheets table tr .col-px-100 {
+#sheets table.payroll tr .col-px-100 {
   min-width: 100px !important;
   max-width: 100px !important;
   width: 100px !important;
 }
 /* line 344, ../../app/styles/_sheets.scss */
-#sheets table tr .col-px-150 {
+#sheets table.payroll tr .col-px-150 {
   min-width: 150px !important;
   max-width: 150px !important;
   width: 150px !important;
 }
 /* line 350, ../../app/styles/_sheets.scss */
-#sheets table tr .col-px-200 {
+#sheets table.payroll tr .col-px-200 {
   min-width: 200px !important;
   max-width: 200px !important;
   width: 200px !important;
 }
 /* line 355, ../../app/styles/_sheets.scss */
-#sheets table tr .col-px-250 {
+#sheets table.payroll tr .col-px-250 {
   min-width: 250px !important;
   max-width: 250px !important;
   width: 250px !important;
 }
 /* line 360, ../../app/styles/_sheets.scss */
-#sheets table tr .col-px-300 {
+#sheets table.payroll tr .col-px-300 {
   min-width: 300px !important;
   max-width: 300px !important;
   width: 300px !important;
@@ -13051,80 +13191,130 @@ button.close {
   border: 0;
 }
 
-/* line 26, ../../app/styles/main.scss */
+/* line 3, ../../app/styles/_table_editable.scss */
+.table-editable {
+  font-size: 11px;
+}
+/* line 6, ../../app/styles/_table_editable.scss */
+.table-editable th {
+  text-align: center;
+}
+/* line 10, ../../app/styles/_table_editable.scss */
+.table-editable tr {
+  height: 30px;
+}
+/* line 13, ../../app/styles/_table_editable.scss */
+.table-editable td {
+  padding: 0 !important;
+  margin: 0;
+  vertical-align: middle !important;
+  height: inherit !important;
+}
+/* line 19, ../../app/styles/_table_editable.scss */
+.table-editable span, .table-editable text {
+  padding: 0 5px;
+}
+/* line 22, ../../app/styles/_table_editable.scss */
+.table-editable form {
+  height: inherit !important;
+  min-height: 100%;
+  max-height: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+/* line 31, ../../app/styles/_table_editable.scss */
+.table-editable select, .table-editable input, .table-editable textarea {
+  margin: 0;
+  border: 0;
+  min-width: 100%;
+  cursor: cell;
+  min-height: 100%;
+  max-height: 100%;
+  padding: 0 5px;
+}
+/* line 40, ../../app/styles/_table_editable.scss */
+.table-editable .input-sm, .table-editable .input-group-sm > .form-control,
+.table-editable .input-group-sm > .input-group-addon,
+.table-editable .input-group-sm > .input-group-btn > .btn {
+  font-size: 11px;
+}
+
+/* line 27, ../../app/styles/main.scss */
 html, body {
   background: #34495e;
 }
 
-/* line 30, ../../app/styles/main.scss */
+/* line 31, ../../app/styles/main.scss */
 .FZ14 {
   font-size: 14px !important;
 }
 
-/* line 34, ../../app/styles/main.scss */
+/* line 35, ../../app/styles/main.scss */
 .FZ13 {
   font-size: 13px !important;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 39, ../../app/styles/main.scss */
 .FZ12 {
   font-size: 12px !important;
 }
 
-/* line 42, ../../app/styles/main.scss */
+/* line 43, ../../app/styles/main.scss */
 .FZ10 {
   font-size: 10px !important;
 }
 
-/* line 46, ../../app/styles/main.scss */
+/* line 47, ../../app/styles/main.scss */
 .FZ9 {
   font-size: 9px !important;
 }
 
-/* line 50, ../../app/styles/main.scss */
+/* line 51, ../../app/styles/main.scss */
 table {
   font-size: 11px;
 }
 
-/* line 54, ../../app/styles/main.scss */
+/* line 55, ../../app/styles/main.scss */
 .background-app {
   background: #34495e;
   transition: all 1s;
 }
 
-/* line 59, ../../app/styles/main.scss */
+/* line 60, ../../app/styles/main.scss */
 .mainBody {
   background: #34495e;
 }
 
-/* line 63, ../../app/styles/main.scss */
+/* line 64, ../../app/styles/main.scss */
 .show-hide {
   transition: all linear 0.5s;
 }
 
-/* line 67, ../../app/styles/main.scss */
+/* line 68, ../../app/styles/main.scss */
 .show-hide.ng-hide {
   transition: all linear 0.5s;
   opacity: 0;
 }
 
-/* line 72, ../../app/styles/main.scss */
+/* line 73, ../../app/styles/main.scss */
 .animateItemAbout {
   transition: all linear 1s;
 }
 
-/* line 76, ../../app/styles/main.scss */
+/* line 77, ../../app/styles/main.scss */
 .animateItemAbout.ng-hide {
   opacity: 0;
   transition: all linnar 1s;
 }
 
-/* line 81, ../../app/styles/main.scss */
+/* line 82, ../../app/styles/main.scss */
 .icon-report {
   width: 25px;
 }
 
-/* line 85, ../../app/styles/main.scss */
+/* line 86, ../../app/styles/main.scss */
 .iconLogo {
   width: 60px;
   margin-top: -6px;
@@ -13134,14 +13324,14 @@ table {
   transition: all 1s;
 }
 
-/* line 94, ../../app/styles/main.scss */
+/* line 95, ../../app/styles/main.scss */
 .iconLogo:hover {
   background: white;
   transition: all 1s;
   width: 65px;
 }
 
-/* line 100, ../../app/styles/main.scss */
+/* line 101, ../../app/styles/main.scss */
 #background-container {
   transition: all 1s;
   margin: 10px;
@@ -13151,73 +13341,73 @@ table {
   transition: all 1s;
 }
 
-/* line 109, ../../app/styles/main.scss */
+/* line 110, ../../app/styles/main.scss */
 .paddingV40 {
   padding-left: 40px;
   padding-right: 40px;
 }
 
-/* line 114, ../../app/styles/main.scss */
+/* line 115, ../../app/styles/main.scss */
 .marginV40 {
   padding-left: 40px;
   padding-right: 40px;
 }
 
-/* line 119, ../../app/styles/main.scss */
+/* line 120, ../../app/styles/main.scss */
 .marginH40 {
   padding-top: 40px;
   padding-bottom: 40px;
 }
 
-/* line 124, ../../app/styles/main.scss */
+/* line 125, ../../app/styles/main.scss */
 .center {
   text-align: center;
 }
 
-/* line 128, ../../app/styles/main.scss */
+/* line 129, ../../app/styles/main.scss */
 .VAT {
   vertical-align: top !important;
 }
 
-/* line 132, ../../app/styles/main.scss */
+/* line 133, ../../app/styles/main.scss */
 .fullWidth {
   width: 100% !important;
 }
 
-/* line 136, ../../app/styles/main.scss */
+/* line 137, ../../app/styles/main.scss */
 .fullHeight {
   height: 100%;
 }
 
-/* line 140, ../../app/styles/main.scss */
+/* line 141, ../../app/styles/main.scss */
 .mediumWidth {
   width: 50%;
 }
 
-/* line 144, ../../app/styles/main.scss */
+/* line 145, ../../app/styles/main.scss */
 .PV0 {
   padding-left: 0;
   padding-right: 0;
 }
 
-/* line 149, ../../app/styles/main.scss */
+/* line 150, ../../app/styles/main.scss */
 .PH20 {
   padding-left: 20;
   padding-right: 20;
 }
 
-/* line 154, ../../app/styles/main.scss */
+/* line 155, ../../app/styles/main.scss */
 .PH40 {
   padding-left: 40;
   padding-right: 40;
 }
 
-/* line 159, ../../app/styles/main.scss */
+/* line 160, ../../app/styles/main.scss */
 .MT10 {
   margin-top: 10px;
 }
 
-/* line 164, ../../app/styles/main.scss */
+/* line 165, ../../app/styles/main.scss */
 .login-footer .text-info {
   color: white;
   font-size: 13px;
@@ -13225,33 +13415,33 @@ table {
   font-style: italic;
 }
 
-/* line 172, ../../app/styles/main.scss */
+/* line 173, ../../app/styles/main.scss */
 .underline {
   text-decoration: underline;
 }
 
-/* line 176, ../../app/styles/main.scss */
+/* line 177, ../../app/styles/main.scss */
 .bold {
   font-size: 14px;
   font-weight: bold;
 }
 
-/* line 181, ../../app/styles/main.scss */
+/* line 182, ../../app/styles/main.scss */
 .fz15 {
   font-size: 14.3px;
 }
 
-/* line 185, ../../app/styles/main.scss */
+/* line 186, ../../app/styles/main.scss */
 .MT15 {
   margin-top: 15px;
 }
 
-/* line 189, ../../app/styles/main.scss */
+/* line 190, ../../app/styles/main.scss */
 .right {
   float: right;
 }
 
-/* line 193, ../../app/styles/main.scss */
+/* line 194, ../../app/styles/main.scss */
 .table-planillas .rotate90 {
   transform: rotate(-90deg);
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
@@ -13262,7 +13452,7 @@ table {
   vertical-align: middle;
 }
 
-/* line 207, ../../app/styles/main.scss */
+/* line 208, ../../app/styles/main.scss */
 .table-planillas .rotate45 {
   transform: rotate(-45deg);
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
@@ -13273,7 +13463,7 @@ table {
   vertical-align: middle;
 }
 
-/* line 221, ../../app/styles/main.scss */
+/* line 222, ../../app/styles/main.scss */
 .table-planillas {
   font-size: 10px;
   -webkit-user-select: none;
@@ -13284,12 +13474,12 @@ table {
   cursor: context-menu;
 }
 
-/* line 228, ../../app/styles/main.scss */
+/* line 229, ../../app/styles/main.scss */
 .table-planillas th {
   vertical-align: middle !important;
 }
 
-/* line 232, ../../app/styles/main.scss */
+/* line 233, ../../app/styles/main.scss */
 .table-planillas > tbody > tr > td > input, .table-planillas input {
   margin: 0 !important;
   font-size: inherit !important;
@@ -13299,7 +13489,7 @@ table {
   height: 100%;
 }
 
-/* line 241, ../../app/styles/main.scss */
+/* line 242, ../../app/styles/main.scss */
 .table-planillas form {
   margin: 0 !important;
   width: 100% !important;
@@ -13309,86 +13499,86 @@ table {
   position: inherit !important;
 }
 
-/* line 255, ../../app/styles/main.scss */
+/* line 256, ../../app/styles/main.scss */
 .table-planillas form div select {
   position: absolute;
 }
 
-/* line 259, ../../app/styles/main.scss */
+/* line 260, ../../app/styles/main.scss */
 .tdEditable {
   transition: all 0.2s;
 }
 
-/* line 264, ../../app/styles/main.scss */
+/* line 265, ../../app/styles/main.scss */
 .table-planillas form {
   position: absolute;
 }
 
-/* line 268, ../../app/styles/main.scss */
+/* line 269, ../../app/styles/main.scss */
 .table-planillas form div {
   height: 100%;
 }
 
-/* line 272, ../../app/styles/main.scss */
+/* line 273, ../../app/styles/main.scss */
 .table-planillas form div input {
   height: 100%;
   display: block;
 }
 
-/* line 277, ../../app/styles/main.scss */
+/* line 278, ../../app/styles/main.scss */
 .table-planillas .thCuenta {
   max-width: 75px !important;
   width: 75px !important;
 }
 
-/* line 282, ../../app/styles/main.scss */
+/* line 283, ../../app/styles/main.scss */
 .table-planillas .thNombres {
   max-width: 180px !important;
   width: 180px !important;
 }
 
-/* line 287, ../../app/styles/main.scss */
+/* line 288, ../../app/styles/main.scss */
 .table-planillas .thAmount {
   max-width: 30px !important;
   width: 30px !important;
 }
 
-/* line 292, ../../app/styles/main.scss */
+/* line 293, ../../app/styles/main.scss */
 .table-planillas .thItem {
   max-width: 28px !important;
   width: 28px !important;
 }
 
-/* line 297, ../../app/styles/main.scss */
+/* line 298, ../../app/styles/main.scss */
 .table-planillas th div {
   height: 100%;
 }
 
-/* line 303, ../../app/styles/main.scss */
+/* line 304, ../../app/styles/main.scss */
 .table-planillas th input {
   height: 100%;
   display: block;
 }
 
-/* line 310, ../../app/styles/main.scss */
+/* line 311, ../../app/styles/main.scss */
 .table-planillas > tbody td {
   padding: 5px;
   vertical-align: middle;
 }
 
-/* line 315, ../../app/styles/main.scss */
+/* line 316, ../../app/styles/main.scss */
 .table-planillas > tfoot {
   font-size: 10px !important;
 }
 
-/* line 319, ../../app/styles/main.scss */
+/* line 320, ../../app/styles/main.scss */
 .table-planillas > tfoot td {
   padding: 0 !important;
   vertical-align: middle;
   text-align: center !important;
 }
 
-/* line 325, ../../app/styles/main.scss */
+/* line 326, ../../app/styles/main.scss */
 .table-planillas > tfoot select {
   padding: 12px 2px 12px 2px;
   width: auto;
@@ -13397,83 +13587,83 @@ table {
   display: block;
 }
 
-/* line 333, ../../app/styles/main.scss */
+/* line 334, ../../app/styles/main.scss */
 .table-planillas > tfoot textarea {
   padding: 0;
   font-size: 10px !important;
 }
 
-/* line 338, ../../app/styles/main.scss */
+/* line 339, ../../app/styles/main.scss */
 .PF0 {
   padding: 0 !important;
   vertical-align: middle !important;
 }
 
-/* line 343, ../../app/styles/main.scss */
+/* line 344, ../../app/styles/main.scss */
 .PF5 {
   padding: 5px !important;
   vertical-align: middle !important;
 }
 
-/* line 348, ../../app/styles/main.scss */
+/* line 349, ../../app/styles/main.scss */
 .PF10 {
   padding: 15px !important;
   vertical-align: middle !important;
 }
 
-/* line 353, ../../app/styles/main.scss */
+/* line 354, ../../app/styles/main.scss */
 .PF20 {
   padding: 20px !important;
   vertical-align: middle !important;
 }
 
-/* line 358, ../../app/styles/main.scss */
+/* line 359, ../../app/styles/main.scss */
 .PR5 {
   padding-right: 5px !important;
 }
 
-/* line 362, ../../app/styles/main.scss */
+/* line 363, ../../app/styles/main.scss */
 .PL5 {
   padding-left: 5px !important;
 }
 
-/* line 366, ../../app/styles/main.scss */
+/* line 367, ../../app/styles/main.scss */
 .PL0 {
   padding-left: 5px !important;
 }
 
-/* line 370, ../../app/styles/main.scss */
+/* line 371, ../../app/styles/main.scss */
 .ui-select-bootstrap .ui-select-choices-row > a {
   font-size: 11px;
 }
 
-/* line 374, ../../app/styles/main.scss */
+/* line 375, ../../app/styles/main.scss */
 .ui-select-bootstrap {
   font-size: 10px;
 }
 
-/* line 378, ../../app/styles/main.scss */
+/* line 379, ../../app/styles/main.scss */
 .ui-select-bootstrap > .ui-select-match > .btn {
   font-size: 10px;
 }
 
-/* line 383, ../../app/styles/main.scss */
+/* line 384, ../../app/styles/main.scss */
 .ui-select-bootstrap .ui-select-choices-row > a {
   font-size: 10px;
   padding: 0;
 }
 
-/* line 388, ../../app/styles/main.scss */
+/* line 389, ../../app/styles/main.scss */
 .ui-select-bootstrap > .ui-select-choices {
   width: 100%;
 }
 
-/* line 392, ../../app/styles/main.scss */
+/* line 393, ../../app/styles/main.scss */
 .ui-select-bootstrap .ui-select-choices-row.active > a {
   color: none;
 }
 
-/* line 396, ../../app/styles/main.scss */
+/* line 397, ../../app/styles/main.scss */
 .cursorCell, .table-planillas-f > thead > tr .tCuenta span,
 .table-planillas-f > tbody > tr .tCuenta span,
 .table-planillas-f > tfoot > tr .tCuenta span, .table-planillas-f > thead > tr .tMateria span,
@@ -13494,7 +13684,7 @@ table {
   cursor: cell;
 }
 
-/* line 400, ../../app/styles/main.scss */
+/* line 401, ../../app/styles/main.scss */
 .noSelectable {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -13782,12 +13972,12 @@ td{
   @include transition(all,1s);
 }
 */
-/* line 681, ../../app/styles/main.scss */
+/* line 682, ../../app/styles/main.scss */
 .table-planillas-f {
   width: 100%;
   max-width: 100%;
 }
-/* line 690, ../../app/styles/main.scss */
+/* line 691, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr > th,
 .table-planillas-f > thead > tr > td,
 .table-planillas-f > tbody > tr > th,
@@ -13798,29 +13988,29 @@ td{
   line-height: 1.428571429;
   vertical-align: middle;
 }
-/* line 700, ../../app/styles/main.scss */
+/* line 701, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr > th {
   vertical-align: middle;
   border-bottom: 2px solid #ddd;
 }
 
-/* line 706, ../../app/styles/main.scss */
+/* line 707, ../../app/styles/main.scss */
 .rotate45 {
   transform: rotate(-45deg);
 }
 
-/* line 710, ../../app/styles/main.scss */
+/* line 711, ../../app/styles/main.scss */
 .rotate90 {
   transform: rotate(-90deg);
 }
 
-/* line 734, ../../app/styles/main.scss */
+/* line 735, ../../app/styles/main.scss */
 .table-planillas-f {
   overflow: hidden;
   overflow-x: scroll;
 }
 
-/* line 739, ../../app/styles/main.scss */
+/* line 740, ../../app/styles/main.scss */
 .table-planillas-f {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -13829,7 +14019,7 @@ td{
   -o-user-select: none;
   border: 1px solid #ddd;
 }
-/* line 745, ../../app/styles/main.scss */
+/* line 746, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr,
 .table-planillas-f > tbody > tr,
 .table-planillas-f > tfoot > tr {
@@ -13840,7 +14030,7 @@ td{
   -o-user-select: none;
   height: 45px !important;
 }
-/* line 748, ../../app/styles/main.scss */
+/* line 749, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr > th,
 .table-planillas-f > thead > tr > td,
 .table-planillas-f > tbody > tr > th,
@@ -13849,7 +14039,7 @@ td{
 .table-planillas-f > tfoot > tr > td {
   border: 1px solid #ddd;
 }
-/* line 752, ../../app/styles/main.scss */
+/* line 753, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tN,
 .table-planillas-f > tbody > tr .tN,
 .table-planillas-f > tfoot > tr .tN {
@@ -13859,7 +14049,7 @@ td{
   min-width: 21px;
   padding: 5px 3px 5px 3px;
 }
-/* line 759, ../../app/styles/main.scss */
+/* line 760, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCi,
 .table-planillas-f > tbody > tr .tCi,
 .table-planillas-f > tfoot > tr .tCi {
@@ -13869,7 +14059,7 @@ td{
   min-width: 70px;
   padding: 5px 3px 5px 3px;
 }
-/* line 766, ../../app/styles/main.scss */
+/* line 767, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCuenta,
 .table-planillas-f > tbody > tr .tCuenta,
 .table-planillas-f > tfoot > tr .tCuenta {
@@ -13878,13 +14068,13 @@ td{
   max-width: 100px;
   min-width: 100px;
 }
-/* line 771, ../../app/styles/main.scss */
+/* line 772, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCuenta *,
 .table-planillas-f > tbody > tr .tCuenta *,
 .table-planillas-f > tfoot > tr .tCuenta * {
   width: 100px;
 }
-/* line 774, ../../app/styles/main.scss */
+/* line 775, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCuenta span,
 .table-planillas-f > tbody > tr .tCuenta span,
 .table-planillas-f > tfoot > tr .tCuenta span {
@@ -13896,7 +14086,7 @@ td{
   text-overflow: ellipsis;
   overflow: hidden;
 }
-/* line 784, ../../app/styles/main.scss */
+/* line 785, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCuenta input, .table-planillas-f > thead > tr .tCuenta select,
 .table-planillas-f > tbody > tr .tCuenta input,
 .table-planillas-f > tbody > tr .tCuenta select,
@@ -13906,7 +14096,7 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 790, ../../app/styles/main.scss */
+/* line 791, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tGrado,
 .table-planillas-f > tbody > tr .tGrado,
 .table-planillas-f > tfoot > tr .tGrado {
@@ -13916,7 +14106,7 @@ td{
   min-width: 35px;
   padding: 5px 3px 5px 3px;
 }
-/* line 797, ../../app/styles/main.scss */
+/* line 798, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tNombres,
 .table-planillas-f > tbody > tr .tNombres,
 .table-planillas-f > tfoot > tr .tNombres {
@@ -13924,7 +14114,7 @@ td{
   width: 155px;
   padding: 5px 3px 5px 3px;
 }
-/* line 802, ../../app/styles/main.scss */
+/* line 803, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCarrera,
 .table-planillas-f > tbody > tr .tCarrera,
 .table-planillas-f > tfoot > tr .tCarrera {
@@ -13932,7 +14122,7 @@ td{
   width: 120px;
   padding: 5px 3px 5px 3px;
 }
-/* line 807, ../../app/styles/main.scss */
+/* line 808, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tMateria,
 .table-planillas-f > tbody > tr .tMateria,
 .table-planillas-f > tfoot > tr .tMateria {
@@ -13941,13 +14131,13 @@ td{
   max-width: 175px;
   min-width: 175px;
 }
-/* line 812, ../../app/styles/main.scss */
+/* line 813, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tMateria *,
 .table-planillas-f > tbody > tr .tMateria *,
 .table-planillas-f > tfoot > tr .tMateria * {
   width: 175px;
 }
-/* line 815, ../../app/styles/main.scss */
+/* line 816, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tMateria span,
 .table-planillas-f > tbody > tr .tMateria span,
 .table-planillas-f > tfoot > tr .tMateria span {
@@ -13957,7 +14147,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 823, ../../app/styles/main.scss */
+/* line 824, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tMateria input, .table-planillas-f > thead > tr .tMateria select,
 .table-planillas-f > tbody > tr .tMateria input,
 .table-planillas-f > tbody > tr .tMateria select,
@@ -13967,7 +14157,7 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 829, ../../app/styles/main.scss */
+/* line 830, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo,
 .table-planillas-f > tbody > tr .tTipo,
 .table-planillas-f > tfoot > tr .tTipo {
@@ -13976,13 +14166,13 @@ td{
   max-width: 70px;
   min-width: 70px;
 }
-/* line 834, ../../app/styles/main.scss */
+/* line 835, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo *,
 .table-planillas-f > tbody > tr .tTipo *,
 .table-planillas-f > tfoot > tr .tTipo * {
   width: 70px;
 }
-/* line 837, ../../app/styles/main.scss */
+/* line 838, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo span,
 .table-planillas-f > tbody > tr .tTipo span,
 .table-planillas-f > tfoot > tr .tTipo span {
@@ -13994,7 +14184,7 @@ td{
   overflow: hidden;
   vertical-align: middle;
 }
-/* line 847, ../../app/styles/main.scss */
+/* line 848, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo input, .table-planillas-f > thead > tr .tTipo select,
 .table-planillas-f > tbody > tr .tTipo input,
 .table-planillas-f > tbody > tr .tTipo select,
@@ -14004,13 +14194,13 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 852, ../../app/styles/main.scss */
+/* line 853, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo select,
 .table-planillas-f > tbody > tr .tTipo select,
 .table-planillas-f > tfoot > tr .tTipo select {
   width: auto;
 }
-/* line 856, ../../app/styles/main.scss */
+/* line 857, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras,
 .table-planillas-f > tbody > tr .tHoras,
 .table-planillas-f > tfoot > tr .tHoras {
@@ -14019,13 +14209,13 @@ td{
   max-width: 35px;
   min-width: 35px;
 }
-/* line 861, ../../app/styles/main.scss */
+/* line 862, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras *,
 .table-planillas-f > tbody > tr .tHoras *,
 .table-planillas-f > tfoot > tr .tHoras * {
   width: 35px;
 }
-/* line 864, ../../app/styles/main.scss */
+/* line 865, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras span,
 .table-planillas-f > tbody > tr .tHoras span,
 .table-planillas-f > tfoot > tr .tHoras span {
@@ -14036,7 +14226,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 873, ../../app/styles/main.scss */
+/* line 874, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras input, .table-planillas-f > thead > tr .tHoras select,
 .table-planillas-f > tbody > tr .tHoras input,
 .table-planillas-f > tbody > tr .tHoras select,
@@ -14046,13 +14236,13 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 878, ../../app/styles/main.scss */
+/* line 879, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras select,
 .table-planillas-f > tbody > tr .tHoras select,
 .table-planillas-f > tfoot > tr .tHoras select {
   width: auto;
 }
-/* line 882, ../../app/styles/main.scss */
+/* line 883, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria,
 .table-planillas-f > tbody > tr .tCategoria,
 .table-planillas-f > tfoot > tr .tCategoria {
@@ -14061,13 +14251,13 @@ td{
   max-width: 30px;
   min-width: 30px;
 }
-/* line 887, ../../app/styles/main.scss */
+/* line 888, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria *,
 .table-planillas-f > tbody > tr .tCategoria *,
 .table-planillas-f > tfoot > tr .tCategoria * {
   width: 30px;
 }
-/* line 890, ../../app/styles/main.scss */
+/* line 891, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria span,
 .table-planillas-f > tbody > tr .tCategoria span,
 .table-planillas-f > tfoot > tr .tCategoria span {
@@ -14078,7 +14268,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 899, ../../app/styles/main.scss */
+/* line 900, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria input, .table-planillas-f > thead > tr .tCategoria select,
 .table-planillas-f > tbody > tr .tCategoria input,
 .table-planillas-f > tbody > tr .tCategoria select,
@@ -14088,13 +14278,13 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 904, ../../app/styles/main.scss */
+/* line 905, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria select,
 .table-planillas-f > tbody > tr .tCategoria select,
 .table-planillas-f > tfoot > tr .tCategoria select {
   width: auto;
 }
-/* line 909, ../../app/styles/main.scss */
+/* line 910, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tReintegro,
 .table-planillas-f > tbody > tr .tReintegro,
 .table-planillas-f > tfoot > tr .tReintegro {
@@ -14102,13 +14292,13 @@ td{
   width: 70px;
   max-width: 70px;
 }
-/* line 914, ../../app/styles/main.scss */
+/* line 915, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tReintegro *,
 .table-planillas-f > tbody > tr .tReintegro *,
 .table-planillas-f > tfoot > tr .tReintegro * {
   width: 70px;
 }
-/* line 917, ../../app/styles/main.scss */
+/* line 918, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tReintegro span,
 .table-planillas-f > tbody > tr .tReintegro span,
 .table-planillas-f > tfoot > tr .tReintegro span {
@@ -14121,7 +14311,7 @@ td{
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 928, ../../app/styles/main.scss */
+/* line 929, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tReintegro input, .table-planillas-f > thead > tr .tReintegro select,
 .table-planillas-f > tbody > tr .tReintegro input,
 .table-planillas-f > tbody > tr .tReintegro select,
@@ -14131,7 +14321,7 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 935, ../../app/styles/main.scss */
+/* line 936, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tAtrasos,
 .table-planillas-f > tbody > tr .tAtrasos,
 .table-planillas-f > tfoot > tr .tAtrasos {
@@ -14140,13 +14330,13 @@ td{
   max-width: 40px;
   min-width: 40px;
 }
-/* line 940, ../../app/styles/main.scss */
+/* line 941, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tAtrasos *,
 .table-planillas-f > tbody > tr .tAtrasos *,
 .table-planillas-f > tfoot > tr .tAtrasos * {
   width: 40px;
 }
-/* line 943, ../../app/styles/main.scss */
+/* line 944, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tAtrasos span,
 .table-planillas-f > tbody > tr .tAtrasos span,
 .table-planillas-f > tfoot > tr .tAtrasos span {
@@ -14157,7 +14347,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 952, ../../app/styles/main.scss */
+/* line 953, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tAtrasos input, .table-planillas-f > thead > tr .tAtrasos select,
 .table-planillas-f > tbody > tr .tAtrasos input,
 .table-planillas-f > tbody > tr .tAtrasos select,
@@ -14167,7 +14357,7 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 959, ../../app/styles/main.scss */
+/* line 960, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura,
 .table-planillas-f > tbody > tr .tFactura,
 .table-planillas-f > tfoot > tr .tFactura {
@@ -14176,13 +14366,13 @@ td{
   max-width: 30px;
   min-width: 30px;
 }
-/* line 964, ../../app/styles/main.scss */
+/* line 965, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura *,
 .table-planillas-f > tbody > tr .tFactura *,
 .table-planillas-f > tfoot > tr .tFactura * {
   width: 30px;
 }
-/* line 967, ../../app/styles/main.scss */
+/* line 968, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura span,
 .table-planillas-f > tbody > tr .tFactura span,
 .table-planillas-f > tfoot > tr .tFactura span {
@@ -14193,7 +14383,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 976, ../../app/styles/main.scss */
+/* line 977, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura input, .table-planillas-f > thead > tr .tFactura select,
 .table-planillas-f > tbody > tr .tFactura input,
 .table-planillas-f > tbody > tr .tFactura select,
@@ -14203,13 +14393,13 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 981, ../../app/styles/main.scss */
+/* line 982, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura select,
 .table-planillas-f > tbody > tr .tFactura select,
 .table-planillas-f > tfoot > tr .tFactura select {
   width: auto;
 }
-/* line 986, ../../app/styles/main.scss */
+/* line 987, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tNumber,
 .table-planillas-f > tbody > tr .tNumber,
 .table-planillas-f > tfoot > tr .tNumber {
@@ -14220,38 +14410,38 @@ td{
   min-width: 49px;
   padding: 5px 3px 5px 3px;
 }
-/* line 993, ../../app/styles/main.scss */
+/* line 994, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tNumber *,
 .table-planillas-f > tbody > tr .tNumber *,
 .table-planillas-f > tfoot > tr .tNumber * {
   width: 49px;
 }
-/* line 997, ../../app/styles/main.scss */
+/* line 998, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tLiquido,
 .table-planillas-f > tbody > tr .tLiquido,
 .table-planillas-f > tfoot > tr .tLiquido {
   padding: 5px 3px 5px 3px;
   text-align: right;
 }
-/* line 1004, ../../app/styles/main.scss */
+/* line 1005, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr > th,
 .table-planillas-f > thead > tr > td {
   border-bottom-width: 2px;
   text-align: center;
 }
-/* line 1010, ../../app/styles/main.scss */
+/* line 1011, ../../app/styles/main.scss */
 .table-planillas-f input {
   height: inherit;
   padding: 0;
   line-height: normal;
 }
 
-/* line 1017, ../../app/styles/main.scss */
+/* line 1018, ../../app/styles/main.scss */
 .table-generar {
   overflow-x: hidden;
 }
 
-/* line 1021, ../../app/styles/main.scss */
+/* line 1022, ../../app/styles/main.scss */
 .table-generar {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -14260,31 +14450,31 @@ td{
   -o-user-select: none;
   border: 1px solid #ddd;
 }
-/* line 1027, ../../app/styles/main.scss */
+/* line 1028, ../../app/styles/main.scss */
 .table-generar > thead > tr,
 .table-generar > tbody > tr,
 .table-generar > tfoot > tr {
   height: 45px !important;
 }
-/* line 1029, ../../app/styles/main.scss */
+/* line 1030, ../../app/styles/main.scss */
 .table-generar > thead > tr *,
 .table-generar > tbody > tr *,
 .table-generar > tfoot > tr * {
   height: 45px !important;
 }
-/* line 1033, ../../app/styles/main.scss */
+/* line 1034, ../../app/styles/main.scss */
 .table-generar > thead > tr button,
 .table-generar > tbody > tr button,
 .table-generar > tfoot > tr button {
   height: 30px !important;
 }
-/* line 1036, ../../app/styles/main.scss */
+/* line 1037, ../../app/styles/main.scss */
 .table-generar > thead > tr button *,
 .table-generar > tbody > tr button *,
 .table-generar > tfoot > tr button * {
   height: 30px !important;
 }
-/* line 1040, ../../app/styles/main.scss */
+/* line 1041, ../../app/styles/main.scss */
 .table-generar > thead *,
 .table-generar > tbody *,
 .table-generar > tfoot * {
@@ -14294,27 +14484,27 @@ td{
   text-align: center;
 }
 
-/* line 1049, ../../app/styles/main.scss */
+/* line 1050, ../../app/styles/main.scss */
 .table-planillas-f {
   overflow-x: hidden;
 }
-/* line 1051, ../../app/styles/main.scss */
+/* line 1052, ../../app/styles/main.scss */
 .table-planillas-f > tbody > tr:nth-of-type(odd) {
   background-color: #f9f9f9;
 }
 
-/* line 1057, ../../app/styles/main.scss */
+/* line 1058, ../../app/styles/main.scss */
 .table-planillas-f > tbody > tr:hover {
   background-color: #f5f5f5;
 }
 
-/* line 1066, ../../app/styles/main.scss */
+/* line 1067, ../../app/styles/main.scss */
 .toast-top-right {
   top: 50px !important;
   right: 0 !important;
 }
 
-/* line 1071, ../../app/styles/main.scss */
+/* line 1072, ../../app/styles/main.scss */
 #toast-container > div {
   box-shadow: 0 0 6px 2px #111 !important;
 }

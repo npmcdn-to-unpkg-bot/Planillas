@@ -12,8 +12,8 @@ angular.module('planillasApp')
 
     var DOMAIN = false;
     //DOMAIN = "QUERY_PRUEBA_FINAL_URL";
-    //var SERVER = "http://" + (DOMAIN || "localhost") + "/apiPlanillasDebug/";
-    var SERVER = "apiPlanillas/public/";
+    var SERVER = "http://" + (DOMAIN || "localhost") + "/apiPlanillasDebug/";
+    //var SERVER = "apiPlanillas/public/";
     //var SERVER = "http://admision.emi.edu.bo/planillas/apiPlanillas/public/";
     return {
       LOGIN: SERVER + "login",

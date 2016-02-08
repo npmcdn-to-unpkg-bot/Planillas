@@ -1,0 +1,43 @@
+$height-row-editable: 30px;
+$font-size-small-editable: 11px;
+.table-editable {
+    font-size: $font-size-small-editable;
+
+    th {
+        text-align: center;
+    }
+
+    tr {
+        height: $height-row-editable;
+    }
+    td {
+        padding: 0 !important;
+        margin: 0;
+        vertical-align: middle !important;
+        height: inherit !important;
+    }
+    span, text {
+        padding: 0 5px;
+    }
+    form {
+        height: inherit !important;
+        min-height: 100%;
+        max-height: 100%;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        z-index: 1;
+    }
+    select, input, textarea {
+        margin: 0;
+        border: 0;
+        min-width: 100%;
+        cursor: cell;
+        min-height: 100%;
+        max-height: 100%;
+        padding: 0 5px;
+    }
+    .input-sm{
+        font-size: $font-size-small-editable;
+    }
+}

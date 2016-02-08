@@ -10,9 +10,9 @@
 angular.module('planillasApp')
     .service('$API', function ($q, $resource) {
         //var base_url = '/apiPlanillas/api/';
-        //var base_url = 'http://localhost/apiPlanillasDebug/api/';
+        var base_url = 'http://localhost/apiPlanillasDebug/api/';
         //var base_url = 'http://localhost/apiPlanillas/api/';
-        var base_url = 'apiPlanillas/public/api/';
+        //var base_url = 'apiPlanillas/public/api/';
 
         function getModelResource(url) {
             return $resource(url, {id: '@id'}, {

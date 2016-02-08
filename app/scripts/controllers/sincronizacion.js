@@ -8,7 +8,7 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('SincronizacionCtrl', function ($scope, $q, $http, ModelService) {
+    .controller('SincronizacionCtrl', function ($scope, $q, $http, ModelService, $timeout) {
         $scope.csv = {
             content: null,
             header: true,
@@ -28,74 +28,89 @@ angular.module('planillasApp')
             if (!list_array) {
                 return;
             }
-            var i;
-            for (i = 0; i < list_array.length; i++) {
+            for (var i = 0; i < list_array.length; i++) {
+                list_array[i].text_error = '';
+                list_array[i].actualizado = false;
+            }
+
+            function save(index) {
+                if (index >= list_array.length) {
+                    return;
+                }
                 var form_data = new FormData();
-                list_array[i].actualizado = true;
-                var exito = function (data) {
-                    var indexCopy = angular.copy(i);
-                    console.log(data);
-                    console.log(indexCopy);
-                };
-                form_data.append('ApPaterno', list_array[i].ApPaterno);
-                form_data.append('ApMaterno', list_array[i].ApMaterno);
-                form_data.append('Nombre', list_array[i].Nombre);
-                form_data.append('CI', list_array[i].CI);
-                form_data.append('idUnidadAcademica', list_array[i].idUnidadAcademica);
-                (new ModelService.DocentesModel()).resource.create(form_data, function (data) {
-                    console.log('guardado');
+                form_data.append('ApPaterno', list_array[index].ApPaterno);
+                form_data.append('ApMaterno', list_array[index].ApMaterno);
+                form_data.append('Nombre', list_array[index].Nombre);
+                form_data.append('CI', list_array[index].CI);
+                form_data.append('idUnidadAcademica', list_array[index].idUnidadAcademica);
+
+                (new ModelService.DocentesModel()).resource.create(form_data, function () {
+                    list_array[index].actualizado = true;
+                    save(index + 1);
                 }, function () {
-                    console.log('error');
+                    list_array[index].actualizado = false;
+                    list_array[index].text_error = 'Docente ya registrado';
+                    save(index + 1);
                 });
             }
+
+            save(0);
+
         };
 
         $scope.sincronizar_materias = function (list_array) {
-            //console.log(list_array);
             if (!list_array) {
                 return;
             }
-            var i;
-            for (i = 0; i < list_array.length; i++) {
-                console.log((new ModelService.MateriasModel()).resource.create);
+            for( var i = 0; i < list_array.length;i++){
+                list_array[i].text_error = '';
+                list_array[i].actualizado = false;
+            }
+            function save(index) {
+                if (index >= list_array.length) {
+                    return;
+                }
                 var form_data = new FormData();
-                list_array[i].actualizado = true;
-                var exito = function (data) {
-                    var indexCopy = angular.copy(i);
-                    console.log(data);
-                    console.log(indexCopy);
-//                    list_array[indexCopy].actualizado = true;
-                };
-                form_data.append('Materia', list_array[i].Materia);
-                (new ModelService.MateriasModel()).resource.create(form_data, function (data) {
+                form_data.append('Materia', list_array[index].Materia);
 
+                (new ModelService.MateriasModel()).resource.create(form_data, function () {
+                    list_array[index].actualizado = true;
+                    save(index + 1);
                 }, function () {
-
+                    list_array[index].actualizado = false;
+                    list_array[index].text_error = 'Materia ya registrado';
+                    save(index + 1);
                 });
             }
+
+            save(0);
         };
 
         $scope.sincronizar_especialidades = function (list_array) {
             if (!list_array) {
                 return;
             }
-            var i;
-            for (i = 0; i < list_array.length; i++) {
+            for( var i = 0; i < list_array.length;i++){
+                list_array[i].text_error = '';
+                list_array[i].actualizado = false;
+            }
+            function save(index) {
+                if (index >= list_array.length) {
+                    return;
+                }
                 var form_data = new FormData();
-                list_array[i].actualizado = true;
-                var exito = function (data) {
-                    var indexCopy = angular.copy(i);
-                    console.log(data);
-                    console.log(indexCopy);
-                };
-                form_data.append('Especialidad', list_array[i].Especialidad);
-                (new ModelService.EspecialidadesModel()).resource.create(form_data, function (data) {
+                form_data.append('Especialidad', list_array[index].Especialidad);
 
+                (new ModelService.EspecialidadesModel()).resource.create(form_data, function () {
+                    list_array[index].actualizado = true;
+                    save(index + 1);
                 }, function () {
-
+                    list_array[index].actualizado = false;
+                    list_array[index].text_error = 'Especialidad ya registrado';
+                    save(index + 1);
                 });
             }
+
+            save(0);
         };
-
-
     });

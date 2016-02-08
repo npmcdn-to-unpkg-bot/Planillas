@@ -1,4 +1,39 @@
 <div ng-controller="SincronizacionCtrl">
+
+    <!--<div class="container p20" style="background-color: #fff">
+        <table class="table table-bordered table-editable">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Columna 2 - {{modelo}}</th>
+                <th>Columna 3</th>
+                <th>Columna 4</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <form>
+                        <input type="text" value="Eyvind Emilio">
+                    </form>
+                </td>
+                <td>&lt;!&ndash;suppress HtmlUnknownAttribute &ndash;&gt;
+                    <form><input type="text" crud-editable="modelo"></form>
+                    <span crud-editable="'text'" ng-model="modelo" ng-init="modelo='eyvind'" ></span>
+                </td>
+                <td ng-init="ciudades = [{id:1,nombre:'La Paz'},{id:2,nombre:'Cocha'},{id:3,nombre:'Santa '}]">
+                    &lt;!&ndash;suppress HtmlUnknownAttribute &ndash;&gt;
+                    <span crud-editable="'select'" ng-model="modelo2" ng-init="modelo2=1" crud-editable-options="'ciudad.id as ciudad.nombre for ciudad in ciudades'"></span>
+                </td>
+                <td><select>
+                    <option>a</option>
+                    <option>b</option>
+                </select></td>
+                <td><textarea></textarea></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>-->
     <div class="col-sm-10 col-sm-offset-1">
         <div class="panel panel-info">
             <div class="panel-heading text-center text-uppercase">
@@ -8,17 +43,20 @@
                 <uib-tabset>
                     <uib-tab heading="Docentes">
                         <div class="inline-block">
+                            Desde Archivo (.csv):
+                        </div>
+                        <div class="inline-block">
                             <ng-csv-import content="csv.content"
                                            header="csv.header"
                                            separator="csv.separator"
                                            result="csv.resultDocentes"
                                            accept="csv.accept"></ng-csv-import>
                         </div>
-                        <div class="inline-block">
+                        <!--<div class="inline-block">
                             <button class="btn btn-default">
                                 <span class="glyphicon glyphicon-dashboard"></span> Desde servicios
                             </button>
-                        </div>
+                        </div>-->
                         <div class="inline-block">
                             <button class="btn btn-info" ng-click="sincronizar_docentes(csv.resultDocentes)"><span
                                 class="glyphicon glyphicon-refresh"></span> Sincronizar
@@ -44,13 +82,18 @@
                                 <td><span ng-bind="docente.ApPaterno"></span></td>
                                 <td><span ng-bind="docente.Nombre"></span></td>
                                 <td><span ng-bind="docente.CI"></span></td>
-                                <td><span class="p5" ng-class="docente.actualizado?'btn-success':'btn-warning'"
-                                          ng-bind="docente.actualizado?'Guardado':'Pendiente'"></span></td>
+                                <td><span class="p5"
+                                          ng-class="docente.actualizado?'btn-success':(docente.text_error?'btn-danger':'btn-warning')"
+                                          ng-bind="docente.actualizado?'Guardado':(docente.text_error || 'Pendiente')">
+                                </span></td>
                             </tr>
                             </tbody>
                         </table>
                     </uib-tab>
                     <uib-tab heading="Materias">
+                        <div class="inline-block">
+                            Desde Archivo (.csv):
+                        </div>
                         <div class="inline-block">
                             <ng-csv-import content="csv.content"
                                            header="csv.header"
@@ -58,11 +101,11 @@
                                            result="csv.resultMaterias"
                                            accept="csv.accept"></ng-csv-import>
                         </div>
-                        <div class="inline-block">
+                        <!--<div class="inline-block">
                             <button class="btn btn-default">
                                 <span class="glyphicon glyphicon-dashboard"></span> Desde servicios
                             </button>
-                        </div>
+                        </div>-->
                         <div class="inline-block">
                             <button class="btn btn-info" ng-click="sincronizar_materias(csv.resultMaterias)"><span
                                 class="glyphicon glyphicon-refresh"></span> Sincronizar
@@ -82,8 +125,10 @@
                                 <td><span ng-bind="$index+1"></span></td>
                                 <td><span ng-bind="materia.idMateria"></span></td>
                                 <td><span ng-bind="materia.Materia"></span></td>
-                                <td><span class="p5" ng-class="materia.actualizado?'btn-success':'btn-warning'"
-                                          ng-bind="materia.actualizado?'Guardado':'Pendiente'"></span></td>
+                                <td><span class="p5"
+                                          ng-class="materia.actualizado?'btn-success':(materia.text_error?'btn-danger':'btn-warning')"
+                                          ng-bind="materia.actualizado?'Guardado':(materia.text_error || 'Pendiente')">
+                                </span></td>
                             </tr>
                             </tbody>
                         </table>
@@ -91,18 +136,20 @@
                     </uib-tab>
                     <uib-tab heading="Carreras">
                         <div class="inline-block">
-                            Desde Archivo (.csv)
+                            Desde Archivo (.csv):
+                        </div>
+                        <div class="inline-block">
                             <ng-csv-import content="csv.content"
                                            header="csv.header"
                                            separator="csv.separator"
                                            result="csv.resultCarreras"
                                            accept="csv.accept"></ng-csv-import>
                         </div>
-                        <div class="inline-block">
+                        <!--<div class="inline-block">
                             <button class="btn btn-default">
                                 <span class="glyphicon glyphicon-dashboard"></span> Desde servicios
                             </button>
-                        </div>
+                        </div>-->
                         <div class="inline-block">
                             <button class="btn btn-info" ng-click="sincronizar_especialidades(csv.resultCarreras)"><span
                                 class="glyphicon glyphicon-refresh"></span> Sincronizar
@@ -122,14 +169,57 @@
                                 <td><span ng-bind="$index+1"></span></td>
                                 <td><span ng-bind="carrera.idEspecialidad"></span></td>
                                 <td><span ng-bind="carrera.Especialidad"></span></td>
-                                <td><span class="p5" ng-class="carrera.actualizado?'btn-success':'btn-warning'"
-                                          ng-bind="carrera.actualizado?'Guardado':'Pendiente'"></span></td>
+                                <td><span class="p5"
+                                          ng-class="carrera.actualizado?'btn-success':(carrera.text_error?'btn-danger':'btn-warning')"
+                                          ng-bind="carrera.actualizado?'Guardado':(carrera.text_error || 'Pendiente')">
+                                </span></td>
                             </tr>
                             </tbody>
                         </table>
                     </uib-tab>
-                </uib-tabset>
+                    <uib-tab class="pull-right text-center">
+                        <tab-heading>
+                            <span class="glyphicon glyphicon-exclamation-sign"></span> Ayuda
+                        </tab-heading>
+
+                        <div class=" alert alert-info">
+                            <h4 class=""><b>Descargar ejemplos de archivo:</b></h4>
+
+                            <p class="inline-block">Seleccione: </p>
+                            <a href="resources/ejemplo_docente.csv" download class="inline-block">Docentes</a>
+                            <a href="resources/ejemplo_especialidad.csv" download class="inline-block">Carreras</a>
+                            <a href="resources/ejemplo_materia.csv" download class="inline-block">Materias</a>
+                        </div>
+
+                        <a class="list-group">
+                            <a href="" class="list-group-item ">
+                                <h4 class="list-group-item-heading">1. Guardar datos</h4>
+
+                                <p class="list-group-item-text">Guardar lista a sincronizar en formato (.csv)</p>
+                            </a>
+
+                            <a href="" class="list-group-item ">
+                                <h4 class="list-group-item-heading">2. Selecionar lista</h4>
+
+                                <p class="list-group-item-text">Elija en los tab el tipo de lista a sincronizar</p>
+                            </a>
+
+                            <a href="" class="list-group-item ">
+                                <h4 class="list-group-item-heading">3. Sincronizar</h4>
+
+                                <p class="list-group-item-text">Haga click en el boton sincronizar</p>
+                            </a>
+
+                            <a href="" class="list-group-item ">
+                                <h4 class="list-group-item-heading">4. Verificar</h4>
+
+                                <p class="list-group-item-text">El estado de la sincronizacion por cada fila se mostrara
+                                    en la columna de estado</p>
+                            </a>
             </div>
+            </uib-tab>
+            </uib-tabset>
         </div>
     </div>
+</div>
 </div>

@@ -530,4 +530,46 @@ angular.module('planillasApp')
             ok: $scope.ok,
             cancel: $scope.cancel
         };
+    })
+    .directive('crudEditable', function ($compile) {
+        return {
+            restrict: 'A',
+            replace: true,
+            scope: {
+                crudEditable: '=',
+                crudEditableOptions: '=',
+                ngModel: '='
+            },
+            link: function postLink(scope, element) {
+                function compileTemplate(template) {
+                    var e = $compile(template)(scope);
+                    element.replaceWith(e);
+                }
+
+                scope.submitEditableForm = function (a, b) {
+                    scope.ngModel = angular.copy(b);
+                };
+                scope.keyPressEditable = function (event) {
+                    if (event.keyCode == 27) {
+                        scope.copyModel = angular.copy(scope.ngModel);
+                        scope.$apply();
+                    }
+                };
+                jQuery('body').bind('keyup', scope.keyPressEditable);
+                scope.copyModel = angular.copy(scope.ngModel);
+                scope.$watch('ngModel', function () {
+                    scope.copyModel = angular.copy(scope.ngModel);
+                    var template = "";
+                    if (scope.crudEditable === 'text') {
+                        template = '<form ng-submit="submitEditableForm(this, copyModel)"><input type="text" ng-model="copyModel"></form>';
+                    }
+                    if (scope.crudEditable === 'select') {
+                        template = '<form ng-submit="submitEditableForm(this, copyModel)"><select ng-model="copyModel" ng-options="{{crudEditableOptions}}"></select></form>';
+                    }
+                    compileTemplate(template);
+                }, true);
+                scope.$watch('copyModel', function () {
+                }, true);
+            }
+        }
     });

@@ -220,45 +220,45 @@
                     <div class="col-sm-12" ng-init="generarPlanilla(1)">
 
                         <!--<small>Planilla autogenerada de 1 Semana</small>-->
-                        <div class="table-planillas-f">
-                            <table class="table-planillas-f">
+                        <div class="">
+                            <table class="table-editable">
                                 <thead>
                                 <tr>
-                                    <th rowspan="2" class="tN">N</th>
-                                    <th rowspan="2" class="tN">Habil.</th>
-                                    <th rowspan="2" class="tCi">CI</th>
-                                    <th rowspan="2" class="tCuenta">Cuenta BU</th>
-                                    <th rowspan="2" class="tGrado rotate90">Grado</th>
-                                    <th rowspan="2" class="tNombres">Apellidos y Nombres</th>
-                                    <th ng-show="GF.isAdmin()" rowspan="2" class="tCarrera">Carrera</th>
-                                    <th rowspan="2" class="tMateria">Materia</th>
-                                    <th rowspan="2" class="tTipo">Tipo</th>
-                                    <th rowspan="2" class="tHoras rotate90">Horas<br>Sem.</th>
-                                    <th rowspan="2" class="tCategoria rotate90">Cat.</th>
+                                    <th rowspan="2" class="w20">N</th>
+                                    <th rowspan="2" class="w20">Habil.</th>
+                                    <th rowspan="2" class="w70">CI</th>
+                                    <th rowspan="2" class="w100">Cuenta BU</th>
+                                    <th rowspan="2" class="w30 rotate90">Grado</th>
+                                    <th rowspan="2" class="w150">Apellidos y Nombres</th>
+                                    <th ng-show="GF.isAdmin()" rowspan="2" class="w120">Carrera</th>
+                                    <th rowspan="2" class="w180">Materia</th>
+                                    <th rowspan="2" class="w70">Tipo</th>
+                                    <th rowspan="2" class="w30 rotate90">Horas<br>Sem.</th>
+                                    <th rowspan="2" class="w30 rotate90">Cat.</th>
                                     <th colspan="{{filters.SHOW_REINTEGRO?4:3}}">Ingresos</th>
-                                    <th rowspan="2" class="tAtrasos rotate90">Atrasos<br>Periodos</th>
-                                    <th rowspan="2" class="tNumber">TOTAL</th>
+                                    <th rowspan="2" class="w40 rotate90">Atrasos<br>Periodos</th>
+                                    <th rowspan="2" class="w50">TOTAL</th>
                                     <th colspan="3">Egresos</th>
-                                    <th rowspan="2" class="tFactura rotate90">Factura</th>
+                                    <th rowspan="2" class="w30 rotate90">Factura</th>
                                     <th rowspan="2">Liquido Pagable</th>
                                     <!--<th rowspan="2"></th>-->
                                 </tr>
                                 <tr>
-                                    <th class="tNumber">Monto</th>
-                                    <th class="tNumber">Total1</th>
-                                    <th class="tReintegro" ng-show="filters.SHOW_REINTEGRO"><span>Reintegro</span></th>
-                                    <th class="tNumber" title="Numero de periodos atrasados">Total2</th>
-                                    <th class="tNumber text-center" title="Impuesto a las Utilidades">I.U.</th>
-                                    <th class="tNumber text-center" title="Impuesto a las Transacciones">I.T.</th>
-                                    <th class="tNumber text-center">Total</th>
+                                    <th class="w50">Monto</th>
+                                    <th class="w50">Total1</th>
+                                    <th class="w70" ng-show="filters.SHOW_REINTEGRO"><span>Reintegro</span></th>
+                                    <th class="w50" title="Numero de periodos atrasados">Total2</th>
+                                    <th class="w50 text-center" title="Impuesto a las Utilidades">I.U.</th>
+                                    <th class="w50 text-center" title="Impuesto a las Transacciones">I.T.</th>
+                                    <th class="w50 text-center">Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 <tr ng-repeat="docente in planillas_listing_page.items" context-menu="menusPayrollList">
-                                    <td class="tN"
+                                    <td class="w20"
                                         ng-bind="filters.items_for_page*(planillas_listing_page.page-1)+$index+1"></td>
-                                    <td class="tCategoria text-center" style="padding: 0 !important;">
+                                    <td class="w20 text-center" style="padding: 0 !important;">
                                         <button class="btn btn-success btn-xs text-center" ng-show="docente.Habilitado"
                                                 style="padding: 0 !important;" title="Inhabilitar docente de planillas"
                                                 ng-click="HabilitarDocente(docente,false)"><i
@@ -268,69 +268,75 @@
                                                 ng-click="HabilitarDocente(docente,true)"><i
                                             class="glyphicon glyphicon-remove text-center"></i></button>
                                     </td>
-                                    <td class="tCi" ng-bind="docente.CI"></td>
-                                    <td class="tCuenta">
-              <span editable-text="docente.CuentaBancaria" buttons="no"
-                    onbeforesave="updateNumeroCuenta(docente,$data)">
-              {{docente.CuentaBancaria || "--"}}
-              </span>
+                                    <td class="w70" ng-bind="docente.CI"></td>
+                                    <td class="w100">
+                                      <span editable-text="docente.CuentaBancaria" buttons="no"
+                                            onbeforesave="updateNumeroCuenta(docente,$data)">
+                                      {{docente.CuentaBancaria || "--"}}
+                                      </span>
                                     </td>
-                                    <td class="tGrado" ng-bind="docente.Grado||'-'"></td>
-                                    <td class="tNombres">
-                  <span class="cursorCell" ng-click="modificarDocente(docente)"
-                        ng-bind="docente.Nombres||'--' "></span>
+                                    <td class="w30" ng-bind="docente.Grado||'-'"></td>
+                                    <td class="w150">
+                                      <span class="cursorCell" ng-click="modificarDocente(docente)"
+                                            ng-bind="docente.Nombres||'--' "></span>
                                     </td>
-
-                                    <td class="tCarrera" ng-show="GF.isAdmin()"
+                                    <td class="w120" ng-show="GF.isAdmin()"
                                         ng-bind="((docente.Especialidad) | ingenieria)||'--'"></td>
+                                    <td class="w180">
+                                          <span editable-select="docente.Materia"
+                                                onbeforesave="updateMateria(docente,$data)"
+                                                e-ng-options="g.idMateria as g.Materia for g in GLOBALS.LISTA_CUSTOM_MATERIAS"
+                                                buttons="no">
+                                          {{docente.Materia||"-"}}
+                                          </span>
+                                    </td>
+                                    <td class="w70">
+                                          <span editable-select="docente.Tipo"
+                                                onbeforesave="updateTipoDocencia(docente,$data)"
+                                                e-ng-options="g.name as g.name for g in GLOBALS.TIPOS_DOCENCIA"
+                                                buttons="no">
+                                          {{docente.Tipo||"-"}}
+                                          </span>
+                                    </td>
+                                    <td class="w30">
+                                      <span editable-select="docente.HorasSemanales"
+                                            onbeforesave="updateHorasSemanales(docente,$data)"
+                                            e-ng-options="g.id as g.name for g in GLOBALS.TIEMPOS_CARGA_HORARIA"
+                                            buttons="no">
+                                      {{docente.HorasSemanales||"-"}}
+                                      </span>
+                                    </td>
+                                    <td class="w30">
+                                      <span editable-select="docente.Categoria"
+                                            onbeforesave="updateCategoria(docente,$data)"
+                                            e-ng-options="g.id as g.name for g in GLOBALS.TIPOS_CATEGORIAS"
+                                            buttons="no">
+                                      {{docente.Categoria||"-"}}
+                                      </span>
+                                    </td>
+                                    <td class="w50" ng-bind="(docente.Monto|mountC)||'-'"></td>
+                                    <td class="w50" ng-bind="(docente.Total_1|mountC)||'-'"></td>
+                                    <td class="w70" ng-show="filters.SHOW_REINTEGRO">
+                                      <span editable-text="docente.Reintegro" buttons="no" onbeforesave="updateReintegro(docente,$data)">
+                                      {{(docente.Reintegro|mountC)||'-'}}
+                                      </span>
+                                    </td>
+                                    <td class="w50" ng-bind="(docente.Total_2|mountC)||'-'"></td>
+                                    <td class="w40">
+                                      <span editable-text="docente.Atrasos_Periodos" onbeforesave="updateAtrasos(docente,$data)" buttons="no">
+                                      {{(docente.Atrasos_Periodos||0)|mountC}}
+                                      </span>
+                                    </td>
+                                    <td class="w50" ng-bind="(docente.Total_3|mountC)||'-'"></td>
+                                    <td class="w50" ng-bind="(docente.IU|mountC)||'-'"></td>
+                                    <td class="w50" ng-bind="(docente.IT|mountC)||'-'"></td>
+                                    <td class="w50" ng-bind="(docente.Total_4|mountC)||'-'"></td>
 
-                                    <td class="tMateria">
-              <span editable-select="docente.Materia" onbeforesave="updateMateria(docente,$data)"
-                    e-ng-options="g.idMateria as g.Materia for g in GLOBALS.LISTA_CUSTOM_MATERIAS" buttons="no">
-              {{docente.Materia||"-"}}
-              </span>
-                                    </td>
-                                    <td class="tTipo">
-                  <span editable-select="docente.Tipo" onbeforesave="updateTipoDocencia(docente,$data)"
-                        e-ng-options="g.name as g.name for g in GLOBALS.TIPOS_DOCENCIA" buttons="no">
-                  {{docente.Tipo||"-"}}
-                  </span>
-                                    </td>
-                                    <td class="tHoras">
-                  <span editable-select="docente.HorasSemanales" onbeforesave="updateHorasSemanales(docente,$data)"
-                        e-ng-options="g.id as g.name for g in GLOBALS.TIEMPOS_CARGA_HORARIA" buttons="no">
-                  {{docente.HorasSemanales||"-"}}
-                  </span>
-                                    </td>
-                                    <td class="tCategoria">
-                  <span editable-select="docente.Categoria" onbeforesave="updateCategoria(docente,$data)"
-                        e-ng-options="g.id as g.name for g in GLOBALS.TIPOS_CATEGORIAS" buttons="no">
-                  {{docente.Categoria||"-"}}
-                  </span>
-                                    </td>
-                                    <td class="tNumber" ng-bind="(docente.Monto|mountC)||'-'"></td>
-                                    <td class="tNumber" ng-bind="(docente.Total_1|mountC)||'-'"></td>
-                                    <td class="tReintegro" ng-show="filters.SHOW_REINTEGRO">
-              <span editable-text="docente.Reintegro" buttons="no" onbeforesave="updateReintegro(docente,$data)">
-              {{(docente.Reintegro|mountC)||'-'}}
-              </span>
-                                    </td>
-                                    <td class="tNumber" ng-bind="(docente.Total_2|mountC)||'-'"></td>
-                                    <td class="tAtrasos">
-              <span editable-text="docente.Atrasos_Periodos" onbeforesave="updateAtrasos(docente,$data)" buttons="no">
-              {{(docente.Atrasos_Periodos||0)|mountC}}
-              </span>
-                                    </td>
-                                    <td class="tNumber" ng-bind="(docente.Total_3|mountC)||'-'"></td>
-                                    <td class="tNumber" ng-bind="(docente.IU|mountC)||'-'"></td>
-                                    <td class="tNumber" ng-bind="(docente.IT|mountC)||'-'"></td>
-                                    <td class="tNumber" ng-bind="(docente.Total_4|mountC)||'-'"></td>
-
-                                    <td class="tFactura">
-              <span editable-select="docente.Factura" onbeforesave="updateFactura(docente,$data)"
-                    e-ng-options="g.id as g.name for g in GLOBALS.FACTURA_ITEMS" buttons="no">
-              {{docente.Factura?"Si":"No"}}
-              </span>
+                                    <td class="w30">
+                                      <span editable-select="docente.Factura" onbeforesave="updateFactura(docente,$data)"
+                                            e-ng-options="g.id as g.name for g in GLOBALS.FACTURA_ITEMS" buttons="no">
+                                      {{docente.Factura?"Si":"No"}}
+                                      </span>
                                     </td>
                                     <!--<td editable-text="docente.Factura" onbeforesave="updateFactura(docente,$data)"  buttons="no"  class="tdEditable noSelectable">{{docente.Factura}}</td>-->
                                     <td class="tLiquido" ng-bind="(docente.LiquidoPagable|mountC)||'-'"></td>
