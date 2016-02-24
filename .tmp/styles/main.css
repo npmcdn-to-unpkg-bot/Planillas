@@ -12728,25 +12728,25 @@ button.close {
   background: #fff;
   margin: 0 auto;
 }
-/* line 52, ../../app/styles/_sheets.scss */
+/* line 53, ../../app/styles/_sheets.scss */
 #sheets .table_add thead tr, #sheets .table_add tfoot tr {
   background-color: #2980b9;
   color: #fff;
 }
-/* line 55, ../../app/styles/_sheets.scss */
+/* line 56, ../../app/styles/_sheets.scss */
 #sheets .table_add thead tr th, #sheets .table_add thead tr td, #sheets .table_add tfoot tr th, #sheets .table_add tfoot tr td {
   border-color: #000 !important;
 }
-/* line 59, ../../app/styles/_sheets.scss */
+/* line 60, ../../app/styles/_sheets.scss */
 #sheets .table_add thead .newPayrollSpecialty, #sheets .table_add tfoot .newPayrollSpecialty {
   display: inline-block;
 }
-/* line 61, ../../app/styles/_sheets.scss */
+/* line 62, ../../app/styles/_sheets.scss */
 #sheets .table_add thead .newPayrollSpecialty span.ui-select-toggle, #sheets .table_add tfoot .newPayrollSpecialty span.ui-select-toggle {
   font-size: 14px;
   font-weight: normal;
 }
-/* line 67, ../../app/styles/_sheets.scss */
+/* line 68, ../../app/styles/_sheets.scss */
 #sheets .table_add input, #sheets .table_add select, #sheets .table_add span.form-control.ui-select-toggle {
   outline: none !important;
   border: none !important;
@@ -12756,48 +12756,63 @@ button.close {
   border-right: 1px solid !important;
   border-color: inherit;
 }
-/* line 74, ../../app/styles/_sheets.scss */
+/* line 75, ../../app/styles/_sheets.scss */
 #sheets .table_add .input-preselected, #sheets .table_add input[disabled], #sheets .table_add select[disabled] {
   font-weight: bold;
   background-color: #fff3b3;
   border-right: 1px solid !important;
 }
-/* line 79, ../../app/styles/_sheets.scss */
+/* line 80, ../../app/styles/_sheets.scss */
 #sheets .table_add td {
   overflow: visible;
 }
-/* line 82, ../../app/styles/_sheets.scss */
+/* line 83, ../../app/styles/_sheets.scss */
 #sheets .table_add div {
   outline: none;
 }
-/* line 86, ../../app/styles/_sheets.scss */
+/* line 87, ../../app/styles/_sheets.scss */
 #sheets .table_add tbody tr {
   background: #f8f8f8;
 }
-/* line 89, ../../app/styles/_sheets.scss */
+/* line 90, ../../app/styles/_sheets.scss */
 #sheets .table_add tbody tr:hover {
   background: #fafafa !important;
 }
-/* line 96, ../../app/styles/_sheets.scss */
+/* line 95, ../../app/styles/_sheets.scss */
+#sheets .table_add .btn.btn-default.form-control.ui-select-toggle {
+  display: table-cell;
+  vertical-align: middle;
+}
+/* line 99, ../../app/styles/_sheets.scss */
+#sheets .table_add input, #sheets .table_add select, #sheets .table_add input[disabled], #sheets .table_add select[disabled] {
+  border-right-width: 0 !important;
+}
+/* line 102, ../../app/styles/_sheets.scss */
+#sheets .table_add span {
+  white-space: normal !important;
+  vertical-align: middle;
+  display: table-cell;
+}
+/* line 110, ../../app/styles/_sheets.scss */
 #sheets table.payroll tbody tr:nth-child(odd) {
   background: #f8f8f8;
 }
-/* line 100, ../../app/styles/_sheets.scss */
+/* line 114, ../../app/styles/_sheets.scss */
 #sheets table.payroll tbody tr:hover {
   background: #ddd !important;
 }
-/* line 104, ../../app/styles/_sheets.scss */
+/* line 118, ../../app/styles/_sheets.scss */
 #sheets table.payroll th {
   text-align: center;
   padding: 5px;
   font-style: italic;
 }
-/* line 109, ../../app/styles/_sheets.scss */
+/* line 123, ../../app/styles/_sheets.scss */
 #sheets table.payroll .vertical {
   vertical-align: bottom;
   padding: 1px;
 }
-/* line 112, ../../app/styles/_sheets.scss */
+/* line 126, ../../app/styles/_sheets.scss */
 #sheets table.payroll .vertical span {
   -webkit-transform: rotate(-90deg) !important;
   -moz-transform: rotate(-90deg) !important;
@@ -12806,12 +12821,12 @@ button.close {
   display: flex;
   margin-bottom: 13px;
 }
-/* line 118, ../../app/styles/_sheets.scss */
+/* line 132, ../../app/styles/_sheets.scss */
 #sheets table.payroll .diagonal {
   vertical-align: bottom;
   padding: 1px;
 }
-/* line 121, ../../app/styles/_sheets.scss */
+/* line 135, ../../app/styles/_sheets.scss */
 #sheets table.payroll .diagonal span {
   -webkit-transform: rotate(-45deg) !important;
   -moz-transform: rotate(-45deg) !important;
@@ -12822,63 +12837,63 @@ button.close {
   overflow: hidden;
   margin-bottom: 13px;
 }
-/* line 129, ../../app/styles/_sheets.scss */
+/* line 143, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr, #sheets table.payroll td {
   height: 45px !important;
   min-height: 45px !important;
   max-height: 45px !important;
 }
-/* line 135, ../../app/styles/_sheets.scss */
+/* line 149, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr {
   position: static;
 }
-/* line 137, ../../app/styles/_sheets.scss */
+/* line 151, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit {
   cursor: cell;
 }
-/* line 140, ../../app/styles/_sheets.scss */
+/* line 154, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit:hover {
   background: #ccc;
 }
-/* line 143, ../../app/styles/_sheets.scss */
+/* line 157, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit:active {
   -ms-box-shadow: 0 0 2px 1px rgba(0, 0, 255, 0.3) !important;
   -o-box-shadow: 0 0 2px 1px rgba(0, 0, 255, 0.3) !important;
   box-shadow: 0 0 2px 1px rgba(0, 0, 255, 0.3) !important;
 }
-/* line 147, ../../app/styles/_sheets.scss */
+/* line 161, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit.select div {
   overflow: visible;
   display: block;
   padding: 0;
   font-size: inherit;
 }
-/* line 153, ../../app/styles/_sheets.scss */
+/* line 167, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit.select span {
   font-size: inherit;
   padding: 0;
 }
-/* line 157, ../../app/styles/_sheets.scss */
+/* line 171, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit.select span.match {
   display: table-cell;
   vertical-align: middle;
   padding: 0 5px;
 }
-/* line 162, ../../app/styles/_sheets.scss */
+/* line 176, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit.select ul {
   width: auto;
 }
-/* line 165, ../../app/styles/_sheets.scss */
+/* line 179, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit.select .btn, #sheets table.payroll tr .edit.select input {
   border-radius: 0px !important;
 }
-/* line 169, ../../app/styles/_sheets.scss */
+/* line 183, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr td {
   cursor: default;
   position: relative;
   overflow: hidden;
 }
-/* line 173, ../../app/styles/_sheets.scss */
+/* line 187, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr td div {
   width: inherit;
   max-width: inherit;
@@ -12890,236 +12905,236 @@ button.close {
   height: inherit;
   padding: 0 4px;
 }
-/* line 186, ../../app/styles/_sheets.scss */
+/* line 200, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr td form, #sheets table.payroll tr td span, #sheets table.payroll tr td input, #sheets table.payroll tr td textarea, #sheets table.payroll tr td select {
   height: 45px !important;
   width: inherit;
 }
-/* line 191, ../../app/styles/_sheets.scss */
+/* line 205, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr td form {
   display: block !important;
 }
-/* line 193, ../../app/styles/_sheets.scss */
+/* line 207, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr td form select {
   height: inherit;
   min-width: 100%;
 }
-/* line 199, ../../app/styles/_sheets.scss */
+/* line 213, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr td input {
   padding: 0 3px;
 }
-/* line 203, ../../app/styles/_sheets.scss */
+/* line 217, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-0 {
   min-width: 30px !important;
   max-width: 30px !important;
   width: 30px !important;
 }
-/* line 208, ../../app/styles/_sheets.scss */
+/* line 222, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-1 {
   min-width: 40px !important;
   max-width: 40px !important;
   width: 40px !important;
 }
-/* line 213, ../../app/styles/_sheets.scss */
+/* line 227, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-2 {
   min-width: 80px !important;
   max-width: 80px !important;
   width: 80px !important;
 }
-/* line 218, ../../app/styles/_sheets.scss */
+/* line 232, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-3 {
   min-width: 110px !important;
   max-width: 110px !important;
   width: 110px !important;
 }
-/* line 223, ../../app/styles/_sheets.scss */
+/* line 237, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-4 {
   min-width: 60px !important;
   max-width: 60px !important;
   width: 60px !important;
 }
-/* line 228, ../../app/styles/_sheets.scss */
+/* line 242, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-5 {
   min-width: 130px !important;
   max-width: 130px !important;
   width: 130px !important;
 }
-/* line 233, ../../app/styles/_sheets.scss */
+/* line 247, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-6 {
   min-width: 130px !important;
   max-width: 130px !important;
   width: 130px !important;
 }
-/* line 238, ../../app/styles/_sheets.scss */
+/* line 252, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-7 {
   min-width: 150px !important;
   max-width: 150px !important;
   width: 150px !important;
 }
-/* line 243, ../../app/styles/_sheets.scss */
+/* line 257, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-8 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 248, ../../app/styles/_sheets.scss */
+/* line 262, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-9 {
   min-width: 40px !important;
   max-width: 40px !important;
   width: 40px !important;
 }
-/* line 253, ../../app/styles/_sheets.scss */
+/* line 267, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-10 {
   min-width: 35px !important;
   max-width: 35px !important;
   width: 35px !important;
 }
-/* line 258, ../../app/styles/_sheets.scss */
+/* line 272, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-11 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 263, ../../app/styles/_sheets.scss */
+/* line 277, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-11-1 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 268, ../../app/styles/_sheets.scss */
+/* line 282, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-11-2 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 273, ../../app/styles/_sheets.scss */
+/* line 287, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-11-3 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 278, ../../app/styles/_sheets.scss */
+/* line 292, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-11-4 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 283, ../../app/styles/_sheets.scss */
+/* line 297, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-12 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 288, ../../app/styles/_sheets.scss */
+/* line 302, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-13 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 293, ../../app/styles/_sheets.scss */
+/* line 307, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-14 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 298, ../../app/styles/_sheets.scss */
+/* line 312, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-14-1 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 303, ../../app/styles/_sheets.scss */
+/* line 317, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-14-2 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 308, ../../app/styles/_sheets.scss */
+/* line 322, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-14-3 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 313, ../../app/styles/_sheets.scss */
+/* line 327, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-15 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 318, ../../app/styles/_sheets.scss */
+/* line 332, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-16 {
   min-width: 60px !important;
   max-width: 60px !important;
   width: 60px !important;
 }
-/* line 323, ../../app/styles/_sheets.scss */
+/* line 337, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-40 {
   min-width: 40px !important;
   max-width: 40px !important;
   width: 40px !important;
 }
-/* line 326, ../../app/styles/_sheets.scss */
+/* line 340, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-50 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 329, ../../app/styles/_sheets.scss */
+/* line 343, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-60 {
   min-width: 60px !important;
   max-width: 60px !important;
   width: 60px !important;
 }
-/* line 332, ../../app/styles/_sheets.scss */
+/* line 346, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-70 {
   min-width: 70px !important;
   max-width: 70px !important;
   width: 70px !important;
 }
-/* line 335, ../../app/styles/_sheets.scss */
+/* line 349, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-80 {
   min-width: 80px !important;
   max-width: 80px !important;
   width: 80px !important;
 }
-/* line 338, ../../app/styles/_sheets.scss */
+/* line 352, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-90 {
   min-width: 90px !important;
   max-width: 90px !important;
   width: 90px !important;
 }
-/* line 341, ../../app/styles/_sheets.scss */
+/* line 355, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-100 {
   min-width: 100px !important;
   max-width: 100px !important;
   width: 100px !important;
 }
-/* line 344, ../../app/styles/_sheets.scss */
+/* line 358, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-150 {
   min-width: 150px !important;
   max-width: 150px !important;
   width: 150px !important;
 }
-/* line 350, ../../app/styles/_sheets.scss */
+/* line 364, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-200 {
   min-width: 200px !important;
   max-width: 200px !important;
   width: 200px !important;
 }
-/* line 355, ../../app/styles/_sheets.scss */
+/* line 369, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-250 {
   min-width: 250px !important;
   max-width: 250px !important;
   width: 250px !important;
 }
-/* line 360, ../../app/styles/_sheets.scss */
+/* line 374, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-300 {
   min-width: 300px !important;
   max-width: 300px !important;
   width: 300px !important;
 }
 
-/* line 369, ../../app/styles/_sheets.scss */
+/* line 383, ../../app/styles/_sheets.scss */
 #menu-toolbar {
   width: 100%;
   background: #3F51B5;
@@ -13127,13 +13142,13 @@ button.close {
   padding-left: 90px;
   font-size: 14px;
 }
-/* line 375, ../../app/styles/_sheets.scss */
+/* line 389, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu {
   padding: 0;
   margin: 0;
   display: inline-block;
 }
-/* line 380, ../../app/styles/_sheets.scss */
+/* line 394, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.icon {
   background: #3F51B5;
   position: absolute;
@@ -13144,46 +13159,46 @@ button.close {
   top: 0;
   bottom: 0;
 }
-/* line 389, ../../app/styles/_sheets.scss */
+/* line 403, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.icon img {
   width: 70px;
   height: 70px;
   border-radius: 50% !important;
 }
-/* line 395, ../../app/styles/_sheets.scss */
+/* line 409, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles {
   background: #fff;
   width: 100%;
   padding-left: 12px;
 }
-/* line 399, ../../app/styles/_sheets.scss */
+/* line 413, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles .menu-title {
   padding: 30px 0 5px 15px;
   height: 60px;
   color: #000;
 }
-/* line 403, ../../app/styles/_sheets.scss */
+/* line 417, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles .menu-title h3 {
   margin: 0;
   color: #000;
   display: inline-block;
 }
-/* line 408, ../../app/styles/_sheets.scss */
+/* line 422, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles .menu-title h3.none {
   color: #7f8c8d !important;
   font-style: italic !important;
 }
-/* line 413, ../../app/styles/_sheets.scss */
+/* line 427, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles .menu-items {
   padding: 10px 0 0 0;
 }
-/* line 417, ../../app/styles/_sheets.scss */
+/* line 431, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles .menu-items ul li a {
   color: #000;
   padding-top: 12px;
   padding-bottom: 12px;
 }
-/* line 422, ../../app/styles/_sheets.scss */
+/* line 436, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles .menu-items ul li .dropdown-menu {
   padding: 0;
   margin: -1px 0 0 0;
@@ -14509,4 +14524,7 @@ td{
   box-shadow: 0 0 6px 2px #111 !important;
 }
 
-/*# sourceMappingURL=main.css.map */
+/* line 1076, ../../app/styles/main.scss */
+.ui-select-bootstrap > .ui-select-choices {
+  width: auto !important;
+}

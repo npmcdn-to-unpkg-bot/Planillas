@@ -35,7 +35,7 @@
                                             <i class="glyphicon glyphicon-education"></i> Materia</a></li>
                                     </ul>
                                 </li>
-                                <li role="presentation" class="dropdown">
+                                <!--<li role="presentation" class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button"
                                        aria-haspopup="true"
                                        aria-expanded="false">
@@ -43,17 +43,16 @@
                                         class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <!--<li><a href=""><span class="glyphicon glyphicon-save-file"></span> Vista previa .pdf</a></li>-->
+                                        &lt;!&ndash;<li><a href=""><span class="glyphicon glyphicon-save-file"></span> Vista previa .pdf</a></li>&ndash;&gt;
                                         <li><a href="" ng-click="generarReportePlanilla(true)" target="_top"><span
                                             class="glyphicon glyphicon-save-file"></span> Reporte .pdf</a>
                                         </li>
                                         <li><a href="" ng-click="generarReporteCuentasTXT()" download><span
-                                            class="glyphicon glyphicon-save-file"></span> Lista
-                                            .txt</a></li>
+                                            class="glyphicon glyphicon-save-file"></span> Lista (Cuenta bancaria - monto) .txt</a></li>
                                     </ul>
-                                </li>
+                                </li>-->
 
-                                <li role="presentation" class="dropdown">
+                                <!--<li role="presentation" class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button"
                                        aria-haspopup="true"
                                        aria-expanded="false">
@@ -61,16 +60,16 @@
                                         class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <!--<li><a href=""><span class="glyphicon glyphicon-save-file"></span> Vista previa .pdf</a></li>-->
+
                                         <li><a href=""><span class="glyphicon glyphicon-globe"></span> Limpiar
                                             reintegro</a>
                                         </li>
                                         <li><a href=""><span class="glyphicon glyphicon-globe"></span> Limpiar
                                             atrasos</a></li>
                                     </ul>
-                                </li>
+                                </li>-->
 
-                                <li role="presentation"><a href="" generarReportePlanilla()>
+                                <li role="presentation"><a href="" ng-click="generarReportePlanilla()">
                                     <span class="glyphicon glyphicon-print"></span> Vista previa</a>
                                 </li>
                                 <!--<li role="presentation"><a href="" data-ng-click="print()">
@@ -86,7 +85,7 @@
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="" ng-click="isNewPayrollCollapsed = !isNewPayrollCollapsed">
+                                    <a href="" ng-init="isNewPayrollCollapsed = true" ng-click="isNewPayrollCollapsed = !isNewPayrollCollapsed">
                                         <span class="glyphicon glyphicon-search"></span>
                                         Nuevo registo del planillas
                                 <span class="glyphicon"
@@ -102,13 +101,14 @@
                 <div uib-collapse="!isNewPayrollCollapsed">
                     <div class="well well-lg">
                         <div class="row">
-                            <table id="tab0" class="table_add">
+                            <table id="tab0" class="payroll table_add">
                                 <thead>
                                 <tr>
                                     <th colspan="13">
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <select class="form-control input-sm" ng-model="filters.filter_carrera"
+                                                <div class="pull-left">Seleccione carrera:</div>
+                                                <select class="form-control input-sm pull-left" ng-model="filters.filter_carrera"
                                                         ng-change="generarPlanilla(1)">
                                                     <option value=""> -- Todas las carreras --</option>
                                                     <option ng-repeat="carrera in GLOBALS.ESPECIALIDADES"
@@ -278,56 +278,112 @@ selectedEnableds.CuentaBancaria = false;selectedEnableds.Categoria = false;selec
                 </div>
                 <div uib-collapse="!isSearchCollapsed">
                     <div class="well well-lg">
-                        <div class="row">
 
-                            <div class="col-xs-3">
-                                <h5>Docente</h5>
-                                <input type="text" ng-model="teacherSelected"
-                                       uib-typeahead="teacher as (teacher.first_name+' '+teacher.last_name) for teacher in Teacher | filter:$viewValue | limitTo:8"
-                                       class="form-control input-sm" typeahead-template-url="customTemplateTeacher.html"
-                                       placeholder="Ingrese docente">
-                            </div>
+                        <div class="form-horizontal row">
+                                <div class="form-group-sm">
+                                    <div class="col-sm-2">
+                                        <p class="">Unidad Academica</p>
+                                        <label ng-if="!GF.isRoot()"
+                                               ng-init="filters.filter_unidad_academica = GF.getUnidadAcademicaId()">{{GF.getUser().UnidadAcademica}}</label>
+                                        <select ng-if="GF.isRoot()" class="form-control input-sm"
+                                                ng-model="filters.filter_unidad_academica"
+                                                ng-change="generarPlanilla(1)">
+                                            <option value=""> -- Todos las unidades --</option>
+                                            <option ng-repeat="carrera in GLOBALS.UNIDADES_ACADEMICAS"
+                                                    value="{{carrera.idUnidadAcademica}}">
+                                                {{carrera.UnidadAcademica}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <p class="">Carrera</p>
+                                        <label ng-if="!(GF.isAdmin() || GF.isRoot())"
+                                               ng-init="filters.filter_carrera = GF.getEspecialidadId()">{{GF.getEspecialidadName()}}</label>
+                                        <select ng-if="GF.isAdmin() || GF.isRoot()" class="form-control"
+                                                ng-model="filters.filter_carrera"
+                                                ng-change="generarPlanilla(1)">
+                                            <option value=""> -- Todos --</option>
+                                            <option ng-repeat="carrera in GLOBALS.ESPECIALIDADES"
+                                                    value="{{carrera.idEspecialidad}}">
+                                                {{carrera.Especialidad}}
+                                            </option>
+                                        </select>
+                                    </div>
 
-                            <div class="col-xs-3">
+                                    <div class="col-sm-3">
+                                        <p class="">Docente</p>
+                                        <ui-select tagging tagging-label="('new')" ng-model="filtersObjects.filter_docente"
+                                                   theme="bootstrap"
+                                                   title="Seleccione docente" ng-change="generarPlanilla(1)">
+                                            <ui-select-match allow-clear="true" placeholder="-- Todos --">
+                                                {{$select.selected.Docente}}
+                                            </ui-select-match>
+                                            <ui-select-choices
+                                                repeat="docente in GLOBALS.LISTA_CUSTOM_DOCENTES | filter: $select.search">
+                                                <div ng-bind-html="docente.Docente | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <p class="">Materia</p>
+                                        <ui-select tagging tagging-label="('new')" ng-model="filtersObjects.filter_materia"
+                                                   theme="bootstrap"
+                                                   title="Seleccione materia" ng-change="generarPlanilla(1)">
+                                            <ui-select-match allow-clear="true" placeholder="-- Todos --">
+                                                {{$select.selected.Materia}}
+                                            </ui-select-match>
+                                            <ui-select-choices
+                                                repeat="materia in GLOBALS.LISTA_CUSTOM_MATERIAS | filter: $select.search">
+                                                <div ng-bind-html="materia.Materia | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <p class="">Factura</p>
+                                        <select class="form-control" ng-model="filters.filter_factura"
+                                                ng-change="generarPlanilla(1)">
+                                            <option value=""> -- Todos --</option>
+                                            <option ng-repeat="tipo in GLOBALS.FACTURA_ITEMS" value="{{tipo.id}}">
+                                                {{tipo.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!--<div class="col-sm-2">
+                                      <p class="">Tipo</p>
+                                      <select class="form-control" ng-model="filter_tipo">
+                                        <option  value="" > -- Todos --</option>
+                                        <option ng-repeat="tipo in GLOBALS.TIPOS_DOCENCIA" value="{{tipo.name}}">
+                                          {{tipo.name}}
+                                        </option>
+                                      </select>
+                                    </div>-->
 
-                                <h5>Unidad Acad&eacute;mica</h5>
-                                <input type="text" ng-model="academicUnitSelected"
-                                       uib-typeahead="academicUnit as academicUnit.name for academicUnit in AcademicUnit | filter:$viewValue | limitTo:8"
-                                       class="form-control input-sm"
-                                       typeahead-template-url="customTemplateAcademicUnit.html"
-                                       placeholder="Ingrese unidad acad&eacute;mica">
-                            </div>
-                            <div class="col-xs-2">
-                                <h5>Materia</h5>
-                                <input type="text" ng-model="matterSelected"
-                                       uib-typeahead="matter as matter.name for matter in Matter | filter:$viewValue | limitTo:8"
-                                       typeahead-template-url="customTemplateMatter.html"
-                                       class="form-control input-sm"
-                                       placeholder="Ingrese materia">
-                            </div>
+                                    <div class="col-sm-2">
+                                        <p class="">Categoria</p>
+                                        <select class="form-control" ng-model="filters.filter_category"
+                                                ng-change="generarPlanilla(1)">
+                                            <option value="" selected> -- Todos --</option>
+                                            <option ng-repeat="cat in GLOBALS.TIPOS_CATEGORIAS" value="{{cat.name}}">
+                                                {{cat.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
 
-                            <div class="col-xs-1">
-                                <h5>Factura</h5>
-                                <select class="form-control input-sm" ng-model="invoiceSelected">
-                                    <option selected value="">Todos</option>
-                                    <option value="1">SI</option>
-                                    <option value="0">No</option>
-                                </select>
+                                <div class="form-group-sm">
+                                    <div class="col-sm-2">
+                                        <p>Numero de horas</p>
+                                        <select class="form-control sm" ng-model="filters.NUMERO_HORAS"
+                                                ng-init="filters.NUMERO_HORAS = NUMERO_HORAS_DISPONIBLE[0];filters.filter_HEADER_PLANILLA = 'A '+filters.NUMERO_HORAS+' Horas'"
+                                                ng-change="filters.filter_HEADER_PLANILLA = 'A '+filters.NUMERO_HORAS+' Horas';generarPlanilla(1)">
+                                            <option ng-repeat="num in NUMERO_HORAS_DISPONIBLE" value="{{num}}">
+                                                {{num+' Horas'}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-xs-1">
-                                <h5>Categoria</h5>
-                                <select class="form-control input-sm" ng-model="categorySelected">
-                                    <option selected value="">Todos</option>
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                </select>
-                                <!--<input type="text" ng-model="categorySelected"-->
-                                <!--uib-typeahead="category as category.name for category in Category | filter:$viewValue | limitTo:8"-->
-                                <!--class="form-control input-sm">-->
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <table class="table-planillas-f">

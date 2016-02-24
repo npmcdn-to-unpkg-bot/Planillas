@@ -48,6 +48,7 @@ $height-row: 45px;
     .table_add {
         background: #fff;
         margin: 0 auto;
+
         thead, tfoot {
             tr {
                 background-color: #2980b9;
@@ -89,6 +90,19 @@ $height-row: 45px;
             tr:hover {
                 background: darken(#fff, 2%) !important;
             }
+        }
+
+        .btn.btn-default.form-control.ui-select-toggle{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        input, select, input[disabled], select[disabled]{
+            border-right-width: 0 !important;
+        }
+        span{
+            white-space: normal !important;
+            vertical-align: middle;
+            display: table-cell;
         }
     }
 
