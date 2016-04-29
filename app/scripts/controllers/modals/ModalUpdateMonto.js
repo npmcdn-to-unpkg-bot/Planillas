@@ -1,7 +1,6 @@
 angular.module('planillasApp').controller('ModalUpdateMonto', function ($scope,$rootScope,$http2,URLS,$location,$modalInstance,$q,$http) {
 
   $scope.updateMontoPago = function(monto,dataNew){
-    console.log(monto,dataNew);
     var d = $q.defer();
     var data = {
       Monto:dataNew,

@@ -26,7 +26,6 @@ angular.module('planillasApp').controller('ModalNewDocente', function ($scope,$r
     new_user.ApMaterno = new_user.ApMaterno.toUpperCase();
     new_user.Nombre  = new_user.Nombre.toUpperCase();
     new_user.Docente = new_user.ApPaterno + " "+new_user.ApMaterno +" "+new_user.Nombre;
-    console.log(new_user);
     $http2.post(URLS.DOCENTES_ADD,new_user,
       function(data){
         if(data.Success){

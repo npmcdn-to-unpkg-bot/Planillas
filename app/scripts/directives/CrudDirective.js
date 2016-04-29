@@ -116,7 +116,6 @@ angular.module('planillasApp')
                         });
                         scope.Model.paginationParams = scope.paginationParams;
                         (new scope.Model.resource()).$get(scope.paginationParams).then(function (data) {
-                            console.log(scope, data);
                             scope.Model.dataResponse = data;
                         }, function () {
                             scope.paginationParams.page = 1;
@@ -249,7 +248,6 @@ angular.module('planillasApp')
                         // verify is "DetailModel" when call sub-id
 
                         if (typeof (value) === 'object' && value != null && value.id) {
-                            console.log(scope.newFormModel);
                             scope.newFormModel[key] = value.id;
                         }
                     });
@@ -261,7 +259,6 @@ angular.module('planillasApp')
                         }
                         if (scope.ngModel.fields[i].type === 'datetime') {
                             scope.newFormModel[scope.ngModel.fields[i].name] = new Date(scope.initForm[scope.ngModel.fields[i].name]);
-                            console.log(scope.initForm[scope.ngModel.fields[i].name]);
                             //console.log(scope.initForm[scope.ngModel.fields[i].name]);
                             /*console.log(scope.initForm, scope.ngModel.fields[i]);
                              console.log(scope.initForm[scope.ngModel.fields[i].name]);
@@ -285,7 +282,6 @@ angular.module('planillasApp')
                     '</div>' +
                     '</form>';
                 scope.saveForm = function (formDataModels) {
-                    console.log(formDataModels);
                     var formData = new FormData();
 
                     angular.forEach(formDataModels, function (value, key) {
@@ -398,7 +394,6 @@ angular.module('planillasApp')
                 var templateReturn = "";
 
                 if (scope.formItemCrud) {
-                    console.log(scope.formItemDisabled);
                     if (scope.formItemCrud.type === 'number') {
                         templateReturn = '<input type="number" class="form-control input-sm" data-ng-model="formModel[formItemCrud.name]" placeholder="{{formItemCrud.label}}" data-ng-required="formItemCrud.required" min="{{formItemCrud.min}}" max="{{formItemCrud.max}}" step="{{formItemCrud.step}}"  data-ng-disabled="formItemDisabled">';
                     } else if (scope.formItemCrud.type === 'string') {
@@ -497,7 +492,6 @@ angular.module('planillasApp')
 
         $scope.delete = function () {
             //noinspection JSUnresolvedFunction
-            console.log($scope);
             //(new $scope.Model.resource()).$delete({id: .id})
             (new $scope.Model.resource()).$delete({id: $scope.rowItem[$scope.Model.id_name]})
                 .then(function () {

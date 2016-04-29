@@ -24,7 +24,6 @@ angular.module('planillasApp')
         if(count==0){
           $rootScope.LOADER_ASYNC = false;
         }
-        $log.info("REQUEST " + method);
         //$rootScope.LOADER_ASYNC = false;
         try {
           if (angular.isFunction(fcnSuccess))fcnSuccess(data);
@@ -36,7 +35,6 @@ angular.module('planillasApp')
             if (data.Message && !hideMessage)toastr.warning(data.Message);
           }
         } catch (e) {
-          console.log(e);
           toastr.error('Error del navegador');
           if (angular.isFunction(fcnError))fcnError();
           deferred.reject(data);

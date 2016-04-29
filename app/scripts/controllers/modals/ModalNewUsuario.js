@@ -1,9 +1,7 @@
 angular.module('planillasApp').controller('ModalNewUsuario', function ($scope, $rootScope, $http2, URLS, $location, $modalInstance, items,$timeout) {
   $scope.items = items;
   $scope.nuevo_usuario = {};
-  console.log('se ejecuta modal');
   if (items) {//modificar
-    console.log(items);
     $scope.nuevo_usuario = angular.copy(items);
     delete ($scope.nuevo_usuario.Activo);
   } else {//NUEVO
@@ -20,7 +18,6 @@ angular.module('planillasApp').controller('ModalNewUsuario', function ($scope, $
 
   $scope.guardar = function (new_user) {
     var error = false;
-    console.log(new_user);
     for (var val in new_user) {
       if (!new_user[val]) {
         error = true;

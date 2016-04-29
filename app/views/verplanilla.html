@@ -192,8 +192,29 @@
                             </div>
                             <br>
 
+
                             <div class="form-group-sm">
                                 <div class="col-sm-2">
+                                    <p>Tipo de pago</p>
+                                    <select class="form-control sm" ng-model="filters.ES_SEMANAL"
+                                            ng-init="filters.ES_SEMANAL = 1"
+                                            ng-change="generarPlanilla(1)">
+                                        <option ng-repeat="num in GLOBALS.PAGO_ITEMS" value="{{num.id}}">
+                                            {{num.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2" ng-show="filters.ES_SEMANAL == 1">
+                                    <p>Numero de semanas</p>
+                                    <select class="form-control sm" ng-model="filters.NUMERO_SEMANAS"
+                                            ng-init="filters.NUMERO_SEMANAS = NUMERO_SEMANAS_DISPONIBLE[0];"
+                                            ng-change="filters.filter_HEADER_PLANILLA = 'A '+filters.NUMERO_HORAS+' Semanas';generarPlanilla(1)">
+                                        <option ng-repeat="num in NUMERO_SEMANAS_DISPONIBLE" value="{{num}}">
+                                            {{num+' Semanas'}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2" ng-show="filters.ES_SEMANAL==0">
                                     <p>Numero de horas</p>
                                     <select class="form-control sm" ng-model="filters.NUMERO_HORAS"
                                             ng-init="filters.NUMERO_HORAS = NUMERO_HORAS_DISPONIBLE[0];filters.filter_HEADER_PLANILLA = 'A '+filters.NUMERO_HORAS+' Horas'"

@@ -85,7 +85,8 @@
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="" ng-init="isNewPayrollCollapsed = true" ng-click="isNewPayrollCollapsed = !isNewPayrollCollapsed">
+                                    <a href="" ng-init="isNewPayrollCollapsed = true"
+                                       ng-click="isNewPayrollCollapsed = !isNewPayrollCollapsed">
                                         <span class="glyphicon glyphicon-search"></span>
                                         Nuevo registo del planillas
                                 <span class="glyphicon"
@@ -108,7 +109,8 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="pull-left">Seleccione carrera:</div>
-                                                <select class="form-control input-sm pull-left" ng-model="filters.filter_carrera"
+                                                <select class="form-control input-sm pull-left"
+                                                        ng-model="filters.filter_carrera"
                                                         ng-change="generarPlanilla(1)">
                                                     <option value=""> -- Todas las carreras --</option>
                                                     <option ng-repeat="carrera in GLOBALS.ESPECIALIDADES"
@@ -143,14 +145,13 @@
                                     <th class="col-px-70">Semestre</th>
                                     <th class="col-px-70">Paralelo</th>
                                     <th class="col-15">Factura</th>
+                                    <th class="col-15">Pago semanal</th>
                                     <th class="col-px-80">Metodo Acad&eacute;mico</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <td class="col-px-250 edit select">
-
-
                                         <ui-select tagging tagging-label="('new')"
                                                    ng-model="NUEVO_DOCENTE.idDocente" theme="bootstrap"
                                                    title="Seleccione docente"
@@ -233,6 +234,11 @@
                                                 ng-disabled="selectedEnableds.Factura">
                                         </select>
                                     </td>
+                                    <th class="col-15">
+                                        <input class="form-control small" type="checkbox"
+                                               ng-model="NUEVO_DOCENTE.es_semanal"
+                                               ng-disabled="selectedEnableds.es_semanal">
+                                    </th>
                                     <td class="col-px-80">
                                         <select class="fullWidth" ng-model="NUEVO_DOCENTE.Pensul"
                                                 ng-options="fac.id as fac.name for fac in GLOBALS.PENSUL">
@@ -280,110 +286,130 @@ selectedEnableds.CuentaBancaria = false;selectedEnableds.Categoria = false;selec
                     <div class="well well-lg">
 
                         <div class="form-horizontal row">
-                                <div class="form-group-sm">
-                                    <div class="col-sm-2">
-                                        <p class="">Unidad Academica</p>
-                                        <label ng-if="!GF.isRoot()"
-                                               ng-init="filters.filter_unidad_academica = GF.getUnidadAcademicaId()">{{GF.getUser().UnidadAcademica}}</label>
-                                        <select ng-if="GF.isRoot()" class="form-control input-sm"
-                                                ng-model="filters.filter_unidad_academica"
-                                                ng-change="generarPlanilla(1)">
-                                            <option value=""> -- Todos las unidades --</option>
-                                            <option ng-repeat="carrera in GLOBALS.UNIDADES_ACADEMICAS"
-                                                    value="{{carrera.idUnidadAcademica}}">
-                                                {{carrera.UnidadAcademica}}
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <p class="">Carrera</p>
-                                        <label ng-if="!(GF.isAdmin() || GF.isRoot())"
-                                               ng-init="filters.filter_carrera = GF.getEspecialidadId()">{{GF.getEspecialidadName()}}</label>
-                                        <select ng-if="GF.isAdmin() || GF.isRoot()" class="form-control"
-                                                ng-model="filters.filter_carrera"
-                                                ng-change="generarPlanilla(1)">
-                                            <option value=""> -- Todos --</option>
-                                            <option ng-repeat="carrera in GLOBALS.ESPECIALIDADES"
-                                                    value="{{carrera.idEspecialidad}}">
-                                                {{carrera.Especialidad}}
-                                            </option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-sm-3">
-                                        <p class="">Docente</p>
-                                        <ui-select tagging tagging-label="('new')" ng-model="filtersObjects.filter_docente"
-                                                   theme="bootstrap"
-                                                   title="Seleccione docente" ng-change="generarPlanilla(1)">
-                                            <ui-select-match allow-clear="true" placeholder="-- Todos --">
-                                                {{$select.selected.Docente}}
-                                            </ui-select-match>
-                                            <ui-select-choices
-                                                repeat="docente in GLOBALS.LISTA_CUSTOM_DOCENTES | filter: $select.search">
-                                                <div ng-bind-html="docente.Docente | highlight: $select.search"></div>
-                                            </ui-select-choices>
-                                        </ui-select>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <p class="">Materia</p>
-                                        <ui-select tagging tagging-label="('new')" ng-model="filtersObjects.filter_materia"
-                                                   theme="bootstrap"
-                                                   title="Seleccione materia" ng-change="generarPlanilla(1)">
-                                            <ui-select-match allow-clear="true" placeholder="-- Todos --">
-                                                {{$select.selected.Materia}}
-                                            </ui-select-match>
-                                            <ui-select-choices
-                                                repeat="materia in GLOBALS.LISTA_CUSTOM_MATERIAS | filter: $select.search">
-                                                <div ng-bind-html="materia.Materia | highlight: $select.search"></div>
-                                            </ui-select-choices>
-                                        </ui-select>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <p class="">Factura</p>
-                                        <select class="form-control" ng-model="filters.filter_factura"
-                                                ng-change="generarPlanilla(1)">
-                                            <option value=""> -- Todos --</option>
-                                            <option ng-repeat="tipo in GLOBALS.FACTURA_ITEMS" value="{{tipo.id}}">
-                                                {{tipo.name}}
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <!--<div class="col-sm-2">
-                                      <p class="">Tipo</p>
-                                      <select class="form-control" ng-model="filter_tipo">
-                                        <option  value="" > -- Todos --</option>
-                                        <option ng-repeat="tipo in GLOBALS.TIPOS_DOCENCIA" value="{{tipo.name}}">
-                                          {{tipo.name}}
+                            <div class="form-group-sm">
+                                <div class="col-sm-2">
+                                    <p class="">Unidad Academica</p>
+                                    <label ng-if="!GF.isRoot()"
+                                           ng-init="filters.filter_unidad_academica = GF.getUnidadAcademicaId()">{{GF.getUser().UnidadAcademica}}</label>
+                                    <select ng-if="GF.isRoot()" class="form-control input-sm"
+                                            ng-model="filters.filter_unidad_academica"
+                                            ng-change="generarPlanilla(1)">
+                                        <option value=""> -- Todos las unidades --</option>
+                                        <option ng-repeat="carrera in GLOBALS.UNIDADES_ACADEMICAS"
+                                                value="{{carrera.idUnidadAcademica}}">
+                                            {{carrera.UnidadAcademica}}
                                         </option>
-                                      </select>
-                                    </div>-->
-
-                                    <div class="col-sm-2">
-                                        <p class="">Categoria</p>
-                                        <select class="form-control" ng-model="filters.filter_category"
-                                                ng-change="generarPlanilla(1)">
-                                            <option value="" selected> -- Todos --</option>
-                                            <option ng-repeat="cat in GLOBALS.TIPOS_CATEGORIAS" value="{{cat.name}}">
-                                                {{cat.name}}
-                                            </option>
-                                        </select>
-                                    </div>
+                                    </select>
                                 </div>
-                                <br>
+                                <div class="col-sm-2">
+                                    <p class="">Carrera</p>
+                                    <label ng-if="!(GF.isAdmin() || GF.isRoot())"
+                                           ng-init="filters.filter_carrera = GF.getEspecialidadId()">{{GF.getEspecialidadName()}}</label>
+                                    <select ng-if="GF.isAdmin() || GF.isRoot()" class="form-control"
+                                            ng-model="filters.filter_carrera"
+                                            ng-change="generarPlanilla(1)">
+                                        <option value=""> -- Todos --</option>
+                                        <option ng-repeat="carrera in GLOBALS.ESPECIALIDADES"
+                                                value="{{carrera.idEspecialidad}}">
+                                            {{carrera.Especialidad}}
+                                        </option>
+                                    </select>
+                                </div>
 
-                                <div class="form-group-sm">
-                                    <div class="col-sm-2">
-                                        <p>Numero de horas</p>
-                                        <select class="form-control sm" ng-model="filters.NUMERO_HORAS"
-                                                ng-init="filters.NUMERO_HORAS = NUMERO_HORAS_DISPONIBLE[0];filters.filter_HEADER_PLANILLA = 'A '+filters.NUMERO_HORAS+' Horas'"
-                                                ng-change="filters.filter_HEADER_PLANILLA = 'A '+filters.NUMERO_HORAS+' Horas';generarPlanilla(1)">
-                                            <option ng-repeat="num in NUMERO_HORAS_DISPONIBLE" value="{{num}}">
-                                                {{num+' Horas'}}
-                                            </option>
-                                        </select>
-                                    </div>
+                                <div class="col-sm-3">
+                                    <p class="">Docente</p>
+                                    <ui-select tagging tagging-label="('new')" ng-model="filtersObjects.filter_docente"
+                                               theme="bootstrap"
+                                               title="Seleccione docente" ng-change="generarPlanilla(1)">
+                                        <ui-select-match allow-clear="true" placeholder="-- Todos --">
+                                            {{$select.selected.Docente}}
+                                        </ui-select-match>
+                                        <ui-select-choices
+                                            repeat="docente in GLOBALS.LISTA_CUSTOM_DOCENTES | filter: $select.search">
+                                            <div ng-bind-html="docente.Docente | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="">Materia</p>
+                                    <ui-select tagging tagging-label="('new')" ng-model="filtersObjects.filter_materia"
+                                               theme="bootstrap"
+                                               title="Seleccione materia" ng-change="generarPlanilla(1)">
+                                        <ui-select-match allow-clear="true" placeholder="-- Todos --">
+                                            {{$select.selected.Materia}}
+                                        </ui-select-match>
+                                        <ui-select-choices
+                                            repeat="materia in GLOBALS.LISTA_CUSTOM_MATERIAS | filter: $select.search">
+                                            <div ng-bind-html="materia.Materia | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <p class="">Factura</p>
+                                    <select class="form-control" ng-model="filters.filter_factura"
+                                            ng-change="generarPlanilla(1)">
+                                        <option value=""> -- Todos --</option>
+                                        <option ng-repeat="tipo in GLOBALS.FACTURA_ITEMS" value="{{tipo.id}}">
+                                            {{tipo.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <!--<div class="col-sm-2">
+                                  <p class="">Tipo</p>
+                                  <select class="form-control" ng-model="filter_tipo">
+                                    <option  value="" > -- Todos --</option>
+                                    <option ng-repeat="tipo in GLOBALS.TIPOS_DOCENCIA" value="{{tipo.name}}">
+                                      {{tipo.name}}
+                                    </option>
+                                  </select>
+                                </div>-->
+
+                                <div class="col-sm-2">
+                                    <p class="">Categoria</p>
+                                    <select class="form-control" ng-model="filters.filter_category"
+                                            ng-change="generarPlanilla(1)">
+                                        <option value="" selected> -- Todos --</option>
+                                        <option ng-repeat="cat in GLOBALS.TIPOS_CATEGORIAS" value="{{cat.name}}">
+                                            {{cat.name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
+                            <br>
+
+                            <div class="form-group-sm">
+                                <div class="col-sm-2">
+                                    <p>Tipo de pago</p>
+                                    <select class="form-control sm" ng-model="filters.ES_SEMANAL"
+                                            ng-init="filters.ES_SEMANAL = 1"
+                                            ng-change="generarPlanilla(1)">
+                                        <option ng-repeat="num in GLOBALS.PAGO_ITEMS" value="{{num.id}}">
+                                            {{num.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2" ng-show="filters.ES_SEMANAL == 1">
+                                    <p>Numero de semanas</p>
+                                    <select class="form-control sm" ng-model="filters.NUMERO_SEMANAS"
+                                            ng-init="filters.NUMERO_SEMANAS = NUMERO_SEMANAS_DISPONIBLE[0];"
+                                            ng-change="filters.filter_HEADER_PLANILLA = 'A '+filters.NUMERO_HORAS+' Semanas';generarPlanilla(1)">
+                                        <option ng-repeat="num in NUMERO_SEMANAS_DISPONIBLE" value="{{num}}">
+                                            {{num+' Semanas'}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2" ng-show="filters.ES_SEMANAL==0">
+                                    <p>Numero de horas</p>
+                                    <select class="form-control sm" ng-model="filters.NUMERO_HORAS"
+                                            ng-init="filters.NUMERO_HORAS = NUMERO_HORAS_DISPONIBLE[0];filters.filter_HEADER_PLANILLA = 'A '+filters.NUMERO_HORAS+' Horas'"
+                                            ng-change="filters.filter_HEADER_PLANILLA = 'A '+filters.NUMERO_HORAS+' Horas';generarPlanilla(1)">
+                                        <option ng-repeat="num in NUMERO_HORAS_DISPONIBLE" value="{{num}}">
+                                            {{num+' Horas'}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <table class="table-planillas-f">
@@ -404,6 +430,7 @@ selectedEnableds.CuentaBancaria = false;selectedEnableds.Categoria = false;selec
                         <th rowspan="2" class="tNumber">TOTAL</th>
                         <th colspan="3">Egresos</th>
                         <th rowspan="2" class="tFactura rotate90">Factura</th>
+                        <th rowspan="2" class="tFactura rotate90">Tipo de pago</th>
                         <th rowspan="2">Liquido Pagable</th>
                         <!--<th rowspan="2" class="text-center">Op</th>-->
                     </tr>
@@ -464,8 +491,12 @@ selectedEnableds.CuentaBancaria = false;selectedEnableds.Categoria = false;selec
                         <td class="tNumber" ng-bind="(docente.IT|mountC)||'-'"></td>
                         <td class="tNumber" ng-bind="(docente.Total_4|mountC)||'-'"></td>
                         <td class="tFactura">
-                    <span editable-select="docente.Factura" onbeforesave="updateFactura(docente,$data)"
-                          e-ng-options="g.id as g.name for g in GLOBALS.FACTURA_ITEMS" buttons="no"> {{docente.Factura?"Si":"No"}}</span>
+                            <span editable-select="docente.Factura" onbeforesave="updateFactura(docente,$data)"
+                                  e-ng-options="g.id as g.name for g in GLOBALS.FACTURA_ITEMS" buttons="no"> {{docente.Factura?"Si":"No"}}</span>
+                        </td>
+                        <td class="tLiquido">
+                            <span editable-select="docente.es_semanal" onbeforesave="updateTipoPago(docente,$data)"
+                                  e-ng-options="g.id as g.name for g in GLOBALS.PAGO_ITEMS" buttons="no"> {{ docente.es_semanal?'Semanal':'Horas'}}</span>
                         </td>
                         <td class="tLiquido" ng-bind="(docente.LiquidoPagable|mountC)||'-'"></td>
                         <!--<td class="text-center">

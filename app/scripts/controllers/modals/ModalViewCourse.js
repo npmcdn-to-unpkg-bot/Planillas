@@ -1,8 +1,6 @@
 angular.module('planillasApp')
   .controller('ModalViewCourse', function ($scope, $rootScope, $http2, URLS, $location, $modalInstance, registro) {
     $scope.docente = angular.copy(registro);
-    console.log('registro de planillas');
-    console.log(registro);
     /*
     * Abierto: 1
     * ApMaterno: "Mendoza"

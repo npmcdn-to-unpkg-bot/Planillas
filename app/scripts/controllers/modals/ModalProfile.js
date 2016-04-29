@@ -4,7 +4,6 @@ angular.module('planillasApp').controller('ModalProfileCtrl', function ($scope,$
   delete ($scope.nuevo_usuario.Gestion);
   $scope.UpdateProfile = function(new_user){
     var error = false;
-    console.log(new_user);
     new_user.id = $rootScope.GF.getUser().id;
     for(var val in new_user){
       if(!new_user[""+val])error = true;

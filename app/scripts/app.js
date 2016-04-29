@@ -138,27 +138,22 @@ angular
         $rootScope.filters = {};
         $rootScope.filters.items_for_page = 20;
         $rootScope.setMenu_Login = function () {
-            console.log('Set menu Login');
             $location.url('/Login');
             $rootScope.CURRENT_VIEW = 'views/login.html';
         };
         $rootScope.setMenu_Loader = function () {
-            console.log('Set menu Loader');
             //$location.url('/');
             $rootScope.CURRENT_VIEW = 'views/loader.html';
         };
         $rootScope.setMenu_Home = function () {
-            console.log('Set menu Home');
             $location.url('/Home');
             $rootScope.CURRENT_VIEW = 'views/home.html';
         };
         $rootScope.setMenu_CloseSystem = function () {
-            console.log('Set menu close System');
             $location.url('/CloseSystem');
             $rootScope.CURRENT_VIEW = 'views/close_system.html';
         };
         $rootScope.setMenu_Gestion = function () {
-            console.log('Set menu Gestion');
             $location.url('/Gestion');
             $rootScope.CURRENT_VIEW = 'views/startgestion.html';
             $rootScope.GF.load_unidades_academicas();
@@ -172,29 +167,24 @@ angular
             $rootScope.GF.load_especialidades();
             $rootScope.GF.load_tipos_categoria();
             $rootScope.GF.load_montos_pago();
-            console.log('Set menu Gestion Pasada');
             $location.url($location.path());
             $rootScope.CURRENT_VIEW = 'views/gestionold.html';
         };
         $rootScope.setMenu_QueryBuild = function () {
-            console.log('Set menu query');
             $location.url($location.path());
             $rootScope.CURRENT_VIEW = 'views/querybuild.html';
         };
         $rootScope.setMenu_EliminarRegistros = function () {
-            console.log('Set menu Eliminar');
             $location.url('/EliminarRegistros');
             $rootScope.CURRENT_VIEW = 'views/eliminarregistros.html';
             $rootScope.GF.load_gestiones_academicas();
             $rootScope.GF.load_logs();
         };
         $rootScope.setMenu_Sincronizacion = function () {
-            console.log('Set menu Sincronizacion');
             $location.url('/Sincronizacion');
             $rootScope.CURRENT_VIEW = 'views/sincronizacion.html';
         };
         $rootScope.setMenu_Reportes = function () {
-            console.log('Set menu Reportes');
             $rootScope.GF.load_allReport();
             $rootScope.GF.load_especialidades();
             $rootScope.GF.load_unidades_academicas();
@@ -219,7 +209,6 @@ angular
             $rootScope.GF.load_gradosDocentes();
             $rootScope.GF.load_paralelos();
             $rootScope.GF.load_semestres();
-            console.log('Set menu GenerarPlanilla');
             $location.url('/GenerarPlanilla');
             $rootScope.CURRENT_VIEW = 'views/generarplanilla.html';
         };
@@ -239,7 +228,6 @@ angular
             $rootScope.GF.load_tipos_docencia();
             $rootScope.GF.load_gradosDocentes();
             //$rootScope.GF.load_gr;
-            console.log('Set menu VerPlanilla');
             $location.url('/VerPlanilla');
             if ($rootScope.GF.isSecre()) {
                 $rootScope.CURRENT_VIEW = 'views/verplanillasecretaria.html';
@@ -248,7 +236,6 @@ angular
             }
         };
         $rootScope.setMenu_Usuarios = function () {
-            console.log('Set menu Usuarios');
             $location.url('/Usuarios');
             $rootScope.CURRENT_VIEW = 'views/usuarios.html';
             $rootScope.GF.load_usuarios();
@@ -259,25 +246,21 @@ angular
             $rootScope.GF.load_tipos_docencia();
         };
         $rootScope.setMenu_Docentes = function () {
-            console.log('Set menu Docentes');
             $location.url('/Docentes');
             $rootScope.CURRENT_VIEW = 'views/docentes.html';
             $rootScope.GF.load_lista_docentes();
         };
         $rootScope.setMenu_Carreras = function () {
-            console.log('Set menu Carreras');
             $location.url('/Carreras');
             $rootScope.CURRENT_VIEW = 'views/carreras.html';
         };
         $rootScope.setMenu_Materias = function () {
-            console.log('Set menu Materias');
             $location.url('/Materias');
             $rootScope.CURRENT_VIEW = 'views/materias.html';
             $rootScope.GF.load_lista_materias();
         };
 
         $rootScope.GF.isLogged = function () {
-            $log.info("IS LOGGUED: ", $rootScope.CURRENT_USER ? true : false);
             return $rootScope.CURRENT_USER ? true : false;
         };
         $rootScope.GF.getUser = function () {
@@ -647,6 +630,7 @@ angular
             })
         };
         $rootScope.GLOBALS.FACTURA_ITEMS = [{id: 1, name: "Si"}, {id: 0, name: "No"}];
+        $rootScope.GLOBALS.PAGO_ITEMS = [{id: 1, name: "Semanal"}, {id: 0, name: "Horas"}];
 
 
         $rootScope.openModalConfirm = function (ok, cancel, title, message) {

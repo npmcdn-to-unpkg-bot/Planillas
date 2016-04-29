@@ -2,8 +2,6 @@ angular.module('planillasApp').controller('ModalUpdateDocente', function ($scope
 
   function init(){
     var aux = angular.copy(docente);
-    console.log("update datas");
-    console.log(aux);
     $scope.nuevo_usuario_docente = {};
     $scope.nuevo_usuario_docente.Nombre = aux.Nombre;
     $scope.nuevo_usuario_docente.ApMaterno = aux.ApMaterno;

@@ -16,7 +16,6 @@ angular.module('planillasApp')
         };
         $rootScope.guardar_registro = function (item) {
             item = angular.copy(item);
-            console.log(queryBuilder());
             item.idEspecialidad = queryBuilder().idEspecialidad;
             item.idUnidadAcademica = queryBuilder().idUnidadAcademica;
             item.idDocente = item.idDocente ? item.idDocente.idDocente : null;
@@ -98,7 +97,6 @@ angular.module('planillasApp')
         };
 
         $rootScope.updateMateria = function (docente, idMateria) {
-            console.log(idMateria);
             var d = $q.defer();
             var data = {
                 id: docente.id,
@@ -164,7 +162,6 @@ angular.module('planillasApp')
         };
 
         $rootScope.updateCategoria = function (docente, Categoria) {
-            console.log("Cambio", docente, Categoria);
             var d = $q.defer();
             var data = {
                 id: docente.id,
@@ -206,6 +203,29 @@ angular.module('planillasApp')
             });
             return d.promise;
         };
+
+        $rootScope.updateTipoPago = function (docente, tipo_pago) {
+            var d = $q.defer();
+            var data = {
+                id: docente.id,
+                idDocente: docente.idDocente,
+                idEspecialidad: docente.idEspecialidad,
+                es_semanal: (tipo_pago == 1 ? 1 : 0)
+            };
+            $http2.put(URLS.PLANILLAS, data, function (res) {
+                $rootScope.generarPlanilla(currentPage, $rootScope.filters.items_for_page);
+                res = res || {};
+                if (res.status === 'ok') {
+                    d.resolve()
+                } else {
+                    d.resolve(res.msg)
+                }
+            }, function (e) {
+                d.resolve();
+            });
+            return d.promise;
+        };
+
         $rootScope.updateReintegro = function (docente, reintegro) {
             var d = $q.defer();
             var data = {
@@ -228,7 +248,6 @@ angular.module('planillasApp')
             return d.promise;
         };
         $rootScope.updateAtrasos = function (docente, nroPeriodos) {
-            console.log("Cambio", docente, nroPeriodos);
             var d = $q.defer();
             var data = {
                 id: docente.id,
@@ -306,6 +325,7 @@ angular.module('planillasApp')
                 Reintegro: $rootScope.filters.SHOW_REINTEGRO || '',
                 weeks: $rootScope.filters.NUMERO_SEMANAS || 1,
                 horas_trabajo: $rootScope.filters.NUMERO_HORAS || 10,
+                es_semanal: $rootScope.filters.ES_SEMANAL,
                 items: $rootScope.filters.items_for_page || '',
                 start: ((page - 1) * $rootScope.filters.items_for_page ) || '0',
                 Gestion: $rootScope.filters.filter_Gestion || '0',
@@ -322,7 +342,6 @@ angular.module('planillasApp')
             data.items = items_for_page;
             data.weeks = forceWeeks || data.weeks;
             data.horas_trabajo = forceHoras_trabajo || data.horas_trabajo;
-            console.log(data);
             $http2.post(URLS.PLANILLAS, data,
                 function (data) {
                     if (data.Success) {
@@ -332,11 +351,9 @@ angular.module('planillasApp')
                             $rootScope.planillas_listing_page = $rootScope.planillas_pages = Array();
                             return;
                         }
-                        console.log("+=====================", $rootScope.filters.items_for_page);
                         for (var i = 0; i < ($rootScope.total_items / $rootScope.filters.items_for_page); i++) {
                             $rootScope.planillas_pages.push({page: (i + 1), items: false});
                         }
-                        console.log($rootScope.planillas_pages, $rootScope.planillas_pages.length);
                         $rootScope.planillas_pages[page - 1].items = data.items;
                         $rootScope.planillas_listing_page = $rootScope.planillas_pages[page - 1];
                     }
@@ -413,9 +430,6 @@ angular.module('planillasApp')
         $rootScope.generarReportePlanilla = function (isfinal) {
             var Query = queryBuilder();
             Query.final = isfinal ? 1 : 0;
-            console.log('filters');
-            console.log($rootScope.filters);
-
             if (isfinal) {
                 var modalInstance = $modal.open({
                     animation: true,
@@ -459,25 +473,26 @@ angular.module('planillasApp')
 
         $rootScope.selectedEnableds = {};
         $rootScope.setInfoDocente = function (ciDocente) {
-            console.log("Set info docente : " + ciDocente);
             $rootScope.selectedEnableds = {};
             $http2.post(URLS.PLANILLAS, {CI: ciDocente}, function (data) {
-                console.log(data);
                 if (data && data.items && data.items.length > 0) {
                     console.log("Itemas");
                     $rootScope.NUEVO_DOCENTE.Factura = data.items[0].Factura;
                     $rootScope.NUEVO_DOCENTE.Categoria = data.items[0].Categoria;
                     $rootScope.NUEVO_DOCENTE.Grado = data.items[0].Grado;
                     $rootScope.NUEVO_DOCENTE.CuentaBancaria = data.items[0].CuentaBancaria;
+                    $rootScope.NUEVO_DOCENTE.es_semanal = data.items[0].es_semanal ? true : false;
                     $rootScope.selectedEnableds.CuentaBancaria = true;
                     $rootScope.selectedEnableds.Categoria = true;
                     $rootScope.selectedEnableds.Factura = true;
                     $rootScope.selectedEnableds.Grado = true;
+                    $rootScope.selectedEnableds.es_semanal = true;
                 } else {
                     $rootScope.NUEVO_DOCENTE.Factura = "";
                     $rootScope.NUEVO_DOCENTE.Categoria = "";
                     $rootScope.NUEVO_DOCENTE.Grado = "";
                     $rootScope.NUEVO_DOCENTE.CuentaBancaria = "";
+                    $rootScope.NUEVO_DOCENTE.es_semanal = false;
                 }
             })
         };
