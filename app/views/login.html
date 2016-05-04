@@ -7,7 +7,7 @@
                 <!--<img src="images/emi.png" align="center">-->
             </div>
             <div class="login-body">
-                <form id="form_login" name="form_login" ng-init="user = {}" ng-submit="">
+                <form id="form_login" name="form_login" ng-submit="login(user)">
                     <div class="form-group">
                         <label>NOMBRE DE USUARIO</label>
 
@@ -15,7 +15,6 @@
                             <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                             <input class="form-control input-lg" type="text" placeholder="USUARIO" ng-model="user.name"
                                    required>
-                            <!--<input class="form-control input-lg" type="text" placeholder="USUARIO" ng-model="user.name" ng-init="user.name = 'admin'" >-->
                         </div>
                     </div>
 
@@ -26,16 +25,15 @@
                             <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
                             <input class="form-control input-lg" type="password" placeholder="CONTRASEÑA"
                                    ng-model="user.password" required>
-                            <!--<input class="form-control input-lg" type="password" placeholder="CONTRASEÑA" ng-model="user.password" ng-init="user.password = 'admin'" >-->
                         </div>
                     </div>
                 </form>
                 <a href="" ng-click="openModalRestartPassword()">Olvido su contraseña?</a>
             </div>
             <div class="login-footer">
-                <label for="form_login">
-                    <button type="submit" ng-click="login(user)" class="btn btn-lg btn-success">Ingresar</button>
-                </label>
+                <button type="submit" form="form_login" class="btn btn-lg btn-success">
+                    Ingresar
+                </button>
             </div>
         </div>
     </div>

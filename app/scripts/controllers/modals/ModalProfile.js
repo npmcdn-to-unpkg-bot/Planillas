@@ -1,30 +1,29 @@
-angular.module('planillasApp').controller('ModalProfileCtrl', function ($scope,$rootScope,$http2,URLS,$location,$modalInstance) {
-  $scope.nuevo_usuario = angular.copy($rootScope.GF.getUser());
-  delete ($scope.nuevo_usuario.Activo);
-  delete ($scope.nuevo_usuario.Gestion);
-  $scope.UpdateProfile = function(new_user){
-    var error = false;
-    new_user.id = $rootScope.GF.getUser().id;
-    for(var val in new_user){
-      if(!new_user[""+val])error = true;
-    }
-    if(error){
-      toastr.warning('Llene todos los campos');
-      return;
-    }
-    $http2.put(URLS.USUARIOS,new_user,
-      function(data){
-        if(!data)return;
-        if(data.Success){
-          $rootScope.autologin();
-          $scope.ok(true);
-        }
-      })
-  };
-  $scope.ok = function (success) {
-    $modalInstance.close(success);
-  };
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+angular.module('planillasApp').controller('ModalProfileCtrl', function ($scope, $rootScope, $API, URLS, $location, $modalInstance) {
+    $rootScope.GF.load_unidades_academicas();
+    $rootScope.GF.load_especialidades();
+    $rootScope.GF.load_tipo_usuarios();
+
+    $scope.nuevo_usuario = angular.copy($rootScope.CURRENT_USER);
+    $scope.nuevo_usuario['unidad_academica'] = $scope.nuevo_usuario['unidad_academica']['id'];
+    $scope.nuevo_usuario['especialidad'] = $scope.nuevo_usuario['especialidad']['id'];
+    $scope.nuevo_usuario['tipo_usuario'] = $scope.nuevo_usuario['tipo_usuario']['id'];
+
+    delete ($scope.nuevo_usuario['activo']);
+    delete ($scope.nuevo_usuario['gestion']);
+    delete ($scope.nuevo_usuario['password']);
+
+    $scope.UpdateProfile = function (new_user) {
+        (new $API.Usuarios()).$update(new_user)
+            .then(function () {
+                $rootScope.autoLogin({force: true});
+                toastr.success('Información de cuenta modificada');
+                $scope.ok(true);
+            });
+    };
+    $scope.ok = function (success) {
+        $modalInstance.close(success);
+    };
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 });

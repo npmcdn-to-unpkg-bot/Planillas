@@ -24,18 +24,18 @@ angular
         'ui.bootstrap.contextMenu',
         'textAngular',
         'ngCsvImport'
-])
-    .config(function ($routeProvider, $httpProvider, uiSelectConfig, $resourceProvider) {
+    ])
+    .config(function ($routeProvider, $httpProvider, uiSelectConfig) {
         uiSelectConfig.theme = 'bootstrap';
         uiSelectConfig.resetSearchInput = true;
         uiSelectConfig.appendToBody = true;
-        //$httpProvider.defaults.headers.common['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
-        //$resourceProvider.defaults.stripTrailingSlashes = false;
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
-        //delete $httpProvider.defaults.headers.common[]
 
-
+        $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+        $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET,POST,PUT,DELETE,OPTIONS';
+        $httpProvider.defaults.headers.common["Access-Control-Allow-Headers"] = "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With";
+        $httpProvider.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
         $routeProvider
             .when('/', {
                 templateUrl: 'views/splashscreen.html',
@@ -110,7 +110,10 @@ angular
                 redirectTo: '/'
             });
     })
-    .run(function ($rootScope, $location, $log, $http2, URLS, editableOptions, editableThemes, $modal, toastr) {
+    .constant('angularMomentConfig', {
+        timezone: 'America/La_Paz' // e.g. 'Europe/London'
+    })
+    .run(function ($rootScope, $location, $log, $http2, URLS, editableOptions, editableThemes, $modal, toastr, $q, AuthService, $http, ModelService) {
         editableThemes.bs3.inputClass = 'input-sm';
         editableThemes.bs3.buttonsClass = 'btn-sm';
         editableOptions.theme = 'bs3';
@@ -134,9 +137,78 @@ angular
         $rootScope.CURRENT_VIEW = '';
         $rootScope.GF = {};
         $rootScope.FIRST_REQUEST = true;
-        //$rootScope.CURRENT_USER = undefined;
+        $rootScope.CURRENT_USER = null;
         $rootScope.filters = {};
         $rootScope.filters.items_for_page = 20;
+
+        $rootScope.reloadApp = function () {
+            location.reload();
+        };
+        $rootScope.login = function (user, options) {
+            var defer = $q.defer();
+            AuthService.login(user, options)
+                .then(function (user) {
+                    $rootScope.CURRENT_USER = user;
+                    defer.resolve(user);
+                    redirects();
+                }, function (data) {
+                    defer.reject(data);
+                    $rootScope.setMenu_Login();
+                });
+            return defer.promise;
+        };
+        $rootScope.autoLogin = function (options) {
+            options = options || {};
+            options['hideMessage'] = true;
+            $rootScope.login(false, options);
+        };
+        $rootScope.getUser = function () {
+            return AuthService.getUser();
+        };
+        $rootScope.logout = function () {
+            AuthService.logout()
+                .then(function () {
+                    location.reload();
+                }, function () {
+                    location.reload();
+                });
+        };
+        $rootScope.autoLogin();
+        $rootScope.GF.isLogged = function () {
+            return $rootScope.CURRENT_USER ? true : false;
+        };
+        $rootScope.GF.getFullGestionNamme = function () {
+            return ($rootScope.CURRENT_USER['gestion']['periodo_gestion']) + ' - ' + $rootScope.CURRENT_USER['gestion']['gestion'];
+        };
+        $rootScope.GF.getFullName = function () {
+            return $rootScope.CURRENT_USER['nombres'] + ' ' + $rootScope.CURRENT_USER['ap_paterno'] + ' ' + $rootScope.CURRENT_USER['ap_materno'];
+        };
+        $rootScope.GF.getEspecialidadName = function () {
+            return $rootScope.CURRENT_USER['especialidad']['name'];
+        };
+        $rootScope.GF.getEspecialidadId = function () {
+            return $rootScope.CURRENT_USER['especialidad']['id'];
+        };
+        $rootScope.GF.getUnidadAcademicaName = function () {
+            return $rootScope.CURRENT_USER['unidad_academica']['name'];
+        };
+        $rootScope.GF.getUnidadAcademicaId = function () {
+            return $rootScope.CURRENT_USER['unidad_academica']['id'];
+        };
+
+        $rootScope.GF.isRoot = function () {
+            return $rootScope.CURRENT_USER['tipo_usuario']['id'] == 1;
+        };
+        $rootScope.GF.isAdmin = function () {
+            return $rootScope.CURRENT_USER['tipo_usuario']['id'] == 2;
+        };
+        $rootScope.GF.isJefeCarrera = function () {
+            return $rootScope.CURRENT_USER['tipo_usuario']['id'] == 3;
+        };
+        $rootScope.GF.isSecretaria = function () {
+            return $rootScope.CURRENT_USER['tipo_usuario']['id'] == 4;
+        };
+
         $rootScope.setMenu_Login = function () {
             $location.url('/Login');
             $rootScope.CURRENT_VIEW = 'views/login.html';
@@ -238,17 +310,10 @@ angular
         $rootScope.setMenu_Usuarios = function () {
             $location.url('/Usuarios');
             $rootScope.CURRENT_VIEW = 'views/usuarios.html';
-            $rootScope.GF.load_usuarios();
-            $rootScope.GF.load_unidades_academicas();
-            $rootScope.GF.load_especialidades();
-            $rootScope.GF.load_tipo_usuarios();
-            $rootScope.GF.load_pensuls();
-            $rootScope.GF.load_tipos_docencia();
         };
         $rootScope.setMenu_Docentes = function () {
             $location.url('/Docentes');
             $rootScope.CURRENT_VIEW = 'views/docentes.html';
-            $rootScope.GF.load_lista_docentes();
         };
         $rootScope.setMenu_Carreras = function () {
             $location.url('/Carreras');
@@ -257,58 +322,16 @@ angular
         $rootScope.setMenu_Materias = function () {
             $location.url('/Materias');
             $rootScope.CURRENT_VIEW = 'views/materias.html';
-            $rootScope.GF.load_lista_materias();
         };
 
-        $rootScope.GF.isLogged = function () {
-            return $rootScope.CURRENT_USER ? true : false;
-        };
-        $rootScope.GF.getUser = function () {
-            return $rootScope.CURRENT_USER;
-        };
-        $rootScope.GF.getFullGestionNamme = function () {
-            return ($rootScope.GF.getUser().Gestion.idPeriodoGestion == 1 ? 'I' : 'II') + ' - ' + $rootScope.GF.getUser().Gestion.Gestion;
-        };
-        $rootScope.GF.getFullName = function () {
-            return $rootScope.GF.getUser().Nombres + ' ' + $rootScope.GF.getUser().apPaterno + ' ' + $rootScope.GF.getUser().apMaterno;
-        };
-        $rootScope.GF.getEspecialidadName = function () {
-            return $rootScope.CURRENT_USER.Especialidad
-        };
-        $rootScope.GF.getEspecialidadId = function () {
-            return angular.copy($rootScope.CURRENT_USER.idEspecialidad);
-        };
-        $rootScope.GF.getUnidadAcademicaId = function () {
-            return $rootScope.CURRENT_USER.idUnidadAcademica;
-        };
-        $rootScope.GF.getUnidadAcademicaName = function () {
-            return $rootScope.CURRENT_USER.UnidadAcademica;
-        };
 
-        $rootScope.GF.isRoot = function () {
-            return $rootScope.GF.getUser().idTipoUsuario == 1;
-        };
-
-        $rootScope.GF.isAdmin = function () {
-            return $rootScope.GF.getUser().idTipoUsuario == 2;
-        };
-        $rootScope.GF.isJefeC = function () {
-            return $rootScope.GF.getUser().idTipoUsuario == 3;
-        };
-        $rootScope.GF.isSecre = function () {
-            return $rootScope.GF.getUser().idTipoUsuario == 4;
-        };
         function redirects() {
             var locationPath = $location.path();
-            //if(!$rootScope.GF.getUser().Gestion&&!$rootScope.GF.isAdmin()){
-            /*if(!$rootScope.GF.getUser().Gestion && $rootScope.GF.isSecre()){
-             toastr.warning("Debe iniciar la gestion academica");
-             $rootScope.setMenu_Gestion();return;
-             }*/
-            if (!$rootScope.GF.getUser().Gestion && ($rootScope.GF.isJefeC() || $rootScope.GF.isSecre())) {
+            if (!$rootScope.CURRENT_USER['gestion'] && ($rootScope.GF.isJefeCarrera() || $rootScope.GF.isSecretaria())) {
                 $rootScope.setMenu_CloseSystem();
                 return;
             }
+            console.log("REDIRECTS");
             switch (locationPath) {
                 case "/":
                     $rootScope.setMenu_Gestion();
@@ -376,93 +399,112 @@ angular
 
         $rootScope.$on('$routeChangeStart', function () {
             $log.warn('Change Route to ' + $location.path());
-            if ($rootScope.FIRST_REQUEST) {
-                $rootScope.setMenu_Loader();
-                return;
-            }
+            //if ($rootScope.FIRST_REQUEST) {
+            //    $rootScope.setMenu_Loader();
+            //    return;
+            //}
             if (!$rootScope.GF.isLogged()) {
                 $rootScope.setMenu_Login();
                 return;
             }
             redirects();
         });
-        $rootScope.login = function (user, hideMessage) {
-            $http2.post(URLS.LOGIN, user, function (data) {
-                $rootScope.FIRST_REQUEST = false;
-                if (data.Success) {
-                    $rootScope.CURRENT_USER = data.User;
-                    redirects();
-                } else {
-                    $rootScope.setMenu_Login();
-                }
-            }, function () {
-                $rootScope.setMenu_Login();
-            }, hideMessage);
-        };
-        $rootScope.autologin = function () {
-            $rootScope.login({}, true);
-        };
-        $rootScope.autologin();
-        $rootScope.logout = function () {
-            $http2.post(URLS.LOGOUT, {},
-                function () {
-                    location.reload();
-                    // $rootScope.setMenu_Login();
+
+        $rootScope.GLOBALS = {};
+
+        $rootScope.GF.load_unidades_academicas = function (fcnScs, fcnErr) {
+            return $http.get(URLS.UNIDADES_ACADEMICAS)
+                .then(function (data) {
+                    $rootScope.GLOBALS.UNIDADES_ACADEMICAS = data['data']['data'];
+                    fcnScs && fcnScs(data);
                 }, function () {
-                    location.reload();
-                    //$rootScope.CURRENT_USER = undefined;
-                    //$rootScope.setMenu_Login();
+                    fcnErr && fcnErr();
                 })
         };
 
-        $rootScope.GLOBALS = {};
-        $rootScope.GF.load_unidades_academicas = function (fcnScs, fcnErr, items) {
-            if ($rootScope.GLOBALS.UNIDADES_ACADEMICAS) {
-                fcnScs && fcnScs();
-                return;
-            }
-            $http2.get(URLS.UNIDADES_ACADEMICAS, {items: items || 30}, function (data) {
-                if (data.Success) {
-                    $rootScope.GLOBALS.UNIDADES_ACADEMICAS = data.UnidadesAcademicas;
+        $rootScope.GF.load_especialidades = function (fcnScs, fcnErr) {
+            return $http.get(URLS.ESPECIALIDADES)
+                .then(function (data) {
+                    $rootScope.GLOBALS.ESPECIALIDADES = data['data']['data'];
                     fcnScs && fcnScs(data);
-                }
-            }, function () {
-                fcnErr && fcnErr();
-            })
+                }, function () {
+                    fcnErr && fcnErr();
+                })
+        };
+
+        $rootScope.GF.load_current_monto_categoria = function (fcnScs, fcnErr) {
+            var data = {
+                gestion: $rootScope.CURRENT_USER['gestion']['gestion'],
+                periodo_gestion: $rootScope.CURRENT_USER['gestion']['periodo_gestion'],
+                unidad_academica: $rootScope.CURRENT_USER['gestion']['unidad_academica']
+            };
+            return $http.get(URLS.MONTO_CATEGORIA, {params: data})
+                .then(function (data) {
+                    $rootScope.GLOBALS.MONTO_CATEGORIA = data['data']['data'];
+                    fcnScs && fcnScs(data);
+                }, function () {
+                    fcnErr && fcnErr();
+                })
+        };
+
+        $rootScope.GF.load_tipos_docencia = function (fcnScs, fcnErr) {
+            fcnScs && fcnScs();
+            $rootScope.GLOBALS.TIPOS_DOCENCIA = [
+                {id: 1, name: "Catedra", short: 'T'},
+                {id: 2, name: "Práctica", short: 'P'},
+                {id: 3, name: "Laboratorio", short: 'L'}];
+        };
+
+        $rootScope.GF.load_tipo_usuarios = function (fcnScs, fcnErr) {
+            return $http.get(URLS.TIPO_USUARIO)
+                .then(function (data) {
+                    $rootScope.GLOBALS.TIPO_USUARIO = data['data']['data'];
+                    fcnScs && fcnScs(data);
+                }, function () {
+                    fcnErr && fcnErr();
+                })
         };
 
         $rootScope.GF.load_gestiones_academicas = function (fcnScs, fcnErr, items) {
-            //if($rootScope.GLOBALS.ALL_GESTIONES_ACADEMICAS)return;
-            $http2.get(URLS.GESTIONES_ACADEMICAS, {items: items || 30}, function (data) {
-                if (data.Success) {
-                    $rootScope.GLOBALS.ALL_GESTIONES_ACADEMICAS = data.GestionAcademica;
+            return $http.get(URLS.GESTIONES_ACADEMICAS)
+                .then(function (data) {
+                    $rootScope.GLOBALS.ALL_GESTIONES_ACADEMICAS = data['data']['data'];
                     fcnScs && fcnScs(data);
-                }
-            }, function () {
-                fcnErr && fcnErr();
-            })
+                }, function () {
+                    fcnErr && fcnErr();
+                })
         };
 
-        $rootScope.GF.load_usuarios = function (fcnScs, fcnErr, items) {
-            $http2.get(URLS.USUARIOS, {items: items || 30}, function (data) {
-                if (data.Success) {
-                    $rootScope.GLOBALS.LISTA_USUARIOS = data.Usuarios;
-                    fcnScs && fcnScs(data);
-                }
-            }, function () {
-                fcnErr && fcnErr();
-            })
+        $rootScope.GF.load_logs = function (fcnScs, fcnErr) {
+            //$http2.get(URLS.LOGS, {}, function (data) {
+            //    if (data.Success) {
+            //        $rootScope.GLOBALS.LOGS = data.Logs;
+            //        fcnScs && fcnScs(data);
+            //    }
+            //}, function () {
+            //    fcnErr && fcnErr();
+            //})
         };
 
-        $rootScope.GF.load_valor_impuestos = function (fcnScs, fcnErr) {
-            fcnScs && fcnScs();
-            if ($rootScope.GF.getUser().Gestion) {
-                $rootScope.GLOBALS.VALOR_IMPUESTOS = [
-                    {id: 1, name: "Impuesto a las Utilidades (I.U)", value: $rootScope.GF.getUser().Gestion.IU}, {
-                        id: 2, name: "Impuesto a las Transacciones(I.T)", value: $rootScope.GF.getUser().Gestion.IT
-                    }];
-            }
+///////
+
+
+        $rootScope.GF.load_usuarios = function (query_params) {
+            var defer = $q.defer();
+            query_params = query_params || {};
+            query_params['is_complete_serializer'] = 1;
+            (new (new ModelService.UsuariosModel()).resource())
+                .$get(query_params).then(function (data) {
+                    defer.resolve(data);
+                    console.log(data);
+                    $rootScope.GLOBALS.LISTA_USUARIOS = data['data'];
+                }
+                , function (data) {
+                    defer.reject(data);
+                });
+            return defer.promise;
         };
+
         $rootScope.GF.load_lista_materias = function (fcnScs, fcnErr, query, items) {
             $http2.get(URLS.LISTA_MATERIAS + '?' + (query || ''), {items: items || 30}, function (data) {
                 if (data.Success) {
@@ -475,35 +517,6 @@ angular
             })
         };
 
-        $rootScope.GF.load_tipo_usuarios = function (fcnScs, fcnErr) {
-            $http2.get(URLS.TIPOS_USUARIO, {}, function (data) {
-                if (data.Success) {
-                    $rootScope.GLOBALS.TIPOS_USUARIO = data.tipos_usuarios;
-                    fcnScs && fcnScs(data);
-                }
-            }, function () {
-                fcnErr && fcnErr();
-            })
-        };
-
-        $rootScope.GF.load_especialidades = function (fcnScs, fcnErr) {
-            $http2.get(URLS.ESPECIALIDADES, {}, function (data) {
-                if (data.Success) {
-                    $rootScope.GLOBALS.ESPECIALIDADES = data.Especialidades;
-                    fcnScs && fcnScs(data);
-                }
-            }, function () {
-                fcnErr && fcnErr();
-            })
-        };
-        $rootScope.GF.load_tipos_docencia = function (fcnScs, fcnErr) {
-            fcnScs && fcnScs();
-            $rootScope.GLOBALS.TIPOS_DOCENCIA = [{id: 1, name: "Catedra", val: 'T'}, {
-                id: 2,
-                name: "Practica",
-                val: 'P'
-            }, {id: 3, name: "Laboratorio", val: 'L'}];
-        };
         $rootScope.GF.load_tipos_categoria = function (fcnScs, fcnErr) {
             fcnScs && fcnScs();
             $rootScope.GLOBALS.TIPOS_CATEGORIAS = [{id: 'A', name: "A"}, {id: 'B', name: "B"}, {id: 'C', name: "C"}, {
@@ -511,16 +524,7 @@ angular
                 name: "D"
             }];
         };
-        $rootScope.GF.load_montos_pago = function (fcnScs, fcnErr) {
-            $http2.get(URLS.MONTOS_PAGO, {}, function (data) {
-                if (data.Success) {
-                    $rootScope.GLOBALS.MONTOS_CATEGORIA = data.montos_pago;
-                    fcnScs && fcnScs(data);
-                }
-            }, function () {
-                fcnErr && fcnErr();
-            })
-        };
+
         $rootScope.GF.load_pensuls = function (fcnScs, fcnErr) {
             fcnScs && fcnScs();
             $rootScope.GLOBALS.PENSUL = [
@@ -557,6 +561,7 @@ angular
                 $rootScope.GLOBALS.TIEMPOS_CARGA_HORARIA.push({id: i, name: i});
             }
         };
+
         $rootScope.GF.load_paralelos = function (fcnScs, fcnErr) {
             fcnScs && fcnScs();
             $rootScope.GLOBALS.PARALELOS = [
@@ -597,6 +602,7 @@ angular
                 $rootScope.GLOBALS.TIEMPOS_ATRASOS.push({id: i, name: i + ''});
             }
         };
+
         $rootScope.GF.load_gradosDocentes = function (fcnScs, fcnErr) {
             $rootScope.GLOBALS.GRADOS_DOCENTE = [
                 {name: 'Coronel', value: 'CRNL'},
@@ -605,6 +611,7 @@ angular
                 {name: 'Licenciado', value: 'LIC'}
             ];
         };
+
         $rootScope.GF.load_semestres = function (fcnScs, fcnErr) {
             fcnScs && fcnScs();
             $rootScope.GLOBALS.SEMESTRES = [{id: 1, name: "1er"},
@@ -619,19 +626,9 @@ angular
                 {id: 10, name: "10mo"}
             ];
         };
-        $rootScope.GF.load_logs = function (fcnScs, fcnErr) {
-            $http2.get(URLS.LOGS, {}, function (data) {
-                if (data.Success) {
-                    $rootScope.GLOBALS.LOGS = data.Logs;
-                    fcnScs && fcnScs(data);
-                }
-            }, function () {
-                fcnErr && fcnErr();
-            })
-        };
-        $rootScope.GLOBALS.FACTURA_ITEMS = [{id: 1, name: "Si"}, {id: 0, name: "No"}];
-        $rootScope.GLOBALS.PAGO_ITEMS = [{id: 1, name: "Semanal"}, {id: 0, name: "Horas"}];
 
+        $rootScope.GLOBALS.FACTURA_ITEMS = [{id: 1, name: "Si"}, {id: 0, name: "No"}];
+        $rootScope.GLOBALS.PAGO_ITEMS = [{id: 0, name: "Semanal"}, {id: 1, name: "Horas"}];
 
         $rootScope.openModalConfirm = function (ok, cancel, title, message) {
             var modalInstance = $modal.open({
@@ -654,8 +651,8 @@ angular
                 cancel();
             });
         };
-
-    });
+    })
+;
 
 angular.module('planillasApp').controller('ModalConfirm', function ($scope, $modalInstance, message, title) {
     $scope.mensaje = message;

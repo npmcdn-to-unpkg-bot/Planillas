@@ -1,77 +1,106 @@
 <div ng-controller="UsuariosCtrl">
-        <div class="col-sm-10 col-sm-offset-1">
-          <div class="panel panel-info">
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="panel panel-info">
             <div class="panel-heading center">
-              <label class="panel-title text-uppercase">Lista de usuarios</label>
-              <div class="pull-right" ng-show="!GF.isSecre()">
-                <button class="btn btn-success btn-sm" ng-click="openModalNewUsuario()">
-                  <span class="glyphicon glyphicon-plus"></span>
-                  Agregar nuevo Usuario
-                </button>
-              </div>
+                <label class="panel-title text-uppercase">Lista de usuarios</label>
+                <div class="pull-right" ng-show="!GF.isSecretaria()">
+                    <button class="btn btn-success btn-sm" ng-click="openModalNewUsuario()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Agregar nuevo Usuario
+                    </button>
+                </div>
             </div>
             <div class="panel-body">
-              <div class="form-group-sm">
-                <div class="col-sm-3">
-                  <p class="">Nombre de usuario</p>
-                  <input class="form-control" ng-model="filter_nombre" placeholder="Nombre"></div>
-                <div class="col-sm-3">
-                  <p class="">Carrera</p>
-                  <label ng-show="GF.isJefeC() || GF.isSecre()">{{GF.getEspecialidadName()}}</label>
-                  <select ng-show="GF.isAdmin() ||  GF.isRoot()" class="form-control" ng-model="filter_carrera">
-                    <option value="">-- Todos --</option>
-                    <option ng-repeat="carrera in GLOBALS.ESPECIALIDADES">{{carrera.Especialidad}}</option>
-                  </select>
+                <div class="form-group-sm">
+                    <div class="col-sm-2">
+                        <p class="">Nombre de usuario</p>
+                        <input class="form-control" ng-model="filter_nombre" placeholder="Nombre"></div>
+                    <div class="col-sm-3">
+                        <p class="">Carrera</p>
+                        <select class="form-control" ng-model="filter_carrera">
+                            <option value="0">-- Todos --</option>
+                            <option ng-repeat="carrera in GLOBALS.ESPECIALIDADES" value="{{carrera.id}}">
+                                {{carrera.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <p class="">Unidad Academica</p>
+                        <select class="form-control" ng-model="filter_uuaa">
+                            <option value="0">-- Todos --</option>
+                            <option ng-repeat="carrera in GLOBALS.UNIDADES_ACADEMICAS" value="{{carrera.id}}">
+                                {{carrera.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <p class="">Tipo de Usuarios</p>
+                        <select class="form-control" ng-model="filter_tipo">
+                            <option value="0">-- Todos --</option>
+                            <option ng-repeat="tipo in GLOBALS.TIPO_USUARIO" value="{{tipo.id}}">{{tipo.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-1">
+                        <br>
+                        <button class="btn btn-info btn-sm" ng-click="loadUsers()"><i
+                            class="glyphicon glyphicon-search"></i> Buscar
+                        </button>
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                  <p class="">Unidad Academica</p>
-                  <label ng-show="!GF.isRoot()">{{GF.getUnidadAcademicaName()}}</label>
-                  <select ng-show="GF.isRoot()" class="form-control" ng-model="filter_uuaa">
-                    <option value="">-- Todos --</option>
-                    <option ng-repeat="carrera in GLOBALS.UNIDADES_ACADEMICAS">{{carrera.UnidadAcademica}}</option>
-                  </select>
-                </div>
-                <div class="col-sm-3">
-                  <p class="">Tipo de Usuarios</p>
-                  <select class="form-control" ng-model="filter_tipo">
-                    <option value="">-- Todos --</option>
-                    <option ng-repeat="tipo in GLOBALS.TIPOS_USUARIO">{{tipo.tipo}}</option>
-                  </select>
-                </div>
-              </div>
             </div>
             <table class="table table-bordered table-hover FZ13">
-              <thead>
-              <tr>
-                <th  class="text-center">N</th>
-                <th  class="text-center">Nombre Completo</th>
-                <th  class="text-center">Carnet</th>
-                <th  class="text-center">Correo</th>
-                <th  class="text-center">Unidad<br>Academica</th>
-                <th  class="text-center">Carrera</th>
-                <th  class="text-center">Tipo de Usuario</th>
-                <th  class="text-center" ng-show="!GF.isSecre()"> Modificar </th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr ng-repeat="usuario in GLOBALS.LISTA_USUARIOS | filter:filter_carrera | filter:filter_nombre | filter:filter_tipo | filter:filter_uuaa">
-                <td>{{$index+1}}</td>
-                <td>{{usuario.Nombres+' '+usuario.apPaterno+' '+usuario.apMaterno}}</td>
-                <td>{{usuario.Celular}}</td>
-                <td>{{usuario.email}}</td>
-                <td>{{usuario.UnidadAcademica}}</td>
-                <td>{{usuario.Especialidad}}</td>
-                <td>{{usuario.tipo}}</td>
-                <td ng-show="!GF.isSecre()">
-                  <button class="btn btn-primary btn-sm" ng-click="openModalNewUsuario(usuario)" tooltip="Editar cuenta"><span class="glyphicon glyphicon-edit"></span></button>
-                  <button class="btn btn-danger btn-sm" ng-click="eliminarUsuario(usuario)" tooltip="Eliminar cuenta"><span class="glyphicon glyphicon-trash"></span></button>
-                  <button class="btn btn-warning btn-sm" ng-click="alta_baja_usuario(usuario,1)" ng-hide='usuario.Activo=="1"' tooltip="Activar cuenta"><span class="glyphicon glyphicon-eye-open"></span></button>
-                  <button class="btn btn-info btn-sm" ng-click="alta_baja_usuario(usuario,2)" ng-show='usuario.Activo=="1"' tooltip="Desactivar cuenta"><span class="glyphicon glyphicon-eye-close"></span></button>
-                </td>
-              </tr>
-              </tbody>
+                <thead>
+                <tr>
+                    <th class="text-center">N</th>
+                    <th class="text-center">Nombre Completo</th>
+                    <th class="text-center">Carnet</th>
+                    <th class="text-center">Correo</th>
+                    <th class="text-center">Unidad<br>Académica</th>
+                    <th class="text-center">Especialidad</th>
+                    <th class="text-center">Tipo de Usuario</th>
+                    <th class="text-center" ng-show="!GF.isSecretaria()"> Modificar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="usuario in user_data.data"
+                    class="{{ CURRENT_USER.id == usuario.id?'active alert-info':''}}">
+                    <td>{{$index+1}}</td>
+                    <td>{{usuario.nombres+' '+usuario.ap_paterno+' '+usuario.ap_materno}}</td>
+                    <td>{{usuario.celular}}</td>
+                    <td>{{usuario.email}}</td>
+                    <td>{{usuario.unidad_academica.name}}</td>
+                    <td>{{usuario.especialidad.name}}</td>
+                    <td>{{usuario.tipo_usuario.name}}</td>
+                    <td ng-show="!GF.isSecretaria()">
+                        <button class="btn btn-primary btn-sm" ng-click="openModalNewUsuario(usuario)"
+                                title="Editar cuenta"><span class="glyphicon glyphicon-edit"></span></button>
+                        <button class="btn btn-danger btn-sm" ng-click="eliminarUsuario(usuario)"
+                                title="Eliminar cuenta"
+                                ng-show="CURRENT_USER.id != usuario.id">
+                            <span class="glyphicon glyphicon-trash"></span></button>
+                        <button class="btn btn-warning btn-sm" ng-click="alta_baja_usuario(usuario,1)"
+                                ng-show='usuario.activo=="0" && CURRENT_USER.id != usuario.id' title="Activar cuenta">
+                            <span class="glyphicon glyphicon-eye-open"></span></button>
+                        <button class="btn btn-info btn-sm" ng-click="alta_baja_usuario(usuario,0)"
+                                ng-show='usuario.activo=="1" && CURRENT_USER.id != usuario.id'
+                                title="Desactivar cuenta">
+                            <span class="glyphicon glyphicon-eye-close"></span></button>
+                    </td>
+                </tr>
+                </tbody>
             </table>
-            <div ng-show="GLOBALS.LISTA_USUARIOS.length<=0" class="center text-center alert-info">-- No se encontraron resultados --</div>
-          </div>
+            <div class="text-center" ng-show="user_data.data.length"
+                 data-ng-show="(user_data.next_page_url || user_data.prev_page_url)">
+                <uib-pagination total-items="user_data.total"
+                                items-per-page="user_data.per_page"
+                                ng-model="currentPage" class="pagination-sm" previous-text="Anterior"
+                                ng-change="changePage()"
+                                next-text="Siguiente">
+                </uib-pagination>
+            </div>
+            <div ng-show="user_data.data.length<=0" class="center text-center alert-info">-- No se encontraron
+                resultados --
+            </div>
         </div>
+    </div>
 </div>

@@ -8,52 +8,57 @@
  * Service in the planillasApp.
  */
 angular.module('planillasApp')
-  .service('URLS', function () {
+    .service('URLS', function () {
 
-      var api_url = localStorage.getItem("planillas_api");
-      var SERVER = (api_url || 'apiPlanillas/public/');
+        var api_url = localStorage.getItem("planillas_api");
+        var SERVER = (api_url || 'apiPlanillas/public/');
 
-    return {
-      LOGIN: SERVER + "login",
-      LOGOUT: SERVER + "logout",
-      AUTO_LOGIN: SERVER + "login",
-      USUARIOS: SERVER + "usuarios",
-      ESPECIALIDADES: SERVER + "especialidades",
-      TIPOS_USUARIO: SERVER + "tiposUsuarios",
-      MONTOS_PAGO: SERVER + "montosPago",
+        return {
+            LOGIN: SERVER + "login",
+            LOGOUT: SERVER + "logout",
+            AUTO_LOGIN: SERVER + "login",
 
-      PLANILLAS: SERVER + "planillas",
-      PLANILLAS_REPORTE_TXT: SERVER + "planillas/fileReport",
-      PLANILLAS_ADD: SERVER + "planillas/add",
-      PLANILLAS_LIMPIAR_REINTEGRO: SERVER + "planillas/limpiarReintegro",
-      PLANILLAS_LIMPIAR_ATRASOS: SERVER + "planillas/limpiarAtrasos",
+            START_GESTION: SERVER + 'api/gestion_academicas/start',
+            FINISH_GESTION: SERVER + 'api/gestion_academicas/finish',
+            UNIDADES_ACADEMICAS: SERVER + "api/unidad_academica",
+            ESPECIALIDADES: SERVER + "api/especialidades",
+            MONTO_CATEGORIA: SERVER + "api/monto_categoria",
+            GESTIONES_ACADEMICAS: SERVER + "api/gestion_academicas",
+            TIPO_USUARIO: SERVER + "api/tipo_usuario",
+            USUARIOS: SERVER + "api/usuarios",
 
-      SINCRONIZACIONES: SERVER + "sincronizaciones",
-      SINCRONIZACION: SERVER + "syncronize/Planillas",
-      SINCRONIZACION_PLANILLAS: SERVER + "syncronize/Planillas",
-      SINCRONIZACION_ESPECIALIDADES: SERVER + "syncronize/Especialidades",
-      SINCRONIZACION_CUENTAS_BANCOS: SERVER + "syncronize/CuentasBancos",
-      SINCRONIZACION_CATEGORIAS_DOCENTES: SERVER + "syncronize/CategoriasDocentes",
-      SINCRONIZACION_CARGA_HORARIA: SERVER + "syncronize/CargaHoraria",
 
-      LISTA_DOCENTES: SERVER + "docentes",
-      LISTA_MATERIAS: SERVER + "materias",
 
-      REPORTES: SERVER + "reporte",
-      ALLREPORTES: SERVER + "reporte/all",
-      ITEMREPORTES: SERVER + "reporte/item",
-      DOCENTES: SERVER + "docentes",
-      DOCENTES_ADD: SERVER + "docentes/add",
+            PLANILLAS: SERVER + "planillas",
+            PLANILLAS_REPORTE_TXT: SERVER + "planillas/fileReport",
+            PLANILLAS_ADD: SERVER + "planillas/add",
 
-      GESTIONES_ACADEMICAS: SERVER + "gestionAcademica",
-      INICIAR_GESTION_ACADEMICA: SERVER + "gestionAcademica/iniciar",
-      FINALIZAR_GESTION_ACADEMICA: SERVER + "gestionAcademica/finalizar",
-      UNIDADES_ACADEMICAS: SERVER + "unidadesAcademicas",
+            PLANILLAS_LIMPIAR_REINTEGRO: SERVER + "planillas/limpiarReintegro",
+            PLANILLAS_LIMPIAR_ATRASOS: SERVER + "planillas/limpiarAtrasos",
+            SINCRONIZACIONES: SERVER + "sincronizaciones",
+            SINCRONIZACION: SERVER + "syncronize/Planillas",
+            SINCRONIZACION_PLANILLAS: SERVER + "syncronize/Planillas",
+            SINCRONIZACION_ESPECIALIDADES: SERVER + "syncronize/Especialidades",
+            SINCRONIZACION_CUENTAS_BANCOS: SERVER + "syncronize/CuentasBancos",
 
-      LOGS: SERVER + "logs",
+            SINCRONIZACION_CATEGORIAS_DOCENTES: SERVER + "syncronize/CategoriasDocentes",
+            SINCRONIZACION_CARGA_HORARIA: SERVER + "syncronize/CargaHoraria",
 
-      TEST: SERVER + 'test',
-      QUERY: SERVER + 'root/query/emilio/ifae',
-      RESTART: SERVER + 'Mail'
-    }
-  });
+            LISTA_DOCENTES: SERVER + "docentes",
+            LISTA_MATERIAS: SERVER + "materias",
+            REPORTES: SERVER + "reporte",
+            ALLREPORTES: SERVER + "reporte/all",
+            ITEMREPORTES: SERVER + "reporte/item",
+
+            DOCENTES: SERVER + "docentes",
+            DOCENTES_ADD: SERVER + "docentes/add",
+            INICIAR_GESTION_ACADEMICA: SERVER + "gestionAcademica/iniciar",
+            FINALIZAR_GESTION_ACADEMICA: SERVER + "gestionAcademica/finalizar",
+
+            LOGS: SERVER + "logs",
+
+            TEST: SERVER + 'test',
+            QUERY: SERVER + 'root/query/emilio/ifae',
+            RESTART: SERVER + 'Mail'
+        }
+    });

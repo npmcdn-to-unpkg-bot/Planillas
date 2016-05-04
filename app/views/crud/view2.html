@@ -1,21 +1,37 @@
-<div class="panel panel-info  small">
+<div class="panel panel-info small">
+    <!--<div class="row">
+
+        <div class="col-xs-12">
+            <span class="clearfix"></span>
+
+            <h3 class="left">
+                {{ Model.config.title }}
+                <button data-ng-show="Model.add_new"
+                        ng-click="openModalCreate(Model)" class="btn btn-success btn-sm pull-right"
+                        title="Nuevo {{Model.config.title}}">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Nuevo
+                </button>
+            </h3>
+            <span class="clearfix"></span>
+        </div>
+    </div>-->
+
 
     <div class="panel-heading center">
         <label class="panel-title text-uppercase">{{ Model.config.title }}</label>
         <div class="pull-right">
-            <button class="btn btn-sm btn-info pull-right" title="Actualizar lista" type="button"
-                    ng-click="refresh_list()">
-                <i class="glyphicon glyphicon-refresh"></i>
-            </button>
-            <button data-ng-if="Model.add_new"
-                    ng-click="openModalCreate(Model)" class="btn btn-success btn-sm pull-right"
-                    title="Nuevo: {{Model.config.title}}">
+            <button data-ng-show="Model.add_new"
+                    ng-click="openModalCreate(Model)" class="btn btn-success btn-sm"
+                    title="Nuevo {{Model.config.title}}">
                 <span class="glyphicon glyphicon-plus"></span>
-                Agregar nuevo
+                Nuevo
             </button>
+            <!--<button class="btn btn-success btn-sm" ng-click="openModalNewMateria()">
+                <span class="glyphicon glyphicon-plus"></span>
+                Agregar nueva materia
+            </button>-->
         </div>
-
-        <span class="clearfix"></span>
     </div>
 
     <div class="panel-body" ng-show="Model.searchEnabled">
@@ -32,14 +48,14 @@
                 </div>
             </form>
         </div>
-        <div class="col-xs-12 col-sm-7" ng-show="Model.filterFields.length > 0">
+        <div class="col-xs-12 col-sm-7" ng-show="Model.filterFields">
             <a href="" ng-click="Model['collapseFilterSearch'] = !Model['collapseFilterSearch']">
                 <span class="glyphicon"
                       ng-class="Model['collapseFilterSearch']?'glyphicon-minus':'glyphicon-plus'"></span>
                 {{Model['collapseFilterSearch'] ? 'Menos opciones de busqueda':'Mas opciones de busqueda'}}</a>
         </div>
     </div>
-    <div class="clearfix" ng-show="Model.filterFields.length > 0" uib-collapse="!Model['collapseFilterSearch']">
+    <div class="clearfix" ng-show="Model.filterFields" uib-collapse="!Model['collapseFilterSearch']">
         <hr>
         <div class="col-xs-12 col-sm-8">
             <form ng-submit="loadFilterFields()">
@@ -77,10 +93,10 @@
     <div class="clearfix">
         <hr class="mV10">
         <div class="col-xs-12">
-            <div class="alert-info p20 text-center" ng-show="!Model.data.data.length">
+            <div class="alert-info p20 text-center" ng-show="!Model.dataResponse.data.length">
                 <i> - No se encontraron coincidencias - </i>
             </div>
-            <table class="table table-bordered table-striped" ng-show="Model.data.data.length > 0">
+            <table class="table table-bordered table-striped" ng-show="Model.dataResponse.data.length > 0">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -91,12 +107,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="rowItem in Model.data.data">
+                <tr ng-repeat="rowItem in Model.dataResponse.data">
                     <td ng-bind="$index + 1"></td>
                     <td ng-repeat="param in Model.showFields"
                         item-crud="(Model.fields | filter:{name:param})[0]"
                         item-crud-model="rowItem"></td>
-                    <td ng-repeat="param in Model.extra_fields" ng-bind="rowItem[param.name] | CrudFilter:'date'"></td>
+                    <td ng-repeat="param in Model.extra_fields" ng-bind="rowItem[param.name] | CrudFilter:'datetime'"></td>
                     <td data-ng-show="Model.editable || Model.delete">
                         <!--<button class="btn btn-primary btn-xs" title="Detalles" ng-click="openModalDetail(rowItem)"><i
                             class="glyphicon glyphicon-list"></i>
@@ -109,12 +125,14 @@
                         <button class="btn btn-danger btn-xs" title="Eliminar"
                                 ng-click="openModalDelete(rowItem, Model)"
                                 ng-show="Model.delete">
+
                             <i class="glyphicon glyphicon-remove"></i>
                         </button>
                     </td>
                 </tr>
                 </tbody>
             </table>
+
             <div class="text-center"
                  ng-show="Model.dataResponse.data.length && (Model.dataResponse.next_page_url || Model.dataResponse.prev_page_url)">
                 <uib-pagination total-items="Model.dataResponse.total" items-per-page="paginationParams.page_size"
@@ -141,4 +159,3 @@
         </div>
     </div>
 </script>
-

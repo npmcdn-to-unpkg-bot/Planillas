@@ -75,7 +75,7 @@
                                 <!--<li role="presentation"><a href="" data-ng-click="print()">
                                     <span class="glyphicon glyphicon-print"></span> Imprimir</a>
                                 </li>-->
-                                <li role="presentation">
+                                <li role="presentation" ng-init="isSearchCollapsed = true">
                                     <a href="" ng-click="isSearchCollapsed = !isSearchCollapsed">
                                         <span class="glyphicon glyphicon-search"></span>
                                         Buscar
@@ -145,7 +145,7 @@
                                     <th class="col-px-70">Semestre</th>
                                     <th class="col-px-70">Paralelo</th>
                                     <th class="col-15">Factura</th>
-                                    <th class="col-15">Pago semanal</th>
+                                    <th class="col-15">Tipo de pago</th>
                                     <th class="col-px-80">Metodo Acad&eacute;mico</th>
                                 </tr>
                                 </thead>
@@ -234,10 +234,13 @@
                                                 ng-disabled="selectedEnableds.Factura">
                                         </select>
                                     </td>
-                                    <th class="col-15">
-                                        <input class="form-control small" type="checkbox"
-                                               ng-model="NUEVO_DOCENTE.es_semanal"
-                                               ng-disabled="selectedEnableds.es_semanal">
+                                    <th class="col-15 edit select" style="padding: 0 !important;">
+                                        <select class="form-control small" ng-model="NUEVO_DOCENTE.es_semanal"
+                                                style="padding: 0 !important;;margin: 0 !important;font-size: 9px"
+                                                required>
+                                            <option value="0" ng-selected="true">Semanal</option>
+                                            <option value="1">Horas</option>
+                                        </select>
                                     </th>
                                     <td class="col-px-80">
                                         <select class="fullWidth" ng-model="NUEVO_DOCENTE.Pensul"
@@ -251,7 +254,7 @@
                                     <td colspan="13" class="text-center">
                                         <button class="btn btn-success btn-sm"
                                                 ng-click="NUEVO_DOCENTE.idEspecialidad = CURRENT_ID_ESPECIALIDAD;guardar_registro(NUEVO_DOCENTE)"
-                                                tooltip="Guardar"><i class="glyphicon glyphicon-save"></i>
+                                                title="Guardar"><i class="glyphicon glyphicon-save"></i>
                                         </button>
 
 
@@ -266,8 +269,11 @@
                                 NUEVO_DOCENTE.Tipo = '';
                                 NUEVO_DOCENTE.Factura = '';
                                 NUEVO_DOCENTE.idMateria = '';
-selectedEnableds.CuentaBancaria = false;selectedEnableds.Categoria = false;selectedEnableds.Factura = false;selectedEnableds.Grado = false;"
-                                                tooltip="Limpiar"><i class="glyphicon glyphicon-alert"></i>
+                                selectedEnableds.CuentaBancaria = false;
+                                selectedEnableds.Categoria = false;
+                                selectedEnableds.Factura = false;
+                                selectedEnableds.Grado = false;"
+                                                title="Limpiar"><i class="glyphicon glyphicon-alert"></i>
                                         </button>
                                         <!--<button class="btn btn-success btn-sm" ng-click="addNewItemPayroll()">
                                             <i class="glyphicon glyphicon-plus"></i> Registrar
@@ -496,7 +502,7 @@ selectedEnableds.CuentaBancaria = false;selectedEnableds.Categoria = false;selec
                         </td>
                         <td class="tLiquido">
                             <span editable-select="docente.es_semanal" onbeforesave="updateTipoPago(docente,$data)"
-                                  e-ng-options="g.id as g.name for g in GLOBALS.PAGO_ITEMS" buttons="no"> {{ docente.es_semanal?'Semanal':'Horas'}}</span>
+                                  e-ng-options="g.id as g.name for g in GLOBALS.PAGO_ITEMS" buttons="no"> {{ docente.por_horas?'Horas':'Semanal'}}</span>
                         </td>
                         <td class="tLiquido" ng-bind="(docente.LiquidoPagable|mountC)||'-'"></td>
                         <!--<td class="text-center">
@@ -562,4 +568,7 @@ selectedEnableds.CuentaBancaria = false;selectedEnableds.Categoria = false;selec
             </a>
         </script>
     </div>
+
+
+    <div ng-init="generarPlanilla()"></div>
 </div>

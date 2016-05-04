@@ -1,3 +1,3 @@
-<div ng-if="GF.isLogged()&&(GF.getUser().Gestion || GF.isAdmin() || GF.isRoot())" ng-include="'views/menu.html'"></div>
+<div ng-if="GF.isLogged()&&(CURRENT_USER['gestion'] || GF.isAdmin() || GF.isRoot())"
+     ng-include="'views/menu.html'"></div>
 <div ng-include="CURRENT_VIEW"></div>
-<!--<div ng-include="'views/close_system.html'"></div>-->

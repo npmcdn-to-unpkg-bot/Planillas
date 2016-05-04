@@ -1,57 +1,56 @@
-angular.module('planillasApp').controller('ModalNewUsuario', function ($scope, $rootScope, $http2, URLS, $location, $modalInstance, items,$timeout) {
-  $scope.items = items;
-  $scope.nuevo_usuario = {};
-  if (items) {//modificar
-    $scope.nuevo_usuario = angular.copy(items);
-    delete ($scope.nuevo_usuario.Activo);
-  } else {//NUEVO
-    $timeout(function(){
-      $scope.nuevo_usuario.idEspecialidad = $rootScope.GF.getEspecialidadId();
-      $scope.nuevo_usuario.Especialidad = $rootScope.GF.getEspecialidadName();
-      $scope.nuevo_usuario.idTipoUsuario = $rootScope.GLOBALS.TIPOS_USUARIO[0].idTipoUsuario;
-      $scope.nuevo_usuario.tipo = $rootScope.GLOBALS.TIPOS_USUARIO[0].tipo;
-      $scope.nuevo_usuario.idUnidadAcademica = $rootScope.GF.getUser().idUnidadAcademica;
-      $scope.nuevo_usuario.UnidadAcademica = $rootScope.GF.getUser().UnidadAcademica;
-    })
-  }
+angular.module('planillasApp').controller('ModalNewUsuario', function ($scope, $rootScope, $q, URLS, $location, $modalInstance, $http, user) {
+    var promises = [
+        $rootScope.GF.load_tipo_usuarios(),
+        $rootScope.GF.load_unidades_academicas(),
+        $rootScope.GF.load_especialidades()
+    ];
 
+    $scope.user = angular.copy(user);
+    $scope.nuevo_usuario = {};
+    $q.all(promises).then(function () {
+        if (user) {//modificar
+            $scope.nuevo_usuario = angular.copy(user);
+            $scope.nuevo_usuario.especialidad = $scope.nuevo_usuario.especialidad.id;
+            $scope.nuevo_usuario.tipo_usuario = $scope.nuevo_usuario.tipo_usuario.id;
+            $scope.nuevo_usuario.unidad_academica = $scope.nuevo_usuario.unidad_academica.id;
+            delete ($scope.nuevo_usuario.activo);
+        } else {//NUEVO
+            $scope.nuevo_usuario.especialidad = $rootScope.GF.getEspecialidadId();
+            $scope.nuevo_usuario.tipo_usuario = $rootScope.GLOBALS.TIPO_USUARIO[0].id;
+            $scope.nuevo_usuario.unidad_academica = $rootScope.CURRENT_USER.unidad_academica.id;
+            $scope.nuevo_usuario.ap_paterno = '';
+            $scope.nuevo_usuario.ap_materno = '';
+            $scope.nuevo_usuario.celular = '';
+            $scope.nuevo_usuario.correo = '';
+            $scope.nuevo_usuario.username = '';
+            $scope.nuevo_usuario.password = '';
+        }
 
-  $scope.guardar = function (new_user) {
-    var error = false;
-    for (var val in new_user) {
-      if (!new_user[val]) {
-        error = true;
-        break;
-      }
-    }
-    if (error) {
-      toastr.warning('LLene todos los campos');
-      return;
-    }
-    if (items) {
-      $http2.put(URLS.USUARIOS, new_user,
-        function (data) {
-          if (data.Success) {
-            $rootScope.GF.load_usuarios();
-            $scope.ok();
-          }
-        })
-    } else {
-      $http2.post(URLS.USUARIOS, new_user,
-        function (data) {
-          if (data.Success) {
-            $rootScope.GF.load_usuarios();
-            $scope.ok();
-          }
-        })
-    }
+    });
+    $scope.guardar = function (new_user) {
+        if (user) {
+            $http.put(URLS.USUARIOS + '/' + new_user.id, new_user)
+                .then(function () {
+                    $scope.ok();
+                    toastr.success("Cuenta creada exitosamente");
+                }, function () {
+                    toastr.warning("Ha ocurrido un error al modificar la cuenta");
+                })
+        } else {
+            $http.post(URLS.USUARIOS, new_user)
+                .then(function () {
+                    $scope.ok();
+                    toastr.success("Cuenta creada exitosamente");
+                }, function () {
+                    toastr.warning("Ha ocurrido un error al activar la cuenta");
+                })
+        }
+    };
 
-  };
-
-  $scope.ok = function (success) {
-    $modalInstance.close(success);
-  };
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+    $scope.ok = function (success) {
+        $modalInstance.close(success);
+    };
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 });

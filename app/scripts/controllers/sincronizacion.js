@@ -8,20 +8,16 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('SincronizacionCtrl', function ($scope, $q, $http, ModelService, $timeout) {
+    .controller('SincronizacionCtrl', function ($scope, $q, $http, ModelService) {
         $scope.csv = {
             content: null,
             header: true,
             headerVisible: true,
-            separator: ';',
+            separator: ',',
             separatorVisible: true,
             result: null,
             encoding: 'ISO-8859-1',
             encodingVisible: true
-        };
-
-        $scope.desde_servidor = function () {
-
         };
 
         $scope.sincronizar_docentes = function (list_array) {
@@ -38,11 +34,11 @@ angular.module('planillasApp')
                     return;
                 }
                 var form_data = new FormData();
-                form_data.append('ApPaterno', list_array[index].ApPaterno);
-                form_data.append('ApMaterno', list_array[index].ApMaterno);
-                form_data.append('Nombre', list_array[index].Nombre);
-                form_data.append('CI', list_array[index].CI);
-                form_data.append('idUnidadAcademica', list_array[index].idUnidadAcademica);
+                form_data.append('ap_paterno', list_array[index]['ap_paterno']);
+                form_data.append('ap_materno', list_array[index]['ap_materno']);
+                form_data.append('nombres', list_array[index]['nombres']);
+                form_data.append('ci', list_array[index]['ci']);
+                form_data.append('unidad_academica', list_array[index]['unidad_academica']);
 
                 (new ModelService.DocentesModel()).resource.create(form_data, function () {
                     list_array[index].actualizado = true;
@@ -55,14 +51,13 @@ angular.module('planillasApp')
             }
 
             save(0);
-
         };
 
         $scope.sincronizar_materias = function (list_array) {
             if (!list_array) {
                 return;
             }
-            for( var i = 0; i < list_array.length;i++){
+            for (var i = 0; i < list_array.length; i++) {
                 list_array[i].text_error = '';
                 list_array[i].actualizado = false;
             }
@@ -71,7 +66,7 @@ angular.module('planillasApp')
                     return;
                 }
                 var form_data = new FormData();
-                form_data.append('Materia', list_array[index].Materia);
+                form_data.append('name', list_array[index]['name']);
 
                 (new ModelService.MateriasModel()).resource.create(form_data, function () {
                     list_array[index].actualizado = true;
@@ -90,7 +85,7 @@ angular.module('planillasApp')
             if (!list_array) {
                 return;
             }
-            for( var i = 0; i < list_array.length;i++){
+            for (var i = 0; i < list_array.length; i++) {
                 list_array[i].text_error = '';
                 list_array[i].actualizado = false;
             }
@@ -99,7 +94,7 @@ angular.module('planillasApp')
                     return;
                 }
                 var form_data = new FormData();
-                form_data.append('Especialidad', list_array[index].Especialidad);
+                form_data.append('name', list_array[index]['name']);
 
                 (new ModelService.EspecialidadesModel()).resource.create(form_data, function () {
                     list_array[index].actualizado = true;

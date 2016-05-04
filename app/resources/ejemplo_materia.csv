@@ -1,5 +1,6 @@
-idMateria;Materia;
-1;Microprocesadores;
-2;Calculo II;
-3;Calculo II;
-4;Algebra;
+id,name
+1,Microprocesadores
+2,Cálculo I
+3,Cálculo II
+4,Álgebra
+5,ÑE

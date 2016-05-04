@@ -1,132 +1,164 @@
-<div class="col-md-10 col-md-offset-1">
-  <div class="panel panel-info">
-    <div class="panel-heading text-uppercase text-center">
-      GESTION ACADEMICA
-    </div>
-    <div class="panel-body" ng-if="GF.getUser().Gestion">
-      <label class="text-info"> ** El administrador puede eliminar registros en caso de fallos</label><br>
-      <label class="text-info"> ** El administrador, jefes de carrera, administrativos y secretaria pueden realizar reportes</label><br>
-      <label class="text-info"> ** La Gestion Academica solo puede ser iniciada por el jefe de carrera </label><br>
-      <label class="text-info"> ** Los jefes de carrera pueden asignar docentes a su planilla </label><br>
-      <label class="text-info"> ** La gestion de usuarios es para cada usuario </label><br>
+<div class="container" ng-controller="StartgestionCtrl">
+    <div class="panel panel-info">
+        <div class="panel-heading text-uppercase text-center">
+            GESTION ACADEMICA
+        </div>
+        <div class="panel-body" ng-if="CURRENT_USER['gestion']">
+            <label class="text-info"> ** El administrador puede eliminar registros en caso de fallos</label><br>
+            <label class="text-info"> ** El administrador, jefes de carrera, administrativos y secretaria pueden
+                realizar reportes</label><br>
+            <label class="text-info"> ** La Gestion Academica solo puede ser iniciada por el jefe de
+                carrera </label><br>
+            <label class="text-info"> ** Los jefes de carrera pueden asignar docentes a su planilla </label><br>
+            <label class="text-info"> ** La gestion de usuarios es para cada usuario </label><br>
 
-      <div class="fullWidth center">
-      <button type="button" class="btn btn-info" ng-click="openModalDatosPago()">
-        <i class="glyphicon glyphicon-info-sign"></i> Ver mas informacion</button>
-      <br>
-      <br>
-      <button ng-if="GF.isAdmin()" type="button" class="btn btn-success" ng-click="finalizar_gestion()">Finalizar Gestion Academica</button>
-      </div>
+            <div class="fullWidth center">
+                <button type="button" class="btn btn-info" ng-click="openModalDatosPago()">
+                    <i class="glyphicon glyphicon-info-sign"></i> Ver mas informacion
+                </button>
+                <br>
+                <br>
+                <button ng-if="GF.isAdmin()" type="button" class="btn btn-success" ng-click="finalizar_gestion()">
+                    Finalizar Gestion Academica
+                </button>
+            </div>
+        </div>
+        <div class="panel-body" ng-if="!CURRENT_USER['gestion'] && GF.isAdmin()">
+            <form class="form-horizontal col-md-10 col-md-offset-1"
+                  ng-submit="iniciar_nueva_gestion(new_gestion)">
+                <div class="form-group">
+                    <label class="col-sm-4">Unidad Acadeémica</label>
+                    <div class="col-sm-8">
+                        <label>{{GF.getUnidadAcademicaName()}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4">Especialidad</label>
+                    <div class="col-sm-8">
+                        <i>** Todas las especialidades</i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4">Gestión</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" ng-model="new_gestion.gestion" required>
+                            <option value="">-- Seleccione Gestion --</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4">Periodo Gestión</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" ng-model="new_gestion.periodo_gestion" required>
+                            <option value="">-- Seleccione Periodo --</option>
+                            <option value="I">Gestión I</option>
+                            <option value="II">Gestión II</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4">Impuesto a las utilidades</label>
+                    <div class="col-sm-3">
+                        <input class="form-control" type="number" min="0" max="100" step="any" ng-model="new_gestion.iu"
+                               required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4">Impuesto a las transacciones</label>
+                    <div class="col-sm-3">
+                        <input class="form-control" type="number" min="0" max="100" step="any" ng-model="new_gestion.it"
+                               required>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <div class="col-sm-4">
+                        <h4><i>Objetivos</i></h4>
+                        <div class="form-group-sm">
+                            <label class="col-sm-6">Primera</label>
+                            <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any"
+                                                         ng-model="new_gestion.oA" required></div>
+                        </div>
+                        <div class="form-group-sm">
+                            <label class="col-sm-6">Segunda</label>
+                            <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any"
+                                                         ng-model="new_gestion.oB" required></div>
+                        </div>
+                        <div class="form-group-sm">
+                            <label class="col-sm-6">Tercera</label>
+                            <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any"
+                                                         ng-model="new_gestion.oC" required></div>
+                        </div>
+                        <div class="form-group-sm">
+                            <label class="col-sm-6">Cuarta</label>
+                            <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any"
+                                                         ng-model="new_gestion.oD" required></div>
+                        </div>
+                        <div class="form-group-sm">
+                            <label class="col-sm-6">Laboratorio</label>
+                            <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any"
+                                                         ng-model="new_gestion.oL" required></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h4><i>Competencias</i></h4>
+                        <div class="form-group-sm">
+                            <label class="col-sm-6">Primera</label>
+                            <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any"
+                                                         ng-model="new_gestion.cA" required></div>
+                        </div>
+                        <div class="form-group-sm">
+                            <label class="col-sm-6">Segunda</label>
+                            <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any"
+                                                         ng-model="new_gestion.cB" required></div>
+                        </div>
+                        <div class="form-group-sm">
+                            <label class="col-sm-6">Tercera</label>
+                            <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any"
+                                                         ng-model="new_gestion.cC" required></div>
+                        </div>
+                        <div class="form-group-sm">
+                            <label class="col-sm-6">Cuarta</label>
+                            <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any"
+                                                         ng-model="new_gestion.cD" required></div>
+                        </div>
+                        <div class="form-group-sm">
+                            <label class="col-sm-6">Laboratorio</label>
+                            <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any"
+                                                         ng-model="new_gestion.cL" required></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h4><i>Cargar datos</i></h4>
+                        <a href="#/Sincronizacion">
+                            <button type="button" class="btn btn-info btn-sm fullWidth"><i
+                                class="glyphicon glyphicon-plus"></i> Cargar lista de doncentes
+                            </button>
+                            <br><br></a>
+                        <a href="#/Sincronizacion">
+                            <button type="button" class="btn btn-info btn-sm fullWidth"><i
+                                class="glyphicon glyphicon-plus"></i> Cargar lista de materias
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button ng-if="!CURRENT_USER['gestion']" type="submit" class="btn btn-success">
+                        Iniciar Gestión Academica
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="panel-body" ng-if="GF.isRoot()">
+            <p class="alert alert-info">
+                ** Unicamente el usuario administrador modifica la gestion academica
+            </p>
+        </div>
+        <div class="panel-footer"></div>
     </div>
-    <div class="panel-body" ng-if="!GF.getUser().Gestion && GF.isAdmin()">
-      <form class="form-horizontal col-md-10 col-md-offset-1" ng-init="nueva_gestion={}" ng-submit="iniciar_nueva_gestion(nueva_gestion)">
-        <div class="form-group">
-          <label class="col-sm-4">Unidad Academica</label>
-          <div class="col-sm-8">
-            <label ng-init="nueva_gestion.idUnidadAcademica = GF.getUnidadAcademicaId()">{{GF.getUnidadAcademicaName()}}</label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-4">Especialidad</label>
-          <div class="col-sm-8">
-            <i>** Todas las especialidades</i>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-4">Gestion</label>
-          <div class="col-sm-8">
-              <select class="form-control" ng-model="nueva_gestion.Gestion" required>
-                <option value="">-- Seleccione Gestion --</option>
-                <option value="2015">2015</option>
-                <option value="2016">2016</option>
-                <option value="2017">2017</option>
-                <option value="2018">2018</option>
-                <option value="2019">2019</option>
-                <option value="2020">2020</option>
-              </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-4">Periodo Gestion</label>
-          <div class="col-sm-8">
-            <select class="form-control" ng-model="nueva_gestion.idPeriodoGestion" required>
-              <option value="">-- Seleccione Periodo --</option>
-              <option value="1">Gestion I</option>
-              <option value="2">Gestion II</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-4">Impuesto a las utilidades</label>
-          <div class="col-sm-3">
-            <input class="form-control" type="number" min="0" step="any" ng-model="nueva_gestion.IU" ng-init="nueva_gestion.IU = 12.5" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-4">Impuesto a las transacciones</label>
-          <div class="col-sm-3">
-            <input class="form-control" type="number" min="0" step="any" ng-model="nueva_gestion.IT" ng-init="nueva_gestion.IT = 3" required>
-          </div>
-        </div>
-        <div class="form-group text-center">
-            <div class="col-sm-4">
-              <h4><i>Objetivos</i></h4>
-              <div class="form-group-sm">
-                <label class="col-sm-6">Primera</label>
-                <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any" ng-model="nueva_gestion.oA" ng-init="nueva_gestion.oA = 70.5" required></div>
-              </div>
-              <div class="form-group-sm">
-                <label class="col-sm-6">Segunda</label>
-                <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any" ng-model="nueva_gestion.oB" ng-init="nueva_gestion.oB = 62.7" required></div>
-              </div>
-              <div class="form-group-sm">
-                <label class="col-sm-6">Tercera</label>
-                <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any" ng-model="nueva_gestion.oC" ng-init="nueva_gestion.oC = 58" required></div>
-              </div>
-              <div class="form-group-sm">
-                <label class="col-sm-6">Cuarta</label>
-                <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any" ng-model="nueva_gestion.oD" ng-init="nueva_gestion.oD = 53.3" required></div>
-              </div>
-              <div class="form-group-sm">
-                <label class="col-sm-6">Laboratorio</label>
-                <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any" ng-model="nueva_gestion.oE" ng-init="nueva_gestion.oE = 53.3" required></div>
-              </div>
-            </div>
-          <div class="col-sm-4">
-            <h4><i>Competencias</i></h4>
-            <div class="form-group-sm">
-              <label class="col-sm-6">Primera</label>
-              <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any" ng-model="nueva_gestion.cA" ng-init="nueva_gestion.cA = 74" required></div>
-            </div>
-            <div class="form-group-sm">
-              <label class="col-sm-6">Segunda</label>
-              <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any" ng-model="nueva_gestion.cB" ng-init="nueva_gestion.cB = 65.8" required></div>
-            </div>
-            <div class="form-group-sm">
-              <label class="col-sm-6">Tercera</label>
-              <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any" ng-model="nueva_gestion.cC" ng-init="nueva_gestion.cC = 60.9" required></div>
-            </div>
-            <div class="form-group-sm">
-              <label class="col-sm-6">Cuarta</label>
-              <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any" ng-model="nueva_gestion.cD" ng-init="nueva_gestion.cD = 56" required></div>
-            </div>
-            <div class="form-group-sm">
-              <label class="col-sm-6">Laboratorio</label>
-              <div class="col-sm-6"><input class="form-control input-sm" type="number" min="0" step="any" ng-model="nueva_gestion.cE" ng-init="nueva_gestion.cE = 56" required></div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <h4><i>Cargar datos</i></h4>
-            <a href="#/Sincronizacion"><button type="button" class="btn btn-info btn-sm fullWidth"><i class="glyphicon glyphicon-plus"></i> Cargar lista de doncentes</button><br><br></a>
-            <a href="#/Sincronizacion"><button type="button" class="btn btn-info btn-sm fullWidth"><i class="glyphicon glyphicon-plus"></i> Cargar lista de materias</button></a>
-          </div>
-        </div>
-
-        <div class="form-group text-center">
-          <button ng-if="!GF.getUser().Gestion" type="submit" class="btn btn-success">Iniciar Gestion Academica</button>
-        </div>
-      </form>
-    </div>
-    <div class="panel-footer"></div>
-  </div>
 </div>

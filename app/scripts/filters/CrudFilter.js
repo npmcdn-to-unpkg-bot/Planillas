@@ -14,12 +14,12 @@ angular.module('planillasApp')
             var filtered = input;
             var dateFilter;
             if (type === 'date') {
-                dateFilter = new moment(input);
+                dateFilter = moment(input);
                 if (dateFilter != 'Invalid Date') {
                     filtered = dateFilter.format("LL");
                 }
             } else if (type === 'datetime') {
-                dateFilter = new moment(input);
+                dateFilter = moment(input);
                 if (dateFilter != 'Invalid Date') {
                     filtered = dateFilter.format("LLLL");
                 }

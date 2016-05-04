@@ -56,41 +56,41 @@ angular.module('planillasApp')
             if (typeof (child_model) == 'function') {
                 child_model(context);
                 angular.forEach(config, function (value, key) {
-                    context[key] = config['key'];
+                    context[key] = value;
                 });
                 context.extra_query_params = config.query_params || {};
             }
         };
 
-
         var EspecialidadesModel = function (config) {
             return new BaseModel(function (context) {
-                context.id_name = 'idEspecialidad';
+                context.id_name = 'id';
                 context.resource = $API.Especialidades;
                 context.fields = [
-                    {label: "Especialidad", name: "Especialidad", type: 'string', required: true}
+                    {label: "Especialidad", name: "name", type: 'string', required: true}
                 ];
-                context.extra_fields = [{label: "Ultima modificacion", name: 'updated_at'}];
-                context.showFields = ['Especialidad'];
-                context.filterFields = ['Especialidad'];
-                context.nameView = 'Especialidad';
-                context.config = {title: 'Lista de Especialidades'};
+                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.showFields = ['name'];
+                context.filterFields = ['name'];
+                context.nameView = 'name';
+                context.config = {title: 'Lista de Carreras'};
                 context.delete = false;
                 context.editable = false;
+                context.searchEnabled = true;
             }, config);
         };
 
         var MateriasModel = function (config) {
             return new BaseModel(function (context) {
-                context.id_name = 'idMateria';
+                context.id_name = 'id';
                 context.resource = $API.Materias;
                 context.fields = [
-                    {label: "Materia", name: "Materia", type: 'string', required: true}
+                    {label: "Materia", name: "name", type: 'string', required: true}
                 ];
-                context.extra_fields = [{label: "Ultima modificacion", name: 'updated_at'}];
-                context.showFields = ['Materia'];
-                context.filterFields = ['Materia'];
-                context.nameView = 'Materia';
+                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.showFields = ['name'];
+                context.filterFields = ['name'];
+                context.nameView = 'name';
                 context.config = {title: 'Lista de Materias'};
                 context.searchEnabled = true;
             }, config);
@@ -98,39 +98,167 @@ angular.module('planillasApp')
 
         var UnidadAcademicaModel = function (config) {
             return new BaseModel(function (context) {
-                context.id_name = 'idUnidadAcademica';
+                context.id_name = 'id';
                 context.resource = $API.UnidadAcademica;
                 context.fields = [
-                    {label: "Unidades Academicas", name: "UnidadAcademica", type: 'string', required: true}
+                    {label: "Unidad académica", name: "name", type: 'string', required: true}
                 ];
-                context.extra_fields = [{label: "Ultima modificacion", name: 'updated_at'}];
-                context.showFields = ['UnidadAcademica'];
-                context.nameView = 'UnidadAcademica';
-                context.config = {title: 'Unidades Academicas'};
+                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.showFields = ['name'];
+                context.nameView = 'name';
+                context.config = {title: 'Unidades Académicas'};
             }, config);
         };
+
         var DocentesModel = function (config) {
             return new BaseModel(function (context) {
-                context.id_name = 'idDocente';
+                context.id_name = 'id';
                 context.resource = $API.Docentes;
                 context.fields = [
-                    {label: "Apellido materno", name: "ApPaterno", type: 'string', required: true},
-                    {label: "Apellido materno", name: "ApMaterno", type: 'string', required: true},
-                    {label: "Nombbres", name: "Nombre", type: 'string', required: true},
-                    {label: "Carnet", name: "CI", type: 'string', required: true},
+                    {label: "Apellido materno", name: "ap_paterno", type: 'string', required: true},
+                    {label: "Apellido materno", name: "ap_materno", type: 'string', required: true},
+                    {label: "Nombres", name: "nombres", type: 'string', required: true},
+                    {label: "Carnet", name: "ci", type: 'string', required: true},
                     {
-                        label: "Unidad Academica",
-                        name: "idUnidadAcademica",
+                        label: "Unidad Académica",
+                        name: "unidad_academica",
                         type: 'number',
                         model: new UnidadAcademicaModel(),
                         required: true
                     }
                 ];
-                context.extra_fields = [{label: "Ultima modificacion", name: 'updated_at'}];
-                context.showFields = ['ApPaterno', 'ApMaterno', 'Nombre', 'CI', 'idUnidadAcademica'];
-                context.filterFields = ['ApPaterno', 'ApMaterno', 'Nombre', 'CI'];
-                context.nameView = 'Nombre';
+                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.showFields = ['ap_paterno', 'ap_materno', 'nombres', 'ci', 'unidad_academica'];
+                context.filterFields = ['ap_paterno', 'ap_materno', 'nombres', 'ci'];
+                context.nameView = 'nombres';
                 context.config = {title: 'Docentes'};
+                context.searchEnabled = true;
+            }, config);
+        };
+
+        var TipoUsuariosModel = function (config) {
+            return new BaseModel(function (context) {
+                context.id_name = 'id';
+                context.resource = $API.TipoUsuario;
+                context.fields = [
+                    {label: "Tipo usuario", name: "name", type: 'string', required: true},
+                    {label: "Descripción", name: "description", type: 'string', required: true}
+                ];
+                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.showFields = ['name'];
+                context.filterFields = ['name'];
+                context.nameView = 'name';
+                context.config = {title: 'Tipos de usuarios'};
+                context.searchEnabled = true;
+            }, config);
+        };
+
+        var UsuariosModel = function (config) {
+            return new BaseModel(function (context) {
+                context.id_name = 'id';
+                context.resource = $API.Usuarios;
+                context.fields = [
+                    {label: "Apellido materno", name: "ap_paterno", type: 'string', required: true},
+                    {label: "Apellido materno", name: "ap_materno", type: 'string', required: true},
+                    {label: "Nombres", name: "nombres", type: 'string', required: true},
+                    {label: "Celular", name: "celular", type: 'string', required: true},
+                    {
+                        label: "Especialidad",
+                        name: "especialidad",
+                        type: 'select',
+                        model: new EspecialidadesModel(),
+                        required: true
+                    },
+                    {
+                        label: "Tipo usuario",
+                        name: "tipo_usuario",
+                        type: 'select',
+                        model: new TipoUsuariosModel(),
+                        required: true
+                    },
+                    {label: "Correo", name: "email", type: 'email', required: true},
+                    {label: "Nombre de usuario", name: "username", type: 'string', required: true},
+                    {label: 'Password', name: 'password', type: 'string', required: true},
+                    {label: "Activo", name: "activo", type: 'boolean', required: true}
+                ];
+                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.showFields = ['ap_paterno', 'ap_materno', 'nombres', 'celular', 'especialidad', 'tipo_usuario'];
+                context.filterFields = ['ap_paterno', 'ap_materno', 'nombres', 'celular'];
+                context.nameView = 'nombres';
+                context.config = {title: 'Lista de usuarios'};
+                context.searchEnabled = true;
+                context.table_name = 'account';
+                context.name = 'accounts';
+            }, config);
+        };
+
+        var LogsModel = function (config) {
+            return new BaseModel(function (context) {
+                context.id_name = 'id';
+                context.resource = $API.Logs;
+                context.fields = [
+                    {
+                        label: "Usuario", name: "user", type: 'select',
+                        model: new UsuariosModel(), required: true
+                    },
+                    {
+                        label: "Unidad Académica", name: "unidad_academica", type: 'select',
+                        model: new UnidadAcademicaModel(), required: true
+                    },
+                    {
+                        label: "Especialidad", name: "especialidad", type: 'select',
+                        model: new EspecialidadesModel(), required: true
+                    },
+                    {label: "Tipo de acción", name: "tipo", type: 'string', required: true},
+                    {label: "Descripción", name: "descripcion", type: 'string', required: true}
+                ];
+                context.extra_fields = [{label: "Fecha", name: 'updated_at'}];
+                context.showFields = ['user', 'unidad_academica', 'especialidad', 'tipo', 'descripcion'];
+                context.nameView = 'tipo';
+                context.editable = false;
+                context.delete = false;
+                context.add_new = false;
+                context.config = {title: 'Logs'};
+                context.searchEnabled = true;
+            }, config);
+        };
+
+        var GestionesAcademicasModel = function (config) {
+            return new BaseModel(function (context) {
+                context.id_name = 'id';
+                context.resource = $API.GestionAcademicas;
+                context.fields = [
+                    {label: "Gestión", name: "gestion", type: 'number', required: true},
+                    {
+                        label: "Periodo gestión",
+                        name: "periodo_gestion",
+                        type: 'text',
+                        required: true
+                    },
+                    {
+                        label: "Unidad académica",
+                        name: "unidad_academica",
+                        type: 'select',
+                        model: new UnidadAcademicaModel(),
+                        required: true
+                    },
+                    {
+                        label: "Especialidad",
+                        name: "especialidad",
+                        type: 'select',
+                        model: new EspecialidadesModel(),
+                        required: true
+                    },
+                    {label: "IU", name: "iu", type: 'number', required: true},
+                    {label: "IT", name: "it", type: 'number', required: true},
+                    {label: "Abierto", name: "abierto", type: 'boolean', required: true}
+                ];
+                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.showFields = ['gestion', 'periodo_gestion', 'unidad_academica', 'especialidad'];
+                context.nameView = 'gestion';
+                context.config = {title: 'Gestiones académicas'};
+                context.add_new = false;
+                context.editable = false;
                 context.searchEnabled = true;
             }, config);
         };
@@ -139,6 +267,10 @@ angular.module('planillasApp')
             EspecialidadesModel: EspecialidadesModel,
             DocentesModel: DocentesModel,
             MateriasModel: MateriasModel,
-            UnidadAcademicaModel: UnidadAcademicaModel
+            UnidadAcademicaModel: UnidadAcademicaModel,
+            TipoUsuariosModel: TipoUsuariosModel,
+            UsuariosModel: UsuariosModel,
+            LogsModel: LogsModel,
+            GestionesAcademicasModel: GestionesAcademicasModel
         };
     });

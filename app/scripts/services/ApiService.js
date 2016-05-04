@@ -10,7 +10,7 @@
 angular.module('planillasApp')
     .service('$API', function ($q, $resource) {
         var api_url = localStorage.getItem("planillas_api");
-        var base_url = (api_url || 'apiPlanillas/public') + 'api/';
+        var base_url = (api_url || 'apiPlanillas/public/') + 'api/';
 
         function getModelResource(url) {
             return $resource(url, {id: '@id'}, {
@@ -24,6 +24,10 @@ angular.module('planillasApp')
             Especialidades: getModelResource(base_url + 'especialidades/:id/'),
             Materias: getModelResource(base_url + 'materias/:id/'),
             Docentes: getModelResource(base_url + 'docentes/:id/'),
-            UnidadAcademica: getModelResource(base_url + 'unidad_academica/:id/')
+            Usuarios: getModelResource(base_url + 'usuarios/:id/'),
+            Logs: getModelResource(base_url + 'logs/:id/'),
+            UnidadAcademica: getModelResource(base_url + 'unidad_academica/:id/'),
+            GestionAcademicas: getModelResource(base_url + 'gestion_academicas/:id/'),
+            TipoUsuario: getModelResource(base_url + 'tipo_usuario/:id/')
         };
     });
