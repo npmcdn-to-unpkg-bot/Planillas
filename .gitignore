@@ -1,4 +1,5 @@
 /app/apiPlanillas
+/app/apiPlanillas/
 /bower_components
 /node_modules
 .sass-cache
