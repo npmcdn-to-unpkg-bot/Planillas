@@ -26,10 +26,13 @@ angular.module('planillasApp')
             GESTIONES_ACADEMICAS: SERVER + "api/gestion_academicas",
             TIPO_USUARIO: SERVER + "api/tipo_usuario",
             USUARIOS: SERVER + "api/usuarios",
+            PLANILLAS: SERVER + "api/planillas",
+            GRADO_DOCENTE: SERVER + "api/grado_docente",
+            TIPO_PAGO: SERVER + "api/tipo_pago",
+            PREVIEW_PLANILLA: SERVER + "api/reporte/preview",
+            REPORTES: SERVER + "api/reportes",
+            ITEM_REPORTES: SERVER + "api/reporte/item",
 
-
-
-            PLANILLAS: SERVER + "planillas",
             PLANILLAS_REPORTE_TXT: SERVER + "planillas/fileReport",
             PLANILLAS_ADD: SERVER + "planillas/add",
 
@@ -46,9 +49,7 @@ angular.module('planillasApp')
 
             LISTA_DOCENTES: SERVER + "docentes",
             LISTA_MATERIAS: SERVER + "materias",
-            REPORTES: SERVER + "reporte",
             ALLREPORTES: SERVER + "reporte/all",
-            ITEMREPORTES: SERVER + "reporte/item",
 
             DOCENTES: SERVER + "docentes",
             DOCENTES_ADD: SERVER + "docentes/add",

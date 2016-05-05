@@ -1,5 +1,4 @@
 angular.module('planillasApp').controller('ModalUpdateMonto', function ($scope, $rootScope, $http2, URLS, $location, $modalInstance, $q, $http) {
-    $rootScope.GF.load_pensuls();
     $rootScope.GF.load_current_monto_categoria();
     $scope.updateMontoPago = function (monto, new_monto) {
         var d = $q.defer();

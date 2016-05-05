@@ -1,574 +1,431 @@
-<div ng-controller="VerplanillaCtrl" ng-init="generarPlanilla(1,filters.items_for_page,20);">
-
-
-    <div ng-controller="PayrollController">
-        <div class="container-sheets">
-            <div id="sheets">
-                <nav id="menu-toolbar">
-                    <div class="block-menu icon">
-                        <label class="inline-block">
-                            <img src="images/payroll-icon.png"
-                                 title="{{'EMI '">
-                        </label>
+<div ng-controller="VerplanillaCtrl">
+    <div class="container-sheets">
+        <div id="sheets">
+            <nav id="menu-toolbar">
+                <div class="block-menu icon">
+                    <label class="inline-block">
+                        <img src="images/payroll-icon.png"
+                             title="EMI">
+                    </label>
+                </div>
+                <div class="block-menu titles">
+                    <div class="menu-title">
+                        <h3 class="inline-block"
+                            data-ng-bind="'Planillas de pago '">
+                        </h3>
+                        <h5 class="inline-block"
+                            data-ng-bind="GF.getFullGestionNamme()"></h5>
                     </div>
-                    <div class="block-menu titles">
-                        <div class="menu-title">
-                            <h3 class="inline-block"
-                                data-ng-bind="'Planillas de pago '">
-                            </h3>
-                            <h5 class="inline-block"
-                                data-ng-bind="GF.getFullGestionNamme()"></h5>
-                        </div>
-                        <div class="menu-items">
-                            <ul class="nav nav-pills">
-                                <li role="presentation" class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button"
-                                       aria-haspopup="true"
-                                       aria-expanded="false">
-                                        <span class="glyphicon glyphicon-file"></span> Nuevo <span
-                                        class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href data-ng-click="openModalCreate(modelTeacher)">
-                                            <i class="glyphicon glyphicon-user"></i> Docente</a></li>
-                                        <li><a href data-ng-click="openModalCreate(modelMatter)">
-                                            <i class="glyphicon glyphicon-education"></i> Materia</a></li>
-                                    </ul>
-                                </li>
-                                <!--<li role="presentation" class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button"
-                                       aria-haspopup="true"
-                                       aria-expanded="false">
-                                        <span class="glyphicon glyphicon-download-alt"></span> Descargar <span
-                                        class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        &lt;!&ndash;<li><a href=""><span class="glyphicon glyphicon-save-file"></span> Vista previa .pdf</a></li>&ndash;&gt;
-                                        <li><a href="" ng-click="generarReportePlanilla(true)" target="_top"><span
-                                            class="glyphicon glyphicon-save-file"></span> Reporte .pdf</a>
-                                        </li>
-                                        <li><a href="" ng-click="generarReporteCuentasTXT()" download><span
-                                            class="glyphicon glyphicon-save-file"></span> Lista (Cuenta bancaria - monto) .txt</a></li>
-                                    </ul>
-                                </li>-->
+                    <div class="menu-items">
+                        <ul class="nav nav-pills">
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <span class="glyphicon glyphicon-file"></span> Nuevo <span
+                                    class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href data-ng-click="openModalCreate(modelTeacher)">
+                                        <i class="glyphicon glyphicon-user"></i> Docente</a></li>
+                                    <li><a href data-ng-click="openModalCreate(modelMatter)">
+                                        <i class="glyphicon glyphicon-education"></i> Materia</a></li>
+                                </ul>
+                            </li>
+                            <!--<li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <span class="glyphicon glyphicon-download-alt"></span> Descargar <span
+                                    class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    &lt;!&ndash;<li><a href=""><span class="glyphicon glyphicon-save-file"></span> Vista previa .pdf</a></li>&ndash;&gt;
+                                    <li><a href="" ng-click="generarReportePlanilla(true)" target="_top"><span
+                                        class="glyphicon glyphicon-save-file"></span> Reporte .pdf</a>
+                                    </li>
+                                    <li><a href="" ng-click="generarReporteCuentasTXT()" download><span
+                                        class="glyphicon glyphicon-save-file"></span> Lista (Cuenta bancaria - monto) .txt</a></li>
+                                </ul>
+                            </li>-->
 
-                                <!--<li role="presentation" class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button"
-                                       aria-haspopup="true"
-                                       aria-expanded="false">
-                                        <span class="glyphicon glyphicon-adjust"></span> Opciones <span
-                                        class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
+                            <!--<li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <span class="glyphicon glyphicon-adjust"></span> Opciones <span
+                                    class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
 
-                                        <li><a href=""><span class="glyphicon glyphicon-globe"></span> Limpiar
-                                            reintegro</a>
-                                        </li>
-                                        <li><a href=""><span class="glyphicon glyphicon-globe"></span> Limpiar
-                                            atrasos</a></li>
-                                    </ul>
-                                </li>-->
+                                    <li><a href=""><span class="glyphicon glyphicon-globe"></span> Limpiar
+                                        reintegro</a>
+                                    </li>
+                                    <li><a href=""><span class="glyphicon glyphicon-globe"></span> Limpiar
+                                        atrasos</a></li>
+                                </ul>
+                            </li>-->
 
-                                <li role="presentation"><a href="" ng-click="generarReportePlanilla()">
-                                    <span class="glyphicon glyphicon-print"></span> Vista previa</a>
-                                </li>
-                                <!--<li role="presentation"><a href="" data-ng-click="print()">
-                                    <span class="glyphicon glyphicon-print"></span> Imprimir</a>
-                                </li>-->
-                                <li role="presentation" ng-init="isSearchCollapsed = true">
-                                    <a href="" ng-click="isSearchCollapsed = !isSearchCollapsed">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                        Buscar
+                            <li role="presentation"><a href="" ng-click="show_preview()">
+                                <span class="glyphicon glyphicon-print"></span> Vista previa</a>
+                            </li>
+                            <!--<li role="presentation"><a href="" data-ng-click="print()">
+                                <span class="glyphicon glyphicon-print"></span> Imprimir</a>
+                            </li>-->
+                            <li role="presentation" ng-init="isSearchCollapsed = true">
+                                <a href="" ng-click="isSearchCollapsed = !isSearchCollapsed">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                    Buscar
                                 <span class="glyphicon"
                                       data-ng-class="isSearchCollapsed ? 'glyphicon-chevron-up':'glyphicon-chevron-down'">
                                 </span>
-                                    </a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="" ng-init="isNewPayrollCollapsed = true"
-                                       ng-click="isNewPayrollCollapsed = !isNewPayrollCollapsed">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                        Nuevo registo del planillas
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="" ng-init="isNewPayrollCollapsed = true"
+                                   ng-click="isNewPayrollCollapsed = !isNewPayrollCollapsed">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                    Nuevo registo del planillas
                                 <span class="glyphicon"
                                       data-ng-class="isNewPayrollCollapsed ? 'glyphicon-chevron-up':'glyphicon-chevron-down'">
                                 </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-                <hr>
-                <div uib-collapse="!isNewPayrollCollapsed">
-                    <div class="well well-lg">
-                        <div class="row">
-                            <table id="tab0" class="payroll table_add">
-                                <thead>
-                                <tr>
-                                    <th colspan="13">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="pull-left">Seleccione carrera:</div>
-                                                <select class="form-control input-sm pull-left"
-                                                        ng-model="filters.filter_carrera"
-                                                        ng-change="generarPlanilla(1)">
-                                                    <option value=""> -- Todas las carreras --</option>
-                                                    <option ng-repeat="carrera in GLOBALS.ESPECIALIDADES"
-                                                            value="{{carrera.idEspecialidad}}">
-                                                        {{carrera.Especialidad}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6" ng-if="GF.isRoot()">
-                                                <select class="form-control input-sm"
-                                                        ng-model="filters.filter_unidad_academica"
-                                                        ng-change="filters.filter_docente='';filters.filter_materia='';GF.load_lista_docentes();generarPlanilla(1);">
-                                                    <option value=""> -- Todos las unidades --</option>
-                                                    <option ng-repeat="carrera in GLOBALS.UNIDADES_ACADEMICAS"
-                                                            value="{{carrera.idUnidadAcademica}}">
-                                                        {{carrera.UnidadAcademica}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="col-px-250">Apellidos y Nombres</th>
-                                    <th class="col-3">CI</th>
-                                    <th class="col-3">Cuenta BU</th>
-                                    <th class="col-px-80">Grado</th>
-                                    <th class="col-7">Materia</th>
-                                    <th class="col-px-80">Tipo</th>
-                                    <th class="col-px-70">Horas semanales</th>
-                                    <th class="col-px-70">Categoria</th>
-                                    <th class="col-px-70">Semestre</th>
-                                    <th class="col-px-70">Paralelo</th>
-                                    <th class="col-15">Factura</th>
-                                    <th class="col-15">Tipo de pago</th>
-                                    <th class="col-px-80">Metodo Acad&eacute;mico</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="col-px-250 edit select">
-                                        <ui-select tagging tagging-label="('new')"
-                                                   ng-model="NUEVO_DOCENTE.idDocente" theme="bootstrap"
-                                                   title="Seleccione docente"
-                                                   ng-change="NUEVO_DOCENTE.CI = NUEVO_DOCENTE.idDocente.CI;setInfoDocente(NUEVO_DOCENTE.idDocente.CI)">
-                                            <ui-select-match placeholder="Seleccione docente">
-                                                {{$select.selected.Docente}}
-                                            </ui-select-match>
-                                            <ui-select-choices
-                                                refresh="searchTeachers($select.search)" refresh-delay="300"
-                                                repeat="docente in GLOBALS.LISTA_CUSTOM_DOCENTES | filter: $select.search">
-                                                <div
-                                                    ng-bind-html="docente.Docente | highlight: $select.search"></div>
-                                            </ui-select-choices>
-                                        </ui-select>
-                                    </td>
-                                    <td class="col-3 text-center">
-                                        <input
-                                            data-ng-class="NUEVO_DOCENTE.CI.id ? 'input-preselected':''"
-                                            placeholder="Carnet"
-                                            ng-value="NUEVO_DOCENTE.CI"
-                                            disabled>
-                                    </td>
-                                    <td class="col-3 edit">
-                                        <input class="fullWidth"
-                                               ng-disabled="selectedEnableds.CuentaBancaria"
-                                               ng-model="NUEVO_DOCENTE.CuentaBancaria"
-                                               placeholder="Cuenta BU">
-                                    </td>
-                                    <td class="col-px-80 edit">
-                                        <select class="fullWidth" ng-model="NUEVO_DOCENTE.Grado"
-                                                ng-disabled="selectedEnableds.Grado"
-                                                ng-options="grad.value as grad.name for grad in GLOBALS.GRADOS_DOCENTE">
-                                        </select>
-                                    </td>
-                                    <td class="col-7 edit select">
-                                        <ui-select tagging tagging-label="('new')"
-                                                   ng-model="NUEVO_DOCENTE.idMateria" theme="bootstrap"
-                                                   title="Seleccione materia">
-                                            <ui-select-match placeholder="Seleccione materia">
-                                                {{$select.selected.Materia}}
-                                            </ui-select-match>
-                                            <ui-select-choices refresh="searchMatter($select.search)"
-                                                               refresh-delay="300"
-                                                               repeat="mat in GLOBALS.LISTA_MATERIAS | filter: $select.search">
-                                                <div
-                                                    ng-bind-html="mat.Materia | highlight: $select.search"></div>
-                                            </ui-select-choices>
-                                        </ui-select>
-                                    </td>
-                                    <td class="col-px-80 edit">
-                                        <select class="fullWidth" ng-model="NUEVO_DOCENTE.Tipo"
-                                                ng-options="tipo.name as tipo.name for tipo in GLOBALS.TIPOS_DOCENCIA"
-                                                placeholder="Tipo">
-                                        </select>
-                                    </td>
-                                    <td class="col-px-70 edit">
-                                        <select class="fullWidth" ng-model="NUEVO_DOCENTE.HorasSemanales"
-                                                ng-options="hrs.id as hrs.name for hrs in GLOBALS.TIEMPOS_CARGA_HORARIA">
-                                        </select>
-                                    </td>
-                                    <td class="col-px-70 edit">
-                                        <select class="fullWidth" ng-model="NUEVO_DOCENTE.Categoria"
-                                                ng-disabled="selectedEnableds.Categoria"
-                                                ng-options="cat.id as cat.name for cat in GLOBALS.TIPOS_CATEGORIAS">
-                                        </select>
-                                    </td>
-                                    <td class="col-px-70">
-                                        <select class="fullWidth" ng-model="NUEVO_DOCENTE.Semestre"
-                                                ng-options="fac.id as fac.name for fac in GLOBALS.SEMESTRES">
-                                        </select>
-                                    </td>
-                                    <td class="col-px-70">
-                                        <select class="fullWidth" ng-model="NUEVO_DOCENTE.Paralelo"
-                                                ng-options="fac.id as fac.name for fac in GLOBALS.PARALELOS">
-                                        </select>
-                                    </td>
-                                    <td class="col-15">
-                                        <select class="fullWidth" ng-model="NUEVO_DOCENTE.Factura"
-                                                ng-options="fac.id as fac.name for fac in GLOBALS.FACTURA_ITEMS"
-                                                ng-disabled="selectedEnableds.Factura">
-                                        </select>
-                                    </td>
-                                    <th class="col-15 edit select" style="padding: 0 !important;">
-                                        <select class="form-control small" ng-model="NUEVO_DOCENTE.es_semanal"
-                                                style="padding: 0 !important;;margin: 0 !important;font-size: 9px"
-                                                required>
-                                            <option value="0" ng-selected="true">Semanal</option>
-                                            <option value="1">Horas</option>
-                                        </select>
-                                    </th>
-                                    <td class="col-px-80">
-                                        <select class="fullWidth" ng-model="NUEVO_DOCENTE.Pensul"
-                                                ng-options="fac.id as fac.name for fac in GLOBALS.PENSUL">
-                                        </select>
-                                    </td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="13" class="text-center">
-                                        <button class="btn btn-success btn-sm"
-                                                ng-click="NUEVO_DOCENTE.idEspecialidad = CURRENT_ID_ESPECIALIDAD;guardar_registro(NUEVO_DOCENTE)"
-                                                title="Guardar"><i class="glyphicon glyphicon-save"></i>
-                                        </button>
-
-
-                                        <button class="btn btn-warning btn-sm"
-                                                ng-click="NUEVO_DOCENTE.idEspecialidad = CURRENT_ID_ESPECIALIDAD;
-                                NUEVO_DOCENTE.CuentaBancaria = '';
-                                NUEVO_DOCENTE.idDocente = '';
-                                NUEVO_DOCENTE.Categoria = '';
-                                NUEVO_DOCENTE.HorasSemanales = '';
-                                NUEVO_DOCENTE.Pensul = '';
-                                NUEVO_DOCENTE.Grado = '';
-                                NUEVO_DOCENTE.Tipo = '';
-                                NUEVO_DOCENTE.Factura = '';
-                                NUEVO_DOCENTE.idMateria = '';
-                                selectedEnableds.CuentaBancaria = false;
-                                selectedEnableds.Categoria = false;
-                                selectedEnableds.Factura = false;
-                                selectedEnableds.Grado = false;"
-                                                title="Limpiar"><i class="glyphicon glyphicon-alert"></i>
-                                        </button>
-                                        <!--<button class="btn btn-success btn-sm" ng-click="addNewItemPayroll()">
-                                            <i class="glyphicon glyphicon-plus"></i> Registrar
-                                        </button>
-                                        <button class="btn btn-info btn-sm" ng-click="setEmptyNewItemPayroll()">
-                                            <i class="glyphicon glyphicon-plus"></i> Nuevo
-                                        </button>-->
-                                    </td>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div uib-collapse="!isSearchCollapsed">
-                    <div class="well well-lg">
-
-                        <div class="form-horizontal row">
-                            <div class="form-group-sm">
-                                <div class="col-sm-2">
-                                    <p class="">Unidad Academica</p>
-                                    <label ng-if="!GF.isRoot()"
-                                           ng-init="filters.filter_unidad_academica = GF.getUnidadAcademicaId()">{{GF.getUser().UnidadAcademica}}</label>
-                                    <select ng-if="GF.isRoot()" class="form-control input-sm"
-                                            ng-model="filters.filter_unidad_academica"
-                                            ng-change="generarPlanilla(1)">
-                                        <option value=""> -- Todos las unidades --</option>
-                                        <option ng-repeat="carrera in GLOBALS.UNIDADES_ACADEMICAS"
-                                                value="{{carrera.idUnidadAcademica}}">
-                                            {{carrera.UnidadAcademica}}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-2">
-                                    <p class="">Carrera</p>
-                                    <label ng-if="!(GF.isAdmin() || GF.isRoot())"
-                                           ng-init="filters.filter_carrera = GF.getEspecialidadId()">{{GF.getEspecialidadName()}}</label>
-                                    <select ng-if="GF.isAdmin() || GF.isRoot()" class="form-control"
-                                            ng-model="filters.filter_carrera"
-                                            ng-change="generarPlanilla(1)">
-                                        <option value=""> -- Todos --</option>
-                                        <option ng-repeat="carrera in GLOBALS.ESPECIALIDADES"
-                                                value="{{carrera.idEspecialidad}}">
-                                            {{carrera.Especialidad}}
-                                        </option>
-                                    </select>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <p class="">Docente</p>
-                                    <ui-select tagging tagging-label="('new')" ng-model="filtersObjects.filter_docente"
-                                               theme="bootstrap"
-                                               title="Seleccione docente" ng-change="generarPlanilla(1)">
-                                        <ui-select-match allow-clear="true" placeholder="-- Todos --">
-                                            {{$select.selected.Docente}}
-                                        </ui-select-match>
-                                        <ui-select-choices
-                                            repeat="docente in GLOBALS.LISTA_CUSTOM_DOCENTES | filter: $select.search">
-                                            <div ng-bind-html="docente.Docente | highlight: $select.search"></div>
-                                        </ui-select-choices>
-                                    </ui-select>
-                                </div>
-                                <div class="col-sm-3">
-                                    <p class="">Materia</p>
-                                    <ui-select tagging tagging-label="('new')" ng-model="filtersObjects.filter_materia"
-                                               theme="bootstrap"
-                                               title="Seleccione materia" ng-change="generarPlanilla(1)">
-                                        <ui-select-match allow-clear="true" placeholder="-- Todos --">
-                                            {{$select.selected.Materia}}
-                                        </ui-select-match>
-                                        <ui-select-choices
-                                            repeat="materia in GLOBALS.LISTA_CUSTOM_MATERIAS | filter: $select.search">
-                                            <div ng-bind-html="materia.Materia | highlight: $select.search"></div>
-                                        </ui-select-choices>
-                                    </ui-select>
-                                </div>
-                                <div class="col-sm-2">
-                                    <p class="">Factura</p>
-                                    <select class="form-control" ng-model="filters.filter_factura"
-                                            ng-change="generarPlanilla(1)">
-                                        <option value=""> -- Todos --</option>
-                                        <option ng-repeat="tipo in GLOBALS.FACTURA_ITEMS" value="{{tipo.id}}">
-                                            {{tipo.name}}
-                                        </option>
-                                    </select>
-                                </div>
-                                <!--<div class="col-sm-2">
-                                  <p class="">Tipo</p>
-                                  <select class="form-control" ng-model="filter_tipo">
-                                    <option  value="" > -- Todos --</option>
-                                    <option ng-repeat="tipo in GLOBALS.TIPOS_DOCENCIA" value="{{tipo.name}}">
-                                      {{tipo.name}}
-                                    </option>
-                                  </select>
-                                </div>-->
-
-                                <div class="col-sm-2">
-                                    <p class="">Categoria</p>
-                                    <select class="form-control" ng-model="filters.filter_category"
-                                            ng-change="generarPlanilla(1)">
-                                        <option value="" selected> -- Todos --</option>
-                                        <option ng-repeat="cat in GLOBALS.TIPOS_CATEGORIAS" value="{{cat.name}}">
-                                            {{cat.name}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <br>
-
-                            <div class="form-group-sm">
-                                <div class="col-sm-2">
-                                    <p>Tipo de pago</p>
-                                    <select class="form-control sm" ng-model="filters.ES_SEMANAL"
-                                            ng-init="filters.ES_SEMANAL = 1"
-                                            ng-change="generarPlanilla(1)">
-                                        <option ng-repeat="num in GLOBALS.PAGO_ITEMS" value="{{num.id}}">
-                                            {{num.name}}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-2" ng-show="filters.ES_SEMANAL == 1">
-                                    <p>Numero de semanas</p>
-                                    <select class="form-control sm" ng-model="filters.NUMERO_SEMANAS"
-                                            ng-init="filters.NUMERO_SEMANAS = NUMERO_SEMANAS_DISPONIBLE[0];"
-                                            ng-change="filters.filter_HEADER_PLANILLA = 'A '+filters.NUMERO_HORAS+' Semanas';generarPlanilla(1)">
-                                        <option ng-repeat="num in NUMERO_SEMANAS_DISPONIBLE" value="{{num}}">
-                                            {{num+' Semanas'}}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-2" ng-show="filters.ES_SEMANAL==0">
-                                    <p>Numero de horas</p>
-                                    <select class="form-control sm" ng-model="filters.NUMERO_HORAS"
-                                            ng-init="filters.NUMERO_HORAS = NUMERO_HORAS_DISPONIBLE[0];filters.filter_HEADER_PLANILLA = 'A '+filters.NUMERO_HORAS+' Horas'"
-                                            ng-change="filters.filter_HEADER_PLANILLA = 'A '+filters.NUMERO_HORAS+' Horas';generarPlanilla(1)">
-                                        <option ng-repeat="num in NUMERO_HORAS_DISPONIBLE" value="{{num}}">
-                                            {{num+' Horas'}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <table class="table-planillas-f">
-                    <thead>
-                    <tr>
-
-                        <th rowspan="2" class="tN">N</th>
-                        <th rowspan="2" class="tCi">CI</th>
-                        <th rowspan="2" class="tCuenta">Cuenta BU</th>
-                        <th rowspan="2" class="tGrado rotate90">Grado</th>
-                        <th rowspan="2" class="tNombres">Apellidos y Nombres</th>
-                        <th ng-show="GF.isAdmin()" rowspan="2" class="tCarrera">Carrera</th>
-                        <th rowspan="2" class="tMateria">Materia</th>
-                        <th rowspan="2" class="tTipo">Tipo</th>
-                        <th rowspan="2" class="tHoras rotate90">Horas<br>Sem.</th>
-                        <th rowspan="2" class="tCategoria rotate90">Cat.</th>
-                        <th colspan="2">Ingresos</th>
-                        <th rowspan="2" class="tNumber">TOTAL</th>
-                        <th colspan="3">Egresos</th>
-                        <th rowspan="2" class="tFactura rotate90">Factura</th>
-                        <th rowspan="2" class="tFactura rotate90">Tipo de pago</th>
-                        <th rowspan="2">Liquido Pagable</th>
-                        <!--<th rowspan="2" class="text-center">Op</th>-->
-                    </tr>
-                    <tr>
-                        <th class="tNumber">Monto</th>
-                        <th class="tNumber">Total1</th>
-                        <th class="tNumber">I.U.</th>
-                        <th class="tNumber">I.T.</th>
-                        <th class="tNumber">Total</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <tr ng-repeat="docente in planillas_listing_page.items" context-menu="menusPayrollList">
-
-                        <td class="tN"
-                            ng-bind="filters.items_for_page*(planillas_listing_page.page-1)+$index+1"></td>
-                        <td class="tCi" ng-bind="docente.CI"></td>
-                        <td class="tCuenta">
-                    <span editable-text="docente.CuentaBancaria" buttons="no"
-                          onbeforesave="updateNumeroCuenta(docente,$data)">{{docente.CuentaBancaria || "--"}}</span>
-                        </td>
-                        <td class="tGrado" ng-bind="docente.Grado||'-'"></td>
-                        <td class="tNombres"><span class="cursorCell" ng-click="modificarDocente(docente)"
-                                                   ng-bind="docente.Nombres||'--' "></span></td>
-                        <td class="tCarrera" ng-show="GF.isAdmin()"
-                            ng-bind="((docente.Especialidad) | ingenieria)||'--'"></td>
-                        <td class="tMateria">
-                    <span editable-select="docente.Materia" onbeforesave="updateMateria(docente,$data)"
-                          e-ng-options="g.idMateria as g.Materia for g in GLOBALS.LISTA_CUSTOM_MATERIAS" buttons="no">
-                    {{docente.Materia||"-"}}
-                    </span>
-                        </td>
-                        <td class="tTipo">
-                    <span editable-select="docente.Tipo" onbeforesave="updateTipoDocencia(docente,$data)"
-                          e-ng-options="g.name as g.name for g in GLOBALS.TIPOS_DOCENCIA" buttons="no">
-                    {{docente.Tipo||"-"}}
-                    </span>
-                        </td>
-                        <td class="tHoras">
-              <span editable-select="docente.HorasSemanales" onbeforesave="updateHorasSemanales(docente,$data)"
-                    e-ng-options="g.id as g.name for g in GLOBALS.TIEMPOS_CARGA_HORARIA" buttons="no">
-              {{docente.HorasSemanales||"-"}}
-              </span>
-                        </td>
-                        <td class="tCategoria">
-              <span editable-select="docente.Categoria" onbeforesave="updateCategoria(docente,$data)"
-                    e-ng-options="g.id as g.name for g in GLOBALS.TIPOS_CATEGORIAS" buttons="no">
-              {{docente.Categoria||"-"}}
-              </span>
-                        </td>
-
-                        <td class="tNumber" ng-bind="(docente.Monto|mountC)||'-'"></td>
-                        <td class="tNumber" ng-bind="(docente.Total_1|mountC)||'-'"></td>
-                        <td class="tNumber" ng-bind="(docente.Total_3|mountC)||'-'"></td>
-                        <td class="tNumber" ng-bind="(docente.IU|mountC)||'-'"></td>
-                        <td class="tNumber" ng-bind="(docente.IT|mountC)||'-'"></td>
-                        <td class="tNumber" ng-bind="(docente.Total_4|mountC)||'-'"></td>
-                        <td class="tFactura">
-                            <span editable-select="docente.Factura" onbeforesave="updateFactura(docente,$data)"
-                                  e-ng-options="g.id as g.name for g in GLOBALS.FACTURA_ITEMS" buttons="no"> {{docente.Factura?"Si":"No"}}</span>
-                        </td>
-                        <td class="tLiquido">
-                            <span editable-select="docente.es_semanal" onbeforesave="updateTipoPago(docente,$data)"
-                                  e-ng-options="g.id as g.name for g in GLOBALS.PAGO_ITEMS" buttons="no"> {{ docente.por_horas?'Horas':'Semanal'}}</span>
-                        </td>
-                        <td class="tLiquido" ng-bind="(docente.LiquidoPagable|mountC)||'-'"></td>
-                        <!--<td class="text-center">
-                            <button class="btn btn-danger btn-sm PF0" tooltip="Eliminar registro"
-                                    ng-click="eliminarRegistro(docente)">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                        </td>-->
-                    </tr>
-                    </tbody>
-                </table>
-
-                <div class="row">
-                    <div class="col-sm-1">
-                        <p>**Filas por Pagina {{filters.items_for_page}}</p>
-                        <select ng-options="paginas for paginas in NUMERO_PAGINACION" ng-model="filters.items_for_page"
-                                ng-init="filters.items_for_page = 20 "
-                                ng-change="generarPlanilla(1,filters.items_for_page);filters.pagination_selected = 0"></select>
-                    </div>
-
-                    <nav ng-init="filters.pagination_selected = 0">
-                        <ul class="pagination">
-                            <li>
-                                <a aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li ng-repeat="num in planillas_pages"
-                                ng-class="(filters.pagination_selected == $index)?'active':''">
-                                <a href=""
-                                   ng-click="generarPlanilla($index+1,filters.items_for_page);filters.pagination_selected = $index">{{
-                                    $index +1 }}</a>
-                            </li>
-                            <li>
-                                <a aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
                         </ul>
-                    </nav>
+                    </div>
+                </div>
+            </nav>
+            <hr>
+            <div uib-collapse="!isNewPayrollCollapsed">
+                <div class="well well-lg">
+                    <div class="row">
+                        <table id="tab0" class="payroll table_add">
+                            <thead>
+                            <tr>
+                                <th colspan="13">
+                                    <h4>NUEVO REGISTRO DE PLANILLAS</h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th colspan="13">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="pull-left">Seleccione carrera:</div>
+                                            <select class="form-control input-sm pull-left"
+                                                    ng-model="nueva_planilla.especialidad"
+                                                    ng-options="es.id as es.name for es in GLOBALS.ESPECIALIDADES"
+                                                    required>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="pull-left">Seleccione unidad académica:</div>
+                                            <select class="form-control input-sm"
+                                                    ng-model="nueva_planilla.unidad_academica"
+                                                    data-ng-disabled="!GF.isRoot()"
+                                                    ng-options="unidad.id as unidad.name for unidad in GLOBALS.UNIDADES_ACADEMICAS">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="col-px-250">Apellidos y Nombres</th>
+                                <th class="col-3">CI</th>
+                                <th class="col-3">Cuenta BU</th>
+                                <th class="col-px-80">Grado</th>
+                                <th class="col-7">Materia</th>
+                                <th class="col-px-80">Tipo</th>
+                                <th class="col-px-70">Horas semanales</th>
+                                <th class="col-px-70">Categoria</th>
+                                <th class="col-15">Factura</th>
+                                <th class="col-15">Tipo de pago</th>
+                                <th class="col-px-80">Metodo Acad&eacute;mico</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="col-px-250 edit select">
+                                    <ui-select ng-model="tmp.tmp_docente"
+                                               title="Seleccione docente"
+                                               ng-change="nueva_planilla.docente = tmp.tmp_docente.id;
+                                                   tmp.docente = tmp.tmp_docente;
+                                                   setInfoDocente(tmp.tmp_docente.id)">
+                                        <ui-select-match placeholder="Seleccione docente">
+                                            {{$select.selected.nombres + ' '+$select.selected.ap_paterno
+                                            +' '+$select.selected.ap_materno }}
+                                        </ui-select-match>
+                                        <ui-select-choices
+                                            refresh="searchCustomDocente($select.search)" refresh-delay="300"
+                                            repeat="docente in custom_list_docente">
+                                            <div
+                                                ng-bind-html="(docente.nombres + ' '+ docente.ap_paterno+' '+docente.ap_materno  ) | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </td>
+                                <td class="col-3 text-center">
+                                    <input
+                                        data-ng-class="tmp.docente.ci ? 'input-preselected':''"
+                                        placeholder="Carnet"
+                                        ng-value="tmp.docente.ci"
+                                        disabled>
+                                </td>
+                                <td class="col-3 edit">
+                                    <input class="fullWidth"
+                                           ng-disabled="nueva_planilla_disabled['cuenta_bancaria']"
+                                           ng-model="nueva_planilla.cuenta_bancaria"
+                                           placeholder="Cuenta BU">
+                                </td>
+                                <td class="col-px-80 edit">
+                                    <select class="fullWidth" ng-model="nueva_planilla.grado"
+                                            data-ng-disabled="nueva_planilla_disabled['grado']"
+                                            ng-options="grad.id as grad.name for grad in GLOBALS.GRADOS_DOCENTE">
+                                    </select>
+                                </td>
+                                <td class="col-7 edit select">
+                                    <ui-select ng-model="tmp_materia" theme="bootstrap"
+                                               title="Seleccione materia"
+                                               ng-change="nueva_planilla.materia = tmp_materia.id">
+                                        <ui-select-match placeholder="Seleccione materia">
+                                            {{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices refresh="searchCustomMatter($select.search)"
+                                                           refresh-delay="300"
+                                                           repeat="mat in custom_list_materias">
+                                            <div ng-bind-html="mat.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </td>
+                                <td class="col-px-80 edit">
+                                    <select class="fullWidth" ng-model="nueva_planilla.tipo"
+                                            ng-options="tipo.id as tipo.name for tipo in GLOBALS.TIPOS_DOCENCIA"
+                                            placeholder="Tipo">
+                                    </select>
+                                </td>
+                                <td class="col-px-70 edit">
+                                    <select class="fullWidth" ng-model="nueva_planilla.horas_semanales"
+                                            ng-options="hrs.id as hrs.name for hrs in GLOBALS.TIEMPOS_CARGA_HORARIA">
+                                    </select>
+                                </td>
+                                <td class="col-px-70 edit">
+                                    <select class="fullWidth" ng-model="nueva_planilla.categoria"
+                                            ng-disabled="nueva_planilla_disabled['categoria']"
+                                            ng-options="cat.id as cat.name for cat in GLOBALS.TIPOS_CATEGORIAS">
+                                    </select>
+                                </td>
+                                <td class="col-15">
+                                    <select class="fullWidth" ng-model="nueva_planilla.factura"
+                                            data-ng-disabled="nueva_planilla_disabled['factura']"
+                                            ng-options="tipo.id as tipo.name for tipo in GLOBALS.FACTURA_ITEMS"
+                                            required>
+                                    </select>
+                                </td>
+                                <td class="col-15">
+                                    <select class="fullWidth" ng-model="nueva_planilla.tipo_pago"
+                                            data-ng-disabled="nueva_planilla_disabled['is_semanal_horas']"
+                                            ng-options="pag.id as pag.name for pag in GLOBALS.TIPO_PAGO"
+                                            required>
+                                    </select>
+                                </td>
+                                <td class="col-px-80">
+                                    <select class="fullWidth" ng-model="nueva_planilla.pensul"
+                                            data-ng-disabled="nueva_planilla_disabled['pensul']"
+                                            ng-options="fac.id as fac.name for fac in GLOBALS.PENSUL"
+                                            required>
+                                    </select>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="13" class="text-center">
+                                    <button class="btn btn-success btn-sm"
+                                            ng-click="guardar_nueva_planilla(nueva_planilla)"
+                                            title="Guardar">
+                                        <i class="glyphicon glyphicon-save"></i> Guardar
+                                    </button>
+
+
+                                    <button class="btn btn-warning btn-sm"
+                                            ng-click="load_init_params()" title="Limpiar">
+                                        <i class="glyphicon glyphicon-alert"></i> Limpiar
+                                    </button>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
+            <div uib-collapse="!isSearchCollapsed">
+                <div class="well well-lg">
+                    <div class="form-horizontal row">
+                        <div class="form-group-sm">
+                            <div class="col-sm-2">
+                                <p class="">Unidad Académica</p>
+                                <select class="form-control input-sm"
+                                        ng-model="filters.unidad_academica"
+                                        ng-change="load_planillas()"
+                                        ng-options="unidades.id as unidades.name for unidades in GLOBALS.UNIDADES_ACADEMICAS">
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="">Carrera</p>
+                                <select class="form-control"
+                                        ng-model="filters.especialidad"
+                                        ng-change="load_planillas()"
+                                        ng-options="especialidad.id as especialidad.name for especialidad in GLOBALS.ESPECIALIDADES">
+                                    <option value=""> -- Todas las carreras --</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <p class="">Docente</p>
+                                <ui-select ng-model="tmp_filters.docente"
+                                           theme="bootstrap"
+                                           title="Seleccione docente"
+                                           ng-change="filters.docente = tmp_filters.docente.id;load_planillas()">
+                                    <ui-select-match allow-clear="true" placeholder="-- Todos los docentes --">
+                                        {{$select.selected.ap_paterno+' '+$select.selected.ap_materno+' '+
+                                        $select.selected.nombres}}
+                                    </ui-select-match>
+                                    <ui-select-choices
+                                        refresh="searchCustomDocente($select.search)" refresh-delay="300"
+                                        repeat="docente in custom_list_docente">
+                                        <div
+                                            ng-bind-html="(docente.ap_paterno + ' '+docente.ap_materno+' '+docente.nombres) | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-sm-3">
+                                <p class="">Materia</p>
+                                <ui-select ng-model="tmp_filters.materia"
+                                           theme="bootstrap"
+                                           title="Seleccione materia"
+                                           ng-change="filters.materia = tmp_filters.materia.id;load_planillas()">
+                                    <ui-select-match allow-clear="true" placeholder="-- Todas las materias --">
+                                        {{$select.selected.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices
+                                        refresh="searchCustomMatter($select.search)" refresh-delay="300"
+                                        repeat="materia in custom_list_materias">
+                                        <div ng-bind-html="materia.name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="">Factura</p>
+                                <select class="form-control" ng-model="filters.factura"
+                                        ng-change="load_planillas()"
+                                        ng-options="fac.id as fac.name for fac in GLOBALS.FACTURA_ITEMS">
+                                    <option value=""> -- Sin especificar --</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="">Categoría</p>
+                                <select class="form-control"
+                                        ng-model="filters.categoria"
+                                        ng-change="load_planillas()"
+                                        ng-options="cat.id as cat.name for cat in GLOBALS.TIPOS_CATEGORIAS">
+                                    <option value="" selected> -- Todas --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="form-group-sm">
+                            <div class="col-sm-2">
+                                <p>Tipo de pago</p>
+                                <select class="form-control sm" ng-model="filters.tipo_pago"
+                                        ng-change="load_planillas()"
+                                        ng-options="tipo_pago.id as tipo_pago.name for tipo_pago in GLOBALS.TIPO_PAGO">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table-planillas-f">
+                <thead>
+                <tr>
+                    <th rowspan="2" class="tN">N</th>
+                    <th rowspan="2" class="tCi">CI</th>
+                    <th rowspan="2" class="tCuenta">Cuenta BU</th>
+                    <th rowspan="2" class="tGrado rotate90">Grado</th>
+                    <th rowspan="2" class="tNombres">Apellidos y Nombres</th>
+                    <th ng-show="GF.isAdmin()" rowspan="2" class="tCarrera">Carrera</th>
+                    <th rowspan="2" class="tMateria">Materia</th>
+                    <th rowspan="2" class="tTipo">Tipo</th>
+                    <th rowspan="2" class="tHoras rotate90">Horas<br>Sem.</th>
+                    <th rowspan="2" class="tCategoria rotate90">Cat.</th>
+                    <th colspan="2">Ingresos</th>
+                    <th rowspan="2" class="tNumber">TOTAL</th>
+                    <th colspan="3">Egresos</th>
+                    <th rowspan="2" class="tFactura rotate90">Factura</th>
+                    <th rowspan="2" class="tFactura rotate90">Pago</th>
+                    <th rowspan="2">Liquido Pagable</th>
+                    <!--<th rowspan="2" class="text-center">Op</th>-->
+                </tr>
+                <tr>
+                    <th class="tNumber">Monto</th>
+                    <th class="tNumber">Total1</th>
+                    <th class="tNumber">I.U.</th>
+                    <th class="tNumber">I.T.</th>
+                    <th class="tNumber">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr ng-repeat="registro in planillas_data.data" context-menu="menusPayrollList">
+                    <td class="tN" ng-bind="$index+1"></td>
+                    <td class="tCi" ng-bind="registro.docente.ci"></td>
+                    <td class="tCuenta" ng-bind="registro.cuenta_bancaria || '--'"></td>
+                    <td class="tGrado" ng-bind="registro.grado.short"></td>
+                    <td class="tNombres"
+                        ng-bind="registro.docente.ap_paterno+' '+registro.docente.ap_materno  + ' '+registro.docente.nombres">
+                        <!--<span class="cursorCell" ng-click="modificarDocente(registro.docente.id)"-->
+                        <!--ng-bind="registro.docente.nombres + ' '+registro.docente.ap_paterno+' '+registro.docente.ap_materno ">-->
+                        <!--</span>-->
+                    </td>
+                    <td class="tCarrera" ng-show="GF.isAdmin()" ng-bind="registro.especialidad.name"></td>
+                    <td class="tMateria" ng-bind="registro.materia.name"></td>
+                    <td class="tTipo center" ng-bind="registro.tipo.short"></td>
+                    <td class="tHoras center" ng-bind="registro.horas_semanales"></td>
+                    <td class="tCategoria center" ng-bind="registro.categoria"></td>
+                    <td class="tNumber" ng-bind="registro.monto|mountC"></td>
+                    <td class="tNumber" ng-bind="registro.total_1|mountC"></td>
+                    <td class="tNumber" ng-bind="registro.total_3|mountC"></td>
+                    <td class="tNumber" ng-bind="registro.iu|mountC"></td>
+                    <td class="tNumber" ng-bind="registro.it|mountC"></td>
+                    <td class="tNumber" ng-bind="registro.total_4|mountC"></td>
+                    <td class="tFactura center" ng-bind="registro.factura"></td>
+                    <td class="tLiquido center" ng-bind="registro.tipo_pago.short"></td>
+                    <td class="tLiquido" ng-bind="registro.liquido_pagable|mountC"></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr ng-hide="planillas_data.data.length>0">
+                    <td colspan="19" class="text-center">
+                        <p class="alert alert-info"> -- No se encontraron resultados -- </p>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>**Filas por página {{planillas_query_params.page_size}}</p>
+                    <select ng-options="paginas for paginas in GLOBALS.NUMEROS_PAGINACION"
+                            ng-model="planillas_query_params.page_size"
+                            ng-change="load_planillas()"></select>
+                </div>
+
+                <uib-pagination class="pagination-sm"
+                                total-items="planillas_data.total"
+                                items-per-page="planillas_data.per_page"
+                                ng-model="planillas_query_params.page"
+                                previous-text="Anterior"
+                                ng-change="load_planillas()"
+                                next-text="Siguiente">
+                </uib-pagination>
+            </div>
         </div>
-
-        <script type="text/ng-template" id="customTemplateTeacher.html">
-            <a>
-                <img ng-src="{{match.model.image || 'images/user_default.svg'}}" width="30" height="30">
-                <span ng-bind="match.model.first_name + ' '+match.model.last_name"></span>
-            </a>
-        </script>
-
-        <script type="text/ng-template" id="customTemplateMatter.html">
-            <a>
-                <img ng-src="{{matter.image || 'images/no-img-available.png'}}" width="30" height="30">
-                <span ng-bind="match.model.name"></span>
-            </a>
-        </script>
-
-        <script type="text/ng-template" id="customTemplateAcademicUnit.html">
-            <a>
-                <img ng-src="{{match.model.image}}" width="80" height="40">
-                <span ng-bind="match.model.name"></span>
-            </a>
-        </script>
     </div>
-
-
-    <div ng-init="generarPlanilla()"></div>
 </div>

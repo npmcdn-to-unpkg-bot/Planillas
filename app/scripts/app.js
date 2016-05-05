@@ -32,10 +32,10 @@ angular
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-        $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-        $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET,POST,PUT,DELETE,OPTIONS';
-        $httpProvider.defaults.headers.common["Access-Control-Allow-Headers"] = "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With";
-        $httpProvider.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
+        //$httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+        //$httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET,POST,PUT,DELETE,OPTIONS';
+        //$httpProvider.defaults.headers.common["Access-Control-Allow-Headers"] = "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With";
+        //$httpProvider.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
         $routeProvider
             .when('/', {
                 templateUrl: 'views/splashscreen.html',
@@ -249,8 +249,6 @@ angular
         $rootScope.setMenu_EliminarRegistros = function () {
             $location.url('/EliminarRegistros');
             $rootScope.CURRENT_VIEW = 'views/eliminarregistros.html';
-            $rootScope.GF.load_gestiones_academicas();
-            $rootScope.GF.load_logs();
         };
         $rootScope.setMenu_Sincronizacion = function () {
             $location.url('/Sincronizacion');
@@ -265,43 +263,12 @@ angular
             $rootScope.CURRENT_VIEW = 'views/reportes.html';
         };
         $rootScope.setMenu_GenerarPlanilla = function () {
-            $rootScope.filters = {};
-            $rootScope.filters.items_for_page = 20;
-            $rootScope.GF.load_unidades_academicas();
-            $rootScope.GF.load_lista_docentes();
-            $rootScope.GF.load_lista_materias();
-            $rootScope.GF.load_especialidades();
-            $rootScope.GF.load_tipos_categoria();
-            $rootScope.GF.load_montos_pago();
-            $rootScope.GF.load_tiempo_carga_horaria();
-            $rootScope.GF.load_tiempo_atrasos();
-            $rootScope.GF.load_valor_impuestos();
-            $rootScope.GF.load_pensuls();
-            $rootScope.GF.load_tipos_docencia();
-            $rootScope.GF.load_gradosDocentes();
-            $rootScope.GF.load_paralelos();
-            $rootScope.GF.load_semestres();
             $location.url('/GenerarPlanilla');
             $rootScope.CURRENT_VIEW = 'views/generarplanilla.html';
         };
         $rootScope.setMenu_VerPlanilla = function () {
-            $rootScope.filters = {};
-            $rootScope.filters.items_for_page = 20;
-            $rootScope.GF.load_unidades_academicas();
-            $rootScope.GF.load_lista_docentes();
-            $rootScope.GF.load_lista_materias();
-            $rootScope.GF.load_especialidades();
-            $rootScope.GF.load_tipos_categoria();
-            $rootScope.GF.load_montos_pago();
-            $rootScope.GF.load_tiempo_carga_horaria();
-            $rootScope.GF.load_tiempo_atrasos();
-            $rootScope.GF.load_valor_impuestos();
-            $rootScope.GF.load_pensuls();
-            $rootScope.GF.load_tipos_docencia();
-            $rootScope.GF.load_gradosDocentes();
-            //$rootScope.GF.load_gr;
             $location.url('/VerPlanilla');
-            if ($rootScope.GF.isSecre()) {
+            if ($rootScope.GF.isSecretaria()) {
                 $rootScope.CURRENT_VIEW = 'views/verplanillasecretaria.html';
             } else {
                 $rootScope.CURRENT_VIEW = 'views/verplanilla.html';
@@ -367,7 +334,7 @@ angular
                     break;
                 case "/GenerarPlanilla":
                     // $location.url('/GenerarPlanilla');
-                    if ($rootScope.GF.isSecre()) {
+                    if ($rootScope.GF.isSecretaria()) {
                         $location.url("/Gestion");
                     }
                     $rootScope.setMenu_GenerarPlanilla();
@@ -447,14 +414,6 @@ angular
                 })
         };
 
-        $rootScope.GF.load_tipos_docencia = function (fcnScs, fcnErr) {
-            fcnScs && fcnScs();
-            $rootScope.GLOBALS.TIPOS_DOCENCIA = [
-                {id: 1, name: "Catedra", short: 'T'},
-                {id: 2, name: "Práctica", short: 'P'},
-                {id: 3, name: "Laboratorio", short: 'L'}];
-        };
-
         $rootScope.GF.load_tipo_usuarios = function (fcnScs, fcnErr) {
             return $http.get(URLS.TIPO_USUARIO)
                 .then(function (data) {
@@ -475,20 +434,42 @@ angular
                 })
         };
 
-        $rootScope.GF.load_logs = function (fcnScs, fcnErr) {
-            //$http2.get(URLS.LOGS, {}, function (data) {
-            //    if (data.Success) {
-            //        $rootScope.GLOBALS.LOGS = data.Logs;
-            //        fcnScs && fcnScs(data);
-            //    }
-            //}, function () {
-            //    fcnErr && fcnErr();
-            //})
+        $rootScope.GF.load_gradosDocentes = function () {
+            return $http.get(URLS.GRADO_DOCENTE)
+                .then(function (data) {
+                    $rootScope.GLOBALS.GRADOS_DOCENTE = data['data']['data'];
+                });
         };
 
+        $rootScope.GF.load_tipoPago = function () {
+            return $http.get(URLS.TIPO_PAGO)
+                .then(function (data) {
+                    $rootScope.GLOBALS.TIPO_PAGO = data['data']['data'];
+                    //$rootScope.GLOBALS.PAGO_ITEMS = [{id: 1, name: "Semanal"}, {id: 0, name: "Horas"}];
+                });
+        };
+        $rootScope.GLOBALS.TIPO_PAGO = [{id: 1, name: "Horas", short: 'Hrs'}, {id: 2, name: "Semanal", short: "Sem"}];
+        $rootScope.GLOBALS.TIPOS_CATEGORIAS = [
+            {id: 'A', name: "A"}, {id: 'B', name: "B"}, {id: 'C', name: "C"}, {id: 'D', name: "D"}
+        ];
+        $rootScope.GLOBALS.TIPOS_DOCENCIA = [
+            {id: 1, name: "Teoría", short: 'T'},
+            {id: 2, name: "Práctica", short: 'P'},
+            {id: 3, name: "Laboratorio", short: 'L'}];
+        $rootScope.GLOBALS.FACTURA_ITEMS = [{id: "Si", name: "Si"}, {id: "No", name: "No"}];
+        $rootScope.GLOBALS.PENSUL = [
+            {id: 1, name: "Objetivos", short: 'Obj'},
+            {id: 2, name: "Competencias", short: 'Comp'}
+        ];
+        $rootScope.GLOBALS.TIEMPOS_CARGA_HORARIA = [];
+        $rootScope.GLOBALS.NUMEROS_PAGINACION = [];
+        for (var i = 1; i <= 25; i++) {
+            $rootScope.GLOBALS.TIEMPOS_CARGA_HORARIA.push({id: i, name: i});
+        }
+        for (var i = 1; i <= 10; i++) {
+            $rootScope.GLOBALS.NUMEROS_PAGINACION.push(i * 5);
+        }
 ///////
-
-
         $rootScope.GF.load_usuarios = function (query_params) {
             var defer = $q.defer();
             query_params = query_params || {};
@@ -496,7 +477,6 @@ angular
             (new (new ModelService.UsuariosModel()).resource())
                 .$get(query_params).then(function (data) {
                     defer.resolve(data);
-                    console.log(data);
                     $rootScope.GLOBALS.LISTA_USUARIOS = data['data'];
                 }
                 , function (data) {
@@ -515,22 +495,6 @@ angular
             }, function () {
                 fcnErr && fcnErr();
             })
-        };
-
-        $rootScope.GF.load_tipos_categoria = function (fcnScs, fcnErr) {
-            fcnScs && fcnScs();
-            $rootScope.GLOBALS.TIPOS_CATEGORIAS = [{id: 'A', name: "A"}, {id: 'B', name: "B"}, {id: 'C', name: "C"}, {
-                id: 'D',
-                name: "D"
-            }];
-        };
-
-        $rootScope.GF.load_pensuls = function (fcnScs, fcnErr) {
-            fcnScs && fcnScs();
-            $rootScope.GLOBALS.PENSUL = [
-                {id: 1, name: "Objetivos"},
-                {id: 2, name: "Competencias"}
-            ];
         };
 
         $rootScope.GF.load_lista_docentes = function (fcnScs, fcnErr, query) {
@@ -554,46 +518,6 @@ angular
             });
         };
 
-        $rootScope.GF.load_tiempo_carga_horaria = function (fcnScs, fcnErr) {
-            fcnScs && fcnScs();
-            $rootScope.GLOBALS.TIEMPOS_CARGA_HORARIA = [];
-            for (var i = 0; i <= 25; i++) {
-                $rootScope.GLOBALS.TIEMPOS_CARGA_HORARIA.push({id: i, name: i});
-            }
-        };
-
-        $rootScope.GF.load_paralelos = function (fcnScs, fcnErr) {
-            fcnScs && fcnScs();
-            $rootScope.GLOBALS.PARALELOS = [
-                {id: 'A', name: "A"},
-                {id: 'B', name: "B"},
-                {id: 'C', name: "C"},
-                {id: 'D', name: "D"},
-                {id: 'E', name: "E"},
-                {id: 'F', name: "F"},
-                {id: 'G', name: "G"},
-                {id: 'H', name: "H"},
-                {id: 'I', name: "I"},
-                {id: 'J', name: "J"},
-                {id: 'K', name: "K"},
-                {id: 'L', name: "L"},
-                {id: 'M', name: "M"},
-                {id: 'N', name: "N"},
-                {id: 'O', name: "O"},
-                {id: 'P', name: "P"},
-                {id: 'Q', name: "Q"},
-                {id: 'R', name: "R"},
-                {id: 'S', name: "S"},
-                {id: 'T', name: "T"},
-                {id: 'U', name: "U"},
-                {id: 'V', name: "V"},
-                {id: 'W', name: "W"},
-                {id: 'X', name: "X"},
-                {id: 'Y', name: "Y"},
-                {id: 'Z', name: "Z"}
-            ];
-        };
-
         $rootScope.GF.load_tiempo_atrasos = function (fcnScs, fcnErr) {
             fcnScs && fcnScs();
             $rootScope.GLOBALS.TIEMPOS_ATRASOS = [];
@@ -602,33 +526,6 @@ angular
                 $rootScope.GLOBALS.TIEMPOS_ATRASOS.push({id: i, name: i + ''});
             }
         };
-
-        $rootScope.GF.load_gradosDocentes = function (fcnScs, fcnErr) {
-            $rootScope.GLOBALS.GRADOS_DOCENTE = [
-                {name: 'Coronel', value: 'CRNL'},
-                {name: 'Egresado', value: 'Egr'},
-                {name: 'Ingeniero', value: 'ING'},
-                {name: 'Licenciado', value: 'LIC'}
-            ];
-        };
-
-        $rootScope.GF.load_semestres = function (fcnScs, fcnErr) {
-            fcnScs && fcnScs();
-            $rootScope.GLOBALS.SEMESTRES = [{id: 1, name: "1er"},
-                {id: 2, name: "2do"},
-                {id: 3, name: "3er"},
-                {id: 4, name: "4to"},
-                {id: 5, name: "5to"},
-                {id: 6, name: "6to"},
-                {id: 7, name: "7mo"},
-                {id: 8, name: "8vo"},
-                {id: 9, name: "9no"},
-                {id: 10, name: "10mo"}
-            ];
-        };
-
-        $rootScope.GLOBALS.FACTURA_ITEMS = [{id: 1, name: "Si"}, {id: 0, name: "No"}];
-        $rootScope.GLOBALS.PAGO_ITEMS = [{id: 0, name: "Semanal"}, {id: 1, name: "Horas"}];
 
         $rootScope.openModalConfirm = function (ok, cancel, title, message) {
             var modalInstance = $modal.open({

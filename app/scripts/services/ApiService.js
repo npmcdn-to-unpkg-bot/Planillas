@@ -28,6 +28,8 @@ angular.module('planillasApp')
             Logs: getModelResource(base_url + 'logs/:id/'),
             UnidadAcademica: getModelResource(base_url + 'unidad_academica/:id/'),
             GestionAcademicas: getModelResource(base_url + 'gestion_academicas/:id/'),
-            TipoUsuario: getModelResource(base_url + 'tipo_usuario/:id/')
+            TipoUsuario: getModelResource(base_url + 'tipo_usuario/:id/'),
+            Planillas: getModelResource(base_url + 'planillas/:id/'),
+            Reportes: getModelResource(base_url + 'reportes/:id/')
         };
     });

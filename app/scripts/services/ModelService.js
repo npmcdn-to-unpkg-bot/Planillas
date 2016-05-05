@@ -115,7 +115,7 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.Docentes;
                 context.fields = [
-                    {label: "Apellido materno", name: "ap_paterno", type: 'string', required: true},
+                    {label: "Apellido paterno", name: "ap_paterno", type: 'string', required: true},
                     {label: "Apellido materno", name: "ap_materno", type: 'string', required: true},
                     {label: "Nombres", name: "nombres", type: 'string', required: true},
                     {label: "Carnet", name: "ci", type: 'string', required: true},

@@ -1,89 +1,78 @@
 <div ng-controller="ReportesCtrl">
-  <div class="col-md-10 col-md-offset-1">
-    <div class="panel panel-success">
-      <div class="panel-heading text-center text-uppercase">
-        <h4>Reportes</h4>
-      </div>
-      <div class="panel-body">
-        <div class="row col-md-12">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-success">
+            <div class="panel-heading text-center text-uppercase">
+                <h4>Reportes</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row col-md-12">
 
-          <div class="col-sm-2" ng-hide="GF.isSecre()">
-            <p class="">Unidad Academica</p>
-            <label ng-if="!GF.isRoot()">{{GF.getUnidadAcademicaName()}}</label>
-            <select ng-if="GF.isRoot()" class="form-control" ng-model="filter_unidadAcademica">
-              <option value="">-- Todos --</option>
-              <option ng-repeat="unidad in GLOBALS.UNIDADES_ACADEMICAS">{{unidad.UnidadAcademica}}</option>
-            </select>
-          </div>
-          <div class="col-sm-3" ng-hide="GF.isSecre()">
-            <p class="">Carrera</p>
-            <label ng-if="!GF.isRoot()">{{GF.getEspecialidadName()}}</label>
-            <select ng-if="GF.isRoot()" class="form-control" ng-model="filter_carrera">
-              <option value="">-- Todos --</option>
-              <option ng-repeat="carrera in GLOBALS.ESPECIALIDADES">{{carrera.Especialidad}}</option>
-            </select>
-          </div>
+                    <div class="col-sm-2">
+                        <p class="">Unidad Académica</p>
+                        <select class="form-control" ng-model="filters.unidad_academica"
+                                ng-change="load_reports()"
+                                ng-options="unidad.id as unidad.name for unidad in GLOBALS.UNIDADES_ACADEMICAS">
+                            <option value="">-- Todos --</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="">Detalle</p>
+                        <input class="form-control" ng-model="filters.search"
+                               placeholder="Descripción de planilla"
+                               ng-change="load_reports()">
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered table-hover table-striped tableShowData">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Fecha</th>
+                    <th>Usuario</th>
+                    <th>Unidad Académica</th>
+                    <th>Detalle</th>
+                    <th>Gestión</th>
+                    <th>REPORTES</th>
+                    <th ng-if="!GF.isSecretaria()">+/-</th>
+                </tr>
+                </thead>
+                <tbody>
 
-          <div class="col-sm-2" ng-hide="GF.isSecre()">
-            <p class="">Tipo de Usuarios</p>
-            <select class="form-control" ng-model="filter_tipo">
-              <option value="">-- Todos --</option>
-              <option ng-repeat="tipo in GLOBALS.TIPOS_USUARIO">{{tipo.tipo}}</option>
-            </select>
-          </div>
+                <tr ng-repeat="reporte in reportes_data.data">
+                    <td>{{$index+1}}</td>
+                    <td>{{reporte.created_at | CrudFilter: 'datetime'}}</td>
+                    <td>{{reporte.user.ap_paterno+' '+reporte.user.ap_materno+' '+reporte.user.nombres}}</td>
+                    <td>{{reporte.unidad_academica.name}}</td>
+                    <td>{{reporte.descripcion||" -- Sin Descripción --"}}</td>
+                    <td>{{reporte.periodo_gestion+' - '+reporte.gestion}}</td>
+                    <td>
+                        <a ng-href="{{path_report_item+'?fileType=pdf&fileName='+reporte.file}}" target="_blank"
+                           title="{{reporte.file}}.pdf" download="">
+                            <img src="images/pdf_icon.png" class="icon-report"></a>
 
-          <div class="col-sm-3">
-            <p class="">Nombre de usuario</p>
-            <input class="form-control" ng-model="filter_nombre" placeholder="Nombre">
-          </div>
+                        <a ng-href="{{path_report_item+'?fileType=xls&fileName='+reporte.file}}" target="_blank"
+                           title="{{reporte.file}}.xls" download="">
+                            <img src="images/xls_icon.png" class="icon-report"></a>
+                    </td>
+                    <td ng-if="!GF.isSecretaria()">
+                        <button type="button" ng-click="eliminarReporte(rep)" class="btn btn-danger btn-xs">
+                            <i class="glyphicon glyphicon-remove"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
-          <!--<div class="col-sm-2">
-            <p class="">Fecha</p>
-            <input type="date" class="form-control" ng-model="filter_fecha">
-          </div>-->
+            <div ng-hide="reportes_data.data.length>0" class="text-center">
+                -- NO SE ENCONTRARON RESULTADOS--
+            </div>
+            <div class="text-center">
+                <uib-pagination total-items="reportes_data.total"
+                                items-per-page="reportes_data.per_page"
+                                ng-model="filters.page" class="pagination-sm" previous-text="Anterior"
+                                ng-change="load_reports()"
+                                next-text="Siguiente">
+                </uib-pagination>
+            </div>
         </div>
-      </div>
-      <table class="table table-bordered table-hover table-striped tableShowData">
-        <thead>
-        <tr>
-          <td>#</td>
-          <td>Fecha</td>
-          <td>Usuario</td>
-          <td>Rol</td>
-          <td>Unidad Academica</td>
-          <td>Especialidad</td>
-          <td>Detalle</td>
-          <td>Gestion</td>
-          <td>REPORTES</td>
-          <td ng-if="!GF.isSecre()">+/-</td>
-        </tr>
-        </thead>
-        <tbody>
-
-        <tr
-          ng-repeat="rep in GLOBALS.allreportes | filter:filter_fecha.toLocaleDateString() | filter:filter_carrera |filter:filter_nombre | filter:filter_tipo | filter:filter_unidadAcademica">
-          <td>{{$index+1}}</td>
-          <td>{{rep.created_at}}</td>
-          <td>{{rep.Nombre}}</td>
-          <td>{{rep.tipo}}</td>
-          <td>{{rep.UnidadAcademica}}</td>
-          <td>{{rep.Especialidad}}</td>
-          <td>{{rep.Descripcion||"Sin Descripcion"}}</td>
-          <td>{{rep.idPeriodoGestion+' - '+rep.Gestion}}</td>
-          <td><a href="{{ITEMREPORTES+'?fileName='+rep.fileName}}" target="_blank"> <img
-            src="images/pdf_icon.png" class="icon-report"></a></td>
-          <td ng-if="!GF.isSecre()">
-            <button type="button" ng-click="eliminarReporte(rep)" class="btn btn-danger btn-xs"><i
-              class="glyphicon glyphicon-remove"></i></button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-
-      <div ng-show="GLOBALS.allreportes.length<=0" class="text-center">
-        -- NO SE ENCONTRARON RESULTADOS--
-      </div>
-
     </div>
-  </div>
 </div>
