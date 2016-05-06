@@ -121,7 +121,6 @@ angular.module('planillasApp')
         };
         $scope.set_filters();
 
-
         $scope.show_preview_payroll = function () {
             var query_params = $.extend({}, $scope.planillas_query_params, $scope.filters);
             setTimeout(function () {
