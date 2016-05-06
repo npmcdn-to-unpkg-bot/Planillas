@@ -48,14 +48,14 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="">
+                                        <a href="" ng-click="show_modal_report()">
                                             <i class="glyphicon glyphicon-file"></i> Reporte (.pdf)</a>
                                     </li>
 
                                     <li>
-                                        <a href="">
+                                        <a href="" ng-click="download_file_banco()">
                                             <i class="glyphicon glyphicon-file"></i> Lista(Cuenta bancaria - Monto)
-                                            (.pdf)</a>
+                                            (.txt)</a>
                                     </li>
                                 </ul>
                             </li>
@@ -69,12 +69,12 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="">
-                                            <i class="glyphicon glyphicon-unchecked"></i> Limpiar reintegro (.pdf)</a>
+                                        <a href="" ng-click="limpiar('reintegro')">
+                                            <i class="glyphicon glyphicon-unchecked"></i> Limpiar reintegro</a>
                                     </li>
 
                                     <li>
-                                        <a href="">
+                                        <a href="" ng-click="limpiar('atrasos_periodos')">
                                             <i class="glyphicon glyphicon-unchecked"></i> Limpiar atrasos</a>
                                     </li>
                                 </ul>

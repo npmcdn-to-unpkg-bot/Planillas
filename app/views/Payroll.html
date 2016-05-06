@@ -97,6 +97,7 @@
                         </ui-select-choices>
                     </ui-select>
                 </div>
+                <i class="clearfix"></i>
                 <div class="col-sm-2 filter-field">
                     <p>Factura</p>
                     <select class="form-control" ng-model="filters.factura"
@@ -150,9 +151,11 @@
                 </div>
                 <div class="col-sm-2 filter-field right">
                     <p>Opciones</p>
-                    <label>- Habilitar reintegro <input type="checkbox" ng-model="filters.reintegro"
-                                                        ng-change="load_planillas()"></label>
+                    <label>- Habilitar reintegro
+                        <input type="checkbox" ng-model="filters.reintegro" ng-change="load_planillas()"></label>
                     <br>
+                    <label>- Habilitar atrasos
+                        <input type="checkbox" ng-model="filters.atrasos" ng-change="load_planillas()"></label>
                 </div>
             </div>
         </div>
@@ -168,13 +171,16 @@
             <th width-static="30" rowspan="2" class="rotate90">Grado</th>
             <th width-static="120" rowspan="2">Apellidos y Nombres</th>
             <th rowspan="2" ng-if="enable_fields.especialidad">Carrera</th>
-            <th rowspan="2">Materia</th>
+            <th width-static="150" rowspan="2">Materia</th>
             <th width-static="30" rowspan="2" title="Teoría, Práctica, Laboratorio">Tipo</th>
             <th width-static="30" rowspan="2" class="rotate90">
                 Horas <br>{{filters.tipo_pago == 2 ? "Sem.":''}}
             </th>
             <th width-static="25" rowspan="2" class="rotate90" title="A, B, C, D">Cat.</th>
-            <th colspan="{{filters.reintegro?4:2}}">Ingresos</th>
+            <th colspan="{{filters.reintegro?4:3}}">Ingresos</th>
+            <th width-static="35" rowspan="2" ng-if="filters.atrasos" class="rotate90"
+                title="{{filters.tipo_pago==2?'Nro. Periodos de atraso':'Horas atrasadas'}}">Atrasos
+            </th>
             <th width-static="45" rowspan="2">TOTAL</th>
             <th colspan="3">Egresos</th>
             <th width-static="30" rowspan="2" class="rotate90">Factura</th>
@@ -186,7 +192,7 @@
             <th width-static="45">Monto</th>
             <th width-static="45">Total1</th>
             <th width-static="50" ng-show="filters.reintegro">Reintegro</th>
-            <th width-static="45" ng-show="filters.reintegro" title="Total 1 + Reintegro">Total2</th>
+            <th width-static="45" title="Total 1 + Reintegro">Total2</th>
             <th width-static="45" title="Impuesto a las utilidades">I.U.</th>
             <th width-static="45" title="Impuesto a las transacciones">I.T.</th>
             <th width-static="45" title="Impuesto a las utilidades + Impuesto a las transacciones">
@@ -203,30 +209,119 @@
                     <i class="glyphicon " ng-class="registro.habilitado==1?'glyphicon-ok':'glyphicon-minus'"></i>
                 </button>
             </td>
+
             <td class="center" ng-bind="$index+1"></td>
             <td class="center" ng-bind="registro.docente.ci"></td>
-            <td ng-bind="registro.cuenta_bancaria||' -- '"></td>
-            <td class="center" ng-bind="registro.grado.short"></td>
+            <td class="editable">
+                <div ng-bind="registro.cuenta_bancaria||' -- '" ng-if="!editable"></div>
+                <div ng-if="editable" editable-text="registro.cuenta_bancaria"
+                     buttons="no" class="edit-label"
+                     onbeforesave="update_item_payroll($data,registro.id,'cuenta_bancaria')"
+                     ng-bind="registro.cuenta_bancaria||' -- '">
+                </div>
+            </td>
+            <td class="center editable">
+                <div ng-bind="registro.grado.short" ng-if="!editable"></div>
+                <div ng-if="editable" editable-select="registro.grado"
+                     e-ng-options="item.id as item.name for item in GLOBALS.GRADOS_DOCENTE"
+                     buttons="no" class="edit-label"
+                     onbeforesave="update_item_payroll($data,registro.id,'grado')"
+                     ng-bind="registro.grado.short">
+                </div>
+            </td>
             <td width-static="155"
                 ng-bind="registro.docente.ap_paterno+' '+registro.docente.ap_materno  + ' '+registro.docente.nombres">
             </td>
             <td ng-show="enable_fields.especialidad" ng-bind="registro.especialidad.name"></td>
-            <td ng-bind="registro.materia.name"></td>
-            <td class="center" ng-bind="registro.tipo.short"></td>
-            <td class="center" ng-bind="registro.horas_semanales"></td>
-            <td class="center" ng-bind="registro.categoria"></td>
+            <td class="editable select-matter-custom">
+                <div ng-if="!editable" ng-bind="registro.materia.name"></div>
+                <ui-select ng-model="registro.materia" theme="bootstrap"
+                           title="Seleccione materia"
+                           ng-if="editable"
+                           ng-change="update_item_payroll(registro.materia.id,registro.id,'materia')">
+                    <ui-select-match placeholder="Seleccione materia">
+                        {{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices refresh="searchCustomMatter($select.search)"
+                                       refresh-delay="300"
+                                       repeat="mat in custom_list_materias">
+                        <div ng-bind-html="mat.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+
+            </td>
+            <td class="center editable">
+                <div ng-bind="registro.tipo.short" ng-if="!editable"></div>
+                <div ng-if="editable" editable-select="registro.tipo"
+                     e-ng-options="item.id as item.name for item in GLOBALS.TIPOS_DOCENCIA"
+                     buttons="no" class="edit-label"
+                     onbeforesave="update_item_payroll($data,registro.id,'tipo')"
+                     ng-bind="registro.tipo.short">
+                </div>
+            </td>
+            <td class="center editable">
+                <div ng-bind="registro.horas_semanales" ng-if="!editable"></div>
+                <div ng-if="editable" editable-select="registro.horas_semanales"
+                     e-ng-options="item.id as item.name for item in GLOBALS.TIEMPOS_CARGA_HORARIA"
+                     buttons="no" class="edit-label"
+                     onbeforesave="update_item_payroll($data,registro.id,'horas_semanales')"
+                     ng-bind="registro.horas_semanales">
+                </div>
+            </td>
+            <td class="center editable">
+                <div ng-bind="registro.categoria" ng-if="!editable"></div>
+                <div ng-if="editable" editable-select="registro.categoria"
+                     e-ng-options="item.id as item.name for item in GLOBALS.TIPOS_CATEGORIAS"
+                     buttons="no" class="edit-label"
+                     onbeforesave="update_item_payroll($data,registro.id,'categoria')"
+                     ng-bind="registro.categoria">
+                </div>
+            </td>
             <td class="center" ng-bind="registro.monto|mountC"></td>
             <td class="center" ng-bind="registro.total_1|mountC"></td>
-            <td class="center" ng-bind="registro.reintegro|mountC"
-                ng-if="filters.reintegro"></td>
+            <td class="center editable" ng-if="filters.reintegro">
+                <div ng-bind="registro.reintegro?(registro.reintegro|mountC):' -- '" ng-if="!editable"></div>
+                <div ng-if="editable" editable-text="registro.reintegro"
+                     buttons="no" class="edit-label"
+                     onbeforesave="update_item_payroll($data,registro.id,'reintegro')"
+                     ng-bind="registro.reintegro">
+                </div>
+            </td>
             <td class="center" ng-bind="registro.total_2|mountC"
-                ng-if="filters.reintegro"></td>
+                style="background: {{(registro.error_code==1)?'#e74c3c':'#fff'}}"
+                title="{{(registro.error_code==1)?registro.error_message:''}}"></td>
+            <td class="center editable" ng-if="filters.atrasos">
+                <div ng-bind="registro.atrasos_periodos ||' -- '" ng-if="!editable"
+                     title="{{registro.atrasos_periodos?(registro.atrasos_periodos + ' horas atrasadas'):''}}"></div>
+                <div ng-if="editable" editable-text="registro.atrasos_periodos"
+                     buttons="no" class="edit-label"
+                     onbeforesave="update_item_payroll($data,registro.id,'atrasos_periodos')"
+                     ng-bind="registro.atrasos_periodos ||' -- '"
+                     title="{{registro.atrasos_periodos?(registro.atrasos_periodos + (filters.tipo_pago==1?' horas atrasadas':' periodos atrasados')):''}}">
+                </div>
+            </td>
             <td class="center" ng-bind="registro.total_3|mountC"></td>
             <td class="center" ng-bind="registro.iu|mountC"></td>
             <td class="center" ng-bind="registro.it|mountC"></td>
             <td class="center" ng-bind="registro.total_4|mountC"></td>
-            <td class="center" ng-bind="registro.factura"></td>
-            <td class="center" ng-bind="registro.tipo_pago.short"></td>
+            <td class="center editable">
+                <div ng-bind="registro.factura" ng-if="!editable"></div>
+                <div ng-if="editable" editable-select="registro.factura"
+                     e-ng-options="item.id as item.name for item in GLOBALS.FACTURA_ITEMS"
+                     buttons="no" class="edit-label"
+                     onbeforesave="update_item_payroll($data,registro.id,'factura')"
+                     ng-bind="registro.factura">
+                </div>
+            </td>
+            <td class="center editable">
+                <div ng-bind="registro.tipo_pago.short" ng-if="!editable"></div>
+                <div ng-if="editable" editable-select="registro.tipo_pago"
+                     e-ng-options="item.id as item.name for item in GLOBALS.TIPO_PAGO"
+                     buttons="no" class="edit-label"
+                     onbeforesave="update_item_payroll($data,registro.id,'tipo_pago')"
+                     ng-bind="registro.tipo_pago.short">
+                </div>
+            </td>
             <td class="text-right" ng-bind="registro.liquido_pagable|mountC"></td>
         </tr>
         </tbody>

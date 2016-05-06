@@ -451,7 +451,6 @@ angular.module('planillasApp')
                 var templateReturn = "";
 
                 if (scope.formItemCrud) {
-                    console.log(scope);
                     if (scope.formItemInit && !scope.formModel[scope.formItemCrud.name]) {
                         scope.formModel[scope.formItemCrud.name] = scope.formItemInit.value;
                     }

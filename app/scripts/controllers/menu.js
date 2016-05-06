@@ -66,8 +66,6 @@ angular.module('planillasApp')
         };
 
         $rootScope.openModalNewDocente = function () {
-
-            console.log(docente);
             $rootScope.GF.load_unidades_academicas();
             $uibModal.open({
                 animation: true,

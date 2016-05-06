@@ -13338,11 +13338,11 @@ button.close {
 .table-editable td.status {
   padding: 0 !important;
 }
-/* line 117, ../../app/styles/_table_editable.scss */
+/* line 120, ../../app/styles/_table_editable.scss */
 .table-editable .editable {
   padding: 0 !important;
 }
-/* line 120, ../../app/styles/_table_editable.scss */
+/* line 125, ../../app/styles/_table_editable.scss */
 .table-editable .editable .edit-label {
   width: inherit;
   max-width: inherit;
@@ -13357,12 +13357,12 @@ button.close {
   vertical-align: middle;
   font-style: normal;
 }
-/* line 134, ../../app/styles/_table_editable.scss */
+/* line 139, ../../app/styles/_table_editable.scss */
 .table-editable .editable span, .table-editable .editable .editable-controls {
   height: inherit !important;
   padding: 0 !important;
 }
-/* line 137, ../../app/styles/_table_editable.scss */
+/* line 142, ../../app/styles/_table_editable.scss */
 .table-editable .editable span .editable-input, .table-editable .editable .editable-controls .editable-input {
   padding: 0 5px !important;
   vertical-align: middle;
@@ -13370,11 +13370,11 @@ button.close {
   max-height: 100%;
   margin: 0;
 }
-/* line 144, ../../app/styles/_table_editable.scss */
+/* line 149, ../../app/styles/_table_editable.scss */
 .table-editable .editable span select.editable-input, .table-editable .editable .editable-controls select.editable-input {
   padding: 0 !important;
 }
-/* line 149, ../../app/styles/_table_editable.scss */
+/* line 154, ../../app/styles/_table_editable.scss */
 .table-editable form {
   height: inherit !important;
   min-height: 100%;
@@ -14665,4 +14665,23 @@ td{
 /* line 1082, ../../app/styles/main.scss */
 .ui-select-bootstrap > .ui-select-choices {
   width: auto !important;
+}
+
+/* line 1087, ../../app/styles/main.scss */
+.select-matter-custom .ui-select-container {
+  height: 100%;
+}
+/* line 1089, ../../app/styles/main.scss */
+.select-matter-custom .ui-select-container .ui-select-match {
+  height: 100%;
+}
+/* line 1091, ../../app/styles/main.scss */
+.select-matter-custom .ui-select-container .ui-select-match .ui-select-match-text {
+  width: 100%;
+}
+/* line 1093, ../../app/styles/main.scss */
+.select-matter-custom .ui-select-container .ui-select-match .ui-select-match-text span {
+  width: 100%;
+  display: inline-block;
+  padding-top: 6px !important;
 }

@@ -114,9 +114,14 @@ $font-size-small-editable: 11px;
     td.status {
         padding: 0 !important;
     }
+    .editable.editable-click{
+        //border: none;
+    }
     .editable {
         padding: 0 !important;
         //border-color: #217346;
+        //border: none !important;
+        //color: #000;
         .edit-label {
             width: inherit;
             max-width: inherit;

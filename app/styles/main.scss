@@ -1082,3 +1082,20 @@ $planillas-height-row: 45px;
 .ui-select-bootstrap > .ui-select-choices {
     width: auto !important;
 }
+
+.select-matter-custom {
+    .ui-select-container {
+        height: 100%;
+        .ui-select-match {
+            height: 100%;
+            .ui-select-match-text {
+                width: 100%;
+                span {
+                    width: 100%;
+                    display: inline-block;
+                    padding-top: 6px !important;
+                }
+            }
+        }
+    }
+}

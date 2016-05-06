@@ -67,7 +67,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="" ng-click="openModalDatosPago()"><i class="glyphicon glyphicon-list-alt"></i>
                             Información</a></li>
-                        <li ng-if="GF.isRoot() && GF.isAdmin()">
+                        <li ng-if="GF.isRoot() || GF.isAdmin()">
                             <a href="" ng-click="openModalUpdateMonto()">
                                 <i class="glyphicon glyphicon-list"></i> Modificar montos de pago</a>
                         </li>

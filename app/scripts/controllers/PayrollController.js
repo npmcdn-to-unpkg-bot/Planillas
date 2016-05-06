@@ -8,7 +8,7 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('PayrollController', function ($scope, $rootScope, $API, $q, toastr, AuthService, URLS) {
+    .controller('PayrollController', function ($scope, $rootScope, $API, $q, toastr, AuthService, URLS, $uibModal, $http) {
         var promises = [
             $rootScope.GF.load_especialidades(),
             $rootScope.GF.load_gradosDocentes(),
@@ -101,7 +101,7 @@ angular.module('planillasApp')
                                 tipo_pago: 1,
                                 horas_or_semanas: 1,
                                 habilitado: '',
-                                pensul: 1
+                                pensul: ''
                             };
 
                             if (user['gestion']) {
@@ -128,8 +128,48 @@ angular.module('planillasApp')
             }, 0);
         };
 
+        $scope.download_file_banco = function () {
+            var query_params = $.extend({}, $scope.planillas_query_params, $scope.filters);
+            query_params.file_banco = 1;
+            setTimeout(function () {
+                window.open(URLS.PLANILLAS + "?" + $.param(query_params), "Reporte", "location=0,height=600, width=1200");
+            }, 0);
+        };
+        $scope.limpiar = function (item) {
+            var query_params = $.extend({}, $scope.planillas_query_params, $scope.filters);
+            query_params['clean'] = item;
+            $http.post(URLS.PLANILLAS + "/clean?" + $.param(query_params))
+                .then(function () {
+                    $scope.load_planillas();
+                    toastr.success('Borrado correctamente');
+                }, function () {
+                    $scope.load_planillas();
+                    toastr.warning('No se pudo borrar');
+                })
+        };
+
+        $scope.show_modal_report = function () {
+            var planilla = angular.copy($scope.filters);
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modals/ModalSetFooter.html',
+                controller: 'ModalSetFooter',
+                size: 'lg',
+                resolve: {
+                    planilla: function () {
+                        return planilla;
+                    }
+                }
+            });
+            modalInstance.result.then(function (footers) {
+                var query_params = $.extend({}, $scope.planillas_query_params, footers);
+                setTimeout(function () {
+                    window.open(URLS.PREVIEW_PLANILLA + "?" + $.param(query_params), "Reporte", "location=0,height=600, width=1200");
+                }, 0);
+            });
+        };
+
         $scope.$on('load_planillas_event', function () {
-            console.log('event');
             $scope.load_planillas();
         });
         $scope.refresh_payroll = function (options) {
@@ -137,10 +177,82 @@ angular.module('planillasApp')
             $scope.load_planillas()
                 .then(function () {
                     if (!hide_message)
-                        toastr.info("Planilla actualizada");
+                        toastr.success("Planilla actualizada");
                 }, function () {
                     if (!hide_message)
                         toastr.warning("No se encontraro resultados");
                 })
-        }
+        };
+
+        $scope.update_item_payroll = function (new_value, id, key) {
+            var defer = $q.defer();
+            var update_data = {
+                id: id
+            };
+            update_data[key] = new_value;
+            (new $API.Planillas()).$update(update_data)
+                .then(function (data) {
+                    toastr.success('Modificado correctamente');
+                    defer.resolve(data);
+                    $scope.load_planillas();
+                }, function (data) {
+                    toastr.warning('No se pudo modificar');
+                    defer.reject(data);
+                });
+            return defer.promise;
+        };
+
+        $scope.menusPayrollList = [
+            ['Ver mas información', function ($itemScope) {
+                $scope.openDetailModal($itemScope.registro);
+            }],
+            ['Eliminar', function ($itemScope) {
+                $scope.eliminarRegistro($itemScope.registro);
+            }]
+        ];
+
+        $scope.openDetailModal = function (registro) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modals/ModalViewCourse.html',
+                controller: 'ModalViewCourse',
+                size: 'md',
+                resolve: {
+                    registro: function () {
+                        return angular.copy(registro);
+                    }
+                }
+            });
+            modalInstance.result.then(function (id_pensul) {
+                if (id_pensul) {
+                    $scope.update_item_payroll(id_pensul, registro.id, 'pensul');
+                }
+            }, function () {
+                $scope.load_planillas();
+            });
+        };
+
+        $rootScope.eliminarRegistro = function (registro) {
+            $rootScope.openModalConfirm(function () {
+                (new $API.Planillas).$delete({id: registro.id})
+                    .then(function () {
+                        $scope.load_planillas();
+                        toastr.success('Registro eliminado');
+                    }, function () {
+                        $scope.load_planillas();
+                        toastr.warning('No se pudo eliminar');
+                    })
+            }, function () {
+            }, "ELIMINAR REGOSTRO", "Seguro que desea eliminar registro?")
+        };
+
+        $scope.editable = false;
+
+        $scope.$on('disable_editable_payroll', function () {
+            $scope.editable = false;
+        });
+
+        $scope.$on('active_editable_payroll', function () {
+            $scope.editable = true;
+        });
     });

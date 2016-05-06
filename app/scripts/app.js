@@ -114,6 +114,8 @@ angular
         editableThemes.bs3.inputClass = 'input-sm small';
         editableThemes.bs3.buttonsClass = 'btn-sm small';
         //editableOptions.theme = 'bs3';
+        editableThemes['default'].submitTpl = '<button type="submit"> <i class="glyphicon glyphicon-ok"></i> </button>';
+        editableThemes['default'].cancelTpl = '<button type="button"> <i class="glyphicon glyphicon-minus"></i> </button>';
         toastr.options = {
             "closeButton": false,
             "debug": false,
@@ -316,11 +318,11 @@ angular
                     //$rootScope.CURRENT_VIEW = 'views/verplanilla.html';
                     break;
                 case "/VerPlanilla":
-                    if ($rootScope.GF.isSecretaria()) {
-                        $rootScope.CURRENT_VIEW = 'views/verplanillasecretaria.html';
-                    } else {
+                    //if ($rootScope.GF.isSecretaria()) {
+                    //    $rootScope.CURRENT_VIEW = 'views/verplanillasecretaria.html';
+                    //} else {
                         $rootScope.CURRENT_VIEW = 'views/verplanilla.html';
-                    }
+                   // }
                     break;
                 case "/CloseSystem":
                     $rootScope.CURRENT_VIEW = 'views/close_system.html';

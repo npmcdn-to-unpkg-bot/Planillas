@@ -24,7 +24,6 @@ angular.module('planillasApp')
             $q.all(promises)
                 .then(function (datas) {
                     var user = datas[0];
-                    console.log(user);
                     $scope.nueva_planilla['especialidad'] = user['gestion']['especialidad'];
                     $scope.nueva_planilla['docente'] = '';
                     $scope.nueva_planilla['cuenta_bancaria'] = '';
@@ -61,7 +60,6 @@ angular.module('planillasApp')
             $rootScope.GF.load_unidades_academicas();
         };
         $scope.setInfoDocente = function (id_docente) {
-            console.log('set info');
             (new $API.Planillas()).$get({
                     docente: id_docente,
                     gestion: $rootScope.CURRENT_USER['gestion']['gestion'],
@@ -75,15 +73,15 @@ angular.module('planillasApp')
                         $scope.nueva_planilla_disabled['categoria'] = true;
                         $scope.nueva_planilla_disabled['factura'] = true;
                         $scope.nueva_planilla_disabled['grado'] = true;
-                        $scope.nueva_planilla_disabled['pensul'] = true;
+                        //$scope.nueva_planilla_disabled['pensul'] = true;
                         $scope.nueva_planilla_disabled['tipo_pago'] = true;
 
                         $scope.nueva_planilla['cuenta_bancaria'] = info['cuenta_bancaria'];
                         $scope.nueva_planilla['categoria'] = info['categoria'];
                         $scope.nueva_planilla['factura'] = info['factura'];
                         $scope.nueva_planilla['grado'] = info['grado'];
-                        $scope.nueva_planilla['pensul'] = info['pensul'];
-                        $scope.nueva_planilla['tipo_pago'] = info['tipo_pago'];
+                       // $scope.nueva_planilla['pensul'] = info['pensul'];
+                        //$scope.nueva_planilla['tipo_pago'] = info['tipo_pago'];
                     } else {
                         $scope.nueva_planilla_disabled['cuenta_bancaria'] = false;
                         $scope.nueva_planilla_disabled['categoria'] = false;
