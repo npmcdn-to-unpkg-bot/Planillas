@@ -6,13 +6,7 @@
     <form id="new_user" class="form-horizontal paddingV40" ng-submit="guardar(nuevo_usuario)">
 
         <div class="form-group  form-group-sm">
-            <label class="col-sm-2">Tipo: </label>
 
-            <div class="col-sm-4">
-                <select class="form-control" ng-model="nuevo_usuario.tipo_usuario"
-                        ng-options="tipo.id as tipo.name for tipo in GLOBALS.TIPO_USUARIO" required>
-                </select>
-            </div>
             <label class="col-sm-3">Unidad Academica: </label>
 
             <div class="col-sm-3">
@@ -21,12 +15,19 @@
                         data-ng-disabled="!GF.isRoot()" required>
                 </select>
             </div>
+            <label class="col-sm-2">Tipo: </label>
+
+            <div class="col-sm-4">
+                <select class="form-control" ng-model="nuevo_usuario.tipo_usuario"
+                        ng-options="tipo.id as tipo.name for tipo in tipo_usuarios" required>
+                </select>
+            </div>
         </div>
         <div class="form-group  form-group-sm">
             <label class="col-sm-4">Carrera: </label>
 
             <div class="col-sm-8">
-                <select ng-if="GF.isRoot() || GF.isAdmin()" class="form-control" ng-model="nuevo_usuario.especialidad"
+                <select class="form-control" ng-model="nuevo_usuario.especialidad"
                         ng-options="especialidad.id as especialidad.name for especialidad in GLOBALS.ESPECIALIDADES"
                         data-ng-disabled="!(GF.isRoot() || GF.isAdmin())" required>
                 </select>

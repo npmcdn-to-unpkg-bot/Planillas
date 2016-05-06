@@ -42,7 +42,7 @@
                 <div class="col-sm-8">
                     <select ng-model="nuevo_usuario.especialidad" class="form-control"
                             ng-options="especialidad.id as especialidad.name for especialidad in GLOBALS.ESPECIALIDADES"
-                            data-ng-disabled="!GF.isRoot()" required>
+                            data-ng-disabled="(GF.isJefeCarrera()||GF.isSecretaria())" required>
                     </select>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                 <div class="col-sm-8">
                     <select ng-model="nuevo_usuario.tipo_usuario" class="form-control"
                             ng-options="tipo.id as tipo.name for tipo in GLOBALS.TIPO_USUARIO"
-                            data-ng-disabled="!GF.isRoot()" required>
+                            data-ng-disabled="true" required>
                     </select>
                 </div>
             </div>
@@ -71,7 +71,8 @@
                 </div>
             </div>
             <div class="form-group  form-group-sm text-center">
-                <button class="btn btn-info btn-sm" ng-click="modPass = !modPass;delete (nuevo_usuario.password)">
+                <button type="button" class="btn btn-info btn-sm"
+                        ng-click="modPass = !modPass;delete (nuevo_usuario.password)">
                     {{modPass?"No modificar contraseña":"Modificar contraseña"}}
                 </button>
             </div>

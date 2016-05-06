@@ -9,7 +9,10 @@
  */
 angular.module('planillasApp')
     .controller('StartgestionCtrl', function ($scope, $rootScope, AuthService, URLS, StatusMessageService, $API, $http) {
-
+        $scope.abc = 322;
+        $scope.myFunc = function (text, elem) {
+            console.log(text, elem)
+        };
         AuthService.getUser()
             .then(function (user) {
                 $scope.new_gestion = {

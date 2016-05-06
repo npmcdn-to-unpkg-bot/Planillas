@@ -1,8 +1,79 @@
 $height-row-editable: 30px;
 $font-size-small-editable: 11px;
+
+.container-payroll {
+    min-width: 1250px;
+    padding: 0px;
+}
+
+.table-filters {
+    padding: 0;
+    margin: 0px 0;
+    border: 1px solid #2463A8;
+    min-width: 100%;
+    @include border-radius(0px);
+
+    .header-filter {
+        background: #2980B9;
+        border-bottom: 4px solid #2B579A;
+        color: #fff;
+        padding: 8px;
+        span, h5 {
+            cursor: pointer;
+        }
+    }
+    .body-filter {
+        padding: 0;
+        .row-filter {
+            content: " ";
+            width: 100%;
+            display: table;
+            padding: 8px 8px 16px 8px;
+            .col-sm-1, .col-sm-2, .col-sm-4, .col-sm-3 {
+                padding: 0 8px;
+            }
+        }
+    }
+
+    .filter-field {
+        p {
+            padding: 0;
+            margin: 8px 0 2px 0;
+        }
+        .btn-default:hover {
+            background: #fff;
+        }
+        .form-control.ui-select-toggle {
+            @include border-radius(4px);
+            padding: 8px 12px 4px 12px;
+        }
+        .text-muted {
+            color: #bbb;
+        }
+    }
+}
+
 .table-editable {
     font-size: $font-size-small-editable;
+    border: 2px solid #227447 !important;
+    min-width: 100%;
+    thead {
+        background-color: #0F9D58;
+        border-bottom: 4px solid #227447;
+        th {
+            color: #fff;
+            border: 1px solid #227447;
+            font-weight: 500;
+        }
+    }
 
+    tbody {
+        background-color: #fff;
+        tr:hover {
+            border-left: 3px solid #227447;
+            background-color: #eeeeee;
+        }
+    }
     th {
         text-align: center;
     }
@@ -11,13 +82,69 @@ $font-size-small-editable: 11px;
         height: $height-row-editable;
     }
     td {
-        padding: 0 !important;
         margin: 0;
         vertical-align: middle !important;
         height: inherit !important;
-    }
-    span, text {
         padding: 0 5px;
+    }
+
+    td, th {
+        border: 1px solid #D4D4D4;
+    }
+    .editable:hover {
+        .edit-label {
+            @include box-shadow(0px 0px 0px 2px #217346);
+        }
+    }
+    .btn-registro {
+        text-align: center;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0 !important;
+        border: none;
+        color: #fff;
+    }
+    .btn-registro.habilitado {
+        background-color: #1abc9c;
+    }
+    .btn-registro.inhabilitado {
+        background-color: #e74c3c;
+    }
+    td.status {
+        padding: 0 !important;
+    }
+    .editable {
+        padding: 0 !important;
+        //border-color: #217346;
+        .edit-label {
+            width: inherit;
+            max-width: inherit;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: inherit !important;
+            padding: 0 5px !important;
+            border: none;
+            cursor: cell;
+            color: #000;
+            display: table-cell;
+            vertical-align: middle;
+            font-style: normal;
+        }
+        span, .editable-controls {
+            height: inherit !important;
+            padding: 0 !important;
+            .editable-input {
+                padding: 0 5px !important;
+                vertical-align: middle;
+                min-height: 100%;
+                max-height: 100%;
+                margin: 0;
+            }
+            select.editable-input {
+                padding: 0 !important;
+            }
+        }
     }
     form {
         height: inherit !important;
@@ -27,17 +154,5 @@ $font-size-small-editable: 11px;
         margin: 0;
         position: relative;
         z-index: 1;
-    }
-    select, input, textarea {
-        margin: 0;
-        border: 0;
-        min-width: 100%;
-        cursor: cell;
-        min-height: 100%;
-        max-height: 100%;
-        padding: 0 5px;
-    }
-    .input-sm{
-        font-size: $font-size-small-editable;
     }
 }

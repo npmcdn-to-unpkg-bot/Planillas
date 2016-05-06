@@ -27,7 +27,7 @@
 <![endif]-->
 
 
-<img src="images/loading.gif" ng-show="LOADER_ASYNC && !FIRST_REQUEST"
+<img src="images/loading.gif" ng-show="LOADER_ASYNC"
      style="position:fixed;top: 60px;right: 10px;width: 40px;height: 40px;z-index: 10000;">
 <script type="text/ng-template" id="ModalConfirm.html">
     <div class="modal-header text-center">
@@ -119,6 +119,7 @@
 <script src="scripts/controllers/modals/ModalViewCourse.js"></script>
 <script src="scripts/controllers/modals/ModalRestartPassword.js"></script>
 
+<script src="scripts/controllers/GradoDocenteController.js"></script>
 <script src="scripts/filters/ingenieria.js"></script>
 <script src="scripts/filters/momentdate.js"></script>
 <script src="scripts/filters/mount.js"></script>
@@ -146,6 +147,7 @@
 <script src="scripts/services/StatusMessageService.js"></script>
 <script src="scripts/services/FormDataService.js"></script>
 <script src="scripts/directives/CrudGenerator.js"></script>
+<script src="scripts/complements/content-editable.directive.min.js"></script>
 <!-- endbuild -->
 </body>
 </html>

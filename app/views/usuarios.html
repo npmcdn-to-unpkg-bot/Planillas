@@ -12,39 +12,37 @@
             </div>
             <div class="panel-body">
                 <div class="form-group-sm">
-                    <div class="col-sm-2">
-                        <p class="">Nombre de usuario</p>
-                        <input class="form-control" ng-model="filter_nombre" placeholder="Nombre"></div>
-                    <div class="col-sm-3">
-                        <p class="">Carrera</p>
-                        <select class="form-control" ng-model="filter_carrera">
-                            <option value="0">-- Todos --</option>
-                            <option ng-repeat="carrera in GLOBALS.ESPECIALIDADES" value="{{carrera.id}}">
-                                {{carrera.name}}
-                            </option>
-                        </select>
-                    </div>
                     <div class="col-sm-3">
                         <p class="">Unidad Academica</p>
-                        <select class="form-control" ng-model="filter_uuaa">
-                            <option value="0">-- Todos --</option>
-                            <option ng-repeat="carrera in GLOBALS.UNIDADES_ACADEMICAS" value="{{carrera.id}}">
-                                {{carrera.name}}
-                            </option>
+                        <select class="form-control" ng-model="filter_uuaa" ng-change="loadUsers()"}
+                                data-ng-disabled="!enable_fields.unidad_academica"
+                                ng-options="uuaa.id as uuaa.name for uuaa in GLOBALS.UNIDADES_ACADEMICAS">
+                            <option value="">-- Sin especificar--</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <p class="">Carrera</p>
+                        <select class="form-control" ng-model="filter_carrera" ng-change="loadUsers()"
+                                data-ng-disabled="!enable_fields.especialidad"
+                                ng-options="carrera.id as carrera.name for carrera in GLOBALS.ESPECIALIDADES">
+                            <option value="">-- Sin especificar --</option>
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <p class="">Tipo de Usuarios</p>
-                        <select class="form-control" ng-model="filter_tipo">
-                            <option value="0">-- Todos --</option>
-                            <option ng-repeat="tipo in GLOBALS.TIPO_USUARIO" value="{{tipo.id}}">{{tipo.name}}</option>
-                        </select>
+                        <p class="">Nombre de usuario o carnet</p>
+                        <form ng-submit="loadUsers()">
+                            <input class="form-control" type="text" ng-model="filter_nombre"
+                                   placeholder="Nombre o carnet">
+                        </form>
                     </div>
-                    <div class="col-sm-1">
-                        <br>
-                        <button class="btn btn-info btn-sm" ng-click="loadUsers()"><i
-                            class="glyphicon glyphicon-search"></i> Buscar
-                        </button>
+
+                    <div class="col-sm-3">
+                        <p class="">Tipo de Usuarios</p>
+                        <select class="form-control" ng-model="filter_tipo" ng-change="loadUsers()"
+                                ng-options="tipo.id as tipo.name for tipo in tipo_usuarios">
+                            <option value="">-- Todos --</option>
+                        </select>
                     </div>
                 </div>
             </div>

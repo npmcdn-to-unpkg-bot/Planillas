@@ -1,4 +1,4 @@
-angular.module('planillasApp').controller('ModalNewDocente', function ($scope,$rootScope,$http2,URLS,$location,$modalInstance) {
+angular.module('planillasApp').controller('ModalNewDocente', function ($scope,$rootScope,$http2,URLS,$location,$uibModalInstance) {
 
   function init(){
     $scope.nuevo_usuario_docente = {};
@@ -30,16 +30,15 @@ angular.module('planillasApp').controller('ModalNewDocente', function ($scope,$r
       function(data){
         if(data.Success){
           $scope.nuevo_usuario_docente = {};
-          $rootScope.GF.load_lista_docentes();
           $scope.ok(true);
         }
         $scope.cancel();
       })
   };
   $scope.ok = function (success) {
-    $modalInstance.close(success);
+    $uibModalInstance.close(success);
   };
   $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
   };
 });

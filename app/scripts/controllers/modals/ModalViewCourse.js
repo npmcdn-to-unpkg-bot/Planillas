@@ -1,5 +1,5 @@
 angular.module('planillasApp')
-  .controller('ModalViewCourse', function ($scope, $rootScope, $http2, URLS, $location, $modalInstance, registro) {
+  .controller('ModalViewCourse', function ($scope, $rootScope, $http2, URLS, $location, $uibModalInstance, registro) {
     $scope.docente = angular.copy(registro);
     /*
     * Abierto: 1
@@ -28,7 +28,6 @@ angular.module('planillasApp')
         $http2.put(URLS.LISTA_MATERIAS, new_mat,
           function (data) {
             if (data.Success) {
-              $rootScope.GF.load_lista_materias();
               $scope.ok();
             }
             $scope.cancel();
@@ -37,7 +36,6 @@ angular.module('planillasApp')
         $http2.post(URLS.LISTA_MATERIAS, new_mat,
           function (data) {
             if (data.Success) {
-              $rootScope.GF.load_lista_materias();
               $scope.ok(true);
             }
             $scope.cancel();
@@ -45,9 +43,9 @@ angular.module('planillasApp')
       }
     };
     $scope.ok = function (success) {
-      $modalInstance.close(success);
+      $uibModalInstance.close(success);
     };
     $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
+      $uibModalInstance.dismiss('cancel');
     };
   });

@@ -8,12 +8,21 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('VerplanillaCtrl', function ($scope, $rootScope, AuthService, $http2, URLS, $http, $q, $modal, $log, $timeout, $API) {
+    .controller('VerplanillaCtrl', function ($scope, $rootScope, AuthService, URLS, $http, $q, $uibModal, $timeout, $API, ModelService) {
+        $scope.general_disable_items = {
+            gestion: true,
+            periodo_gestion: true
+        };
+
+        /*$scope.docente_model = new ModelService.DocentesModel();
+        $scope.materia_model = new ModelService.MateriasModel();
+        $scope.grado_docente_model = new ModelService.GradoDocenteModel();
 
         var promises = [
             AuthService.getUser(),
             $rootScope.GF.load_especialidades(),
-            $rootScope.GF.load_gradosDocentes()
+            $rootScope.GF.load_gradosDocentes(),
+            $rootScope.GF.load_unidades_academicas()
         ];
         $scope.tmp = {
             docente: '',
@@ -123,6 +132,7 @@ angular.module('planillasApp')
         };
 
         $scope.planillas_data = {};
+
         $scope.planillas_query_params = {
             page_size: 25,
             page: 1,
@@ -136,7 +146,6 @@ angular.module('planillasApp')
         $scope.filters = {};
 
         $scope.load_planillas = function () {
-            console.log($scope.planillas_query_params, $scope.filters);
             var query_params = $.extend({}, $scope.planillas_query_params, $scope.filters);
             (new $API.Planillas()).$get(query_params)
                 .then(function (data) {
@@ -149,7 +158,6 @@ angular.module('planillasApp')
         $scope.set_filters = function () {
             AuthService.getUser()
                 .then(function (user) {
-                    console.log(user);
                     $scope.filters = {
                         unidad_academica: user['gestion']['unidad_academica'],
                         especialidad: user['gestion']['especialidad'],
@@ -168,7 +176,7 @@ angular.module('planillasApp')
             setTimeout(function () {
                 window.open(URLS.PREVIEW_PLANILLA + "?" + $.param(query_params), "Reporte", "location=0,height=600, width=1200");
             }, 0);
-        };
+        };*/
         //$rootScope.updateNumeroCuenta = function (docente, numeroCuenta) {
         //    var d = $q.defer();
         //    var data = {
@@ -506,7 +514,7 @@ angular.module('planillasApp')
         //    var Query = queryBuilder();
         //    Query.final = isfinal ? 1 : 0;
         //    if (isfinal) {
-        //        var modalInstance = $modal.open({
+        //        var modalInstance = $uibModal.open({
         //            animation: true,
         //            templateUrl: 'views/modals/ModalSetFooter.html',
         //            controller: 'ModalSetFooter',

@@ -1,11 +1,11 @@
-angular.module('planillasApp').controller('ModalSetFooter', function ($scope, $rootScope, $http2, URLS, $location, $modalInstance, items, $timeout) {
+angular.module('planillasApp').controller('ModalSetFooter', function ($scope, $rootScope, $http2, URLS, $location, $uibModalInstance, items, $timeout) {
     $scope.footers = {};
     $scope.footers.header = items.filter_HEADER_PLANILLA;
 
     $scope.ok = function (footers) {
-        $modalInstance.close(footers);
+        $uibModalInstance.close(footers);
     };
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 });

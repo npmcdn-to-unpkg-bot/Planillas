@@ -1,4 +1,4 @@
-angular.module('planillasApp').controller('ModalUpdateMonto', function ($scope, $rootScope, $http2, URLS, $location, $modalInstance, $q, $http) {
+angular.module('planillasApp').controller('ModalUpdateMonto', function ($scope, $rootScope, $http2, URLS, $location, $uibModalInstance, $q, $http) {
     $rootScope.GF.load_current_monto_categoria();
     $scope.updateMontoPago = function (monto, new_monto) {
         var d = $q.defer();
@@ -15,6 +15,6 @@ angular.module('planillasApp').controller('ModalUpdateMonto', function ($scope, 
         return d.promise;
     };
     $scope.ok = function (success) {
-        $modalInstance.close(success);
+        $uibModalInstance.close(success);
     };
 });

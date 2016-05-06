@@ -13206,30 +13206,175 @@ button.close {
   border: 0;
 }
 
-/* line 3, ../../app/styles/_table_editable.scss */
+/* line 4, ../../app/styles/_table_editable.scss */
+.container-payroll {
+  min-width: 1250px;
+  padding: 0px;
+}
+
+/* line 9, ../../app/styles/_table_editable.scss */
+.table-filters {
+  padding: 0;
+  margin: 0px 0;
+  border: 1px solid #2463A8;
+  min-width: 100%;
+  border-radius: 0px !important;
+}
+/* line 16, ../../app/styles/_table_editable.scss */
+.table-filters .header-filter {
+  background: #2980B9;
+  border-bottom: 4px solid #2B579A;
+  color: #fff;
+  padding: 8px;
+}
+/* line 21, ../../app/styles/_table_editable.scss */
+.table-filters .header-filter span, .table-filters .header-filter h5 {
+  cursor: pointer;
+}
+/* line 25, ../../app/styles/_table_editable.scss */
+.table-filters .body-filter {
+  padding: 0;
+}
+/* line 27, ../../app/styles/_table_editable.scss */
+.table-filters .body-filter .row-filter {
+  content: " ";
+  width: 100%;
+  display: table;
+  padding: 8px 8px 16px 8px;
+}
+/* line 32, ../../app/styles/_table_editable.scss */
+.table-filters .body-filter .row-filter .col-sm-1, .table-filters .body-filter .row-filter .col-sm-2, .table-filters .body-filter .row-filter .col-sm-4, .table-filters .body-filter .row-filter .col-sm-3 {
+  padding: 0 8px;
+}
+/* line 39, ../../app/styles/_table_editable.scss */
+.table-filters .filter-field p {
+  padding: 0;
+  margin: 8px 0 2px 0;
+}
+/* line 43, ../../app/styles/_table_editable.scss */
+.table-filters .filter-field .btn-default:hover {
+  background: #fff;
+}
+/* line 46, ../../app/styles/_table_editable.scss */
+.table-filters .filter-field .form-control.ui-select-toggle {
+  border-radius: 4px !important;
+  padding: 8px 12px 4px 12px;
+}
+/* line 50, ../../app/styles/_table_editable.scss */
+.table-filters .filter-field .text-muted {
+  color: #bbb;
+}
+
+/* line 56, ../../app/styles/_table_editable.scss */
 .table-editable {
   font-size: 11px;
+  border: 2px solid #227447 !important;
+  min-width: 100%;
 }
-/* line 6, ../../app/styles/_table_editable.scss */
+/* line 60, ../../app/styles/_table_editable.scss */
+.table-editable thead {
+  background-color: #0F9D58;
+  border-bottom: 4px solid #227447;
+}
+/* line 63, ../../app/styles/_table_editable.scss */
+.table-editable thead th {
+  color: #fff;
+  border: 1px solid #227447;
+  font-weight: 500;
+}
+/* line 70, ../../app/styles/_table_editable.scss */
+.table-editable tbody {
+  background-color: #fff;
+}
+/* line 72, ../../app/styles/_table_editable.scss */
+.table-editable tbody tr:hover {
+  border-left: 3px solid #227447;
+  background-color: #eeeeee;
+}
+/* line 77, ../../app/styles/_table_editable.scss */
 .table-editable th {
   text-align: center;
 }
-/* line 10, ../../app/styles/_table_editable.scss */
+/* line 81, ../../app/styles/_table_editable.scss */
 .table-editable tr {
   height: 30px;
 }
-/* line 13, ../../app/styles/_table_editable.scss */
+/* line 84, ../../app/styles/_table_editable.scss */
 .table-editable td {
-  padding: 0 !important;
   margin: 0;
   vertical-align: middle !important;
   height: inherit !important;
-}
-/* line 19, ../../app/styles/_table_editable.scss */
-.table-editable span, .table-editable text {
   padding: 0 5px;
 }
-/* line 22, ../../app/styles/_table_editable.scss */
+/* line 91, ../../app/styles/_table_editable.scss */
+.table-editable td, .table-editable th {
+  border: 1px solid #D4D4D4;
+}
+/* line 95, ../../app/styles/_table_editable.scss */
+.table-editable .editable:hover .edit-label {
+  -ms-box-shadow: 0px 0px 0px 2px #217346 !important;
+  -o-box-shadow: 0px 0px 0px 2px #217346 !important;
+  box-shadow: 0px 0px 0px 2px #217346 !important;
+}
+/* line 99, ../../app/styles/_table_editable.scss */
+.table-editable .btn-registro {
+  text-align: center;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  border: none;
+  color: #fff;
+}
+/* line 108, ../../app/styles/_table_editable.scss */
+.table-editable .btn-registro.habilitado {
+  background-color: #1abc9c;
+}
+/* line 111, ../../app/styles/_table_editable.scss */
+.table-editable .btn-registro.inhabilitado {
+  background-color: #e74c3c;
+}
+/* line 114, ../../app/styles/_table_editable.scss */
+.table-editable td.status {
+  padding: 0 !important;
+}
+/* line 117, ../../app/styles/_table_editable.scss */
+.table-editable .editable {
+  padding: 0 !important;
+}
+/* line 120, ../../app/styles/_table_editable.scss */
+.table-editable .editable .edit-label {
+  width: inherit;
+  max-width: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: inherit !important;
+  padding: 0 5px !important;
+  border: none;
+  cursor: cell;
+  color: #000;
+  display: table-cell;
+  vertical-align: middle;
+  font-style: normal;
+}
+/* line 134, ../../app/styles/_table_editable.scss */
+.table-editable .editable span, .table-editable .editable .editable-controls {
+  height: inherit !important;
+  padding: 0 !important;
+}
+/* line 137, ../../app/styles/_table_editable.scss */
+.table-editable .editable span .editable-input, .table-editable .editable .editable-controls .editable-input {
+  padding: 0 5px !important;
+  vertical-align: middle;
+  min-height: 100%;
+  max-height: 100%;
+  margin: 0;
+}
+/* line 144, ../../app/styles/_table_editable.scss */
+.table-editable .editable span select.editable-input, .table-editable .editable .editable-controls select.editable-input {
+  padding: 0 !important;
+}
+/* line 149, ../../app/styles/_table_editable.scss */
 .table-editable form {
   height: inherit !important;
   min-height: 100%;
@@ -13238,22 +13383,6 @@ button.close {
   margin: 0;
   position: relative;
   z-index: 1;
-}
-/* line 31, ../../app/styles/_table_editable.scss */
-.table-editable select, .table-editable input, .table-editable textarea {
-  margin: 0;
-  border: 0;
-  min-width: 100%;
-  cursor: cell;
-  min-height: 100%;
-  max-height: 100%;
-  padding: 0 5px;
-}
-/* line 40, ../../app/styles/_table_editable.scss */
-.table-editable .input-sm, .table-editable .input-group-sm > .form-control,
-.table-editable .input-group-sm > .input-group-addon,
-.table-editable .input-group-sm > .input-group-btn > .btn {
-  font-size: 11px;
 }
 
 /* line 27, ../../app/styles/main.scss */
@@ -13480,7 +13609,7 @@ table {
 
 /* line 222, ../../app/styles/main.scss */
 .table-planillas {
-  font-size: 10px;
+  font-size: 12px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -13583,7 +13712,7 @@ table {
 
 /* line 316, ../../app/styles/main.scss */
 .table-planillas > tfoot {
-  font-size: 10px !important;
+  font-size: 12px !important;
 }
 
 /* line 320, ../../app/styles/main.scss */
@@ -13598,14 +13727,14 @@ table {
   padding: 12px 2px 12px 2px;
   width: auto;
   height: 100%;
-  font-size: 10px !important;
+  font-size: 12px !important;
   display: block;
 }
 
 /* line 334, ../../app/styles/main.scss */
 .table-planillas > tfoot textarea {
   padding: 0;
-  font-size: 10px !important;
+  font-size: 12px !important;
 }
 
 /* line 339, ../../app/styles/main.scss */
@@ -13654,31 +13783,40 @@ table {
 
 /* line 375, ../../app/styles/main.scss */
 .ui-select-bootstrap {
-  font-size: 10px;
+  font-size: 12px;
+}
+/* line 377, ../../app/styles/main.scss */
+.ui-select-bootstrap .ui-select-search {
+  font-size: 12px;
 }
 
-/* line 379, ../../app/styles/main.scss */
+/* line 382, ../../app/styles/main.scss */
 .ui-select-bootstrap > .ui-select-match > .btn {
-  font-size: 10px;
+  font-size: 12px;
 }
 
-/* line 384, ../../app/styles/main.scss */
+/* line 386, ../../app/styles/main.scss */
 .ui-select-bootstrap .ui-select-choices-row > a {
-  font-size: 10px;
-  padding: 0;
+  font-size: 12px;
+  padding: 1px 5px;
 }
 
-/* line 389, ../../app/styles/main.scss */
+/* line 391, ../../app/styles/main.scss */
+.ui-select-choices.ui-select-choices-content.ui-select-dropdown {
+  min-width: 100%;
+}
+
+/* line 395, ../../app/styles/main.scss */
 .ui-select-bootstrap > .ui-select-choices {
   width: 100%;
 }
 
-/* line 393, ../../app/styles/main.scss */
+/* line 399, ../../app/styles/main.scss */
 .ui-select-bootstrap .ui-select-choices-row.active > a {
   color: none;
 }
 
-/* line 397, ../../app/styles/main.scss */
+/* line 403, ../../app/styles/main.scss */
 .cursorCell, .table-planillas-f > thead > tr .tCuenta span,
 .table-planillas-f > tbody > tr .tCuenta span,
 .table-planillas-f > tfoot > tr .tCuenta span, .table-planillas-f > thead > tr .tMateria span,
@@ -13699,7 +13837,7 @@ table {
   cursor: cell;
 }
 
-/* line 401, ../../app/styles/main.scss */
+/* line 407, ../../app/styles/main.scss */
 .noSelectable {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -13987,12 +14125,12 @@ td{
   @include transition(all,1s);
 }
 */
-/* line 682, ../../app/styles/main.scss */
+/* line 688, ../../app/styles/main.scss */
 .table-planillas-f {
   width: 100%;
   max-width: 100%;
 }
-/* line 691, ../../app/styles/main.scss */
+/* line 697, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr > th,
 .table-planillas-f > thead > tr > td,
 .table-planillas-f > tbody > tr > th,
@@ -14003,29 +14141,29 @@ td{
   line-height: 1.428571429;
   vertical-align: middle;
 }
-/* line 701, ../../app/styles/main.scss */
+/* line 706, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr > th {
   vertical-align: middle;
   border-bottom: 2px solid #ddd;
 }
 
-/* line 707, ../../app/styles/main.scss */
+/* line 712, ../../app/styles/main.scss */
 .rotate45 {
   transform: rotate(-45deg);
 }
 
-/* line 711, ../../app/styles/main.scss */
+/* line 716, ../../app/styles/main.scss */
 .rotate90 {
   transform: rotate(-90deg);
 }
 
-/* line 735, ../../app/styles/main.scss */
+/* line 740, ../../app/styles/main.scss */
 .table-planillas-f {
   overflow: hidden;
   overflow-x: scroll;
 }
 
-/* line 740, ../../app/styles/main.scss */
+/* line 745, ../../app/styles/main.scss */
 .table-planillas-f {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -14034,7 +14172,7 @@ td{
   -o-user-select: none;
   border: 1px solid #ddd;
 }
-/* line 746, ../../app/styles/main.scss */
+/* line 751, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr,
 .table-planillas-f > tbody > tr,
 .table-planillas-f > tfoot > tr {
@@ -14045,7 +14183,7 @@ td{
   -o-user-select: none;
   height: 45px !important;
 }
-/* line 749, ../../app/styles/main.scss */
+/* line 754, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr > th,
 .table-planillas-f > thead > tr > td,
 .table-planillas-f > tbody > tr > th,
@@ -14054,7 +14192,7 @@ td{
 .table-planillas-f > tfoot > tr > td {
   border: 1px solid #ddd;
 }
-/* line 753, ../../app/styles/main.scss */
+/* line 758, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tN,
 .table-planillas-f > tbody > tr .tN,
 .table-planillas-f > tfoot > tr .tN {
@@ -14064,7 +14202,7 @@ td{
   min-width: 21px;
   padding: 5px 3px 5px 3px;
 }
-/* line 760, ../../app/styles/main.scss */
+/* line 765, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCi,
 .table-planillas-f > tbody > tr .tCi,
 .table-planillas-f > tfoot > tr .tCi {
@@ -14074,7 +14212,7 @@ td{
   min-width: 70px;
   padding: 5px 3px 5px 3px;
 }
-/* line 767, ../../app/styles/main.scss */
+/* line 772, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCuenta,
 .table-planillas-f > tbody > tr .tCuenta,
 .table-planillas-f > tfoot > tr .tCuenta {
@@ -14083,13 +14221,13 @@ td{
   max-width: 100px;
   min-width: 100px;
 }
-/* line 772, ../../app/styles/main.scss */
+/* line 777, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCuenta *,
 .table-planillas-f > tbody > tr .tCuenta *,
 .table-planillas-f > tfoot > tr .tCuenta * {
   width: 100px;
 }
-/* line 775, ../../app/styles/main.scss */
+/* line 780, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCuenta span,
 .table-planillas-f > tbody > tr .tCuenta span,
 .table-planillas-f > tfoot > tr .tCuenta span {
@@ -14101,7 +14239,7 @@ td{
   text-overflow: ellipsis;
   overflow: hidden;
 }
-/* line 785, ../../app/styles/main.scss */
+/* line 790, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCuenta input, .table-planillas-f > thead > tr .tCuenta select,
 .table-planillas-f > tbody > tr .tCuenta input,
 .table-planillas-f > tbody > tr .tCuenta select,
@@ -14111,7 +14249,7 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 791, ../../app/styles/main.scss */
+/* line 796, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tGrado,
 .table-planillas-f > tbody > tr .tGrado,
 .table-planillas-f > tfoot > tr .tGrado {
@@ -14121,7 +14259,7 @@ td{
   min-width: 35px;
   padding: 5px 3px 5px 3px;
 }
-/* line 798, ../../app/styles/main.scss */
+/* line 803, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tNombres,
 .table-planillas-f > tbody > tr .tNombres,
 .table-planillas-f > tfoot > tr .tNombres {
@@ -14129,7 +14267,7 @@ td{
   width: 155px;
   padding: 5px 3px 5px 3px;
 }
-/* line 803, ../../app/styles/main.scss */
+/* line 808, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCarrera,
 .table-planillas-f > tbody > tr .tCarrera,
 .table-planillas-f > tfoot > tr .tCarrera {
@@ -14137,7 +14275,7 @@ td{
   width: 120px;
   padding: 5px 3px 5px 3px;
 }
-/* line 808, ../../app/styles/main.scss */
+/* line 813, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tMateria,
 .table-planillas-f > tbody > tr .tMateria,
 .table-planillas-f > tfoot > tr .tMateria {
@@ -14146,13 +14284,13 @@ td{
   max-width: 175px;
   min-width: 175px;
 }
-/* line 813, ../../app/styles/main.scss */
+/* line 818, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tMateria *,
 .table-planillas-f > tbody > tr .tMateria *,
 .table-planillas-f > tfoot > tr .tMateria * {
   width: 175px;
 }
-/* line 816, ../../app/styles/main.scss */
+/* line 821, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tMateria span,
 .table-planillas-f > tbody > tr .tMateria span,
 .table-planillas-f > tfoot > tr .tMateria span {
@@ -14162,7 +14300,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 824, ../../app/styles/main.scss */
+/* line 829, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tMateria input, .table-planillas-f > thead > tr .tMateria select,
 .table-planillas-f > tbody > tr .tMateria input,
 .table-planillas-f > tbody > tr .tMateria select,
@@ -14172,7 +14310,7 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 830, ../../app/styles/main.scss */
+/* line 835, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo,
 .table-planillas-f > tbody > tr .tTipo,
 .table-planillas-f > tfoot > tr .tTipo {
@@ -14181,13 +14319,13 @@ td{
   max-width: 70px;
   min-width: 70px;
 }
-/* line 835, ../../app/styles/main.scss */
+/* line 840, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo *,
 .table-planillas-f > tbody > tr .tTipo *,
 .table-planillas-f > tfoot > tr .tTipo * {
   width: 70px;
 }
-/* line 838, ../../app/styles/main.scss */
+/* line 843, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo span,
 .table-planillas-f > tbody > tr .tTipo span,
 .table-planillas-f > tfoot > tr .tTipo span {
@@ -14199,7 +14337,7 @@ td{
   overflow: hidden;
   vertical-align: middle;
 }
-/* line 848, ../../app/styles/main.scss */
+/* line 853, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo input, .table-planillas-f > thead > tr .tTipo select,
 .table-planillas-f > tbody > tr .tTipo input,
 .table-planillas-f > tbody > tr .tTipo select,
@@ -14209,13 +14347,13 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 853, ../../app/styles/main.scss */
+/* line 858, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo select,
 .table-planillas-f > tbody > tr .tTipo select,
 .table-planillas-f > tfoot > tr .tTipo select {
   width: auto;
 }
-/* line 857, ../../app/styles/main.scss */
+/* line 862, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras,
 .table-planillas-f > tbody > tr .tHoras,
 .table-planillas-f > tfoot > tr .tHoras {
@@ -14224,13 +14362,13 @@ td{
   max-width: 35px;
   min-width: 35px;
 }
-/* line 862, ../../app/styles/main.scss */
+/* line 867, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras *,
 .table-planillas-f > tbody > tr .tHoras *,
 .table-planillas-f > tfoot > tr .tHoras * {
   width: 35px;
 }
-/* line 865, ../../app/styles/main.scss */
+/* line 870, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras span,
 .table-planillas-f > tbody > tr .tHoras span,
 .table-planillas-f > tfoot > tr .tHoras span {
@@ -14241,7 +14379,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 874, ../../app/styles/main.scss */
+/* line 879, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras input, .table-planillas-f > thead > tr .tHoras select,
 .table-planillas-f > tbody > tr .tHoras input,
 .table-planillas-f > tbody > tr .tHoras select,
@@ -14251,13 +14389,13 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 879, ../../app/styles/main.scss */
+/* line 884, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras select,
 .table-planillas-f > tbody > tr .tHoras select,
 .table-planillas-f > tfoot > tr .tHoras select {
   width: auto;
 }
-/* line 883, ../../app/styles/main.scss */
+/* line 888, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria,
 .table-planillas-f > tbody > tr .tCategoria,
 .table-planillas-f > tfoot > tr .tCategoria {
@@ -14266,13 +14404,13 @@ td{
   max-width: 30px;
   min-width: 30px;
 }
-/* line 888, ../../app/styles/main.scss */
+/* line 893, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria *,
 .table-planillas-f > tbody > tr .tCategoria *,
 .table-planillas-f > tfoot > tr .tCategoria * {
   width: 30px;
 }
-/* line 891, ../../app/styles/main.scss */
+/* line 896, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria span,
 .table-planillas-f > tbody > tr .tCategoria span,
 .table-planillas-f > tfoot > tr .tCategoria span {
@@ -14283,7 +14421,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 900, ../../app/styles/main.scss */
+/* line 905, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria input, .table-planillas-f > thead > tr .tCategoria select,
 .table-planillas-f > tbody > tr .tCategoria input,
 .table-planillas-f > tbody > tr .tCategoria select,
@@ -14293,13 +14431,13 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 905, ../../app/styles/main.scss */
+/* line 910, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria select,
 .table-planillas-f > tbody > tr .tCategoria select,
 .table-planillas-f > tfoot > tr .tCategoria select {
   width: auto;
 }
-/* line 910, ../../app/styles/main.scss */
+/* line 915, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tReintegro,
 .table-planillas-f > tbody > tr .tReintegro,
 .table-planillas-f > tfoot > tr .tReintegro {
@@ -14307,13 +14445,13 @@ td{
   width: 70px;
   max-width: 70px;
 }
-/* line 915, ../../app/styles/main.scss */
+/* line 920, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tReintegro *,
 .table-planillas-f > tbody > tr .tReintegro *,
 .table-planillas-f > tfoot > tr .tReintegro * {
   width: 70px;
 }
-/* line 918, ../../app/styles/main.scss */
+/* line 923, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tReintegro span,
 .table-planillas-f > tbody > tr .tReintegro span,
 .table-planillas-f > tfoot > tr .tReintegro span {
@@ -14326,7 +14464,7 @@ td{
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 929, ../../app/styles/main.scss */
+/* line 934, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tReintegro input, .table-planillas-f > thead > tr .tReintegro select,
 .table-planillas-f > tbody > tr .tReintegro input,
 .table-planillas-f > tbody > tr .tReintegro select,
@@ -14336,7 +14474,7 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 936, ../../app/styles/main.scss */
+/* line 941, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tAtrasos,
 .table-planillas-f > tbody > tr .tAtrasos,
 .table-planillas-f > tfoot > tr .tAtrasos {
@@ -14345,13 +14483,13 @@ td{
   max-width: 40px;
   min-width: 40px;
 }
-/* line 941, ../../app/styles/main.scss */
+/* line 946, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tAtrasos *,
 .table-planillas-f > tbody > tr .tAtrasos *,
 .table-planillas-f > tfoot > tr .tAtrasos * {
   width: 40px;
 }
-/* line 944, ../../app/styles/main.scss */
+/* line 949, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tAtrasos span,
 .table-planillas-f > tbody > tr .tAtrasos span,
 .table-planillas-f > tfoot > tr .tAtrasos span {
@@ -14362,7 +14500,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 953, ../../app/styles/main.scss */
+/* line 958, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tAtrasos input, .table-planillas-f > thead > tr .tAtrasos select,
 .table-planillas-f > tbody > tr .tAtrasos input,
 .table-planillas-f > tbody > tr .tAtrasos select,
@@ -14372,7 +14510,7 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 960, ../../app/styles/main.scss */
+/* line 965, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura,
 .table-planillas-f > tbody > tr .tFactura,
 .table-planillas-f > tfoot > tr .tFactura {
@@ -14381,13 +14519,13 @@ td{
   max-width: 30px;
   min-width: 30px;
 }
-/* line 965, ../../app/styles/main.scss */
+/* line 970, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura *,
 .table-planillas-f > tbody > tr .tFactura *,
 .table-planillas-f > tfoot > tr .tFactura * {
   width: 30px;
 }
-/* line 968, ../../app/styles/main.scss */
+/* line 973, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura span,
 .table-planillas-f > tbody > tr .tFactura span,
 .table-planillas-f > tfoot > tr .tFactura span {
@@ -14398,7 +14536,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 977, ../../app/styles/main.scss */
+/* line 982, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura input, .table-planillas-f > thead > tr .tFactura select,
 .table-planillas-f > tbody > tr .tFactura input,
 .table-planillas-f > tbody > tr .tFactura select,
@@ -14408,13 +14546,13 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 982, ../../app/styles/main.scss */
+/* line 987, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura select,
 .table-planillas-f > tbody > tr .tFactura select,
 .table-planillas-f > tfoot > tr .tFactura select {
   width: auto;
 }
-/* line 987, ../../app/styles/main.scss */
+/* line 992, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tNumber,
 .table-planillas-f > tbody > tr .tNumber,
 .table-planillas-f > tfoot > tr .tNumber {
@@ -14425,38 +14563,38 @@ td{
   min-width: 49px;
   padding: 5px 3px 5px 3px;
 }
-/* line 994, ../../app/styles/main.scss */
+/* line 999, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tNumber *,
 .table-planillas-f > tbody > tr .tNumber *,
 .table-planillas-f > tfoot > tr .tNumber * {
   width: 49px;
 }
-/* line 998, ../../app/styles/main.scss */
+/* line 1003, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tLiquido,
 .table-planillas-f > tbody > tr .tLiquido,
 .table-planillas-f > tfoot > tr .tLiquido {
   padding: 5px 3px 5px 3px;
   text-align: right;
 }
-/* line 1005, ../../app/styles/main.scss */
+/* line 1010, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr > th,
 .table-planillas-f > thead > tr > td {
   border-bottom-width: 2px;
   text-align: center;
 }
-/* line 1011, ../../app/styles/main.scss */
+/* line 1016, ../../app/styles/main.scss */
 .table-planillas-f input {
   height: inherit;
   padding: 0;
   line-height: normal;
 }
 
-/* line 1018, ../../app/styles/main.scss */
+/* line 1023, ../../app/styles/main.scss */
 .table-generar {
   overflow-x: hidden;
 }
 
-/* line 1022, ../../app/styles/main.scss */
+/* line 1027, ../../app/styles/main.scss */
 .table-generar {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -14465,31 +14603,31 @@ td{
   -o-user-select: none;
   border: 1px solid #ddd;
 }
-/* line 1028, ../../app/styles/main.scss */
+/* line 1033, ../../app/styles/main.scss */
 .table-generar > thead > tr,
 .table-generar > tbody > tr,
 .table-generar > tfoot > tr {
   height: 45px !important;
 }
-/* line 1030, ../../app/styles/main.scss */
+/* line 1035, ../../app/styles/main.scss */
 .table-generar > thead > tr *,
 .table-generar > tbody > tr *,
 .table-generar > tfoot > tr * {
   height: 45px !important;
 }
-/* line 1034, ../../app/styles/main.scss */
+/* line 1039, ../../app/styles/main.scss */
 .table-generar > thead > tr button,
 .table-generar > tbody > tr button,
 .table-generar > tfoot > tr button {
   height: 30px !important;
 }
-/* line 1037, ../../app/styles/main.scss */
+/* line 1042, ../../app/styles/main.scss */
 .table-generar > thead > tr button *,
 .table-generar > tbody > tr button *,
 .table-generar > tfoot > tr button * {
   height: 30px !important;
 }
-/* line 1041, ../../app/styles/main.scss */
+/* line 1046, ../../app/styles/main.scss */
 .table-generar > thead *,
 .table-generar > tbody *,
 .table-generar > tfoot * {
@@ -14499,34 +14637,32 @@ td{
   text-align: center;
 }
 
-/* line 1050, ../../app/styles/main.scss */
+/* line 1055, ../../app/styles/main.scss */
 .table-planillas-f {
   overflow-x: hidden;
 }
-/* line 1052, ../../app/styles/main.scss */
+/* line 1057, ../../app/styles/main.scss */
 .table-planillas-f > tbody > tr:nth-of-type(odd) {
   background-color: #f9f9f9;
 }
 
-/* line 1058, ../../app/styles/main.scss */
+/* line 1063, ../../app/styles/main.scss */
 .table-planillas-f > tbody > tr:hover {
   background-color: #f5f5f5;
 }
 
-/* line 1067, ../../app/styles/main.scss */
+/* line 1072, ../../app/styles/main.scss */
 .toast-top-right {
   top: 50px !important;
   right: 0 !important;
 }
 
-/* line 1072, ../../app/styles/main.scss */
+/* line 1077, ../../app/styles/main.scss */
 #toast-container > div {
   box-shadow: 0 0 6px 2px #111 !important;
 }
 
-/* line 1076, ../../app/styles/main.scss */
+/* line 1082, ../../app/styles/main.scss */
 .ui-select-bootstrap > .ui-select-choices {
   width: auto !important;
 }
-
-/*# sourceMappingURL=main.css.map */

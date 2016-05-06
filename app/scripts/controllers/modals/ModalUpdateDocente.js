@@ -1,4 +1,4 @@
-angular.module('planillasApp').controller('ModalUpdateDocente', function ($scope,$rootScope,$http2,URLS,$location,$modalInstance,docente) {
+angular.module('planillasApp').controller('ModalUpdateDocente', function ($scope,$rootScope,$http2,URLS,$location,$uibModalInstance,docente) {
 
   function init(){
     var aux = angular.copy(docente);
@@ -29,7 +29,6 @@ angular.module('planillasApp').controller('ModalUpdateDocente', function ($scope
     $http2.put(URLS.DOCENTES,new_user,
       function(data){
         if(data.Success) {
-          $rootScope.GF.load_lista_docentes();
           $scope.ok();
         }
         $scope.cancel();
@@ -38,9 +37,9 @@ angular.module('planillasApp').controller('ModalUpdateDocente', function ($scope
 
 
   $scope.ok = function (success) {
-    $modalInstance.close(success);
+    $uibModalInstance.close(success);
   };
   $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
   };
 });

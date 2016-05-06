@@ -43,28 +43,31 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
-                        class="glyphicon glyphicon-list-alt"></i> <span class="hidden-sm">Listas</span> <span
-                        class="caret"></span></a>
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <i class="glyphicon glyphicon-list-alt"></i> <span class="hidden-sm"> Listas </span>
+                        <span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li ng-if="!GF.isSecretaria()"><a href="#/Usuarios"><i class="glyphicon glyphicon-user"></i>
-                            Lista de
-                            usuarios</a></li>
-                        <li><a href="#/Docentes"><i class="glyphicon glyphicon-list"></i> Lista de docentes</a></li>
-                        <li><a href="#/Materias"><i class="glyphicon glyphicon-list"></i> Lista de materias</a></li>
-                        <li><a href="#/Carreras"><i class="glyphicon glyphicon-list"></i> Lista de carreras</a></li>
+                        <li ng-if="!GF.isSecretaria()">
+                            <a href="#/Usuarios"><i class="glyphicon glyphicon-user"></i> Usuarios</a>
+                        </li>
+                        <li><a href="#/Docentes"><i class="glyphicon glyphicon-list"></i> Docentes</a></li>
+                        <li><a href="#/Materias"><i class="glyphicon glyphicon-list"></i> Materias</a></li>
+                        <li><a href="#/Carreras"><i class="glyphicon glyphicon-list"></i> Carreras</a></li>
+                        <li><a href="#/GradoDocentes"><i class="glyphicon glyphicon-list"></i> Grados de docentes</a></li>
                         <!--<li><a href="" ng-click="openModalNewDocente()"><i class="glyphicon glyphicon-user"></i> Agregar docente</a></li>-->
                     </ul>
                 </li>
 
-                <li class="dropdown" ng-if="CURRENT_USER['gestion'] || GF.isRoot()">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
-                        class="glyphicon glyphicon-list"></i> <span class="hidden-sm">Datos de pago</span> <span
-                        class="caret"></span></a>
+                <li class="dropdown" ng-if="CURRENT_USER['gestion']">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <i class="glyphicon glyphicon-list"></i> <span class="hidden-sm">Datos de pago</span>
+                        <span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="" ng-click="openModalDatosPago()"><i class="glyphicon glyphicon-list-alt"></i>
                             Información</a></li>
-                        <li ng-if="!GF.isSecretaria() && !GF.isJefeCarrera()">
+                        <li ng-if="GF.isRoot() && GF.isAdmin()">
                             <a href="" ng-click="openModalUpdateMonto()">
                                 <i class="glyphicon glyphicon-list"></i> Modificar montos de pago</a>
                         </li>
@@ -80,14 +83,15 @@
                         <span class="hidden-sm hidden-md"> Registros</span>
                     </a>
                 </li>
-                <li ng-if="GF.isRoot()"><a href="#/queryBuild"><i class="glyphicon glyphicon-warning-sign"></i>
-                    Query</a></li>
+                <li ng-if="GF.isRoot()"><a href="#/queryBuild"><i class="glyphicon glyphicon-warning-sign"></i>Query</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
-                        class="glyphicon glyphicon-user"></i> <span
-                        class="hidden-sm hidden-md"> {{' '+GF.getFullName()}} </span><span class="caret"></span></a>
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <span class="hidden-sm hidden-md"> {{' '+GF.getFullName()}} </span><span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
                             <a href="" ng-click="openModalProfile()">
@@ -101,7 +105,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="" ng-click="openModalAbout()">
                     <i class="glyphicon glyphicon-education"></i> <span
-                    class="hidden-sm hidden-md hidden-lg">About </span> </a></li>
+                    class="hidden-sm hidden-md hidden-lg">Acerca de </span> </a></li>
             </ul>
         </div>
     </nav>

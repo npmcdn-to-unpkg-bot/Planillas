@@ -8,15 +8,15 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('UsuariosCtrl', function ($scope, $rootScope, $http2, $modal, $log, URLS, AuthService, ModelService, $q) {
+    .controller('UsuariosCtrl', function ($scope, $rootScope, $http2, $uibModal, $log, URLS, AuthService, ModelService, $q) {
 
         var promises = [
+            AuthService.getUser(),
             $rootScope.GF.load_especialidades(),
-            $rootScope.GF.load_unidades_academicas(),
-            $rootScope.GF.load_tipo_usuarios(),
-            AuthService.getUser()
+            $rootScope.GF.load_unidades_academicas()
         ];
 
+        $scope.tipo_usuarios = [];
         $scope.currentPage = 1;
         $scope.page_size = 10;
 
@@ -24,6 +24,11 @@ angular.module('planillasApp')
         $scope.filter_uuaa = 0;
         $scope.filter_tipo = 0;
         $scope.filter_nombre = "";
+
+        $scope.enable_fields = {
+            unidad_academica: false,
+            especialidad: false
+        };
 
         $scope.changePage = function () {
             $scope.loadUsers({page: $scope.currentPage});
@@ -34,6 +39,7 @@ angular.module('planillasApp')
             query_params = query_params || {};
             query_params['is_complete_serializer'] = 1;
             query_params['page_size'] = $scope.page_size;
+            query_params['filter_user'] = 1;
 
             if ($scope.filter_nombre != "")query_params['search'] = $scope.filter_nombre;
             if ($scope.filter_carrera != 0)query_params['especialidad'] = $scope.filter_carrera;
@@ -52,13 +58,38 @@ angular.module('planillasApp')
         };
 
         $q.all(promises)
-            .then(function () {
+            .then(function (data) {
+                var user = data[0];
+                $scope.filter_carrera = user['especialidad']['id'];
+                $scope.filter_uuaa = user['unidad_academica']['id'];
+
+                $scope.tipo_usuarios = [
+                    {id: 2, name: 'Administrador'}, {id: 3, name: 'Jefe de carrera'}, {id: 4, name: 'Secretaria'}
+                ];
+                if ($rootScope.GF.isAdmin()) {
+                    $scope.filter_carrera = '';
+                    $scope.enable_fields.especialidad = true;
+                }
+
+                if ($rootScope.GF.isRoot()) {
+                    $scope.filter_carrera = '';
+                    $scope.filter_uuaa = '';
+                    $scope.enable_fields.especialidad = true;
+                    $scope.enable_fields.unidad_academica = true;
+                }
+                if ($rootScope.GF.isJefeCarrera()) {
+                    $scope.tipo_usuarios = [{
+                        id: 4,
+                        name: 'Secretaria'
+                    }];
+                }
+
                 $scope.loadUsers();
             });
 
         $scope.openModalNewUsuario = function (usuario) {
             $rootScope.GF.load_tipo_usuarios(function () {
-                var modalInstance = $modal.open({
+                var modalInstance = $uibModal.open({
                     animation: true,
                     templateUrl: 'views/modals/ModalNewUsuario.html',
                     controller: 'ModalNewUsuario',

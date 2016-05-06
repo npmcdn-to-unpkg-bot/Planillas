@@ -11,7 +11,7 @@ angular.module('planillasApp')
     .service('StatusMessageService', function () {
 
         function showResolve(data_success, options) {
-           // console.log(data_success);
+
         }
 
         /**
@@ -56,7 +56,6 @@ angular.module('planillasApp')
                     case 511:toastr.error('Autenticacion requerida');break;
                 }
             }
-            console.log(data_reject);
         }
 
         return {

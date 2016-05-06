@@ -232,7 +232,6 @@ angular.module('planillasApp')
 
                     if ((scope.itemCrud.type === 'select' && scope.itemCrud.multiple) || scope.itemCrud['custom']) {
                         if (angular.isFunction(scope.itemCrud.model_label)) {
-                            console.log("ddd");
                             scope.itemCrud.model_label(scope.itemCrudModel[scope.itemCrud.name]).then(function (_text) {
                                 text = _text;
                                 element.html(text || '-');
@@ -328,11 +327,11 @@ angular.module('planillasApp')
                     '<form name="name" class="form-horizontal" ng-submit="saveForm(newFormModel)">' +
                     '<div class="form-group" ng-repeat="itemF in ngModel.fields" ng-class="itemF.type==\'boolean\'?\'col-sm-6\':\'\'" >' +
                     '<label class="control-label" ng-class="itemF.type==\'boolean\'?\'col-sm-10\':\'col-sm-3\'" data-ng-bind-html="itemF.label"></label>' +
-                    '<div ng-class="itemF.type==\'boolean\'?\'col-sm-2\':\'col-sm-9\'" form-model="newFormModel" form-item-crud="itemF" form-item-disabled="((ngModel.disabled_fields | filter: itemF.name)[0])?true:false" ></div></div>' +
+                    '<div ng-class="itemF.type==\'boolean\'?\'col-sm-2\':\'col-sm-9\'" form-model="newFormModel" form-item-crud="itemF" form-item-init="(ngModel.default_fields | filter: {name: itemF.name})[0]" form-item-disabled="((ngModel.disabled_fields | filter: itemF.name)[0])?true:false" ></div></div>' +
                     '<i class="clearfix"></i><div class="text-center">' +
                     (scope.initForm ? ('<button type="submit" class="btn btn-success btn-sm mH5"><span class="glyphicon glyphicon-floppy-save"></span> Actualizar datos</button>') : ('<button type="submit" class="btn btn-success btn-sm mH5"> <span class="glyphicon glyphicon-floppy-save"></span> Guardar</button>') ) +
-                    '<button type="button" class="btn btn-primary btn-sm mH5" ng-click="cleanForm()"><span class="glyphicon glyphicon-remove"></span> Limpiar</button>' +
-                    (scope.initForm ? ('<button type="button" class="btn btn-info btn-sm mH5" ng-click="modalInstance.cancel()"><span class="glyphicon glyphicon-backward"></span> Cancelar</button>') : '' ) +
+                        /*'<button type="button" class="btn btn-primary btn-sm mH5" ng-click="cleanForm()"><span class="glyphicon glyphicon-remove"></span> Limpiar</button>' +*/
+                    '<button type="button" class="btn btn-info btn-sm mH5" ng-click="modalInstance.cancel()"><span class="glyphicon glyphicon-minus"></span> Cancelar</button>' +
                     '</div>' +
                     '</form>';
                 scope.saveForm = function (formDataModels) {
@@ -439,7 +438,8 @@ angular.module('planillasApp')
             scope: {
                 formItemCrud: '=',
                 formModel: '=',
-                formItemDisabled: '='
+                formItemDisabled: '=',
+                formItemInit: '='
             },
             link: function postLink(scope, element) {
 
@@ -451,6 +451,10 @@ angular.module('planillasApp')
                 var templateReturn = "";
 
                 if (scope.formItemCrud) {
+                    console.log(scope);
+                    if (scope.formItemInit && !scope.formModel[scope.formItemCrud.name]) {
+                        scope.formModel[scope.formItemCrud.name] = scope.formItemInit.value;
+                    }
                     if (scope.formItemCrud.type === 'number') {
                         templateReturn = '<input type="number" class="form-control input-sm" data-ng-model="formModel[formItemCrud.name]" placeholder="{{formItemCrud.label}}" data-ng-required="formItemCrud.required" min="{{formItemCrud.min}}" max="{{formItemCrud.max}}" step="{{formItemCrud.step}}"  data-ng-disabled="formItemDisabled">';
                     } else if (scope.formItemCrud.type === 'string') {
@@ -487,7 +491,6 @@ angular.module('planillasApp')
                     } else if (scope.formItemCrud.type === 'range') {
                         templateReturn = '<input type="range" class="form-control input-sm" data-ng-model="formModel[formItemCrud.name]" placeholder="{{formItemCrud.label}}" data-ng-required="formItemCrud.required" min="{{formItemCrud.min || 0}}" max="{{formItemCrud.max || 100}}" step="{{formItemCrud.step || 0}}" data-ng-disabled="formItemDisabled">';
                     }
-                    console.log(scope.formItemCrud);
                     if (scope.formItemCrud.model) {
                         (new scope.formItemCrud.model.resource()).$get().then(function (data) {
                             scope.formItemCrud.model.data = data;
@@ -562,7 +565,6 @@ angular.module('planillasApp')
     .controller('ModalCreateCrudController', function ($scope, $uibModalInstance, Model) {
         $scope.Model = angular.copy(Model);
         $scope.initValues = angular.copy($scope.rowItem);
-
         $scope.ok = function (data) {
             $uibModalInstance.close(data);
         };

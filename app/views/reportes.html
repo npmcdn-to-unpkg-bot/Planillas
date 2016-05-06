@@ -11,6 +11,7 @@
                         <p class="">Unidad Académica</p>
                         <select class="form-control" ng-model="filters.unidad_academica"
                                 ng-change="load_reports()"
+                                data-ng-disabled="!enable_fields.filter_unidad_academica"
                                 ng-options="unidad.id as unidad.name for unidad in GLOBALS.UNIDADES_ACADEMICAS">
                             <option value="">-- Todos --</option>
                         </select>
@@ -32,8 +33,8 @@
                     <th>Unidad Académica</th>
                     <th>Detalle</th>
                     <th>Gestión</th>
-                    <th>REPORTES</th>
-                    <th ng-if="!GF.isSecretaria()">+/-</th>
+                    <th>Archivos</th>
+                    <th ng-if="enable_fields.delete_register">+/-</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,10 +52,11 @@
                             <img src="images/pdf_icon.png" class="icon-report"></a>
 
                         <a ng-href="{{path_report_item+'?fileType=xls&fileName='+reporte.file}}" target="_blank"
+                           ng-if="enable_fields.download_xls"
                            title="{{reporte.file}}.xls" download="">
                             <img src="images/xls_icon.png" class="icon-report"></a>
                     </td>
-                    <td ng-if="!GF.isSecretaria()">
+                    <td ng-if="enable_fields.delete_register">
                         <button type="button" ng-click="eliminarReporte(rep)" class="btn btn-danger btn-xs">
                             <i class="glyphicon glyphicon-remove"></i></button>
                     </td>

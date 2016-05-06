@@ -1,4 +1,4 @@
-angular.module('planillasApp').controller('ModalNewMateria', function ($scope,$rootScope,$http2,URLS,$location,$modalInstance,materia) {
+angular.module('planillasApp').controller('ModalNewMateria', function ($scope,$rootScope,$http2,URLS,$location,$uibModalInstance,materia) {
   function init(){
     $scope.nueva_materia = {};
     $scope.nueva_materia.Materia = "";
@@ -21,7 +21,6 @@ angular.module('planillasApp').controller('ModalNewMateria', function ($scope,$r
       $http2.put(URLS.LISTA_MATERIAS,new_mat,
         function(data){
           if(data.Success){
-            $rootScope.GF.load_lista_materias();
             $scope.ok();
           }
           $scope.cancel();
@@ -30,7 +29,6 @@ angular.module('planillasApp').controller('ModalNewMateria', function ($scope,$r
       $http2.post(URLS.LISTA_MATERIAS,new_mat,
         function(data){
           if(data.Success){
-            $rootScope.GF.load_lista_materias();
             $scope.ok(true);
           }
           $scope.cancel();
@@ -38,9 +36,9 @@ angular.module('planillasApp').controller('ModalNewMateria', function ($scope,$r
     }
   };
   $scope.ok = function (success) {
-    $modalInstance.close(success);
+    $uibModalInstance.close(success);
   };
   $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
   };
 });

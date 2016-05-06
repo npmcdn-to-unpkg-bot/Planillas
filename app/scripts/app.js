@@ -23,7 +23,8 @@ angular
         'toastr',
         'ui.bootstrap.contextMenu',
         'textAngular',
-        'ngCsvImport'
+        'ngCsvImport',
+        'content-editable'
     ])
     .config(function ($routeProvider, $httpProvider, uiSelectConfig) {
         uiSelectConfig.theme = 'bootstrap';
@@ -32,10 +33,6 @@ angular
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-        //$httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-        //$httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET,POST,PUT,DELETE,OPTIONS';
-        //$httpProvider.defaults.headers.common["Access-Control-Allow-Headers"] = "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With";
-        //$httpProvider.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
         $routeProvider
             .when('/', {
                 templateUrl: 'views/splashscreen.html',
@@ -43,51 +40,51 @@ angular
             })
             .when('/Login', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'LoginCtrl'
-            })
-            .when('/Home', {
-                templateUrl: 'views/splashscreen.html',
-                controller: 'HomeCtrl'
+                controller: 'MenuCtrl'
             })
             .when('/Gestion/Old', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'GestionoldCtrl'
+                controller: 'MenuCtrl'
             })
             .when('/Gestion', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'StartgestionCtrl'
+                controller: 'MenuCtrl'
             })
             .when('/EliminarRegistros', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'EliminarregistrosCtrl'
+                controller: 'MenuCtrl'
             })
             .when('/Usuarios', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'UsuariosCtrl'
+                controller: 'MenuCtrl'
             })
             .when('/Sincronizacion', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'SincronizacionCtrl'
+                controller: 'MenuCtrl'
             })
             .when('/Reportes', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'ReportesCtrl'
+                controller: 'MenuCtrl'
             })
             .when('/GenerarPlanilla', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'VerplanillaCtrl'
+                controller: 'MenuCtrl'
             })
             .when('/VerPlanilla', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'VerplanillaCtrl'
+                controller: 'MenuCtrl'
             })
             .when('/Docentes', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'DocentesCtrl'
+                controller: 'MenuCtrl'
             })
             .when('/Materias', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'MateriasCtrl'
+                controller: 'MenuCtrl'
+            })
+            .when('/GradoDocentes', {
+                templateUrl: 'views/splashscreen.html',
+                controller: 'MenuCtrl'
             })
             .when('/CloseSystem', {
                 templateUrl: 'views/splashscreen.html',
@@ -95,15 +92,15 @@ angular
             })
             .when('/queryBuild', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'QuerybuildCtrl'
+                controller: 'MenuCtrl'
             })
             .when('/restartPassword', {
                 templateUrl: 'views/restartpassword.html',
-                controller: 'RestartpasswordCtrl'
+                controller: 'MenuCtrl'
             })
             .when('/Carreras', {
                 templateUrl: 'views/splashscreen.html',
-                controller: 'CarrerasCtrl',
+                controller: 'MenuCtrl',
                 controllerAs: 'carreras'
             })
             .otherwise({
@@ -113,10 +110,10 @@ angular
     .constant('angularMomentConfig', {
         timezone: 'America/La_Paz' // e.g. 'Europe/London'
     })
-    .run(function ($rootScope, $location, $log, $http2, URLS, editableOptions, editableThemes, $modal, toastr, $q, AuthService, $http, ModelService) {
-        editableThemes.bs3.inputClass = 'input-sm';
-        editableThemes.bs3.buttonsClass = 'btn-sm';
-        editableOptions.theme = 'bs3';
+    .run(function ($rootScope, $location, $log, $http2, URLS, editableOptions, editableThemes, $uibModal, toastr, $q, AuthService, $http) {
+        editableThemes.bs3.inputClass = 'input-sm small';
+        editableThemes.bs3.buttonsClass = 'btn-sm small';
+        //editableOptions.theme = 'bs3';
         toastr.options = {
             "closeButton": false,
             "debug": false,
@@ -126,54 +123,18 @@ angular
             "preventDuplicates": true,
             "onclick": null,
             "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
+            "hideDuration": "500",
+            "timeOut": "3000",
             "extendedTimeOut": "1000",
             "showEasing": "swing",
             "hideEasing": "linear",
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         };
-        $rootScope.CURRENT_VIEW = '';
-        $rootScope.GF = {};
-        $rootScope.FIRST_REQUEST = true;
+        $rootScope.CURRENT_VIEW = 'views/loader.html';
         $rootScope.CURRENT_USER = null;
-        $rootScope.filters = {};
-        $rootScope.filters.items_for_page = 20;
 
-        $rootScope.reloadApp = function () {
-            location.reload();
-        };
-        $rootScope.login = function (user, options) {
-            var defer = $q.defer();
-            AuthService.login(user, options)
-                .then(function (user) {
-                    $rootScope.CURRENT_USER = user;
-                    defer.resolve(user);
-                    redirects();
-                }, function (data) {
-                    defer.reject(data);
-                    $rootScope.setMenu_Login();
-                });
-            return defer.promise;
-        };
-        $rootScope.autoLogin = function (options) {
-            options = options || {};
-            options['hideMessage'] = true;
-            $rootScope.login(false, options);
-        };
-        $rootScope.getUser = function () {
-            return AuthService.getUser();
-        };
-        $rootScope.logout = function () {
-            AuthService.logout()
-                .then(function () {
-                    location.reload();
-                }, function () {
-                    location.reload();
-                });
-        };
-        $rootScope.autoLogin();
+        $rootScope.GF = {};
         $rootScope.GF.isLogged = function () {
             return $rootScope.CURRENT_USER ? true : false;
         };
@@ -195,7 +156,6 @@ angular
         $rootScope.GF.getUnidadAcademicaId = function () {
             return $rootScope.CURRENT_USER['unidad_academica']['id'];
         };
-
         $rootScope.GF.isRoot = function () {
             return $rootScope.CURRENT_USER['tipo_usuario']['id'] == 1;
         };
@@ -208,177 +168,6 @@ angular
         $rootScope.GF.isSecretaria = function () {
             return $rootScope.CURRENT_USER['tipo_usuario']['id'] == 4;
         };
-
-        $rootScope.setMenu_Login = function () {
-            $location.url('/Login');
-            $rootScope.CURRENT_VIEW = 'views/login.html';
-        };
-        $rootScope.setMenu_Loader = function () {
-            //$location.url('/');
-            $rootScope.CURRENT_VIEW = 'views/loader.html';
-        };
-        $rootScope.setMenu_Home = function () {
-            $location.url('/Home');
-            $rootScope.CURRENT_VIEW = 'views/home.html';
-        };
-        $rootScope.setMenu_CloseSystem = function () {
-            $location.url('/CloseSystem');
-            $rootScope.CURRENT_VIEW = 'views/close_system.html';
-        };
-        $rootScope.setMenu_Gestion = function () {
-            $location.url('/Gestion');
-            $rootScope.CURRENT_VIEW = 'views/startgestion.html';
-            $rootScope.GF.load_unidades_academicas();
-            $rootScope.GF.load_especialidades();
-        };
-        $rootScope.setMenu_GestionPasada = function () {
-            $rootScope.filters = {};
-            $rootScope.filters.items_for_page = 20;
-            $rootScope.GF.load_lista_docentes();
-            $rootScope.GF.load_lista_materias();
-            $rootScope.GF.load_especialidades();
-            $rootScope.GF.load_tipos_categoria();
-            $rootScope.GF.load_montos_pago();
-            $location.url($location.path());
-            $rootScope.CURRENT_VIEW = 'views/gestionold.html';
-        };
-        $rootScope.setMenu_QueryBuild = function () {
-            $location.url($location.path());
-            $rootScope.CURRENT_VIEW = 'views/querybuild.html';
-        };
-        $rootScope.setMenu_EliminarRegistros = function () {
-            $location.url('/EliminarRegistros');
-            $rootScope.CURRENT_VIEW = 'views/eliminarregistros.html';
-        };
-        $rootScope.setMenu_Sincronizacion = function () {
-            $location.url('/Sincronizacion');
-            $rootScope.CURRENT_VIEW = 'views/sincronizacion.html';
-        };
-        $rootScope.setMenu_Reportes = function () {
-            $rootScope.GF.load_allReport();
-            $rootScope.GF.load_especialidades();
-            $rootScope.GF.load_unidades_academicas();
-            $rootScope.GF.load_tipo_usuarios();
-            $location.url('/Reportes');
-            $rootScope.CURRENT_VIEW = 'views/reportes.html';
-        };
-        $rootScope.setMenu_GenerarPlanilla = function () {
-            $location.url('/GenerarPlanilla');
-            $rootScope.CURRENT_VIEW = 'views/generarplanilla.html';
-        };
-        $rootScope.setMenu_VerPlanilla = function () {
-            $location.url('/VerPlanilla');
-            if ($rootScope.GF.isSecretaria()) {
-                $rootScope.CURRENT_VIEW = 'views/verplanillasecretaria.html';
-            } else {
-                $rootScope.CURRENT_VIEW = 'views/verplanilla.html';
-            }
-        };
-        $rootScope.setMenu_Usuarios = function () {
-            $location.url('/Usuarios');
-            $rootScope.CURRENT_VIEW = 'views/usuarios.html';
-        };
-        $rootScope.setMenu_Docentes = function () {
-            $location.url('/Docentes');
-            $rootScope.CURRENT_VIEW = 'views/docentes.html';
-        };
-        $rootScope.setMenu_Carreras = function () {
-            $location.url('/Carreras');
-            $rootScope.CURRENT_VIEW = 'views/carreras.html';
-        };
-        $rootScope.setMenu_Materias = function () {
-            $location.url('/Materias');
-            $rootScope.CURRENT_VIEW = 'views/materias.html';
-        };
-
-
-        function redirects() {
-            var locationPath = $location.path();
-            if (!$rootScope.CURRENT_USER['gestion'] && ($rootScope.GF.isJefeCarrera() || $rootScope.GF.isSecretaria())) {
-                $rootScope.setMenu_CloseSystem();
-                return;
-            }
-            console.log("REDIRECTS");
-            switch (locationPath) {
-                case "/":
-                    $rootScope.setMenu_Gestion();
-                    break;
-                case "/Login":
-                    $rootScope.setMenu_Gestion();
-                    break;
-                case "/Home":
-                    $rootScope.setMenu_Home();
-                    break;
-                case "/Gestion":
-                    $rootScope.setMenu_Gestion();
-                    break;
-                case "/Usuarios":
-                    $rootScope.setMenu_Usuarios();
-                    break;
-                case "/Docentes":
-                    $rootScope.setMenu_Docentes();
-                    break;
-                case "/Materias":
-                    $rootScope.setMenu_Materias();
-                    break;
-                case "/Carreras":
-                    $rootScope.setMenu_Carreras();
-                    break;
-                case "/Reportes":
-                    // $location.url('/Reportes');
-                    $rootScope.setMenu_Reportes();
-                    break;
-                case "/Sincronizacion":
-                    // $location.url('/Sincronizacion');
-                    $rootScope.setMenu_Sincronizacion();
-                    break;
-                case "/GenerarPlanilla":
-                    // $location.url('/GenerarPlanilla');
-                    if ($rootScope.GF.isSecretaria()) {
-                        $location.url("/Gestion");
-                    }
-                    $rootScope.setMenu_GenerarPlanilla();
-                    break;
-                case "/VerPlanilla":
-                    // $location.url('/VerPlanilla');
-                    $rootScope.setMenu_VerPlanilla();
-                    break;
-                case "/CloseSystem":
-                    $location.url('/Gestion');
-                    break;
-                case "/queryBuild":
-                    if (!$rootScope.GF.isRoot()) {
-                        $location.url("/Gestion");
-                    }
-                    $rootScope.setMenu_QueryBuild();
-                    break;
-                case "/EliminarRegistros":
-                    if ($rootScope.GF.isAdmin() || $rootScope.GF.isRoot())
-                        $rootScope.setMenu_EliminarRegistros();
-                    else
-                        $rootScope.setMenu_Gestion();
-                    break;
-            }
-            if (locationPath.search("/Gestion/Old") >= 0) {
-                $rootScope.setMenu_GestionPasada();
-            }
-        }
-
-        $rootScope.$on('$routeChangeStart', function () {
-            $log.warn('Change Route to ' + $location.path());
-            //if ($rootScope.FIRST_REQUEST) {
-            //    $rootScope.setMenu_Loader();
-            //    return;
-            //}
-            if (!$rootScope.GF.isLogged()) {
-                $rootScope.setMenu_Login();
-                return;
-            }
-            redirects();
-        });
-
-        $rootScope.GLOBALS = {};
-
         $rootScope.GF.load_unidades_academicas = function (fcnScs, fcnErr) {
             return $http.get(URLS.UNIDADES_ACADEMICAS)
                 .then(function (data) {
@@ -388,7 +177,6 @@ angular
                     fcnErr && fcnErr();
                 })
         };
-
         $rootScope.GF.load_especialidades = function (fcnScs, fcnErr) {
             return $http.get(URLS.ESPECIALIDADES)
                 .then(function (data) {
@@ -398,7 +186,6 @@ angular
                     fcnErr && fcnErr();
                 })
         };
-
         $rootScope.GF.load_current_monto_categoria = function (fcnScs, fcnErr) {
             var data = {
                 gestion: $rootScope.CURRENT_USER['gestion']['gestion'],
@@ -413,7 +200,6 @@ angular
                     fcnErr && fcnErr();
                 })
         };
-
         $rootScope.GF.load_tipo_usuarios = function (fcnScs, fcnErr) {
             return $http.get(URLS.TIPO_USUARIO)
                 .then(function (data) {
@@ -423,8 +209,7 @@ angular
                     fcnErr && fcnErr();
                 })
         };
-
-        $rootScope.GF.load_gestiones_academicas = function (fcnScs, fcnErr, items) {
+        $rootScope.GF.load_gestiones_academicas = function (fcnScs, fcnErr) {
             return $http.get(URLS.GESTIONES_ACADEMICAS)
                 .then(function (data) {
                     $rootScope.GLOBALS.ALL_GESTIONES_ACADEMICAS = data['data']['data'];
@@ -433,14 +218,12 @@ angular
                     fcnErr && fcnErr();
                 })
         };
-
         $rootScope.GF.load_gradosDocentes = function () {
             return $http.get(URLS.GRADO_DOCENTE)
                 .then(function (data) {
                     $rootScope.GLOBALS.GRADOS_DOCENTE = data['data']['data'];
                 });
         };
-
         $rootScope.GF.load_tipoPago = function () {
             return $http.get(URLS.TIPO_PAGO)
                 .then(function (data) {
@@ -448,6 +231,133 @@ angular
                     //$rootScope.GLOBALS.PAGO_ITEMS = [{id: 1, name: "Semanal"}, {id: 0, name: "Horas"}];
                 });
         };
+
+        $rootScope.login = function (user, options) {
+            var defer = $q.defer();
+            AuthService.login(user, options)
+                .then(function (user) {
+                    $rootScope.CURRENT_USER = user;
+                    defer.resolve(user);
+                    redirects();
+                }, function (data) {
+                    defer.reject(data);
+                    $rootScope.setMenu_Login();
+                });
+            return defer.promise;
+        };
+        $rootScope.autoLogin = function (options) {
+            options = options || {};
+            options['hideMessage'] = true;
+            return $rootScope.login(false, options);
+        };
+        $rootScope.getUser = function () {
+            return AuthService.getUser();
+        };
+        $rootScope.logout = function () {
+            AuthService.logout()
+                .then(function () {
+                    location.reload();
+                }, function () {
+                    location.reload();
+                });
+        };
+        $rootScope.setMenu_Login = function () {
+            $location.url('/Login');
+            $rootScope.CURRENT_VIEW = 'views/login.html';
+        };
+
+        function redirects() { //usuario logueado
+            var locationPath = $location.path();
+            if (!$rootScope.CURRENT_USER['gestion'] && ($rootScope.GF.isJefeCarrera() || $rootScope.GF.isSecretaria())) {
+                $location.url('/CloseSystem');
+                $rootScope.CURRENT_VIEW = 'views/close_system.html';
+                return;
+            }
+            switch (locationPath) {
+                case "/":
+                    $location.url('/Gestion');
+                    break;
+                case "/Login":
+                    $location.url('/Gestion');
+                    break;
+                case "/Gestion":
+                    $rootScope.CURRENT_VIEW = 'views/startgestion.html';
+                    break;
+                case "/Usuarios":
+                    $rootScope.CURRENT_VIEW = 'views/usuarios.html';
+                    break;
+                case "/Docentes":
+                    $rootScope.CURRENT_VIEW = 'views/docentes.html';
+                    break;
+                case "/Materias":
+                    $rootScope.CURRENT_VIEW = 'views/materias.html';
+                    break;
+                case "/GradoDocentes":
+                    $rootScope.CURRENT_VIEW = 'views/grado_docentes.html';
+                    break;
+                case "/Carreras":
+                    $rootScope.CURRENT_VIEW = 'views/carreras.html';
+                    break;
+                case "/Reportes":
+                    $rootScope.CURRENT_VIEW = 'views/reportes.html';
+                    break;
+                case "/Sincronizacion":
+                    if ($rootScope.GF.isSecretaria()) {
+                        $location.url("/Gestion");
+                    } else {
+                        $rootScope.CURRENT_VIEW = 'views/sincronizacion.html';
+                    }
+                    break;
+                case "/GenerarPlanilla":
+                    if ($rootScope.GF.isSecretaria()) {
+                        $location.url("/Gestion");
+                    }
+                    $rootScope.CURRENT_VIEW = 'views/generarplanilla.html';
+                    //$rootScope.CURRENT_VIEW = 'views/verplanilla.html';
+                    break;
+                case "/VerPlanilla":
+                    if ($rootScope.GF.isSecretaria()) {
+                        $rootScope.CURRENT_VIEW = 'views/verplanillasecretaria.html';
+                    } else {
+                        $rootScope.CURRENT_VIEW = 'views/verplanilla.html';
+                    }
+                    break;
+                case "/CloseSystem":
+                    $rootScope.CURRENT_VIEW = 'views/close_system.html';
+                    break;
+                case "/queryBuild":
+                    if (!$rootScope.GF.isRoot()) {
+                        $location.url("/Gestion");
+                    }
+                    $rootScope.CURRENT_VIEW = 'views/querybuild.html';
+                    break;
+                case "/EliminarRegistros":
+                    if ($rootScope.GF.isAdmin() || $rootScope.GF.isRoot())
+                        $rootScope.CURRENT_VIEW = 'views/eliminarregistros.html';
+                    else
+                        $location.url("/Gestion");
+                    break;
+            }
+            if (locationPath.search("/Gestion/Old") >= 0) {
+                $rootScope.CURRENT_VIEW = 'views/gestionold.html';
+            }
+        }
+
+        $rootScope.$on('$routeChangeStart', function () {
+            //$log.warn('Change Route to ' + $location.path());
+            $rootScope.autoLogin()
+                .then(function (user) {
+                    if (user && $rootScope.GF.isLogged()) {
+                        redirects();
+                    } else {
+                        $rootScope.setMenu_Login();
+                    }
+                }, function () {
+                    $rootScope.setMenu_Login();
+                });
+        });
+
+        $rootScope.GLOBALS = {};
         $rootScope.GLOBALS.TIPO_PAGO = [{id: 1, name: "Horas", short: 'Hrs'}, {id: 2, name: "Semanal", short: "Sem"}];
         $rootScope.GLOBALS.TIPOS_CATEGORIAS = [
             {id: 'A', name: "A"}, {id: 'B', name: "B"}, {id: 'C', name: "C"}, {id: 'D', name: "D"}
@@ -461,74 +371,28 @@ angular
             {id: 1, name: "Objetivos", short: 'Obj'},
             {id: 2, name: "Competencias", short: 'Comp'}
         ];
+        $rootScope.GLOBALS.HORAS_OR_SEMANAS = [];
         $rootScope.GLOBALS.TIEMPOS_CARGA_HORARIA = [];
         $rootScope.GLOBALS.NUMEROS_PAGINACION = [];
-        for (var i = 1; i <= 25; i++) {
+        var i;
+        for (i = 1; i <= 50; i++) {
+            $rootScope.GLOBALS.HORAS_OR_SEMANAS.push(i);
+        }
+        for (i = 1; i <= 25; i++) {
             $rootScope.GLOBALS.TIEMPOS_CARGA_HORARIA.push({id: i, name: i});
         }
-        for (var i = 1; i <= 10; i++) {
+        for (i = 1; i <= 10; i++) {
             $rootScope.GLOBALS.NUMEROS_PAGINACION.push(i * 5);
         }
-///////
-        $rootScope.GF.load_usuarios = function (query_params) {
-            var defer = $q.defer();
-            query_params = query_params || {};
-            query_params['is_complete_serializer'] = 1;
-            (new (new ModelService.UsuariosModel()).resource())
-                .$get(query_params).then(function (data) {
-                    defer.resolve(data);
-                    $rootScope.GLOBALS.LISTA_USUARIOS = data['data'];
-                }
-                , function (data) {
-                    defer.reject(data);
-                });
-            return defer.promise;
-        };
 
-        $rootScope.GF.load_lista_materias = function (fcnScs, fcnErr, query, items) {
-            $http2.get(URLS.LISTA_MATERIAS + '?' + (query || ''), {items: items || 30}, function (data) {
-                if (data.Success) {
-                    if (!query)$rootScope.GLOBALS.LISTA_MATERIAS = data.Materias;
-                    $rootScope.GLOBALS.LISTA_CUSTOM_MATERIAS = data.Materias;
-                    fcnScs && fcnScs(data);
-                }
-            }, function () {
-                fcnErr && fcnErr();
-            })
-        };
-
-        $rootScope.GF.load_lista_docentes = function (fcnScs, fcnErr, query) {
-            $http2.get(URLS.LISTA_DOCENTES + '?' + (query || ''), {}, function (data) {
-                if (data.Success) {
-                    if (!query)$rootScope.GLOBALS.LISTA_DOCENTES = data.Docentes;
-                    $rootScope.GLOBALS.LISTA_CUSTOM_DOCENTES = data.Docentes;
-                    fcnScs && fcnScs(data);
-                }
-            }, function () {
-                fcnErr && fcnErr();
-            })
-        };
-
-        $rootScope.GF.load_allReport = function (fcnScs, fcnErr, items) {
-            $http2.get(URLS.ALLREPORTES, {items: items || 20}, function (data) {
-                $rootScope.GLOBALS.allreportes = data.Reportes;
-                fcnScs && fcnScs(data);
-            }, function () {
-                fcnErr && fcnErr();
-            });
-        };
-
-        $rootScope.GF.load_tiempo_atrasos = function (fcnScs, fcnErr) {
-            fcnScs && fcnScs();
-            $rootScope.GLOBALS.TIEMPOS_ATRASOS = [];
-            $rootScope.GLOBALS.TIEMPOS_ATRASOS.push({id: 0, name: '0'});
-            for (var i = 1; i <= 35; i += 1) {
-                $rootScope.GLOBALS.TIEMPOS_ATRASOS.push({id: i, name: i + ''});
-            }
-        };
+        $rootScope.GLOBALS.TIEMPOS_ATRASOS = [];
+        $rootScope.GLOBALS.TIEMPOS_ATRASOS.push({id: 0, name: '0'});
+        for (i = 1; i <= 35; i += 1) {
+            $rootScope.GLOBALS.TIEMPOS_ATRASOS.push({id: i, name: i + ''});
+        }
 
         $rootScope.openModalConfirm = function (ok, cancel, title, message) {
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'ModalConfirm.html',
                 controller: 'ModalConfirm',
@@ -542,23 +406,21 @@ angular
                     }
                 }
             });
-            modalInstance.result.then(function (selectedItem) {
+            modalInstance.result.then(function () {
                 ok();
             }, function () {
                 cancel();
             });
         };
-    })
-;
+    });
 
-angular.module('planillasApp').controller('ModalConfirm', function ($scope, $modalInstance, message, title) {
+angular.module('planillasApp').controller('ModalConfirm', function ($scope, $uibModalInstance, message, title) {
     $scope.mensaje = message;
     $scope.title = title;
-
     $scope.ok = function () {
-        $modalInstance.close(true);
+        $uibModalInstance.close(true);
     };
     $scope.cancel = function () {
-        $modalInstance.dismiss(false);
+        $uibModalInstance.dismiss(false);
     };
 });

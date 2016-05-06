@@ -19,4 +19,19 @@ angular.module('planillasApp')
                 });
             }
         };
+    })
+    .directive('widthStatic', function () {
+        return {
+            restrict: 'A',
+            scope: {
+                widthStatic: '='
+            },
+            link: function postLink(scope, element) {
+                $(element).css({
+                    'width': scope.widthStatic + 'px',
+                    'min-width': scope.widthStatic + 'px',
+                    'max-width': scope.widthStatic + 'px'
+                });
+            }
+        };
     });

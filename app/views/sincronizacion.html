@@ -91,7 +91,7 @@
                         </table>
 
                     </uib-tab>
-                    <uib-tab heading="Carreras">
+                    <uib-tab heading="Carreras" ng-if="GF.isAdmin() || GF.isRoot()">
                         <div class="inline-block">
                             Desde Archivo (.csv):
                         </div>

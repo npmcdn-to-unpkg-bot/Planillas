@@ -1,4 +1,4 @@
-angular.module('planillasApp').controller('ModalAboutCtrl', function ($scope, $rootScope, $modalInstance, $timeout) {
+angular.module('planillasApp').controller('ModalAboutCtrl', function ($scope, $rootScope, $uibModalInstance, $timeout) {
 
     $scope.developer = "Est. Eyvind Emilio Tiñini Coaquira";
     $scope.carrera = "Cnl. DAEN. Julio Cesar Narvaez Tamayo";
@@ -7,7 +7,7 @@ angular.module('planillasApp').controller('ModalAboutCtrl', function ($scope, $r
     $scope.selected = {};
 
     $scope.ok = function () {
-        $modalInstance.close($scope.selected.item);
+        $uibModalInstance.close($scope.selected.item);
     };
 
     $scope.item1 = false;

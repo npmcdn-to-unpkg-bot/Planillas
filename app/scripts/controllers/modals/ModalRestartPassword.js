@@ -1,4 +1,4 @@
-angular.module('planillasApp').controller('ModalRestartPassword', function ($scope,$rootScope,$http2,URLS,$location,$modalInstance) {
+angular.module('planillasApp').controller('ModalRestartPassword', function ($scope,$rootScope,$http2,URLS,$location,$uibModalInstance) {
   $scope.restartPassword = function(email){
       $http2.post(URLS.RESTART,{email:email},
         function(data){
@@ -11,9 +11,9 @@ angular.module('planillasApp').controller('ModalRestartPassword', function ($sco
         })
   };
   $scope.ok = function (success) {
-    $modalInstance.close(success);
+    $uibModalInstance.close(success);
   };
   $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
   };
 });

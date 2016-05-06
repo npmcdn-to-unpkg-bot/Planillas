@@ -8,9 +8,10 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('MenuCtrl', function ($rootScope, $modal, $log) {
+    .controller('MenuCtrl', function ($rootScope, $uibModal, $log) {
+
         $rootScope.openModalProfile = function () {
-            $modal.open({
+            $uibModal.open({
                 animation: true,
                 templateUrl: 'views/modals/ModalProfile.html',
                 controller: 'ModalProfileCtrl',
@@ -19,7 +20,7 @@ angular.module('planillasApp')
         };
 
         $rootScope.openModalAbout = function () {
-            $modal.open({
+            $uibModal.open({
                 animation: true,
                 templateUrl: 'views/modals/ModalAbout.html',
                 controller: 'ModalAboutCtrl',
@@ -28,7 +29,7 @@ angular.module('planillasApp')
         };
 
         $rootScope.openModalDatosPago = function () {
-            $modal.open({
+            $uibModal.open({
                 animation: true,
                 templateUrl: 'views/modals/ModalDatosPago.html',
                 controller: 'ModalDatosPagoCtrl',
@@ -37,7 +38,7 @@ angular.module('planillasApp')
         };
 
         $rootScope.openModalUpdateMonto = function () {
-            $modal.open({
+            $uibModal.open({
                 animation: true,
                 templateUrl: 'views/modals/ModalUpdateMonto.html',
                 controller: 'ModalUpdateMonto',
@@ -46,7 +47,7 @@ angular.module('planillasApp')
         };
 
         $rootScope.modificarDocente = function (docente) {
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'views/modals/ModalUpdateDocente.html',
                 controller: 'ModalUpdateDocente',
@@ -58,27 +59,26 @@ angular.module('planillasApp')
                 }
             });
             modalInstance.result.then(function (selectedItem) {
-                $rootScope.generarPlanilla(1);
-                $rootScope.GF.load_lista_docentes();
+
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
         };
 
         $rootScope.openModalNewDocente = function () {
+
+            console.log(docente);
             $rootScope.GF.load_unidades_academicas();
-            $rootScope.GF.load_lista_docentes(function () {
-                $modal.open({
-                    animation: true,
-                    templateUrl: 'views/modals/ModalNewDocente.html',
-                    controller: 'ModalNewDocente',
-                    size: 'md'
-                });
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modals/ModalNewDocente.html',
+                controller: 'ModalNewDocente',
+                size: 'md'
             });
         };
 
         $rootScope.openModalNewMateria = function (materia) {
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'views/modals/ModalNewMateria.html',
                 controller: 'ModalNewMateria',
@@ -90,15 +90,14 @@ angular.module('planillasApp')
                 }
             });
             modalInstance.result.then(function (selectedItem) {
-                $rootScope.GF.load_lista_materias();
+
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
         };
 
-
         $rootScope.openModalViewCourso = function (registro) {
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'views/modals/ModalViewCourse.html',
                 controller: 'ModalViewCourse',
@@ -116,5 +115,25 @@ angular.module('planillasApp')
             });
         };
 
+
+        $rootScope.openModalCreate = function (Model) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'views/crud/modals/crudModalCreate.html',
+                controller: 'ModalCreateCrudController',
+                size: 'md',
+                resolve: {
+                    Model: function () {
+                        return Model;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function () {
+            }, function () {
+
+            });
+            return modalInstance.result;
+        };
 
     });

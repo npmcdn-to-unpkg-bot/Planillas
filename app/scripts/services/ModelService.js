@@ -42,6 +42,7 @@ angular.module('planillasApp')
             this.showFields = [];
             this.filterFields = [];
             this.disabled_fields = [];
+            this.default_fields = [];
             this.dataResponse = {};
             this.nameView = 'name';
             this.config = {
@@ -59,6 +60,7 @@ angular.module('planillasApp')
                     context[key] = value;
                 });
                 context.extra_query_params = config.query_params || {};
+                context.default_fields = config.default_fields || {};
             }
         };
 
@@ -129,7 +131,7 @@ angular.module('planillasApp')
                 ];
                 context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
                 context.showFields = ['ap_paterno', 'ap_materno', 'nombres', 'ci', 'unidad_academica'];
-                context.filterFields = ['ap_paterno', 'ap_materno', 'nombres', 'ci'];
+                context.filterFields = ['ap_paterno', 'ap_materno', 'ci'];
                 context.nameView = 'nombres';
                 context.config = {title: 'Docentes'};
                 context.searchEnabled = true;
@@ -150,6 +152,22 @@ angular.module('planillasApp')
                 context.nameView = 'name';
                 context.config = {title: 'Tipos de usuarios'};
                 context.searchEnabled = true;
+            }, config);
+        };
+
+        var GradoDocenteModel = function (config) {
+            return new BaseModel(function (context) {
+                context.id_name = 'id';
+                context.resource = $API.GradoDocente;
+                context.fields = [
+                    {label: "Grado", name: "name", type: 'string', required: true},
+                    {label: "Abrebiatura", name: "short", type: 'string', required: true}
+                ];
+                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.showFields = ['name', 'short'];
+                context.nameView = 'name';
+                context.config = {title: 'Grados de docencia'};
+                context.searchEnabled = false;
             }, config);
         };
 
@@ -271,6 +289,7 @@ angular.module('planillasApp')
             TipoUsuariosModel: TipoUsuariosModel,
             UsuariosModel: UsuariosModel,
             LogsModel: LogsModel,
-            GestionesAcademicasModel: GestionesAcademicasModel
+            GestionesAcademicasModel: GestionesAcademicasModel,
+            GradoDocenteModel: GradoDocenteModel,
         };
     });

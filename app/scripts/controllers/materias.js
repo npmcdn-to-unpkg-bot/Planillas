@@ -14,7 +14,6 @@ angular.module('planillasApp')
                 $http2.patch(URLS.LISTA_MATERIAS, {idMateria: mat.idMateria},
                     function (data) {
                         if (data.Success) {
-                            $rootScope.GF.load_lista_materias();
                         }
                     })
             }, function () {
