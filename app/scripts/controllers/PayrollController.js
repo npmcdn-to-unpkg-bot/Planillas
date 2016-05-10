@@ -110,10 +110,10 @@ angular.module('planillasApp')
                                 $scope.filters.gestion = user['gestion']['gestion'];
                                 $scope.filters.periodo_gestion = user['gestion']['periodo_gestion'];
                             } else {
-                                $scope.filters.unidad_academica = user['unidad_acaemica']['id'];
+                                $scope.filters.unidad_academica = user['unidad_academica']['id'];
                                 $scope.filters.especialidad = user['especialidad']['id'];
                                 $scope.filters.gestion = 2015;
-                                $scope.filters.periodo_gestion = 1;
+                                $scope.filters.periodo_gestion = 'I';
                             }
                             $scope.load_planillas();
                         });
@@ -135,6 +135,7 @@ angular.module('planillasApp')
                 window.open(URLS.PLANILLAS + "?" + $.param(query_params), "Reporte", "location=0,height=600, width=1200");
             }, 0);
         };
+
         $scope.limpiar = function (item) {
             var query_params = $.extend({}, $scope.planillas_query_params, $scope.filters);
             query_params['clean'] = item;

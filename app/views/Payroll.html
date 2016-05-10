@@ -136,8 +136,8 @@
                     <select class="form-control"
                             ng-model="filters.habilitado" ng-change="load_planillas()" required>
                         <option value="" class="text-muted small" selected>--</option>
-                        <option value="1">Si</option>
-                        <option value="0">No</option>
+                        <option value="1">Habilitados</option>
+                        <option value="0">Inabilitados</option>
                     </select>
                 </div>
                 <div class="col-sm-1 filter-field">
@@ -146,7 +146,7 @@
                             ng-change="load_planillas()"
                             ng-options="pensul.id as pensul.name for pensul in GLOBALS.PENSUL"
                             required>
-                        <option value="" class="text-muted">-- Todos --</option>
+                        <option value="" class="text-muted">--</option>
                     </select>
                 </div>
                 <div class="col-sm-2 filter-field right">
@@ -164,7 +164,7 @@
     <table class="table-editable">
         <thead>
         <tr>
-            <th width-static="20" rowspan="2" class="rotate90" ng-if="enable_fields.status">Estado</th>
+            <th width-static="20" rowspan="2" class="rotate90" ng-if="editable">Estado</th>
             <th width-static="21" rowspan="2">N</th>
             <th width-static="68" rowspan="2">CI</th>
             <th width-static="95" rowspan="2">Cuenta BU</th>
@@ -203,9 +203,11 @@
         <tbody>
         <tr ng-repeat="registro in planillas_data.data" context-menu="menusPayrollList">
 
-            <td class="center status" ng-if="enable_fields.status">
-                <button class="btn-registro" ng-class="registro.habilitado==1?'habilitado':'inabilitado'"
-                        title="{{registro.habilitado==1?'Inabilitar registro':'Habilitar registro'}}">
+            <td class="center status" ng-if="editable">
+                <button class="btn-registro" ng-class="registro.habilitado==1?'habilitado':'inhabilitado'"
+                        title="{{registro.habilitado==1?'Inabilitar registro':'Habilitar registro'}}"
+                        ng-click="update_item_payroll(registro.habilitado==1?0:1,registro.id,'habilitado')"
+                >
                     <i class="glyphicon " ng-class="registro.habilitado==1?'glyphicon-ok':'glyphicon-minus'"></i>
                 </button>
             </td>

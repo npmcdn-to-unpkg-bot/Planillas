@@ -23,6 +23,12 @@ angular.module('planillasApp')
         $scope.load_init_params = function () {
             $q.all(promises)
                 .then(function (datas) {
+
+                    if (!$rootScope.GF.isSecretaria()) {
+                        $scope.$broadcast('active_editable_payroll');
+                    } else {
+                        $scope.$broadcast('disable_editable_payroll');
+                    }
                     var user = datas[0];
                     $scope.nueva_planilla['especialidad'] = user['gestion']['especialidad'];
                     $scope.nueva_planilla['docente'] = '';
