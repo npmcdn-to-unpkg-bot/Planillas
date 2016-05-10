@@ -103,6 +103,11 @@ angular
                 controller: 'MenuCtrl',
                 controllerAs: 'carreras'
             })
+            .when('/Contratos', {
+              templateUrl: 'views/contratos.html',
+              controller: 'ContratosCtrl',
+              controllerAs: 'Contratos'
+            })
             .otherwise({
                 redirectTo: '/'
             });

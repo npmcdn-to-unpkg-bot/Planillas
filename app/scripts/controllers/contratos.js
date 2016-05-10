@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc function
- * @name planillasApp.controller:HomeCtrl
+ * @name planillasApp.controller:ContratosCtrl
  * @description
- * # HomeCtrl
+ * # ContratosCtrl
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-  .controller('HomeCtrl', function ($scope) {
-    $scope.awesomeThings = [
+  .controller('ContratosCtrl', function () {
+    this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
