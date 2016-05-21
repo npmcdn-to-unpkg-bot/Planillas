@@ -30,7 +30,7 @@
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <p class="">Nombre de usuario o carnet</p>
+                        <p class="">Nombre de usuario</p>
                         <form ng-submit="loadUsers()">
                             <input class="form-control" type="text" ng-model="filter_nombre"
                                    placeholder="Nombre o carnet">
@@ -51,7 +51,6 @@
                 <tr>
                     <th class="text-center">N</th>
                     <th class="text-center">Nombre Completo</th>
-                    <th class="text-center">Carnet</th>
                     <th class="text-center">Correo</th>
                     <th class="text-center">Unidad<br>Académica</th>
                     <th class="text-center">Especialidad</th>
@@ -64,7 +63,6 @@
                     class="{{ CURRENT_USER.id == usuario.id?'active alert-info':''}}">
                     <td>{{$index+1}}</td>
                     <td>{{usuario.nombres+' '+usuario.ap_paterno+' '+usuario.ap_materno}}</td>
-                    <td>{{usuario.celular}}</td>
                     <td>{{usuario.email}}</td>
                     <td>{{usuario.unidad_academica.name}}</td>
                     <td>{{usuario.especialidad.name}}</td>

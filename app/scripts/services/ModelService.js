@@ -112,6 +112,21 @@ angular.module('planillasApp')
             }, config);
         };
 
+        var DepartamentosModel = function (config) {
+            return new BaseModel(function (context) {
+                context.id_name = 'id';
+                context.resource = $API.Departamento;
+                context.fields = [
+                    {label: "Nombre", name: "name", type: 'string', required: true},
+                    {label: "Abreviado", name: "short", type: 'string', required: true}
+                ];
+                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.showFields = ['name'];
+                context.nameView = 'name';
+                context.config = {title: 'Departamentos'};
+            }, config);
+        };
+
         var DocentesModel = function (config) {
             return new BaseModel(function (context) {
                 context.id_name = 'id';
@@ -120,7 +135,14 @@ angular.module('planillasApp')
                     {label: "Apellido paterno", name: "ap_paterno", type: 'string', required: true},
                     {label: "Apellido materno", name: "ap_materno", type: 'string', required: true},
                     {label: "Nombres", name: "nombres", type: 'string', required: true},
-                    {label: "Carnet", name: "ci", type: 'string', required: true},
+                    {label: "Carnet", name: "ci", type: 'number', required: true},
+                    {
+                        label: "Expedido",
+                        name: "departamento",
+                        type: 'select',
+                        model: new DepartamentosModel(),
+                        required: true
+                    },
                     {
                         label: "Unidad Académica",
                         name: "unidad_academica",
@@ -176,10 +198,8 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.Usuarios;
                 context.fields = [
-                    {label: "Apellido materno", name: "ap_paterno", type: 'string', required: true},
-                    {label: "Apellido materno", name: "ap_materno", type: 'string', required: true},
+                    {label: "Apellidos", name: "apellidos", type: 'string', required: true},
                     {label: "Nombres", name: "nombres", type: 'string', required: true},
-                    {label: "Celular", name: "celular", type: 'string', required: true},
                     {
                         label: "Especialidad",
                         name: "especialidad",
@@ -195,13 +215,12 @@ angular.module('planillasApp')
                         required: true
                     },
                     {label: "Correo", name: "email", type: 'email', required: true},
-                    {label: "Nombre de usuario", name: "username", type: 'string', required: true},
                     {label: 'Password', name: 'password', type: 'string', required: true},
                     {label: "Activo", name: "activo", type: 'boolean', required: true}
                 ];
                 context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
-                context.showFields = ['ap_paterno', 'ap_materno', 'nombres', 'celular', 'especialidad', 'tipo_usuario'];
-                context.filterFields = ['ap_paterno', 'ap_materno', 'nombres', 'celular'];
+                context.showFields = ['apellidos','nombres', 'especialidad', 'tipo_usuario'];
+                context.filterFields = ['apellidos', 'nombres'];
                 context.nameView = 'nombres';
                 context.config = {title: 'Lista de usuarios'};
                 context.searchEnabled = true;
@@ -291,5 +310,6 @@ angular.module('planillasApp')
             LogsModel: LogsModel,
             GestionesAcademicasModel: GestionesAcademicasModel,
             GradoDocenteModel: GradoDocenteModel,
+            DepartamentosModel: DepartamentosModel
         };
     });

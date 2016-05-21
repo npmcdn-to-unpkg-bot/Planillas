@@ -104,9 +104,9 @@ angular
                 controllerAs: 'carreras'
             })
             .when('/Contratos', {
-              templateUrl: 'views/contratos.html',
-              controller: 'ContratosCtrl',
-              controllerAs: 'Contratos'
+                templateUrl: 'views/contratos.html',
+                controller: 'ContratosCtrl',
+                controllerAs: 'Contratos'
             })
             .otherwise({
                 redirectTo: '/'
@@ -149,7 +149,7 @@ angular
             return ($rootScope.CURRENT_USER['gestion']['periodo_gestion']) + ' - ' + $rootScope.CURRENT_USER['gestion']['gestion'];
         };
         $rootScope.GF.getFullName = function () {
-            return $rootScope.CURRENT_USER['nombres'] + ' ' + $rootScope.CURRENT_USER['ap_paterno'] + ' ' + $rootScope.CURRENT_USER['ap_materno'];
+            return $rootScope.CURRENT_USER['nombres'] + ' ' + $rootScope.CURRENT_USER['apellidos'];
         };
         $rootScope.GF.getEspecialidadName = function () {
             return $rootScope.CURRENT_USER['especialidad']['name'];
@@ -326,8 +326,8 @@ angular
                     //if ($rootScope.GF.isSecretaria()) {
                     //    $rootScope.CURRENT_VIEW = 'views/verplanillasecretaria.html';
                     //} else {
-                        $rootScope.CURRENT_VIEW = 'views/verplanilla.html';
-                   // }
+                    $rootScope.CURRENT_VIEW = 'views/verplanilla.html';
+                    // }
                     break;
                 case "/CloseSystem":
                     $rootScope.CURRENT_VIEW = 'views/close_system.html';

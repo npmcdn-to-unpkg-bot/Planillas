@@ -20,16 +20,8 @@ angular.module('planillasApp')
                     iu: 12.5,
                     it: 3.0,
                     abierto: 1,
-                    cA: 74,
-                    cB: 65.8,
-                    cC: 60.9,
-                    cD: 56,
-                    cL: 56,
-                    oA: 70.5,
-                    oB: 62.7,
-                    oC: 58,
-                    oD: 53.3,
-                    oL: 53.3
+                    cA: 74, cB: 65.8, cC: 60.9, cD: 56, cL: 56,
+                    oA: 70.5, oB: 62.7, oC: 58, oD: 53.3, oL: 53.3
                 };
                 $scope.iniciar_nueva_gestion = function (new_gestion) {
                     $http.post(URLS.START_GESTION, new_gestion)

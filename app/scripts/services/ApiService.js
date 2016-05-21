@@ -27,6 +27,7 @@ angular.module('planillasApp')
             Usuarios: getModelResource(base_url + 'usuarios/:id/'),
             Logs: getModelResource(base_url + 'logs/:id/'),
             UnidadAcademica: getModelResource(base_url + 'unidad_academica/:id/'),
+            Departamento: getModelResource(base_url + 'departamento/:id/'),
             GestionAcademicas: getModelResource(base_url + 'gestion_academicas/:id/'),
             TipoUsuario: getModelResource(base_url + 'tipo_usuario/:id/'),
             Planillas: getModelResource(base_url + 'planillas/:id/'),

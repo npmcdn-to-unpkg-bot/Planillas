@@ -36,9 +36,7 @@ angular.module('planillasApp').controller('ModalNewUsuario', function ($scope, $
             $scope.nuevo_usuario.especialidad = $rootScope.GF.getEspecialidadId();
             $scope.nuevo_usuario.tipo_usuario = $scope.tipo_usuarios[0]['id'];
             $scope.nuevo_usuario.unidad_academica = $rootScope.CURRENT_USER['unidad_academica']['id'];
-            $scope.nuevo_usuario.ap_paterno = '';
-            $scope.nuevo_usuario.ap_materno = '';
-            $scope.nuevo_usuario.celular = '';
+            $scope.nuevo_usuario.apellidos = '';
             $scope.nuevo_usuario.correo = '';
             $scope.nuevo_usuario.username = '';
             $scope.nuevo_usuario.password = '';
