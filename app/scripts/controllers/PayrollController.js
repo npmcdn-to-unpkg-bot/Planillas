@@ -57,9 +57,16 @@ angular.module('planillasApp')
 
         $scope.filters = {};
 
-        $scope.load_planillas = function () {
-            var defer = $q.defer();
-            var query_params = $.extend({}, $scope.planillas_query_params, $scope.filters);
+        $scope.load_planillas = function (force_filters) {
+            var defer = $q.defer(), query_params;
+            if (force_filters) {
+                query_params = force_filters;
+                $scope.planillas_query_params = force_filters;
+                $scope.filters = force_filters;
+            } else {
+                query_params = $.extend({}, $scope.planillas_query_params, $scope.filters);
+            }
+
             (new $API.Planillas()).$get(query_params)
                 .then(function (data) {
                     $scope.planillas_data = data;
@@ -79,12 +86,11 @@ angular.module('planillasApp')
             filter_especialidad: false
         };
 
-        $scope.set_filters = function () {
+        $scope.set_filters = function (filters_force) {
             $q.all(promises)
                 .then(function () {
                     AuthService.getUser()
                         .then(function (user) {
-
                             if ($rootScope.GF.isRoot()) {
                                 $scope.enable_fields.filter_unidad_academica = true;
                             }
@@ -115,7 +121,10 @@ angular.module('planillasApp')
                                 $scope.filters.gestion = 2015;
                                 $scope.filters.periodo_gestion = 'I';
                             }
-                            $scope.load_planillas();
+                            if (filters_force) {
+                                $scope.filters = angular.copy(filters_force);
+                            }
+                            //$scope.load_planillas(); pendiente , funcion solo llamada deste evento
                         });
                 });
         };
@@ -142,7 +151,7 @@ angular.module('planillasApp')
             $http.post(URLS.PLANILLAS + "/clean?" + $.param(query_params))
                 .then(function () {
                     $scope.load_planillas();
-                    toastr.success('Borrado correctamente');
+                    toastr.clear();toastr.success('Borrado correctamente');
                 }, function () {
                     $scope.load_planillas();
                     toastr.warning('No se pudo borrar');
@@ -170,15 +179,12 @@ angular.module('planillasApp')
             });
         };
 
-        $scope.$on('load_planillas_event', function () {
-            $scope.load_planillas();
-        });
         $scope.refresh_payroll = function (options) {
             var hide_message = options && options['hide_message'];
             $scope.load_planillas()
                 .then(function () {
                     if (!hide_message)
-                        toastr.success("Planilla actualizada");
+                        toastr.clear();toastr.success("Planilla actualizada");
                 }, function () {
                     if (!hide_message)
                         toastr.warning("No se encontraro resultados");
@@ -193,7 +199,7 @@ angular.module('planillasApp')
             update_data[key] = new_value;
             (new $API.Planillas()).$update(update_data)
                 .then(function (data) {
-                    toastr.success('Modificado correctamente');
+                    toastr.clear();toastr.success('Modificado correctamente');
                     defer.resolve(data);
                     $scope.load_planillas();
                 }, function (data) {
@@ -238,7 +244,7 @@ angular.module('planillasApp')
                 (new $API.Planillas).$delete({id: registro.id})
                     .then(function () {
                         $scope.load_planillas();
-                        toastr.success('Registro eliminado');
+                        toastr.clear();toastr.success('Registro eliminado');
                     }, function () {
                         $scope.load_planillas();
                         toastr.warning('No se pudo eliminar');
@@ -248,6 +254,10 @@ angular.module('planillasApp')
         };
 
         $scope.editable = false;
+
+        $scope.$on('load_planillas_event', function (event, force_filters) {
+            $scope.load_planillas(force_filters);
+        });
 
         $scope.$on('disable_editable_payroll', function () {
             $scope.editable = false;

@@ -12713,40 +12713,56 @@ button.close {
 }
 
 /* line 39, ../../app/styles/_sheets.scss */
+.add_height45 {
+  height: 45px;
+  cursor: cell;
+}
+/* line 42, ../../app/styles/_sheets.scss */
+.add_height45 input, .add_height45 span {
+  cursor: cell;
+  height: inherit !important;
+}
+/* line 46, ../../app/styles/_sheets.scss */
+.add_height45 div {
+  width: inherit;
+  min-width: inherit;
+}
+
+/* line 52, ../../app/styles/_sheets.scss */
 #sheets {
   font-size: 11px !important;
   background: inherit;
   margin: 0 auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
-/* line 44, ../../app/styles/_sheets.scss */
+/* line 57, ../../app/styles/_sheets.scss */
 #sheets table, #sheets th, #sheets td {
   border: 1px solid;
 }
-/* line 48, ../../app/styles/_sheets.scss */
+/* line 61, ../../app/styles/_sheets.scss */
 #sheets .table_add {
   background: #fff;
   margin: 0 auto;
 }
-/* line 53, ../../app/styles/_sheets.scss */
+/* line 66, ../../app/styles/_sheets.scss */
 #sheets .table_add thead tr, #sheets .table_add tfoot tr {
   background-color: #2980b9;
   color: #fff;
 }
-/* line 56, ../../app/styles/_sheets.scss */
+/* line 69, ../../app/styles/_sheets.scss */
 #sheets .table_add thead tr th, #sheets .table_add thead tr td, #sheets .table_add tfoot tr th, #sheets .table_add tfoot tr td {
   border-color: #000 !important;
 }
-/* line 60, ../../app/styles/_sheets.scss */
+/* line 73, ../../app/styles/_sheets.scss */
 #sheets .table_add thead .newPayrollSpecialty, #sheets .table_add tfoot .newPayrollSpecialty {
   display: inline-block;
 }
-/* line 62, ../../app/styles/_sheets.scss */
+/* line 75, ../../app/styles/_sheets.scss */
 #sheets .table_add thead .newPayrollSpecialty span.ui-select-toggle, #sheets .table_add tfoot .newPayrollSpecialty span.ui-select-toggle {
   font-size: 14px;
   font-weight: normal;
 }
-/* line 68, ../../app/styles/_sheets.scss */
+/* line 81, ../../app/styles/_sheets.scss */
 #sheets .table_add input, #sheets .table_add select, #sheets .table_add span.form-control.ui-select-toggle {
   outline: none !important;
   border: none !important;
@@ -12756,63 +12772,71 @@ button.close {
   border-right: 1px solid !important;
   border-color: inherit;
 }
-/* line 75, ../../app/styles/_sheets.scss */
+/* line 88, ../../app/styles/_sheets.scss */
 #sheets .table_add .input-preselected, #sheets .table_add input[disabled], #sheets .table_add select[disabled] {
   font-weight: bold;
   background-color: #fff3b3;
   border-right: 1px solid !important;
 }
-/* line 80, ../../app/styles/_sheets.scss */
+/* line 93, ../../app/styles/_sheets.scss */
 #sheets .table_add td {
   overflow: visible;
 }
-/* line 83, ../../app/styles/_sheets.scss */
+/* line 96, ../../app/styles/_sheets.scss */
 #sheets .table_add div {
   outline: none;
 }
-/* line 87, ../../app/styles/_sheets.scss */
+/* line 100, ../../app/styles/_sheets.scss */
 #sheets .table_add tbody tr {
   background: #f8f8f8;
 }
-/* line 90, ../../app/styles/_sheets.scss */
+/* line 103, ../../app/styles/_sheets.scss */
 #sheets .table_add tbody tr:hover {
   background: #fafafa !important;
 }
-/* line 95, ../../app/styles/_sheets.scss */
+/* line 108, ../../app/styles/_sheets.scss */
 #sheets .table_add .btn.btn-default.form-control.ui-select-toggle {
   display: table-cell;
   vertical-align: middle;
 }
-/* line 99, ../../app/styles/_sheets.scss */
+/* line 112, ../../app/styles/_sheets.scss */
 #sheets .table_add input, #sheets .table_add select, #sheets .table_add input[disabled], #sheets .table_add select[disabled] {
   border-right-width: 0 !important;
 }
-/* line 102, ../../app/styles/_sheets.scss */
+/* line 115, ../../app/styles/_sheets.scss */
 #sheets .table_add span {
   white-space: normal !important;
   vertical-align: middle;
   display: table-cell;
 }
-/* line 110, ../../app/styles/_sheets.scss */
+/* line 120, ../../app/styles/_sheets.scss */
+#sheets .table_add .edit {
+  background-color: inherit !important;
+}
+/* line 123, ../../app/styles/_sheets.scss */
+#sheets .table_add .edit select, #sheets .table_add .edit input {
+  cursor: cell;
+}
+/* line 133, ../../app/styles/_sheets.scss */
 #sheets table.payroll tbody tr:nth-child(odd) {
   background: #f8f8f8;
 }
-/* line 114, ../../app/styles/_sheets.scss */
-#sheets table.payroll tbody tr:hover {
+/* line 137, ../../app/styles/_sheets.scss */
+#sheets table.payroll tbody tr.hover-row:hover {
   background: #ddd !important;
 }
-/* line 118, ../../app/styles/_sheets.scss */
+/* line 141, ../../app/styles/_sheets.scss */
 #sheets table.payroll th {
   text-align: center;
   padding: 5px;
   font-style: italic;
 }
-/* line 123, ../../app/styles/_sheets.scss */
+/* line 146, ../../app/styles/_sheets.scss */
 #sheets table.payroll .vertical {
   vertical-align: bottom;
   padding: 1px;
 }
-/* line 126, ../../app/styles/_sheets.scss */
+/* line 149, ../../app/styles/_sheets.scss */
 #sheets table.payroll .vertical span {
   -webkit-transform: rotate(-90deg) !important;
   -moz-transform: rotate(-90deg) !important;
@@ -12821,12 +12845,12 @@ button.close {
   display: flex;
   margin-bottom: 13px;
 }
-/* line 132, ../../app/styles/_sheets.scss */
+/* line 155, ../../app/styles/_sheets.scss */
 #sheets table.payroll .diagonal {
   vertical-align: bottom;
   padding: 1px;
 }
-/* line 135, ../../app/styles/_sheets.scss */
+/* line 158, ../../app/styles/_sheets.scss */
 #sheets table.payroll .diagonal span {
   -webkit-transform: rotate(-45deg) !important;
   -moz-transform: rotate(-45deg) !important;
@@ -12837,63 +12861,63 @@ button.close {
   overflow: hidden;
   margin-bottom: 13px;
 }
-/* line 143, ../../app/styles/_sheets.scss */
+/* line 166, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr, #sheets table.payroll td {
   height: 45px !important;
   min-height: 45px !important;
   max-height: 45px !important;
 }
-/* line 149, ../../app/styles/_sheets.scss */
+/* line 172, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr {
   position: static;
 }
-/* line 151, ../../app/styles/_sheets.scss */
+/* line 174, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit {
   cursor: cell;
 }
-/* line 154, ../../app/styles/_sheets.scss */
+/* line 177, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit:hover {
   background: #ccc;
 }
-/* line 157, ../../app/styles/_sheets.scss */
+/* line 180, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit:active {
   -ms-box-shadow: 0 0 2px 1px rgba(0, 0, 255, 0.3) !important;
   -o-box-shadow: 0 0 2px 1px rgba(0, 0, 255, 0.3) !important;
   box-shadow: 0 0 2px 1px rgba(0, 0, 255, 0.3) !important;
 }
-/* line 161, ../../app/styles/_sheets.scss */
+/* line 184, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit.select div {
   overflow: visible;
   display: block;
   padding: 0;
   font-size: inherit;
 }
-/* line 167, ../../app/styles/_sheets.scss */
+/* line 190, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit.select span {
   font-size: inherit;
-  padding: 0;
+  padding: 0 5px;
 }
-/* line 171, ../../app/styles/_sheets.scss */
+/* line 194, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit.select span.match {
   display: table-cell;
   vertical-align: middle;
   padding: 0 5px;
 }
-/* line 176, ../../app/styles/_sheets.scss */
+/* line 199, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit.select ul {
   width: auto;
 }
-/* line 179, ../../app/styles/_sheets.scss */
+/* line 202, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .edit.select .btn, #sheets table.payroll tr .edit.select input {
   border-radius: 0px !important;
 }
-/* line 183, ../../app/styles/_sheets.scss */
+/* line 206, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr td {
   cursor: default;
   position: relative;
   overflow: hidden;
 }
-/* line 187, ../../app/styles/_sheets.scss */
+/* line 210, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr td div {
   width: inherit;
   max-width: inherit;
@@ -12905,236 +12929,236 @@ button.close {
   height: inherit;
   padding: 0 4px;
 }
-/* line 200, ../../app/styles/_sheets.scss */
+/* line 223, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr td form, #sheets table.payroll tr td span, #sheets table.payroll tr td input, #sheets table.payroll tr td textarea, #sheets table.payroll tr td select {
   height: 45px !important;
   width: inherit;
 }
-/* line 205, ../../app/styles/_sheets.scss */
+/* line 228, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr td form {
   display: block !important;
 }
-/* line 207, ../../app/styles/_sheets.scss */
+/* line 230, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr td form select {
   height: inherit;
   min-width: 100%;
 }
-/* line 213, ../../app/styles/_sheets.scss */
+/* line 236, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr td input {
   padding: 0 3px;
 }
-/* line 217, ../../app/styles/_sheets.scss */
+/* line 240, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-0 {
   min-width: 30px !important;
   max-width: 30px !important;
   width: 30px !important;
 }
-/* line 222, ../../app/styles/_sheets.scss */
+/* line 245, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-1 {
   min-width: 40px !important;
   max-width: 40px !important;
   width: 40px !important;
 }
-/* line 227, ../../app/styles/_sheets.scss */
+/* line 250, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-2 {
   min-width: 80px !important;
   max-width: 80px !important;
   width: 80px !important;
 }
-/* line 232, ../../app/styles/_sheets.scss */
+/* line 255, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-3 {
   min-width: 110px !important;
   max-width: 110px !important;
   width: 110px !important;
 }
-/* line 237, ../../app/styles/_sheets.scss */
+/* line 260, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-4 {
   min-width: 60px !important;
   max-width: 60px !important;
   width: 60px !important;
 }
-/* line 242, ../../app/styles/_sheets.scss */
+/* line 265, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-5 {
   min-width: 130px !important;
   max-width: 130px !important;
   width: 130px !important;
 }
-/* line 247, ../../app/styles/_sheets.scss */
+/* line 270, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-6 {
   min-width: 130px !important;
   max-width: 130px !important;
   width: 130px !important;
 }
-/* line 252, ../../app/styles/_sheets.scss */
+/* line 275, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-7 {
   min-width: 150px !important;
   max-width: 150px !important;
   width: 150px !important;
 }
-/* line 257, ../../app/styles/_sheets.scss */
+/* line 280, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-8 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 262, ../../app/styles/_sheets.scss */
+/* line 285, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-9 {
   min-width: 40px !important;
   max-width: 40px !important;
   width: 40px !important;
 }
-/* line 267, ../../app/styles/_sheets.scss */
+/* line 290, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-10 {
   min-width: 35px !important;
   max-width: 35px !important;
   width: 35px !important;
 }
-/* line 272, ../../app/styles/_sheets.scss */
+/* line 295, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-11 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 277, ../../app/styles/_sheets.scss */
+/* line 300, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-11-1 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 282, ../../app/styles/_sheets.scss */
+/* line 305, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-11-2 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 287, ../../app/styles/_sheets.scss */
+/* line 310, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-11-3 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 292, ../../app/styles/_sheets.scss */
+/* line 315, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-11-4 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 297, ../../app/styles/_sheets.scss */
+/* line 320, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-12 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 302, ../../app/styles/_sheets.scss */
+/* line 325, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-13 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 307, ../../app/styles/_sheets.scss */
+/* line 330, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-14 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 312, ../../app/styles/_sheets.scss */
+/* line 335, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-14-1 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 317, ../../app/styles/_sheets.scss */
+/* line 340, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-14-2 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 322, ../../app/styles/_sheets.scss */
+/* line 345, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-14-3 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 327, ../../app/styles/_sheets.scss */
+/* line 350, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-15 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 332, ../../app/styles/_sheets.scss */
+/* line 355, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-16 {
   min-width: 60px !important;
   max-width: 60px !important;
   width: 60px !important;
 }
-/* line 337, ../../app/styles/_sheets.scss */
+/* line 360, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-40 {
   min-width: 40px !important;
   max-width: 40px !important;
   width: 40px !important;
 }
-/* line 340, ../../app/styles/_sheets.scss */
+/* line 363, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-50 {
   min-width: 50px !important;
   max-width: 50px !important;
   width: 50px !important;
 }
-/* line 343, ../../app/styles/_sheets.scss */
+/* line 366, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-60 {
   min-width: 60px !important;
   max-width: 60px !important;
   width: 60px !important;
 }
-/* line 346, ../../app/styles/_sheets.scss */
+/* line 369, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-70 {
   min-width: 70px !important;
   max-width: 70px !important;
   width: 70px !important;
 }
-/* line 349, ../../app/styles/_sheets.scss */
+/* line 372, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-80 {
   min-width: 80px !important;
   max-width: 80px !important;
   width: 80px !important;
 }
-/* line 352, ../../app/styles/_sheets.scss */
+/* line 375, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-90 {
   min-width: 90px !important;
   max-width: 90px !important;
   width: 90px !important;
 }
-/* line 355, ../../app/styles/_sheets.scss */
+/* line 378, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-100 {
   min-width: 100px !important;
   max-width: 100px !important;
   width: 100px !important;
 }
-/* line 358, ../../app/styles/_sheets.scss */
+/* line 381, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-150 {
   min-width: 150px !important;
   max-width: 150px !important;
   width: 150px !important;
 }
-/* line 364, ../../app/styles/_sheets.scss */
+/* line 387, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-200 {
   min-width: 200px !important;
   max-width: 200px !important;
   width: 200px !important;
 }
-/* line 369, ../../app/styles/_sheets.scss */
+/* line 392, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-250 {
   min-width: 250px !important;
   max-width: 250px !important;
   width: 250px !important;
 }
-/* line 374, ../../app/styles/_sheets.scss */
+/* line 397, ../../app/styles/_sheets.scss */
 #sheets table.payroll tr .col-px-300 {
   min-width: 300px !important;
   max-width: 300px !important;
   width: 300px !important;
 }
 
-/* line 383, ../../app/styles/_sheets.scss */
+/* line 406, ../../app/styles/_sheets.scss */
 #menu-toolbar {
   width: 100%;
   background: #3F51B5;
@@ -13142,13 +13166,13 @@ button.close {
   padding-left: 90px;
   font-size: 14px;
 }
-/* line 389, ../../app/styles/_sheets.scss */
+/* line 412, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu {
   padding: 0;
   margin: 0;
   display: inline-block;
 }
-/* line 394, ../../app/styles/_sheets.scss */
+/* line 417, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.icon {
   background: #3F51B5;
   position: absolute;
@@ -13159,46 +13183,46 @@ button.close {
   top: 0;
   bottom: 0;
 }
-/* line 403, ../../app/styles/_sheets.scss */
+/* line 426, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.icon img {
   width: 70px;
   height: 70px;
   border-radius: 50% !important;
 }
-/* line 409, ../../app/styles/_sheets.scss */
+/* line 432, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles {
   background: #fff;
   width: 100%;
   padding-left: 12px;
 }
-/* line 413, ../../app/styles/_sheets.scss */
+/* line 436, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles .menu-title {
   padding: 30px 0 5px 15px;
   height: 60px;
   color: #000;
 }
-/* line 417, ../../app/styles/_sheets.scss */
+/* line 440, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles .menu-title h3 {
   margin: 0;
   color: #000;
   display: inline-block;
 }
-/* line 422, ../../app/styles/_sheets.scss */
+/* line 445, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles .menu-title h3.none {
   color: #7f8c8d !important;
   font-style: italic !important;
 }
-/* line 427, ../../app/styles/_sheets.scss */
+/* line 450, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles .menu-items {
   padding: 10px 0 0 0;
 }
-/* line 431, ../../app/styles/_sheets.scss */
+/* line 454, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles .menu-items ul li a {
   color: #000;
   padding-top: 12px;
   padding-bottom: 12px;
 }
-/* line 436, ../../app/styles/_sheets.scss */
+/* line 459, ../../app/styles/_sheets.scss */
 #menu-toolbar .block-menu.titles .menu-items ul li .dropdown-menu {
   padding: 0;
   margin: -1px 0 0 0;
@@ -13215,7 +13239,7 @@ button.close {
 /* line 9, ../../app/styles/_table_editable.scss */
 .table-filters {
   padding: 0;
-  margin: 0px 0;
+  margin: 0 0;
   border: 1px solid #2463A8;
   min-width: 100%;
   border-radius: 0px !important;
@@ -13384,6 +13408,15 @@ button.close {
   position: relative;
   z-index: 1;
 }
+/* line 163, ../../app/styles/_table_editable.scss */
+.table-editable .row_mark {
+  cursor: pointer;
+}
+/* line 166, ../../app/styles/_table_editable.scss */
+.table-editable .marked, .table-editable .marked:hover {
+  background-color: #52b3d9;
+  color: #fff !important;
+}
 
 /* line 27, ../../app/styles/main.scss */
 html, body {
@@ -13536,14 +13569,14 @@ table {
 
 /* line 150, ../../app/styles/main.scss */
 .PH20 {
-  padding-left: 20;
-  padding-right: 20;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /* line 155, ../../app/styles/main.scss */
 .PH40 {
-  padding-left: 40;
-  padding-right: 40;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 /* line 160, ../../app/styles/main.scss */
@@ -13788,35 +13821,41 @@ table {
 /* line 377, ../../app/styles/main.scss */
 .ui-select-bootstrap .ui-select-search {
   font-size: 12px;
-}
-
-/* line 382, ../../app/styles/main.scss */
-.ui-select-bootstrap > .ui-select-match > .btn {
-  font-size: 12px;
+  border-radius: 0px !important;
+  padding: 1px 5px;
+  height: 30px;
+  border: 1px solid;
 }
 
 /* line 386, ../../app/styles/main.scss */
+.ui-select-bootstrap > .ui-select-match > .btn {
+  font-size: 12px;
+  background: inherit;
+  border: none;
+}
+
+/* line 392, ../../app/styles/main.scss */
 .ui-select-bootstrap .ui-select-choices-row > a {
   font-size: 12px;
   padding: 1px 5px;
 }
 
-/* line 391, ../../app/styles/main.scss */
+/* line 397, ../../app/styles/main.scss */
 .ui-select-choices.ui-select-choices-content.ui-select-dropdown {
   min-width: 100%;
 }
 
-/* line 395, ../../app/styles/main.scss */
+/* line 401, ../../app/styles/main.scss */
 .ui-select-bootstrap > .ui-select-choices {
   width: 100%;
 }
 
-/* line 399, ../../app/styles/main.scss */
+/* line 405, ../../app/styles/main.scss */
 .ui-select-bootstrap .ui-select-choices-row.active > a {
   color: none;
 }
 
-/* line 403, ../../app/styles/main.scss */
+/* line 409, ../../app/styles/main.scss */
 .cursorCell, .table-planillas-f > thead > tr .tCuenta span,
 .table-planillas-f > tbody > tr .tCuenta span,
 .table-planillas-f > tfoot > tr .tCuenta span, .table-planillas-f > thead > tr .tMateria span,
@@ -13837,7 +13876,7 @@ table {
   cursor: cell;
 }
 
-/* line 407, ../../app/styles/main.scss */
+/* line 413, ../../app/styles/main.scss */
 .noSelectable {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -14125,12 +14164,12 @@ td{
   @include transition(all,1s);
 }
 */
-/* line 688, ../../app/styles/main.scss */
+/* line 694, ../../app/styles/main.scss */
 .table-planillas-f {
   width: 100%;
   max-width: 100%;
 }
-/* line 697, ../../app/styles/main.scss */
+/* line 703, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr > th,
 .table-planillas-f > thead > tr > td,
 .table-planillas-f > tbody > tr > th,
@@ -14141,29 +14180,29 @@ td{
   line-height: 1.428571429;
   vertical-align: middle;
 }
-/* line 706, ../../app/styles/main.scss */
+/* line 712, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr > th {
   vertical-align: middle;
   border-bottom: 2px solid #ddd;
 }
 
-/* line 712, ../../app/styles/main.scss */
+/* line 718, ../../app/styles/main.scss */
 .rotate45 {
   transform: rotate(-45deg);
 }
 
-/* line 716, ../../app/styles/main.scss */
+/* line 722, ../../app/styles/main.scss */
 .rotate90 {
   transform: rotate(-90deg);
 }
 
-/* line 740, ../../app/styles/main.scss */
+/* line 746, ../../app/styles/main.scss */
 .table-planillas-f {
   overflow: hidden;
   overflow-x: scroll;
 }
 
-/* line 745, ../../app/styles/main.scss */
+/* line 751, ../../app/styles/main.scss */
 .table-planillas-f {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -14172,7 +14211,7 @@ td{
   -o-user-select: none;
   border: 1px solid #ddd;
 }
-/* line 751, ../../app/styles/main.scss */
+/* line 757, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr,
 .table-planillas-f > tbody > tr,
 .table-planillas-f > tfoot > tr {
@@ -14183,7 +14222,7 @@ td{
   -o-user-select: none;
   height: 45px !important;
 }
-/* line 754, ../../app/styles/main.scss */
+/* line 760, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr > th,
 .table-planillas-f > thead > tr > td,
 .table-planillas-f > tbody > tr > th,
@@ -14192,7 +14231,7 @@ td{
 .table-planillas-f > tfoot > tr > td {
   border: 1px solid #ddd;
 }
-/* line 758, ../../app/styles/main.scss */
+/* line 764, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tN,
 .table-planillas-f > tbody > tr .tN,
 .table-planillas-f > tfoot > tr .tN {
@@ -14202,7 +14241,7 @@ td{
   min-width: 21px;
   padding: 5px 3px 5px 3px;
 }
-/* line 765, ../../app/styles/main.scss */
+/* line 771, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCi,
 .table-planillas-f > tbody > tr .tCi,
 .table-planillas-f > tfoot > tr .tCi {
@@ -14212,7 +14251,7 @@ td{
   min-width: 70px;
   padding: 5px 3px 5px 3px;
 }
-/* line 772, ../../app/styles/main.scss */
+/* line 778, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCuenta,
 .table-planillas-f > tbody > tr .tCuenta,
 .table-planillas-f > tfoot > tr .tCuenta {
@@ -14221,13 +14260,13 @@ td{
   max-width: 100px;
   min-width: 100px;
 }
-/* line 777, ../../app/styles/main.scss */
+/* line 783, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCuenta *,
 .table-planillas-f > tbody > tr .tCuenta *,
 .table-planillas-f > tfoot > tr .tCuenta * {
   width: 100px;
 }
-/* line 780, ../../app/styles/main.scss */
+/* line 786, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCuenta span,
 .table-planillas-f > tbody > tr .tCuenta span,
 .table-planillas-f > tfoot > tr .tCuenta span {
@@ -14239,7 +14278,7 @@ td{
   text-overflow: ellipsis;
   overflow: hidden;
 }
-/* line 790, ../../app/styles/main.scss */
+/* line 796, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCuenta input, .table-planillas-f > thead > tr .tCuenta select,
 .table-planillas-f > tbody > tr .tCuenta input,
 .table-planillas-f > tbody > tr .tCuenta select,
@@ -14249,7 +14288,7 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 796, ../../app/styles/main.scss */
+/* line 802, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tGrado,
 .table-planillas-f > tbody > tr .tGrado,
 .table-planillas-f > tfoot > tr .tGrado {
@@ -14259,7 +14298,7 @@ td{
   min-width: 35px;
   padding: 5px 3px 5px 3px;
 }
-/* line 803, ../../app/styles/main.scss */
+/* line 809, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tNombres,
 .table-planillas-f > tbody > tr .tNombres,
 .table-planillas-f > tfoot > tr .tNombres {
@@ -14267,7 +14306,7 @@ td{
   width: 155px;
   padding: 5px 3px 5px 3px;
 }
-/* line 808, ../../app/styles/main.scss */
+/* line 814, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCarrera,
 .table-planillas-f > tbody > tr .tCarrera,
 .table-planillas-f > tfoot > tr .tCarrera {
@@ -14275,7 +14314,7 @@ td{
   width: 120px;
   padding: 5px 3px 5px 3px;
 }
-/* line 813, ../../app/styles/main.scss */
+/* line 819, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tMateria,
 .table-planillas-f > tbody > tr .tMateria,
 .table-planillas-f > tfoot > tr .tMateria {
@@ -14284,13 +14323,13 @@ td{
   max-width: 175px;
   min-width: 175px;
 }
-/* line 818, ../../app/styles/main.scss */
+/* line 824, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tMateria *,
 .table-planillas-f > tbody > tr .tMateria *,
 .table-planillas-f > tfoot > tr .tMateria * {
   width: 175px;
 }
-/* line 821, ../../app/styles/main.scss */
+/* line 827, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tMateria span,
 .table-planillas-f > tbody > tr .tMateria span,
 .table-planillas-f > tfoot > tr .tMateria span {
@@ -14300,7 +14339,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 829, ../../app/styles/main.scss */
+/* line 835, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tMateria input, .table-planillas-f > thead > tr .tMateria select,
 .table-planillas-f > tbody > tr .tMateria input,
 .table-planillas-f > tbody > tr .tMateria select,
@@ -14310,7 +14349,7 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 835, ../../app/styles/main.scss */
+/* line 841, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo,
 .table-planillas-f > tbody > tr .tTipo,
 .table-planillas-f > tfoot > tr .tTipo {
@@ -14319,13 +14358,13 @@ td{
   max-width: 70px;
   min-width: 70px;
 }
-/* line 840, ../../app/styles/main.scss */
+/* line 846, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo *,
 .table-planillas-f > tbody > tr .tTipo *,
 .table-planillas-f > tfoot > tr .tTipo * {
   width: 70px;
 }
-/* line 843, ../../app/styles/main.scss */
+/* line 849, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo span,
 .table-planillas-f > tbody > tr .tTipo span,
 .table-planillas-f > tfoot > tr .tTipo span {
@@ -14337,7 +14376,7 @@ td{
   overflow: hidden;
   vertical-align: middle;
 }
-/* line 853, ../../app/styles/main.scss */
+/* line 859, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo input, .table-planillas-f > thead > tr .tTipo select,
 .table-planillas-f > tbody > tr .tTipo input,
 .table-planillas-f > tbody > tr .tTipo select,
@@ -14347,13 +14386,13 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 858, ../../app/styles/main.scss */
+/* line 864, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tTipo select,
 .table-planillas-f > tbody > tr .tTipo select,
 .table-planillas-f > tfoot > tr .tTipo select {
   width: auto;
 }
-/* line 862, ../../app/styles/main.scss */
+/* line 868, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras,
 .table-planillas-f > tbody > tr .tHoras,
 .table-planillas-f > tfoot > tr .tHoras {
@@ -14362,13 +14401,13 @@ td{
   max-width: 35px;
   min-width: 35px;
 }
-/* line 867, ../../app/styles/main.scss */
+/* line 873, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras *,
 .table-planillas-f > tbody > tr .tHoras *,
 .table-planillas-f > tfoot > tr .tHoras * {
   width: 35px;
 }
-/* line 870, ../../app/styles/main.scss */
+/* line 876, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras span,
 .table-planillas-f > tbody > tr .tHoras span,
 .table-planillas-f > tfoot > tr .tHoras span {
@@ -14379,7 +14418,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 879, ../../app/styles/main.scss */
+/* line 885, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras input, .table-planillas-f > thead > tr .tHoras select,
 .table-planillas-f > tbody > tr .tHoras input,
 .table-planillas-f > tbody > tr .tHoras select,
@@ -14389,13 +14428,13 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 884, ../../app/styles/main.scss */
+/* line 890, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tHoras select,
 .table-planillas-f > tbody > tr .tHoras select,
 .table-planillas-f > tfoot > tr .tHoras select {
   width: auto;
 }
-/* line 888, ../../app/styles/main.scss */
+/* line 894, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria,
 .table-planillas-f > tbody > tr .tCategoria,
 .table-planillas-f > tfoot > tr .tCategoria {
@@ -14404,13 +14443,13 @@ td{
   max-width: 30px;
   min-width: 30px;
 }
-/* line 893, ../../app/styles/main.scss */
+/* line 899, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria *,
 .table-planillas-f > tbody > tr .tCategoria *,
 .table-planillas-f > tfoot > tr .tCategoria * {
   width: 30px;
 }
-/* line 896, ../../app/styles/main.scss */
+/* line 902, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria span,
 .table-planillas-f > tbody > tr .tCategoria span,
 .table-planillas-f > tfoot > tr .tCategoria span {
@@ -14421,7 +14460,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 905, ../../app/styles/main.scss */
+/* line 911, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria input, .table-planillas-f > thead > tr .tCategoria select,
 .table-planillas-f > tbody > tr .tCategoria input,
 .table-planillas-f > tbody > tr .tCategoria select,
@@ -14431,13 +14470,13 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 910, ../../app/styles/main.scss */
+/* line 916, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tCategoria select,
 .table-planillas-f > tbody > tr .tCategoria select,
 .table-planillas-f > tfoot > tr .tCategoria select {
   width: auto;
 }
-/* line 915, ../../app/styles/main.scss */
+/* line 921, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tReintegro,
 .table-planillas-f > tbody > tr .tReintegro,
 .table-planillas-f > tfoot > tr .tReintegro {
@@ -14445,13 +14484,13 @@ td{
   width: 70px;
   max-width: 70px;
 }
-/* line 920, ../../app/styles/main.scss */
+/* line 926, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tReintegro *,
 .table-planillas-f > tbody > tr .tReintegro *,
 .table-planillas-f > tfoot > tr .tReintegro * {
   width: 70px;
 }
-/* line 923, ../../app/styles/main.scss */
+/* line 929, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tReintegro span,
 .table-planillas-f > tbody > tr .tReintegro span,
 .table-planillas-f > tfoot > tr .tReintegro span {
@@ -14464,7 +14503,7 @@ td{
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 934, ../../app/styles/main.scss */
+/* line 940, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tReintegro input, .table-planillas-f > thead > tr .tReintegro select,
 .table-planillas-f > tbody > tr .tReintegro input,
 .table-planillas-f > tbody > tr .tReintegro select,
@@ -14474,7 +14513,7 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 941, ../../app/styles/main.scss */
+/* line 947, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tAtrasos,
 .table-planillas-f > tbody > tr .tAtrasos,
 .table-planillas-f > tfoot > tr .tAtrasos {
@@ -14483,13 +14522,13 @@ td{
   max-width: 40px;
   min-width: 40px;
 }
-/* line 946, ../../app/styles/main.scss */
+/* line 952, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tAtrasos *,
 .table-planillas-f > tbody > tr .tAtrasos *,
 .table-planillas-f > tfoot > tr .tAtrasos * {
   width: 40px;
 }
-/* line 949, ../../app/styles/main.scss */
+/* line 955, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tAtrasos span,
 .table-planillas-f > tbody > tr .tAtrasos span,
 .table-planillas-f > tfoot > tr .tAtrasos span {
@@ -14500,7 +14539,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 958, ../../app/styles/main.scss */
+/* line 964, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tAtrasos input, .table-planillas-f > thead > tr .tAtrasos select,
 .table-planillas-f > tbody > tr .tAtrasos input,
 .table-planillas-f > tbody > tr .tAtrasos select,
@@ -14510,7 +14549,7 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 965, ../../app/styles/main.scss */
+/* line 971, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura,
 .table-planillas-f > tbody > tr .tFactura,
 .table-planillas-f > tfoot > tr .tFactura {
@@ -14519,13 +14558,13 @@ td{
   max-width: 30px;
   min-width: 30px;
 }
-/* line 970, ../../app/styles/main.scss */
+/* line 976, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura *,
 .table-planillas-f > tbody > tr .tFactura *,
 .table-planillas-f > tfoot > tr .tFactura * {
   width: 30px;
 }
-/* line 973, ../../app/styles/main.scss */
+/* line 979, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura span,
 .table-planillas-f > tbody > tr .tFactura span,
 .table-planillas-f > tfoot > tr .tFactura span {
@@ -14536,7 +14575,7 @@ td{
   display: block;
   vertical-align: middle;
 }
-/* line 982, ../../app/styles/main.scss */
+/* line 988, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura input, .table-planillas-f > thead > tr .tFactura select,
 .table-planillas-f > tbody > tr .tFactura input,
 .table-planillas-f > tbody > tr .tFactura select,
@@ -14546,13 +14585,13 @@ td{
   height: 44px;
   padding: 5px 3px 5px 3px;
 }
-/* line 987, ../../app/styles/main.scss */
+/* line 993, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tFactura select,
 .table-planillas-f > tbody > tr .tFactura select,
 .table-planillas-f > tfoot > tr .tFactura select {
   width: auto;
 }
-/* line 992, ../../app/styles/main.scss */
+/* line 998, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tNumber,
 .table-planillas-f > tbody > tr .tNumber,
 .table-planillas-f > tfoot > tr .tNumber {
@@ -14563,38 +14602,38 @@ td{
   min-width: 49px;
   padding: 5px 3px 5px 3px;
 }
-/* line 999, ../../app/styles/main.scss */
+/* line 1005, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tNumber *,
 .table-planillas-f > tbody > tr .tNumber *,
 .table-planillas-f > tfoot > tr .tNumber * {
   width: 49px;
 }
-/* line 1003, ../../app/styles/main.scss */
+/* line 1009, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr .tLiquido,
 .table-planillas-f > tbody > tr .tLiquido,
 .table-planillas-f > tfoot > tr .tLiquido {
   padding: 5px 3px 5px 3px;
   text-align: right;
 }
-/* line 1010, ../../app/styles/main.scss */
+/* line 1016, ../../app/styles/main.scss */
 .table-planillas-f > thead > tr > th,
 .table-planillas-f > thead > tr > td {
   border-bottom-width: 2px;
   text-align: center;
 }
-/* line 1016, ../../app/styles/main.scss */
+/* line 1022, ../../app/styles/main.scss */
 .table-planillas-f input {
   height: inherit;
   padding: 0;
   line-height: normal;
 }
 
-/* line 1023, ../../app/styles/main.scss */
+/* line 1029, ../../app/styles/main.scss */
 .table-generar {
   overflow-x: hidden;
 }
 
-/* line 1027, ../../app/styles/main.scss */
+/* line 1033, ../../app/styles/main.scss */
 .table-generar {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -14603,31 +14642,31 @@ td{
   -o-user-select: none;
   border: 1px solid #ddd;
 }
-/* line 1033, ../../app/styles/main.scss */
+/* line 1039, ../../app/styles/main.scss */
 .table-generar > thead > tr,
 .table-generar > tbody > tr,
 .table-generar > tfoot > tr {
   height: 45px !important;
 }
-/* line 1035, ../../app/styles/main.scss */
+/* line 1041, ../../app/styles/main.scss */
 .table-generar > thead > tr *,
 .table-generar > tbody > tr *,
 .table-generar > tfoot > tr * {
   height: 45px !important;
 }
-/* line 1039, ../../app/styles/main.scss */
+/* line 1045, ../../app/styles/main.scss */
 .table-generar > thead > tr button,
 .table-generar > tbody > tr button,
 .table-generar > tfoot > tr button {
   height: 30px !important;
 }
-/* line 1042, ../../app/styles/main.scss */
+/* line 1048, ../../app/styles/main.scss */
 .table-generar > thead > tr button *,
 .table-generar > tbody > tr button *,
 .table-generar > tfoot > tr button * {
   height: 30px !important;
 }
-/* line 1046, ../../app/styles/main.scss */
+/* line 1052, ../../app/styles/main.scss */
 .table-generar > thead *,
 .table-generar > tbody *,
 .table-generar > tfoot * {
@@ -14637,53 +14676,51 @@ td{
   text-align: center;
 }
 
-/* line 1055, ../../app/styles/main.scss */
+/* line 1061, ../../app/styles/main.scss */
 .table-planillas-f {
   overflow-x: hidden;
 }
-/* line 1057, ../../app/styles/main.scss */
+/* line 1063, ../../app/styles/main.scss */
 .table-planillas-f > tbody > tr:nth-of-type(odd) {
   background-color: #f9f9f9;
 }
 
-/* line 1063, ../../app/styles/main.scss */
+/* line 1069, ../../app/styles/main.scss */
 .table-planillas-f > tbody > tr:hover {
   background-color: #f5f5f5;
 }
 
-/* line 1072, ../../app/styles/main.scss */
+/* line 1078, ../../app/styles/main.scss */
 .toast-top-right {
   top: 50px !important;
   right: 0 !important;
 }
 
-/* line 1077, ../../app/styles/main.scss */
+/* line 1083, ../../app/styles/main.scss */
 #toast-container > div {
   box-shadow: 0 0 6px 2px #111 !important;
 }
 
-/* line 1082, ../../app/styles/main.scss */
+/* line 1088, ../../app/styles/main.scss */
 .ui-select-bootstrap > .ui-select-choices {
   width: auto !important;
 }
 
-/* line 1087, ../../app/styles/main.scss */
+/* line 1093, ../../app/styles/main.scss */
 .select-matter-custom .ui-select-container {
   height: 100%;
 }
-/* line 1089, ../../app/styles/main.scss */
+/* line 1095, ../../app/styles/main.scss */
 .select-matter-custom .ui-select-container .ui-select-match {
   height: 100%;
 }
-/* line 1091, ../../app/styles/main.scss */
+/* line 1097, ../../app/styles/main.scss */
 .select-matter-custom .ui-select-container .ui-select-match .ui-select-match-text {
   width: 100%;
 }
-/* line 1093, ../../app/styles/main.scss */
+/* line 1099, ../../app/styles/main.scss */
 .select-matter-custom .ui-select-container .ui-select-match .ui-select-match-text span {
   width: 100%;
   display: inline-block;
   padding-top: 6px !important;
 }
-
-/*# sourceMappingURL=main.css.map */

@@ -331,7 +331,7 @@ angular.module('planillasApp')
                         if (scope.initForm) {
                             toastr.info('Se han actualizado datos');
                         } else {
-                            toastr.success('Creado con exito');
+                            toastr.clear();toastr.success('Creado con exito');
                         }
                         if (scope.modalInstance) {
                             scope.modalInstance.ok();
@@ -495,10 +495,10 @@ angular.module('planillasApp')
             //(new $scope.Model.resource()).$delete({id: .id})
             (new $scope.Model.resource()).$delete({id: $scope.rowItem[$scope.Model.id_name]})
                 .then(function () {
-                    toastr.success('Se ha eliminado registro');
+                    toastr.clear();toastr.success('Se ha eliminado registro');
                     $scope.ok();
                 }, function () {
-                    toastr.success('No se pudo eliminar');
+                    toastr.clear();toastr.success('No se pudo eliminar');
                 });
         };
 

@@ -19,7 +19,7 @@ angular.module('planillasApp').controller('ModalProfileCtrl', function ($scope, 
         (new $API.Usuarios()).$update(new_user)
             .then(function () {
                 $rootScope.autoLogin({force: true});
-                toastr.success('Información de cuenta modificada');
+                toastr.clear();toastr.success('Información de cuenta modificada');
                 $scope.ok(true);
             });
     };

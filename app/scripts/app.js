@@ -32,7 +32,7 @@ angular
         uiSelectConfig.appendToBody = true;
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
+        $httpProvider.interceptors.push('InterceptorService');
         $routeProvider
             .when('/', {
                 templateUrl: 'views/splashscreen.html',

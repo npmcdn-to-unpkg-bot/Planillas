@@ -32,6 +32,7 @@
                                 <th>Apellido Paterno</th>
                                 <th>Nombres</th>
                                 <th>Ci</th>
+                                <th>Expedido</th>
                                 <th>Estado</th>
                             </tr>
                             </thead>
@@ -43,6 +44,7 @@
                                 <td><span ng-bind="docente['ap_materno']"></span></td>
                                 <td><span ng-bind="docente['nombres']"></span></td>
                                 <td><span ng-bind="docente['ci']"></span></td>
+                                <td><span ng-bind="docente['departamento']"></span></td>
                                 <td><span class="p5"
                                           ng-class="docente.actualizado?'btn-success':(docente.text_error?'btn-danger':'btn-warning')"
                                           ng-bind="docente.actualizado?'Guardado':(docente.text_error || 'Pendiente')">

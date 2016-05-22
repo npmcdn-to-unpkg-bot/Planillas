@@ -27,7 +27,7 @@ angular.module('planillasApp')
                     $http.post(URLS.START_GESTION, new_gestion)
                         .then(function (data) {
                             $rootScope.autoLogin({force: true});
-                            toastr.success(data['data']['detail']);
+                            toastr.clear();toastr.success(data['data']['detail']);
                         }, function (data) {
                             StatusMessageService.showReject(data);
                         });
@@ -43,7 +43,7 @@ angular.module('planillasApp')
                             $http.post(URLS.FINISH_GESTION, data)
                                 .then(function (data) {
                                     $rootScope.autoLogin({force: true});
-                                    toastr.success(data['data']['detail']);
+                                    toastr.clear();toastr.success(data['data']['detail']);
                                 }, function (data) {
                                     StatusMessageService.showReject(data);
                                 });

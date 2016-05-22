@@ -42,7 +42,8 @@
                                 <span class="glyphicon glyphicon-print"></span> Vista previa</a>
                             </li>
                             <li role="presentation">
-                                <a href="" ng-click="refresh_payroll({hide_message:true});refresh_params_nueva_planilla()">
+                                <a href=""
+                                   ng-click="refresh_params_nueva_planilla()">
                                     <span class="glyphicon glyphicon-refresh"></span>
                                     Actualizar
                                 </a>
@@ -52,7 +53,6 @@
                 </div>
             </nav>
             <hr>
-
             <div class="table-filters">
                 <table id="tab0" class="payroll table_add" style="min-width: 100%">
                     <thead>
@@ -64,15 +64,7 @@
                     <tr>
                         <th colspan="13">
                             <div class="row">
-                                <div class="col-xs-12 col-sm-3">
-                                    <div class="pull-left">Seleccione unidad académica:</div>
-                                    <select class="form-control input-sm"
-                                            ng-model="nueva_planilla.unidad_academica"
-                                            data-ng-disabled="true"
-                                            ng-options="unidad.id as unidad.name for unidad in GLOBALS.UNIDADES_ACADEMICAS">
-                                    </select>
-                                </div>
-                                <div class="col-xs-12 col-sm-5">
+                                <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
                                     <div class="pull-left">Seleccione carrera:</div>
                                     <select class="form-control input-sm pull-left"
                                             ng-model="nueva_planilla.especialidad"
@@ -85,27 +77,29 @@
                         </th>
                     </tr>
                     <tr>
-                        <th class="col-px-250">Apellidos y Nombres</th>
-                        <th class="col-3">CI</th>
-                        <th class="col-3">Cuenta BU</th>
-                        <th class="col-px-80">Grado</th>
-                        <th class="col-7">Materia</th>
-                        <th class="col-px-80">Tipo</th>
-                        <th class="col-px-70">Horas semanales</th>
-                        <th class="col-px-70">Categoria</th>
-                        <th class="col-15">Factura</th>
-                        <th class="col-15">Tipo de pago</th>
-                        <th class="col-px-80">Metodo Acad&eacute;mico</th>
+                        <th>Apellidos y Nombres</th>
+                        <th>CI</th>
+                        <th>Cuenta BU</th>
+                        <th>Grado</th>
+                        <th>Materia</th>
+                        <th>Tipo</th>
+                        <th>Horas semanales</th>
+                        <th>Categoria</th>
+                        <th>Factura</th>
+                        <th>Tipo de pago</th>
+                        <th>Metodo Acad&eacute;mico</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td class="col-px-250 edit select">
+                            <!--<span></span>-->
                             <ui-select ng-model="tmp.tmp_docente"
                                        title="Seleccione docente"
+                                       class="add_height45"
                                        ng-change="nueva_planilla.docente = tmp.tmp_docente.id;
                                                    tmp.docente = tmp.tmp_docente;
-                                                   setInfoDocente(tmp.tmp_docente.id)">
+                                                   setInfoDocente(tmp.tmp_docente)">
                                 <ui-select-match placeholder="Seleccione docente">
                                     {{$select.selected.nombres + ' '+$select.selected.ap_paterno
                                     +' '+$select.selected.ap_materno }}
@@ -141,6 +135,7 @@
                         <td class="col-7 edit select">
                             <ui-select ng-model="tmp_materia" theme="bootstrap"
                                        title="Seleccione materia"
+                                       class="add_height45"
                                        ng-change="nueva_planilla.materia = tmp_materia.id">
                                 <ui-select-match placeholder="Seleccione materia">
                                     {{$select.selected.name}}
@@ -178,7 +173,7 @@
                         </td>
                         <td class="col-15">
                             <select class="fullWidth" ng-model="nueva_planilla.tipo_pago"
-                                    data-ng-disabled="nueva_planilla_disabled['is_semanal_horas']"
+                                    data-ng-disabled="nueva_planilla_disabled['tipo_pago']"
                                     ng-options="pag.id as pag.name for pag in GLOBALS.TIPO_PAGO"
                                     required>
                             </select>
@@ -198,20 +193,19 @@
                             <button class="btn btn-success btn-sm"
                                     ng-click="guardar_nueva_planilla(nueva_planilla)"
                                     title="Guardar">
-                                <i class="glyphicon glyphicon-save"></i> Guardar
+                                <i class="glyphicon glyphicon-save"></i> Guardar nuevo registro a planillas
                             </button>
 
                             <button class="btn btn-warning btn-sm"
                                     ng-click="load_init_params()" title="Limpiar">
-                                <i class="glyphicon glyphicon-alert"></i> Limpiar
+                                <i class="glyphicon glyphicon-alert"></i> Limpiar campos
                             </button>
                         </td>
                     </tr>
                     </tfoot>
                 </table>
             </div>
-
-            <div ng-include="'views/Payroll.html'"></div>
+            <ng-include src="'views/payroll_table/payroll_table.html'"></ng-include>
         </div>
     </div>
 </div>

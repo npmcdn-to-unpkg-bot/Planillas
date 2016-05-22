@@ -243,14 +243,13 @@ angular.module('planillasApp')
                         model: new UnidadAcademicaModel(), required: true
                     },
                     {
-                        label: "Especialidad", name: "especialidad", type: 'select',
-                        model: new EspecialidadesModel(), required: true
+                        label: "Tabla", name: "table", type: 'string', required: true
                     },
                     {label: "Tipo de acción", name: "tipo", type: 'string', required: true},
                     {label: "Descripción", name: "descripcion", type: 'string', required: true}
                 ];
                 context.extra_fields = [{label: "Fecha", name: 'updated_at'}];
-                context.showFields = ['user', 'unidad_academica', 'especialidad', 'tipo', 'descripcion'];
+                context.showFields = ['user', 'table', 'tipo', 'descripcion'];
                 context.nameView = 'tipo';
                 context.editable = false;
                 context.delete = false;
@@ -279,19 +278,12 @@ angular.module('planillasApp')
                         model: new UnidadAcademicaModel(),
                         required: true
                     },
-                    {
-                        label: "Especialidad",
-                        name: "especialidad",
-                        type: 'select',
-                        model: new EspecialidadesModel(),
-                        required: true
-                    },
                     {label: "IU", name: "iu", type: 'number', required: true},
                     {label: "IT", name: "it", type: 'number', required: true},
                     {label: "Abierto", name: "abierto", type: 'boolean', required: true}
                 ];
                 context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
-                context.showFields = ['gestion', 'periodo_gestion', 'unidad_academica', 'especialidad'];
+                context.showFields = ['gestion', 'periodo_gestion', 'unidad_academica'];
                 context.nameView = 'gestion';
                 context.config = {title: 'Gestiones académicas'};
                 context.add_new = false;

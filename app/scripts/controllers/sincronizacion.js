@@ -9,6 +9,7 @@
  */
 angular.module('planillasApp')
     .controller('SincronizacionCtrl', function ($scope, $q, $http, ModelService) {
+
         $scope.csv = {
             content: null,
             header: true,
@@ -38,6 +39,7 @@ angular.module('planillasApp')
                 form_data.append('ap_materno', list_array[index]['ap_materno']);
                 form_data.append('nombres', list_array[index]['nombres']);
                 form_data.append('ci', list_array[index]['ci']);
+                form_data.append('departamento', list_array[index]['departamento']);
                 form_data.append('unidad_academica', list_array[index]['unidad_academica']);
 
                 (new ModelService.DocentesModel()).resource.create(form_data, function () {

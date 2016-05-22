@@ -8,7 +8,7 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('GenerarplanillaCtrl', function ($scope, $rootScope, $q, $http, ModelService, $timeout, AuthService, $API) {
+    .controller('GenerarplanillaCtrl', function ($scope, $rootScope, $q, $http, ModelService, $timeout, AuthService, $API, $location) {
         var promises = [
             AuthService.getUser(),
             $rootScope.GF.load_especialidades(),
@@ -20,21 +20,30 @@ angular.module('planillasApp')
             especialidad: false
         };
 
+        $scope.filters = {};
+        AuthService.getUser().then(function (user) {
+            if (!user['gestion']) {
+                $location.path('/');
+                return;
+            }
+            $scope.filters['gestion_academica'] = user['gestion']['id'];
+        });
         $scope.load_init_params = function () {
             $q.all(promises)
                 .then(function (datas) {
-
                     if (!$rootScope.GF.isSecretaria()) {
                         $scope.$broadcast('active_editable_payroll');
                     } else {
                         $scope.$broadcast('disable_editable_payroll');
                     }
                     var user = datas[0];
-                    $scope.nueva_planilla['especialidad'] = user['gestion']['especialidad'];
                     $scope.nueva_planilla['docente'] = '';
-                    $scope.nueva_planilla['cuenta_bancaria'] = '';
-                    $scope.nueva_planilla['grado'] = $rootScope.GLOBALS.GRADOS_DOCENTE[0].id;
                     $scope.nueva_planilla['materia'] = '';
+
+                    $scope.nueva_planilla['especialidad'] = user['gestion']['especialidad'];
+                    $scope.nueva_planilla['gestion_academica'] = user['gestion']['id'];
+                    $scope.nueva_planilla['cuenta_bancaria'] = 'CHEQUE';
+                    $scope.nueva_planilla['grado'] = $rootScope.GLOBALS.GRADOS_DOCENTE[0].id;
                     $scope.nueva_planilla['tipo'] = $rootScope.GLOBALS.TIPOS_DOCENCIA[0].id;
                     $scope.nueva_planilla['horas_semanales'] = $rootScope.GLOBALS.TIEMPOS_CARGA_HORARIA[0].id;
                     $scope.nueva_planilla['categoria'] = $rootScope.GLOBALS.TIPOS_CATEGORIAS[0].id;
@@ -42,11 +51,6 @@ angular.module('planillasApp')
                     $scope.nueva_planilla['atrasos_periodos'] = 0;
                     $scope.nueva_planilla['factura'] = $rootScope.GLOBALS.FACTURA_ITEMS[0].id;
                     $scope.nueva_planilla['pensul'] = $rootScope.GLOBALS.PENSUL[0].id;
-                    $scope.nueva_planilla['gestion'] = user['gestion']['gestion'];
-                    $scope.nueva_planilla['periodo_gestion'] = user['gestion']['periodo_gestion'];
-                    $scope.nueva_planilla['unidad_academica'] = user['gestion']['unidad_academica'];
-                    $scope.nueva_planilla['paralelo'] = 'A';//default
-                    $scope.nueva_planilla['semestre'] = 10;//default
                     $scope.nueva_planilla['habilitado'] = 1;
                     $scope.nueva_planilla['tipo_pago'] = $rootScope.GLOBALS.TIPO_PAGO[0].id;
                     //temporales
@@ -61,15 +65,17 @@ angular.module('planillasApp')
         $scope.load_init_params();
 
         $scope.refresh_params_nueva_planilla = function () {
-            $rootScope.GF.load_especialidades();
-            $rootScope.GF.load_gradosDocentes();
-            $rootScope.GF.load_unidades_academicas();
+            var promises = [$rootScope.GF.load_especialidades(), $rootScope.GF.load_gradosDocentes(), $rootScope.GF.load_unidades_academicas()];
+            $q.all(promises).then(function () {
+                toastr.clear();toastr.success("Datos de entrada acualizados");
+            })
         };
-        $scope.setInfoDocente = function (id_docente) {
+
+        $scope.setInfoDocente = function (docente) {
+            var id_docente = docente.id;
             (new $API.Planillas()).$get({
                     docente: id_docente,
-                    gestion: $rootScope.CURRENT_USER['gestion']['gestion'],
-                    periodo_gestion: $rootScope.CURRENT_USER['gestion']['periodo_gestion'],
+                    gestion_academica: $rootScope.CURRENT_USER['gestion']['id'],
                     activo: 1
                 })
                 .then(function (data) {
@@ -79,32 +85,31 @@ angular.module('planillasApp')
                         $scope.nueva_planilla_disabled['categoria'] = true;
                         $scope.nueva_planilla_disabled['factura'] = true;
                         $scope.nueva_planilla_disabled['grado'] = true;
-                        //$scope.nueva_planilla_disabled['pensul'] = true;
                         $scope.nueva_planilla_disabled['tipo_pago'] = true;
 
                         $scope.nueva_planilla['cuenta_bancaria'] = info['cuenta_bancaria'];
                         $scope.nueva_planilla['categoria'] = info['categoria'];
                         $scope.nueva_planilla['factura'] = info['factura'];
-                        $scope.nueva_planilla['grado'] = info['grado'];
-                       // $scope.nueva_planilla['pensul'] = info['pensul'];
-                        //$scope.nueva_planilla['tipo_pago'] = info['tipo_pago'];
+                        $scope.nueva_planilla['grado'] = info['grado']['id'];
                     } else {
-                        $scope.nueva_planilla_disabled['cuenta_bancaria'] = false;
-                        $scope.nueva_planilla_disabled['categoria'] = false;
-                        $scope.nueva_planilla_disabled['factura'] = false;
-                        $scope.nueva_planilla_disabled['grado'] = false;
-                        $scope.nueva_planilla_disabled['pensul'] = false;
-                        $scope.nueva_planilla_disabled['tipo_pago'] = false;
+                        var disabled = ['cuenta_bancaria', 'categoria', 'factura', 'grado', 'pensul', 'tipo_pago'];
+                        for (var i = 0; i < disabled.length; i++) {
+                            $scope.nueva_planilla_disabled[disabled[i]] = false;
+                        }
                     }
                 })
         };
 
+        $scope.id_new_payroll_register = 0;
+
         $scope.guardar_nueva_planilla = function (planilla) {
             (new $API.Planillas()).$create(planilla)
-                .then(function () {
-                    $scope.setInfoDocente(planilla.docente);
-                    toastr.success("Registro ingresado");
-                    $scope.$broadcast ('load_planillas_event');
+                .then(function (data) {
+                    $scope.filters['tipo_pago'] = planilla['tipo_pago'];
+                    $scope.filters['docente'] = planilla.docente;
+                    $scope.id_new_payroll_register = data.id;
+                    toastr.clear();toastr.success("Registro ingresado");
+                    $scope.$broadcast('load_planillas_event', $scope.filters);
                 }, function () {
                     toastr.warning("No se pudo guardar");
                 })

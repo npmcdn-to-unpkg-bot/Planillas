@@ -113,7 +113,7 @@ angular.module('planillasApp')
                     .then(function () {
                         $scope.currentPage = 1;
                         $scope.loadUsers();
-                        toastr.success("Cuenta de usuario eliminada activada");
+                        toastr.clear();toastr.success("Cuenta de usuario eliminada activada");
                     }, function () {
                         toastr.warning("Ha ocurrido un problema al realizar la acción");
                     });
@@ -126,7 +126,7 @@ angular.module('planillasApp')
                 .$update({id: user.id, activo: act})
                 .then(function () {
                     if (act) {
-                        toastr.success("Cuenta activada");
+                        toastr.clear();toastr.success("Cuenta activada");
                     } else {
                         toastr.warning("Cuenta desactivada");
                     }

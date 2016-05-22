@@ -148,13 +148,13 @@ table {
 }
 
 .PH20 {
-    padding-left: 20;
-    padding-right: 20;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .PH40 {
-    padding-left: 40;
-    padding-right: 40;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .MT10 {
@@ -376,11 +376,17 @@ table {
     font-size: $planillas-font-size;
     .ui-select-search {
         font-size: $planillas-font-size;
+        @include border-radius(0px);
+        padding: 1px 5px;
+        height: 30px;
+        border: 1px solid;
     }
 }
 
 .ui-select-bootstrap > .ui-select-match > .btn {
     font-size: $planillas-font-size;
+    background: inherit;
+    border: none;
 }
 
 .ui-select-bootstrap .ui-select-choices-row > a {

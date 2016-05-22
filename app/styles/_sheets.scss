@@ -36,6 +36,19 @@ $height-row: 45px;
     display: flex;
 }
 
+.add_height45 {
+    height: $height-row;
+    cursor: cell;
+    input, span {
+        cursor: cell;
+        height: inherit !important;
+    }
+    div {
+        width: inherit;
+        min-width: inherit;
+    }
+}
+
 #sheets {
     font-size: 11px !important;
     background: inherit;
@@ -92,17 +105,27 @@ $height-row: 45px;
             }
         }
 
-        .btn.btn-default.form-control.ui-select-toggle{
+        .btn.btn-default.form-control.ui-select-toggle {
             display: table-cell;
             vertical-align: middle;
         }
-        input, select, input[disabled], select[disabled]{
+        input, select, input[disabled], select[disabled] {
             border-right-width: 0 !important;
         }
-        span{
+        span {
             white-space: normal !important;
             vertical-align: middle;
             display: table-cell;
+        }
+        .edit {
+            background-color: inherit !important;
+
+            select, input {
+                cursor: cell;
+            }
+        }
+        .edit:hover {
+            //background-color: #eee !important;
         }
     }
 
@@ -111,7 +134,7 @@ $height-row: 45px;
             background: #f8f8f8;
         }
         tbody {
-            tr:hover {
+            tr.hover-row:hover {
                 background: #ddd !important;
             }
         }
@@ -166,7 +189,7 @@ $height-row: 45px;
                 }
                 span {
                     font-size: inherit;
-                    padding: 0;
+                    padding: 0 5px;
                 }
                 span.match {
                     display: table-cell;

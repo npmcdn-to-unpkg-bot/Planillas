@@ -48,7 +48,7 @@ angular.module('planillasApp').controller('ModalNewUsuario', function ($scope, $
             $http.put(URLS.USUARIOS + '/' + new_user.id, new_user)
                 .then(function () {
                     $scope.ok();
-                    toastr.success("Cuenta modificada exitosamente");
+                    toastr.clear();toastr.success("Cuenta modificada exitosamente");
                 }, function () {
                     toastr.warning("Ha ocurrido un error al modificar la cuenta");
                 })
@@ -56,7 +56,7 @@ angular.module('planillasApp').controller('ModalNewUsuario', function ($scope, $
             $http.post(URLS.USUARIOS, new_user)
                 .then(function () {
                     $scope.ok();
-                    toastr.success("Cuenta creada exitosamente");
+                    toastr.clear();toastr.success("Cuenta creada exitosamente");
                 }, function () {
                     toastr.warning("Ha ocurrido un error al activar la cuenta");
                 })

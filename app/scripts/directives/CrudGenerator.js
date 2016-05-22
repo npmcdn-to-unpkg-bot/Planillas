@@ -387,6 +387,7 @@ angular.module('planillasApp')
                         if (scope.initForm) {
                             toastr.info('Se han actualizado datos');
                         } else {
+                            toastr.clear();
                             toastr.success('Creado con exito');
                         }
                         if (scope.modalInstance) {
@@ -548,6 +549,7 @@ angular.module('planillasApp')
             //noinspection JSUnresolvedFunction
             (new $scope.Model.resource()).$delete({id: $scope.rowItem.id})
                 .then(function () {
+                    toastr.clear();
                     toastr.success('Se ha eliminado registro');
                     $scope.ok();
                 }, function () {
