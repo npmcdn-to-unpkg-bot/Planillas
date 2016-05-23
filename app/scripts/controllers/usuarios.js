@@ -23,7 +23,7 @@ angular.module('planillasApp')
         $scope.filter_carrera = 0;
         $scope.filter_uuaa = 0;
         $scope.filter_tipo = 0;
-        $scope.filter_nombre = "";
+        $scope.filter_nombre = '';
 
         $scope.enable_fields = {
             unidad_academica: false,
@@ -41,19 +41,26 @@ angular.module('planillasApp')
             query_params['page_size'] = $scope.page_size;
             query_params['filter_user'] = 1;
 
-            if ($scope.filter_nombre != "")query_params['search'] = $scope.filter_nombre;
-            if ($scope.filter_carrera != 0)query_params['especialidad'] = $scope.filter_carrera;
-            if ($scope.filter_uuaa != 0)query_params['unidad_academica'] = $scope.filter_uuaa;
-            if ($scope.filter_tipo != 0)query_params['tipo_usuario'] = $scope.filter_tipo;
+            if ($scope.filter_nombre !== '') {
+                query_params['search'] = $scope.filter_nombre;
+            }
+            if ($scope.filter_carrera !== 0) {
+                query_params['especialidad'] = $scope.filter_carrera;
+            }
+            if ($scope.filter_uuaa !== 0) {
+                query_params['unidad_academica'] = $scope.filter_uuaa;
+            }
+            if ($scope.filter_tipo !== 0) {
+                query_params['tipo_usuario'] = $scope.filter_tipo;
+            }
 
             (new (new ModelService.UsuariosModel()).resource())
                 .$get(query_params).then(function (data) {
-                    defer.resolve(data);
-                    $scope.user_data = data;
-                }
-                , function (data) {
-                    defer.reject(data);
-                });
+                defer.resolve(data);
+                $scope.user_data = data;
+            }, function (data) {
+                defer.reject(data);
+            });
             return defer.promise;
         };
 
@@ -100,7 +107,7 @@ angular.module('planillasApp')
                         }
                     }
                 });
-                modalInstance.result.then(function (selectedItem) {
+                modalInstance.result.then(function () {
                     $scope.loadUsers();
                 });
             });
@@ -113,12 +120,13 @@ angular.module('planillasApp')
                     .then(function () {
                         $scope.currentPage = 1;
                         $scope.loadUsers();
-                        toastr.clear();toastr.success("Cuenta de usuario eliminada activada");
+                        toastr.clear();
+                        toastr.success('Cuenta de usuario eliminada activada');
                     }, function () {
-                        toastr.warning("Ha ocurrido un problema al realizar la acción");
+                        toastr.warning('Ha ocurrido un problema al realizar la acción');
                     });
             }, function () {
-            }, "ELIMINAR USUARIO", "Seguro que desea eliminar usuario?");
+            }, 'ELIMINAR USUARIO', 'Seguro que desea eliminar usuario?');
         };
 
         $scope.alta_baja_usuario = function (user, act) {
@@ -126,13 +134,14 @@ angular.module('planillasApp')
                 .$update({id: user.id, activo: act})
                 .then(function () {
                     if (act) {
-                        toastr.clear();toastr.success("Cuenta activada");
+                        toastr.clear();
+                        toastr.success('Cuenta activada');
                     } else {
-                        toastr.warning("Cuenta desactivada");
+                        toastr.warning('Cuenta desactivada');
                     }
                     $scope.loadUsers();
                 }, function () {
-                    toastr.warning("Ha ocurrido un problema al realizar la acción");
-                })
+                    toastr.warning('Ha ocurrido un problema al realizar la acción');
+                });
         };
     });

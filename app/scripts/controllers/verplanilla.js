@@ -8,7 +8,7 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('VerplanillaCtrl', function ($scope, $rootScope, AuthService, URLS, $http, $q, $uibModal, $API, ModelService) {
+    .controller('VerplanillaCtrl', function ($scope, $rootScope, AuthService) {
         $scope.general_disable_items = {
             gestion: true,
             periodo_gestion: true
@@ -20,7 +20,7 @@ angular.module('planillasApp')
                 } else {
                     $scope.$broadcast('disable_editable_payroll');
                 }
-            })
+            });
     });
 
 

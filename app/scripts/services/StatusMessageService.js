@@ -10,7 +10,7 @@
 angular.module('planillasApp')
     .service('StatusMessageService', function () {
 
-        function showResolve(data_success, options) {
+        function showResolve() {
 
         }
 
@@ -21,9 +21,9 @@ angular.module('planillasApp')
          *    hide: true|false
          */
         function showReject(data_reject, options) {
-            var status = data_reject['status'];
-            var message = data_reject['data'] && data_reject['data']['detail'];
-            if(options && options['hideMessage']){
+            var status = data_reject.status;
+            var message = data_reject.data && data_reject.data.detail;
+            if(options && options.hideMessage){
                 return;
             }
             if (message) {

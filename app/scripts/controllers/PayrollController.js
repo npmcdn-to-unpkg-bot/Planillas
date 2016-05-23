@@ -35,7 +35,7 @@ angular.module('planillasApp')
             (new $API.Docentes()).$get(data)
                 .then(function (data) {
                     $scope.custom_list_docente = data['data'];
-                })
+                });
         };
         $scope.searchCustomMatter = function (search_value) {
             var data = {
@@ -45,7 +45,7 @@ angular.module('planillasApp')
             (new $API.Materias()).$get(data)
                 .then(function (data) {
                     $scope.custom_list_materias = data['data'];
-                })
+                });
         };
         $scope.planillas_data = {};
 
@@ -133,7 +133,7 @@ angular.module('planillasApp')
         $scope.show_preview_payroll = function () {
             var query_params = $.extend({}, $scope.planillas_query_params, $scope.filters);
             setTimeout(function () {
-                window.open(URLS.PREVIEW_PLANILLA + "?" + $.param(query_params), "Reporte", "location=0,height=600, width=1200");
+                window.open(URLS.PREVIEW_PLANILLA + '?' + $.param(query_params), 'Reporte', 'location=0,height=600, width=1200');
             }, 0);
         };
 
@@ -141,21 +141,22 @@ angular.module('planillasApp')
             var query_params = $.extend({}, $scope.planillas_query_params, $scope.filters);
             query_params.file_banco = 1;
             setTimeout(function () {
-                window.open(URLS.PLANILLAS + "?" + $.param(query_params), "Reporte", "location=0,height=600, width=1200");
+                window.open(URLS.PLANILLAS + '?' + $.param(query_params), 'Reporte', 'location=0,height=600, width=1200');
             }, 0);
         };
 
         $scope.limpiar = function (item) {
             var query_params = $.extend({}, $scope.planillas_query_params, $scope.filters);
             query_params['clean'] = item;
-            $http.post(URLS.PLANILLAS + "/clean?" + $.param(query_params))
+            $http.post(URLS.PLANILLAS + '/clean?' + $.param(query_params))
                 .then(function () {
                     $scope.load_planillas();
-                    toastr.clear();toastr.success('Borrado correctamente');
+                    toastr.clear();
+                    toastr.success('Borrado correctamente');
                 }, function () {
                     $scope.load_planillas();
                     toastr.warning('No se pudo borrar');
-                })
+                });
         };
 
         $scope.show_modal_report = function () {
@@ -174,7 +175,7 @@ angular.module('planillasApp')
             modalInstance.result.then(function (footers) {
                 var query_params = $.extend({}, $scope.planillas_query_params, footers);
                 setTimeout(function () {
-                    window.open(URLS.PREVIEW_PLANILLA + "?" + $.param(query_params), "Reporte", "location=0,height=600, width=1200");
+                    window.open(URLS.PREVIEW_PLANILLA + '?' + $.param(query_params), 'Reporte', 'location=0,height=600, width=1200');
                 }, 0);
             });
         };
@@ -183,12 +184,16 @@ angular.module('planillasApp')
             var hide_message = options && options['hide_message'];
             $scope.load_planillas()
                 .then(function () {
-                    if (!hide_message)
-                        toastr.clear();toastr.success("Planilla actualizada");
+                    if (!hide_message) {
+                        toastr.clear();
+                        toastr.success('Planilla actualizada');
+                    }
                 }, function () {
-                    if (!hide_message)
-                        toastr.warning("No se encontraro resultados");
-                })
+                    if (!hide_message) {
+                        toastr.clear();
+                        toastr.warning('No se encontraro resultados');
+                    }
+                });
         };
 
         $scope.update_item_payroll = function (new_value, id, key) {
@@ -199,7 +204,8 @@ angular.module('planillasApp')
             update_data[key] = new_value;
             (new $API.Planillas()).$update(update_data)
                 .then(function (data) {
-                    toastr.clear();toastr.success('Modificado correctamente');
+                    toastr.clear();
+                    toastr.success('Modificado correctamente');
                     defer.resolve(data);
                     $scope.load_planillas();
                 }, function (data) {
@@ -241,16 +247,17 @@ angular.module('planillasApp')
 
         $rootScope.eliminarRegistro = function (registro) {
             $rootScope.openModalConfirm(function () {
-                (new $API.Planillas).$delete({id: registro.id})
+                (new $API.Planillas()).$delete({id: registro.id})
                     .then(function () {
                         $scope.load_planillas();
-                        toastr.clear();toastr.success('Registro eliminado');
+                        toastr.clear();
+                        toastr.success('Registro eliminado');
                     }, function () {
                         $scope.load_planillas();
                         toastr.warning('No se pudo eliminar');
-                    })
+                    });
             }, function () {
-            }, "ELIMINAR REGOSTRO", "Seguro que desea eliminar registro?")
+            }, 'ELIMINAR REGOSTRO', 'Seguro que desea eliminar registro?');
         };
 
         $scope.editable = false;

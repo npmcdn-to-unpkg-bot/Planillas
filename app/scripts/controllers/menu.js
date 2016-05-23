@@ -58,7 +58,7 @@ angular.module('planillasApp')
                     }
                 }
             });
-            modalInstance.result.then(function (selectedItem) {
+            modalInstance.result.then(function () {
 
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
@@ -87,7 +87,7 @@ angular.module('planillasApp')
                     }
                 }
             });
-            modalInstance.result.then(function (selectedItem) {
+            modalInstance.result.then(function () {
 
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
@@ -106,7 +106,7 @@ angular.module('planillasApp')
                     }
                 }
             });
-            modalInstance.result.then(function (selectedItem) {
+            modalInstance.result.then(function () {
                 //$rootScope.GF.load_lista_materias();
             }, function () {
                 //$log.info('Modal dismissed at: ' + new Date());

@@ -20,9 +20,9 @@ angular.module('planillasApp')
                         if (data.Success) {
                             $rootScope.GF.load_gestiones_academicas();
                         }
-                    })
+                    });
             }, function () {
-            }, "ELIMINAR GESTION ACADEMICA", "Seguro que desea eliminar registro de Gestion Academica?");
+            }, 'ELIMINAR GESTION ACADEMICA', 'Seguro que desea eliminar registro de Gestion Academica?');
         };
 
 
@@ -33,14 +33,14 @@ angular.module('planillasApp')
                         if (data.Success) {
                             $rootScope.GF.load_logs();
                         }
-                    })
+                    });
             }, function () {
-            }, "ELIMINAR LOGS", "Seguro que desea eliminar registro?");
+            }, 'ELIMINAR LOGS', 'Seguro que desea eliminar registro?');
         };
 
         $rootScope.getLogReport = function (repor) {
             var report = angular.copy(repor);
             report.FileName = true;
-            window.open(URLS.LOGS + '?' + $.param(report), "LOGS");
-        }
+            window.open(URLS.LOGS + '?' + $.param(report), 'LOGS');
+        };
     });

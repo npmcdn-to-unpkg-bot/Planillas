@@ -22,5 +22,5 @@ angular.module('planillasApp')
                     add_new: false
                 });
             }
-        })
+        });
     });

@@ -18,16 +18,18 @@ angular.module('planillasApp')
             $http({
                 url: url,
                 method: method,
-                data: method != "GET" ? data : "",
-                params: method == "GET" ? data : ""
+                data: method !== 'GET' ? data : '',
+                params: method === 'GET' ? data : ''
             }).success(function (data) {
                 count--;
-                if (count == 0) {
+                if (count === 0) {
                     $rootScope.LOADER_ASYNC = false;
                 }
                 //$rootScope.LOADER_ASYNC = false;
                 try {
-                    if (angular.isFunction(fcnSuccess))fcnSuccess(data);
+                    if (angular.isFunction(fcnSuccess)) {
+                        fcnSuccess(data);
+                    }
                     if (data.Success) {
                         deferred.resolve(data);
                         if (data.Message && !hideMessage) {
@@ -37,16 +39,20 @@ angular.module('planillasApp')
 
                     } else {
                         deferred.reject(data);
-                        if (data.Message && !hideMessage)toastr.warning(data.Message);
+                        if (data.Message && !hideMessage) {
+                            toastr.warning(data.Message);
+                        }
                     }
                 } catch (e) {
                     toastr.error('Error del navegador');
-                    if (angular.isFunction(fcnError))fcnError();
+                    if (angular.isFunction(fcnError)) {
+                        fcnError();
+                    }
                     deferred.reject(data);
                 }
             }).error(function (data, code, headers) {
                 count--;
-                if (count == 0) {
+                if (count === 0) {
                     $rootScope.LOADER_ASYNC = false;
                 }
                 deferred.reject(data, code, headers);
@@ -65,25 +71,27 @@ angular.module('planillasApp')
                         toastr.error('Error desconocido');
                 }
                 //$rootScope.LOADER_ASYNC = false;
-                if (angular.isFunction(fcnError))fcnError(data, code, headers);
+                if (angular.isFunction(fcnError)) {
+                    fcnError(data, code, headers);
+                }
             });
             return deferred.promise;
         }
 
         function post(url, data, fcnSuccess, fcnError, hideMessage) {
-            return request(url, "POST", data, fcnSuccess, fcnError, hideMessage);
+            return request(url, 'POST', data, fcnSuccess, fcnError, hideMessage);
         }
 
         function get(url, data, fcnSuccess, fcnError, hideMessage) {
-            return request(url, "GET", data, fcnSuccess, fcnError, hideMessage);
+            return request(url, 'GET', data, fcnSuccess, fcnError, hideMessage);
         }
 
         function put(url, data, fcnSuccess, fcnError, hideMessage) {
-            return request(url, "PUT", data, fcnSuccess, fcnError, hideMessage);
+            return request(url, 'PUT', data, fcnSuccess, fcnError, hideMessage);
         }
 
         function patch(url, data, fcnSuccess, fcnError, hideMessage) {
-            return request(url, "PATCH", data, fcnSuccess, fcnError, hideMessage);
+            return request(url, 'PATCH', data, fcnSuccess, fcnError, hideMessage);
         }
 
         return {

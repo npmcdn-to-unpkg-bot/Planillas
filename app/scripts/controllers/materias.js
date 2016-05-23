@@ -15,9 +15,9 @@ angular.module('planillasApp')
                     function (data) {
                         if (data.Success) {
                         }
-                    })
+                    });
             }, function () {
-            }, "ELIMINAR MATERIA", "Seguro que desea eliminar materia?");
+            }, 'ELIMINAR MATERIA', 'Seguro que desea eliminar materia?');
         };
         AuthService.getUser().then(function () {
             if ($rootScope.GF.isRoot() || $rootScope.GF.isAdmin() || $rootScope.GF.isJefeCarrera()) {

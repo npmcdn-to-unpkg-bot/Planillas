@@ -8,6 +8,6 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-  .controller('GestionoldCtrl', function ($scope) {
+  .controller('GestionoldCtrl', function () {
 
   });

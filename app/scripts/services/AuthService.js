@@ -65,5 +65,5 @@ angular.module('planillasApp')
             autoLogin: autoLogin,
             getUser: getUser,
             logout: logout
-        }
+        };
     });

@@ -15,9 +15,9 @@ angular.module('planillasApp')
                     function (data) {
                         if (data.Success) {
                         }
-                    })
+                    });
             }, function () {
-            }, "ELIMINAR DOCENTE", "Seguro que desea eliminar docente?");
+            }, 'ELIMINAR DOCENTE', 'Seguro que desea eliminar docente?');
         };
 
         AuthService.getUser().then(function (user) {

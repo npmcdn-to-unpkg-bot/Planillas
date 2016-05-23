@@ -9,17 +9,17 @@
  * Filter in the planillasEmiApp.
  */
 angular.module('planillasApp')
-  .filter('mountC', function () {
-    return function(mount,opt1,opt2){
-      if(mount){
-        mount = parseFloat(mount);
-        mount =  mount.toFixed(2);
-        if(mount == NaN){
-          mount = "-"
-        }
-      }else{
-        mount = "-";
-      }
-      return mount;
-    }
-  });
+    .filter('mountC', function () {
+        return function (mount) {
+            if (mount) {
+                mount = parseFloat(mount);
+                mount = mount.toFixed(2);
+                if (isNaN(mount)) {
+                    mount = '-';
+                }
+            } else {
+                mount = '-';
+            }
+            return mount;
+        };
+    });

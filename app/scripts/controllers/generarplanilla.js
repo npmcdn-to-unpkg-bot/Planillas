@@ -67,8 +67,8 @@ angular.module('planillasApp')
         $scope.refresh_params_nueva_planilla = function () {
             var promises = [$rootScope.GF.load_especialidades(), $rootScope.GF.load_gradosDocentes(), $rootScope.GF.load_unidades_academicas()];
             $q.all(promises).then(function () {
-                toastr.clear();toastr.success("Datos de entrada acualizados");
-            })
+                toastr.clear();toastr.success('Datos de entrada acualizados');
+            });
         };
 
         $scope.setInfoDocente = function (docente) {
@@ -97,7 +97,7 @@ angular.module('planillasApp')
                             $scope.nueva_planilla_disabled[disabled[i]] = false;
                         }
                     }
-                })
+                });
         };
 
         $scope.id_new_payroll_register = 0;
@@ -108,11 +108,11 @@ angular.module('planillasApp')
                     $scope.filters['tipo_pago'] = planilla['tipo_pago'];
                     $scope.filters['docente'] = planilla.docente;
                     $scope.id_new_payroll_register = data.id;
-                    toastr.clear();toastr.success("Registro ingresado");
+                    toastr.clear();toastr.success('Registro ingresado');
                     $scope.$broadcast('load_planillas_event', $scope.filters);
                 }, function () {
-                    toastr.warning("No se pudo guardar");
-                })
+                    toastr.warning('No se pudo guardar');
+                });
         };
 
         $scope.general_disable_items = {

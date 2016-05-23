@@ -68,7 +68,7 @@ module.exports = function (grunt) {
             options: {
                 port: 9001,
                 // Change this to '0.0.0.0' to access the server from outside.
-                hostname: '127.0.0.1',
+                hostname: '127.0.0.1'
                 //livereload: 35729
             },
             livereload: {
@@ -123,7 +123,13 @@ module.exports = function (grunt) {
             all: {
                 src: [
                     'Gruntfile.js',
-                    '<%= yeoman.app %>/scripts/{,*/}*.js'
+                    '<%= yeoman.app %>/scripts/{,*/}*.js',
+                    '<%= yeoman.app %>/scripts/{,*/}*.js',
+                    '!<%= yeoman.app %>/scripts/reports/{,*/}*.js',
+                    '!<%= yeoman.app %>/scripts/angular-locale_es-es.min.js',
+                    '!<%= yeoman.app %>/scripts/complements/content-editable.directive.min.js',
+                    '!<%= yeoman.app %>/scripts/directives/CrudGenerator.js',
+                    '!<%= yeoman.app %>/scripts/directives/CrudDirectiveOld.js'
                 ]
             },
             test: {
@@ -156,7 +162,7 @@ module.exports = function (grunt) {
             },
             server: {
                 options: {
-                    map: true,
+                    map: true
                 },
                 files: [{
                     expand: true,

@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc service
- * @name emiApp.ApiService
+ * @name planillasApp.ApiService
  * @description
  * # ApiService
  * Service in the psicologiaApp.
  */
 angular.module('planillasApp')
     .service('$API', function ($q, $resource) {
-        var api_url = localStorage.getItem("planillas_api");
+        var api_url = localStorage.getItem('planillas_api');
         var base_url = (api_url || 'apiPlanillas/public/') + 'api/';
 
         function getModelResource(url) {

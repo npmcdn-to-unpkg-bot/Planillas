@@ -27,7 +27,8 @@ angular.module('planillasApp')
                     $http.post(URLS.START_GESTION, new_gestion)
                         .then(function (data) {
                             $rootScope.autoLogin({force: true});
-                            toastr.clear();toastr.success(data['data']['detail']);
+                            toastr.clear();
+                            toastr.success(data['data']['detail']);
                         }, function (data) {
                             StatusMessageService.showReject(data);
                         });
@@ -43,15 +44,16 @@ angular.module('planillasApp')
                             $http.post(URLS.FINISH_GESTION, data)
                                 .then(function (data) {
                                     $rootScope.autoLogin({force: true});
-                                    toastr.clear();toastr.success(data['data']['detail']);
+                                    toastr.clear();
+                                    toastr.success(data['data']['detail']);
                                 }, function (data) {
                                     StatusMessageService.showReject(data);
                                 });
                         },
-                        function (data) {
+                        function () {
                         },
-                        "FINALIZAR GESTIÓN", "Esta seguro de finalizar la Gestión académica \" " + $rootScope.GF.getFullGestionNamme() + " \" ?"
+                        'FINALIZAR GESTIÓN', 'Esta seguro de finalizar la Gestión académica \' ' + $rootScope.GF.getFullGestionNamme() + ' \' ?'
                     );
                 };
-            })
+            });
     });

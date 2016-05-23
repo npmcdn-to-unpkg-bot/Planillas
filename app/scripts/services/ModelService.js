@@ -54,13 +54,14 @@ angular.module('planillasApp')
             this.delete = true;
             this.add_new = true;
             var context = this;
-            if (typeof (child_model) == 'function') {
+            if (typeof (child_model) === 'function') {
                 child_model(context);
                 angular.forEach(config, function (value, key) {
                     context[key] = value;
                 });
                 context.extra_query_params = config.query_params || {};
                 context.default_fields = config.default_fields || {};
+                context.disabled_fields = config.disabled_fields || {};
             }
         };
 
@@ -69,9 +70,9 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.Especialidades;
                 context.fields = [
-                    {label: "Especialidad", name: "name", type: 'string', required: true}
+                    {label: 'Especialidad', name: 'name', type: 'string', required: true}
                 ];
-                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
                 context.showFields = ['name'];
                 context.filterFields = ['name'];
                 context.nameView = 'name';
@@ -87,9 +88,9 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.Materias;
                 context.fields = [
-                    {label: "Materia", name: "name", type: 'string', required: true}
+                    {label: 'Materia', name: 'name', type: 'string', required: true}
                 ];
-                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
                 context.showFields = ['name'];
                 context.filterFields = ['name'];
                 context.nameView = 'name';
@@ -103,9 +104,9 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.UnidadAcademica;
                 context.fields = [
-                    {label: "Unidad académica", name: "name", type: 'string', required: true}
+                    {label: 'Unidad académica', name: 'name', type: 'string', required: true}
                 ];
-                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
                 context.showFields = ['name'];
                 context.nameView = 'name';
                 context.config = {title: 'Unidades Académicas'};
@@ -117,10 +118,10 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.Departamento;
                 context.fields = [
-                    {label: "Nombre", name: "name", type: 'string', required: true},
-                    {label: "Abreviado", name: "short", type: 'string', required: true}
+                    {label: 'Nombre', name: 'name', type: 'string', required: true},
+                    {label: 'Abreviado', name: 'short', type: 'string', required: true}
                 ];
-                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
                 context.showFields = ['name'];
                 context.nameView = 'name';
                 context.config = {title: 'Departamentos'};
@@ -132,26 +133,26 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.Docentes;
                 context.fields = [
-                    {label: "Apellido paterno", name: "ap_paterno", type: 'string', required: true},
-                    {label: "Apellido materno", name: "ap_materno", type: 'string', required: true},
-                    {label: "Nombres", name: "nombres", type: 'string', required: true},
-                    {label: "Carnet", name: "ci", type: 'number', required: true},
+                    {label: 'Apellido paterno', name: 'ap_paterno', type: 'string', required: true},
+                    {label: 'Apellido materno', name: 'ap_materno', type: 'string', required: true},
+                    {label: 'Nombres', name: 'nombres', type: 'string', required: true},
+                    {label: 'Carnet', name: 'ci', type: 'number', required: true},
                     {
-                        label: "Expedido",
-                        name: "departamento",
+                        label: 'Expedido',
+                        name: 'departamento',
                         type: 'select',
                         model: new DepartamentosModel(),
                         required: true
                     },
                     {
-                        label: "Unidad Académica",
-                        name: "unidad_academica",
+                        label: 'Unidad Académica',
+                        name: 'unidad_academica',
                         type: 'number',
                         model: new UnidadAcademicaModel(),
                         required: true
                     }
                 ];
-                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
                 context.showFields = ['ap_paterno', 'ap_materno', 'nombres', 'ci', 'unidad_academica'];
                 context.filterFields = ['ap_paterno', 'ap_materno', 'ci'];
                 context.nameView = 'nombres';
@@ -165,10 +166,10 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.TipoUsuario;
                 context.fields = [
-                    {label: "Tipo usuario", name: "name", type: 'string', required: true},
-                    {label: "Descripción", name: "description", type: 'string', required: true}
+                    {label: 'Tipo usuario', name: 'name', type: 'string', required: true},
+                    {label: 'Descripción', name: 'description', type: 'string', required: true}
                 ];
-                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
                 context.showFields = ['name'];
                 context.filterFields = ['name'];
                 context.nameView = 'name';
@@ -182,10 +183,10 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.GradoDocente;
                 context.fields = [
-                    {label: "Grado", name: "name", type: 'string', required: true},
-                    {label: "Abrebiatura", name: "short", type: 'string', required: true}
+                    {label: 'Grado', name: 'name', type: 'string', required: true},
+                    {label: 'Abrebiatura', name: 'short', type: 'string', required: true}
                 ];
-                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
                 context.showFields = ['name', 'short'];
                 context.nameView = 'name';
                 context.config = {title: 'Grados de docencia'};
@@ -198,27 +199,27 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.Usuarios;
                 context.fields = [
-                    {label: "Apellidos", name: "apellidos", type: 'string', required: true},
-                    {label: "Nombres", name: "nombres", type: 'string', required: true},
+                    {label: 'Apellidos', name: 'apellidos', type: 'string', required: true},
+                    {label: 'Nombres', name: 'nombres', type: 'string', required: true},
                     {
-                        label: "Especialidad",
-                        name: "especialidad",
+                        label: 'Especialidad',
+                        name: 'especialidad',
                         type: 'select',
                         model: new EspecialidadesModel(),
                         required: true
                     },
                     {
-                        label: "Tipo usuario",
-                        name: "tipo_usuario",
+                        label: 'Tipo usuario',
+                        name: 'tipo_usuario',
                         type: 'select',
                         model: new TipoUsuariosModel(),
                         required: true
                     },
-                    {label: "Correo", name: "email", type: 'email', required: true},
+                    {label: 'Correo', name: 'email', type: 'email', required: true},
                     {label: 'Password', name: 'password', type: 'string', required: true},
-                    {label: "Activo", name: "activo", type: 'boolean', required: true}
+                    {label: 'Activo', name: 'activo', type: 'boolean', required: true}
                 ];
-                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
                 context.showFields = ['apellidos','nombres', 'especialidad', 'tipo_usuario'];
                 context.filterFields = ['apellidos', 'nombres'];
                 context.nameView = 'nombres';
@@ -235,20 +236,20 @@ angular.module('planillasApp')
                 context.resource = $API.Logs;
                 context.fields = [
                     {
-                        label: "Usuario", name: "user", type: 'select',
+                        label: 'Usuario', name: 'user', type: 'select',
                         model: new UsuariosModel(), required: true
                     },
                     {
-                        label: "Unidad Académica", name: "unidad_academica", type: 'select',
+                        label: 'Unidad Académica', name: 'unidad_academica', type: 'select',
                         model: new UnidadAcademicaModel(), required: true
                     },
                     {
-                        label: "Tabla", name: "table", type: 'string', required: true
+                        label: 'Tabla', name: 'table', type: 'string', required: true
                     },
-                    {label: "Tipo de acción", name: "tipo", type: 'string', required: true},
-                    {label: "Descripción", name: "descripcion", type: 'string', required: true}
+                    {label: 'Tipo de acción', name: 'tipo', type: 'string', required: true},
+                    {label: 'Descripción', name: 'descripcion', type: 'string', required: true}
                 ];
-                context.extra_fields = [{label: "Fecha", name: 'updated_at'}];
+                context.extra_fields = [{label: 'Fecha', name: 'updated_at'}];
                 context.showFields = ['user', 'table', 'tipo', 'descripcion'];
                 context.nameView = 'tipo';
                 context.editable = false;
@@ -264,25 +265,25 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.GestionAcademicas;
                 context.fields = [
-                    {label: "Gestión", name: "gestion", type: 'number', required: true},
+                    {label: 'Gestión', name: 'gestion', type: 'number', required: true},
                     {
-                        label: "Periodo gestión",
-                        name: "periodo_gestion",
+                        label: 'Periodo gestión',
+                        name: 'periodo_gestion',
                         type: 'text',
                         required: true
                     },
                     {
-                        label: "Unidad académica",
-                        name: "unidad_academica",
+                        label: 'Unidad académica',
+                        name: 'unidad_academica',
                         type: 'select',
                         model: new UnidadAcademicaModel(),
                         required: true
                     },
-                    {label: "IU", name: "iu", type: 'number', required: true},
-                    {label: "IT", name: "it", type: 'number', required: true},
-                    {label: "Abierto", name: "abierto", type: 'boolean', required: true}
+                    {label: 'IU', name: 'iu', type: 'number', required: true},
+                    {label: 'IT', name: 'it', type: 'number', required: true},
+                    {label: 'Abierto', name: 'abierto', type: 'boolean', required: true}
                 ];
-                context.extra_fields = [{label: "Última modificación", name: 'updated_at'}];
+                context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
                 context.showFields = ['gestion', 'periodo_gestion', 'unidad_academica'];
                 context.nameView = 'gestion';
                 context.config = {title: 'Gestiones académicas'};

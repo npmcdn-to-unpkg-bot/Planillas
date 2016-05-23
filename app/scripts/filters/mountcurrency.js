@@ -9,10 +9,10 @@
  * Filter in the planillasEmiApp.
  */
 angular.module('planillasApp')
-  .filter('mountCurrency', function () {
-    return function(mount,opt1,opt2){
-      mount = parseFloat(mount);
-      mount = mount.toFixed(2)+' Bs/h';
-      return mount;
-    }
-  });
+    .filter('mountCurrency', function () {
+        return function (mount) {
+            mount = parseFloat(mount);
+            mount = mount.toFixed(2) + ' Bs/h';
+            return mount;
+        };
+    });
