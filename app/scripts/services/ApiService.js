@@ -37,6 +37,7 @@ angular.module('planillasApp')
             PagosPlanillas: getModelResource(base_url + 'pagos_planillas/:id/'),
             Contratos: getModelResource(base_url + 'contratos/:id/'),
             Facturacion: getModelResource(base_url + 'facturacion/:id/'),
-            Seguimiento: getModelResource(base_url + 'seguimiento/:id/')
+            Seguimiento: getModelResource(base_url + 'seguimiento/:id/'),
+            path: base_url
         };
     });

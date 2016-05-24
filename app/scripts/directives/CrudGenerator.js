@@ -236,7 +236,7 @@ angular.module('planillasApp')
                 //noinspection JSUnresolvedVariable
                 if (scope.itemCrud.custom) {
                     var bindObject = $filter('CrudFilter')(scope.itemCrudModel[scope.itemCrud.name], scope.itemCrud.type);
-                    compile_text(scope.itemCrud.custom(bindObject));
+                    compile_text(scope.itemCrud.custom(bindObject, scope.itemCrudModel));
                 } else if (scope.itemCrud.model) {
                     var bindObject = $filter('CrudFilter')(scope.itemCrudModel[scope.itemCrud.name], scope.itemCrud.type);
                     if (scope.itemCrud.model.onView) {
