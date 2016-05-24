@@ -32,6 +32,11 @@ angular.module('planillasApp')
             TipoUsuario: getModelResource(base_url + 'tipo_usuario/:id/'),
             Planillas: getModelResource(base_url + 'planillas/:id/'),
             Reportes: getModelResource(base_url + 'reportes/:id/'),
-            GradoDocente: getModelResource(base_url + 'grado_docente/:id/')
+            GradoDocente: getModelResource(base_url + 'grado_docente/:id/'),
+
+            PagosPlanillas: getModelResource(base_url + 'pagos_planillas/:id/'),
+            Contratos: getModelResource(base_url + 'contratos/:id/'),
+            Facturacion: getModelResource(base_url + 'facturacion/:id/'),
+            Seguimiento: getModelResource(base_url + 'seguimiento/:id/')
         };
     });

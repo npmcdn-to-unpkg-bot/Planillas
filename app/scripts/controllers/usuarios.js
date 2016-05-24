@@ -95,22 +95,23 @@ angular.module('planillasApp')
             });
 
         $scope.openModalNewUsuario = function (usuario) {
-            $rootScope.GF.load_tipo_usuarios(function () {
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'views/modals/ModalNewUsuario.html',
-                    controller: 'ModalNewUsuario',
-                    size: 'md',
-                    resolve: {
-                        user: function () {
-                            return usuario;
+            $rootScope.GF.load_tipo_usuarios()
+                .then(function () {
+                    var modalInstance = $uibModal.open({
+                        animation: true,
+                        templateUrl: 'views/modals/ModalNewUsuario.html',
+                        controller: 'ModalNewUsuario',
+                        size: 'md',
+                        resolve: {
+                            user: function () {
+                                return usuario;
+                            }
                         }
-                    }
+                    });
+                    modalInstance.result.then(function () {
+                        $scope.loadUsers();
+                    });
                 });
-                modalInstance.result.then(function () {
-                    $scope.loadUsers();
-                });
-            });
         };
 
         $scope.eliminarUsuario = function (user) {

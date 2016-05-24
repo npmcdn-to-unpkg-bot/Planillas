@@ -77,10 +77,10 @@
     <div class="clearfix">
         <hr class="mV10">
         <div class="col-xs-12">
-            <div class="alert-info p20 text-center" ng-show="!Model.data.data.length">
+            <div class="alert-info p20 text-center" ng-show="!Model.dataResponse.data.length">
                 <i> - No se encontraron coincidencias - </i>
             </div>
-            <table class="table table-bordered table-striped" ng-show="Model.data.data.length > 0">
+            <table class="table table-bordered table-striped" ng-show="Model.dataResponse.data.length > 0">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -91,7 +91,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="rowItem in Model.data.data">
+                <tr ng-repeat="rowItem in Model.dataResponse.data">
                     <td ng-bind="$index + 1"></td>
                     <td ng-repeat="param in Model.showFields"
                         item-crud="(Model.fields | filter:{name:param})[0]"
@@ -115,8 +115,7 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="text-center"
-                 ng-show="Model.dataResponse.data.length && (Model.dataResponse.next_page_url || Model.dataResponse.prev_page_url)">
+            <div class="text-center">
                 <uib-pagination total-items="Model.dataResponse.total" items-per-page="paginationParams.page_size"
                                 ng-model="currentPage" class="pagination-sm" previous-text="Anterior"
                                 ng-change="changePage()"

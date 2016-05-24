@@ -104,9 +104,24 @@ angular
                 controllerAs: 'carreras'
             })
             .when('/Contratos', {
-                templateUrl: 'views/contratos.html',
-                controller: 'ContratosCtrl',
-                controllerAs: 'Contratos'
+                templateUrl: 'views/splashscreen.html',
+                controller: 'MenuCtrl',
+                controllerAs: 'contratos'
+            })
+            .when('/Seguimiento', {
+                templateUrl: 'views/splashscreen.html',
+                controller: 'MenuCtrl',
+                controllerAs: 'seguimiento'
+            })
+            .when('/Pagos_realizados', {
+                templateUrl: 'views/splashscreen.html',
+                controller: 'MenuCtrl',
+                controllerAs: 'contratos'
+            })
+            .when('/Facturacion', {
+                templateUrl: 'views/splashscreen.html',
+                controller: 'MenuCtrl',
+                controllerAs: 'contratos'
             })
             .otherwise({
                 redirectTo: '/'
@@ -207,8 +222,6 @@ angular
             return $http.get(URLS.TIPO_USUARIO)
                 .then(function (data) {
                     $rootScope.GLOBALS.TIPO_USUARIO = data['data']['data'];
-                }, function () {
-
                 });
         };
         $rootScope.GF.load_gestiones_academicas = function () {
@@ -300,6 +313,18 @@ angular
                     break;
                 case '/Reportes':
                     $rootScope.CURRENT_VIEW = 'views/reportes.html';
+                    break;
+                case '/Contratos':
+                    $rootScope.CURRENT_VIEW = 'views/payroll/contracts.html';
+                    break;
+                case '/Pagos_realizados':
+                    $rootScope.CURRENT_VIEW = 'views/payroll/payroll_payments.html';
+                    break;
+                case '/Facturacion':
+                    $rootScope.CURRENT_VIEW = 'views/payroll/invoices.html';
+                    break;
+                case '/Seguimiento':
+                    $rootScope.CURRENT_VIEW = 'views/payroll/tracing.html';
                     break;
                 case '/Sincronizacion':
                     if ($rootScope.GF.isSecretaria()) {

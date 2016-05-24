@@ -8,7 +8,7 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('GenerarplanillaCtrl', function ($scope, $rootScope, $q, $http, ModelService, $timeout, AuthService, $API, $location) {
+    .controller('GenerarplanillaCtrl', function ($scope, $rootScope, $q, $http, ModelService, $timeout, AuthService, $API, $location, $uibModal) {
         var promises = [
             AuthService.getUser(),
             $rootScope.GF.load_especialidades(),
@@ -49,7 +49,7 @@ angular.module('planillasApp')
                     $scope.nueva_planilla['categoria'] = $rootScope.GLOBALS.TIPOS_CATEGORIAS[0].id;
                     $scope.nueva_planilla['reintegro'] = 0;
                     $scope.nueva_planilla['atrasos_periodos'] = 0;
-                    $scope.nueva_planilla['factura'] = $rootScope.GLOBALS.FACTURA_ITEMS[0].id;
+                    $scope.nueva_planilla['factura'] = $rootScope.GLOBALS.FACTURA_ITEMS[1].id;
                     $scope.nueva_planilla['pensul'] = $rootScope.GLOBALS.PENSUL[0].id;
                     $scope.nueva_planilla['habilitado'] = 1;
                     $scope.nueva_planilla['tipo_pago'] = $rootScope.GLOBALS.TIPO_PAGO[0].id;
@@ -67,7 +67,8 @@ angular.module('planillasApp')
         $scope.refresh_params_nueva_planilla = function () {
             var promises = [$rootScope.GF.load_especialidades(), $rootScope.GF.load_gradosDocentes(), $rootScope.GF.load_unidades_academicas()];
             $q.all(promises).then(function () {
-                toastr.clear();toastr.success('Datos de entrada acualizados');
+                toastr.clear();
+                toastr.success('Datos de entrada acualizados');
             });
         };
 
@@ -100,6 +101,25 @@ angular.module('planillasApp')
                 });
         };
 
+        $scope.changeInvoice = function (new_value) {
+            if (new_value == 'Si') {
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'views/modals/ModalSetInvoice.html',
+                    controller: "ModalSetInvoiceController",
+                    size: 'md'
+                });
+                modalInstance.result.then(function (numero) {
+                    $scope.nueva_planilla.numero = numero;
+                    console.log(numero);
+
+                }, function (numero) {
+                    console.log(numero);
+                    $scope.nueva_planilla.factura = $scope.GLOBALS.FACTURA_ITEMS[1].id; // No
+                });
+            }
+        };
+
         $scope.id_new_payroll_register = 0;
 
         $scope.guardar_nueva_planilla = function (planilla) {
@@ -108,7 +128,8 @@ angular.module('planillasApp')
                     $scope.filters['tipo_pago'] = planilla['tipo_pago'];
                     $scope.filters['docente'] = planilla.docente;
                     $scope.id_new_payroll_register = data.id;
-                    toastr.clear();toastr.success('Registro ingresado');
+                    toastr.clear();
+                    toastr.success('Registro ingresado');
                     $scope.$broadcast('load_planillas_event', $scope.filters);
                 }, function () {
                     toastr.warning('No se pudo guardar');
@@ -120,3 +141,13 @@ angular.module('planillasApp')
             periodo_gestion: true
         };
     });
+
+angular.module('planillasApp').controller('ModalSetInvoiceController', function ($scope, $uibModalInstance) {
+    $scope.numero = '';
+    $scope.ok = function () {
+        $uibModalInstance.close($scope.numero);
+    };
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss(false);
+    };
+});

@@ -1,0 +1,39 @@
+<div ng-controller="TracingController">
+    <div class="container">
+        <div class="panel panel-success">
+            <div class="panel-heading text-center text-uppercase">
+                PAGOS REALIZADOS
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3 filter-field">
+                        <p>Docente</p>
+                        <ui-select ng-model="tmp_filters.docente"
+                                   theme="bootstrap"
+                                   title="Seleccione docente"
+                                   ng-change="filters.docente = tmp_filters.docente.id;load_planillas()">
+                            <ui-select-match allow-clear="true" placeholder="-- Todos los docentes --">
+                                {{$select.selected.ap_paterno+' '+$select.selected.ap_materno+' '+
+                                $select.selected.nombres}}
+                            </ui-select-match>
+                            <ui-select-choices
+                                refresh="searchCustomDocente($select.search)" refresh-delay="300"
+                                repeat="docente in custom_list_docente">
+                                <div
+                                    ng-bind-html="(docente.ap_paterno + ' '+docente.ap_materno+' '+docente.nombres) | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <hr class="clearfix">
+
+                <p class="alert alert-info" ng-show="!contracts.length">
+                    Registro de contratos no encontrado: <br>
+                    - <i>No se ha realizado en contrato a docentes</i>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -158,7 +158,7 @@ angular.module('planillasApp')
                         });
                         scope.Model.paginationParams = scope.paginationParams;
                         (new scope.Model.resource()).$get(scope.paginationParams).then(function (data) {
-                            scope.Model.data = data;
+                            scope.Model.dataResponse = data;
                             current_errors = 0;
                         }, function () {
                             scope.paginationParams.page = 1;
@@ -228,54 +228,69 @@ angular.module('planillasApp')
                 //if (!scope.itemCrud) {
                 //    return
                 //}
-                if (scope.itemCrud && scope.itemCrud.model) {
+                function compile_text(text) {
+                    element.html(text || '--');
+                    $compile(element.contents())(scope);
+                }
 
-                    if ((scope.itemCrud.type === 'select' && scope.itemCrud.multiple) || scope.itemCrud['custom']) {
-                        if (angular.isFunction(scope.itemCrud.model_label)) {
-                            scope.itemCrud.model_label(scope.itemCrudModel[scope.itemCrud.name]).then(function (_text) {
-                                text = _text;
-                                element.html(text || '-');
-                                $compile(element.contents())(scope);
-                            }, function () {
-                                text = "--";
-                                element.html(text || '-');
-                                $compile(element.contents())(scope);
-                            });
-                        }
-                    } else {
-
-                        (new scope.itemCrud.model.resource()).$get(
-                            {id: scope.itemCrudModel[scope.itemCrud.name]}
-                        ).then(function (data) {
-                            scope.itemCrud.model.data = data;
-                            text = scope.itemCrud.model.data[scope.itemCrud.model.nameView];
-                            element.html(text || '-');
-                            $compile(element.contents())(scope);
-                        });
+                //noinspection JSUnresolvedVariable
+                if (scope.itemCrud.custom) {
+                    var bindObject = $filter('CrudFilter')(scope.itemCrudModel[scope.itemCrud.name], scope.itemCrud.type);
+                    compile_text(scope.itemCrud.custom(bindObject));
+                } else if (scope.itemCrud.model) {
+                    var bindObject = $filter('CrudFilter')(scope.itemCrudModel[scope.itemCrud.name], scope.itemCrud.type);
+                    if (scope.itemCrud.model.onView) {
+                        compile_text(scope.itemCrud.model.onView(bindObject));
                     }
                 } else {
-                    if (scope.itemCrud && scope.itemCrud.choices) {
-                        var textChoice = "";
-                        for (var i = 0; i < scope.itemCrud.choices.length && !textChoice; i++) {
-                            if (scope.itemCrud.choices[i].value === scope.itemCrudModel[scope.itemCrud.name]) {
-                                textChoice = scope.itemCrud.choices[i].label;
-                            }
-                        }
-                        element.html(textChoice || '--');
-                        $compile(element.contents())(scope);
-                    } else {
-                        if (scope.itemCrud.name === 'image' && scope.itemCrudModel[scope.itemCrud.name]) {
-                            var imgSrc = scope.itemCrudModel[scope.itemCrud.name] || 'images/no-img-available.png';
-                            var imageTemplate = '<img src="' + imgSrc + '" width="' + (scope.itemCrud.width || 80) + '" height="' + (scope.itemCrud.height || 80) + '">';
-                            element.html(imageTemplate);
-                            $compile(element.contents())(scope);
-                        } else {
-                            var bindText = $filter('CrudFilter')(scope.itemCrudModel[scope.itemCrud.name], scope.itemCrud.type);
-                            element.html(bindText || '--');
-                            $compile(element.contents())(scope);
-                        }
-                    }
+                    var bindText = $filter('CrudFilter')(scope.itemCrudModel[scope.itemCrud.name], scope.itemCrud.type);
+                    compile_text(bindText);
                 }
+
+                //if (scope.itemCrud && scope.itemCrud.model) {
+                //    if ((scope.itemCrud.type === 'select' && scope.itemCrud.multiple) || scope.itemCrud['custom']) {
+                //        /*if (angular.isFunction(scope.itemCrud.model_label)) {
+                //         scope.itemCrud.model_label(scope.itemCrudModel[scope.itemCrud.name]).then(function (_text) {
+                //         text = _text;
+                //         compile_text(element, text, scope.itemCrudModel);
+                //         }, function () {
+                //         text = "--";
+                //         compile_text(element, text, scope.itemCrudModel);
+                //         });
+                //         }*/
+                //    } else {
+                //        var bindText = $filter('CrudFilter')(scope.itemCrudModel[scope.itemCrud.name], scope.itemCrud.type);
+                //        compile_text(bindText);
+                //        /*
+                //         (new scope.itemCrud.model.resource()).$get(
+                //         {id: scope.itemCrudModel[scope.itemCrud.name]}
+                //         ).then(function (data) {
+                //         scope.itemCrud.model.dataResponse = data;
+                //         text = scope.itemCrud.model.dataResponse[scope.itemCrud.model.nameView];
+                //         compile_text(element, text, scope.itemCrudModel);
+                //         });
+                //         */
+                //    }
+                //} else {
+                //    if (scope.itemCrud && scope.itemCrud.choices) {
+                //        var textChoice = "";
+                //        for (var i = 0; i < scope.itemCrud.choices.length && !textChoice; i++) {
+                //            if (scope.itemCrud.choices[i].value === scope.itemCrudModel[scope.itemCrud.name]) {
+                //                textChoice = scope.itemCrud.choices[i].label;
+                //            }
+                //        }
+                //        compile_text(textChoice);
+                //    } else {
+                //        if (scope.itemCrud.name === 'image' && scope.itemCrudModel[scope.itemCrud.name]) {
+                //            var imgSrc = scope.itemCrudModel[scope.itemCrud.name] || 'images/no-img-available.png';
+                //            var imageTemplate = '<img src="' + imgSrc + '" width="' + (scope.itemCrud.width || 80) + '" height="' + (scope.itemCrud.height || 80) + '">';
+                //            compile_text(imageTemplate);
+                //        } else {
+                //            var bindText = $filter('CrudFilter')(scope.itemCrudModel[scope.itemCrud.name], scope.itemCrud.type);
+                //            compile_text(bindText);
+                //        }
+                //    }
+                //}
             }
         };
     })
@@ -493,13 +508,13 @@ angular.module('planillasApp')
                     }
                     if (scope.formItemCrud.model) {
                         (new scope.formItemCrud.model.resource()).$get().then(function (data) {
-                            scope.formItemCrud.model.data = data;
+                            scope.formItemCrud.model.dataResponse = data;
                             if (scope.formItemCrud.required && !scope.formModel[scope.formItemCrud.name]) {
                                 /** @namespace data.data */
                                 scope.formModel[scope.formItemCrud.name] = data.data[0].id;
                             }
                             templateReturn = '<select class="form-control" data-ng-model="formModel[formItemCrud.name]"' +
-                                'data-ng-options="item.id as item[formItemCrud.model.nameView] for item in formItemCrud.model.data.data"' +
+                                'data-ng-options="item.id as item[formItemCrud.model.nameView] for item in formItemCrud.model.dataResponse.data"' +
                                 'data-ng-required="formItemCrud.required" data-ng-disabled="formItemDisabled"';
                             if (scope.formItemCrud.multiple) {
                                 if (!scope.formModel[scope.formItemCrud.name]) {

@@ -14,7 +14,7 @@
                 <div class="form-group-sm">
                     <div class="col-sm-3">
                         <p class="">Unidad Academica</p>
-                        <select class="form-control" ng-model="filter_uuaa" ng-change="loadUsers()"}
+                        <select class="form-control" ng-model="filter_uuaa" ng-change="loadUsers()" }
                                 data-ng-disabled="!enable_fields.unidad_academica"
                                 ng-options="uuaa.id as uuaa.name for uuaa in GLOBALS.UNIDADES_ACADEMICAS">
                             <option value="">-- Sin especificar--</option>
@@ -62,7 +62,7 @@
                 <tr ng-repeat="usuario in user_data.data"
                     class="{{ CURRENT_USER.id == usuario.id?'active alert-info':''}}">
                     <td>{{$index+1}}</td>
-                    <td>{{usuario.nombres+' '+usuario.ap_paterno+' '+usuario.ap_materno}}</td>
+                    <td>{{usuario.nombres+' '+usuario.apellidos}}</td>
                     <td>{{usuario.email}}</td>
                     <td>{{usuario.unidad_academica.name}}</td>
                     <td>{{usuario.especialidad.name}}</td>

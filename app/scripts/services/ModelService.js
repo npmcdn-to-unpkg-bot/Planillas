@@ -80,6 +80,9 @@ angular.module('planillasApp')
                 context.delete = false;
                 context.editable = false;
                 context.searchEnabled = true;
+                context.onView = function (data) {
+                    return data.name;
+                };
             }, config);
         };
 
@@ -110,6 +113,9 @@ angular.module('planillasApp')
                 context.showFields = ['name'];
                 context.nameView = 'name';
                 context.config = {title: 'Unidades Académicas'};
+                context.onView = function (data) {
+                    return data.name;
+                };
             }, config);
         };
 
@@ -158,6 +164,9 @@ angular.module('planillasApp')
                 context.nameView = 'nombres';
                 context.config = {title: 'Docentes'};
                 context.searchEnabled = true;
+                context.onView = function (data) {
+                    return data.ap_paterno + ' ' + data.ap_materno + ' ' + data.nombres;
+                };
             }, config);
         };
 
@@ -220,13 +229,16 @@ angular.module('planillasApp')
                     {label: 'Activo', name: 'activo', type: 'boolean', required: true}
                 ];
                 context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
-                context.showFields = ['apellidos','nombres', 'especialidad', 'tipo_usuario'];
+                context.showFields = ['apellidos', 'nombres', 'especialidad', 'tipo_usuario'];
                 context.filterFields = ['apellidos', 'nombres'];
                 context.nameView = 'nombres';
                 context.config = {title: 'Lista de usuarios'};
                 context.searchEnabled = true;
                 context.table_name = 'account';
                 context.name = 'accounts';
+                context.onView = function (data) {
+                    return data.nombres + ' ' + data.apellidos;
+                };
             }, config);
         };
 
@@ -293,6 +305,106 @@ angular.module('planillasApp')
             }, config);
         };
 
+        var ContractModel = function (config) {
+            return new BaseModel(function (context) {
+                context.id_name = 'id';
+                context.resource = $API.Contratos;
+                context.fields = [
+                    {label: 'Numero', name: 'numero', type: 'number', required: true},
+                    {label: 'Contrato', name: 'contrato', type: 'string', required: true},
+                    {label: 'Informacion', name: 'info_contrato', type: 'string', required: true},
+                    {label: 'Docente', name: 'docente', type: 'select', required: true, model: new DocentesModel()},
+                    {
+                        label: 'Gestion academica',
+                        name: 'gestion_academica',
+                        type: 'select',
+                        required: true,
+                        model: new GestionesAcademicasModel()
+                    }
+                ];
+                context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
+                context.showFields = ['numero', 'contrato', 'info_contrato', 'docente'];
+                context.nameView = 'numero';
+                context.config = {title: 'Contratos docentes'};
+                context.add_new = false;
+                context.editable = false;
+                context.searchEnabled = true;
+            }, config);
+        };
+
+        var FacturasModel = function (config) {
+            return new BaseModel(function (context) {
+                context.id_name = 'id';
+                context.resource = $API.Facturacion;
+                context.fields = [
+                    {label: 'Numero de factura', name: 'numero', type: 'number', required: true},
+                    {label: 'Docente', name: 'docente', type: 'select', required: true, model: new DocentesModel()}
+                ];
+                context.extra_fields = [{label: 'Fecha de registro', name: 'updated_at'}];
+                context.showFields = ['numero', 'docente'];
+                context.nameView = 'numero';
+                context.config = {title: 'Facturas - docente'};
+                context.add_new = false;
+                context.editable = false;
+                context.searchEnabled = true;
+            }, config);
+        };
+
+        var PagosPlanillasModel = function (config) {
+            return new BaseModel(function (context) {
+                context.id_name = 'id';
+                context.resource = $API.PagosPlanillas;
+                context.fields = [
+                    {label: 'Docente', name: 'docente', type: 'select', model: new DocentesModel()},
+                    {label: 'Monto', name: 'monto', type: 'string'},
+                    {
+                        label: 'Pensul', name: 'pensul', type: 'string',
+                        custom: function (data) {
+                            return data.name
+                        }
+                    },
+                    {label: 'Carrera', name: 'especialidad', type: 'select', model: new EspecialidadesModel()},
+                    {label: 'Categoria', name: 'categoria', type: 'integer'},
+                    {label: 'Factura', name: 'factura', type: 'string'},
+                    {
+                        label: 'Tipo de pago', name: 'tipo_pago', type: 'string',
+                        custom: function (data) {
+                            return data.name
+                        }
+                    },
+                    {
+                        label: 'Reintegro', name: 'reintegro', type: 'integer', custom: function (data) {
+                        return data + ' Bs'
+                    }
+                    },
+                    {
+                        label: 'Descuento por valor de atrasos', name: 'total_3', type: 'integer',
+                        custom: function (data) {
+                            return data + ' Bs'
+                        }
+                    },
+                    {
+                        label: 'Descuento por valor de impuestos', name: 'total_4', type: 'integer',
+                        custom: function (data) {
+                            return data + ' Bs'
+                        }
+                    },
+                    {
+                        label: 'Pagado', name: 'liquido_pagable', type: 'string', custom: function (data) {
+                        return data + ' Bs'
+                    }
+                    }
+                ];
+                context.extra_fields = [{label: 'Fecha', name: 'updated_at'}];
+                context.showFields = ['docente', 'especialidad', 'pensul', 'categoria', 'monto', 'factura', 'tipo_pago', 'reintegro', 'total_3', 'total_4', 'liquido_pagable'];
+                context.nameView = 'numero';
+                context.config = {title: 'Pago realizados en planillas'};
+                context.add_new = false;
+                context.editable = false;
+                context.searchEnabled = true;
+            }, config);
+        };
+
         return {
             EspecialidadesModel: EspecialidadesModel,
             DocentesModel: DocentesModel,
@@ -303,6 +415,9 @@ angular.module('planillasApp')
             LogsModel: LogsModel,
             GestionesAcademicasModel: GestionesAcademicasModel,
             GradoDocenteModel: GradoDocenteModel,
-            DepartamentosModel: DepartamentosModel
+            DepartamentosModel: DepartamentosModel,
+            ContractModel: ContractModel,
+            PagosPlanillasModel: PagosPlanillasModel,
+            FacturasModel: FacturasModel
         };
     });

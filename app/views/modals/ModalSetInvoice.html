@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h2 class="modal-title">PLANILLAS</h2>
+    <h4 class="modal-title">Factura</h4>
+</div>
+<div class="modal-body">
+    <form id="form_invoice" name="form_invoice" class="form-horizontal" ng-submit="ok()">
+        <div class="form-group">
+            <label for="inputNumber" class="col-sm-4 control-label">Número de factura: </label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" id="inputNumber" placeholder="Ejm. 9981765123"
+                       minlength="7" maxlength="15"
+                       ng-model="numero" required>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success right" ng-click="ok()">Aceptar</button>
+</div>
