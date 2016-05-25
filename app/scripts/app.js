@@ -241,7 +241,6 @@ angular
             return $http.get(URLS.TIPO_PAGO)
                 .then(function (data) {
                     $rootScope.GLOBALS.TIPO_PAGO = data['data']['data'];
-                    //$rootScope.GLOBALS.PAGO_ITEMS = [{id: 1, name: 'Semanal'}, {id: 0, name: 'Horas'}];
                 });
         };
 

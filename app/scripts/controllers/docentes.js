@@ -9,16 +9,6 @@
  */
 angular.module('planillasApp')
     .controller('DocentesCtrl', function ($scope, URLS, $http2, $rootScope, ModelService, AuthService) {
-        $scope.eliminarDocente = function (docente) {
-            $rootScope.openModalConfirm(function () {
-                $http2.patch(URLS.LISTA_DOCENTES, {idDocente: docente.idDocente},
-                    function (data) {
-                        if (data.Success) {
-                        }
-                    });
-            }, function () {
-            }, 'ELIMINAR DOCENTE', 'Seguro que desea eliminar docente?');
-        };
 
         AuthService.getUser().then(function (user) {
             if ($rootScope.GF.isRoot()) {

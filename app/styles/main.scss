@@ -1105,3 +1105,12 @@ $planillas-height-row: 45px;
         }
     }
 }
+
+.loaders {
+    transition: 0.2s all;
+    opacity: 1;
+}
+
+.loaders.ng-hide {
+    opacity: 0;
+}
