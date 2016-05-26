@@ -3,7 +3,7 @@ angular.module('planillasApp').controller('ModalAboutCtrl', function ($scope, $r
     $scope.developer = "Est. Eyvind Emilio Tiñini Coaquira";
     $scope.carrera = "Cnl. DAEN. Julio Cesar Narvaez Tamayo";
     $scope.institucion = "Escuela Militar de Ingeniería";
-    $scope.docente = "Lic. Claudia Yaniquez Magne";
+    $scope.docente = "Lic. Claudia Yañiquez Magne";
     $scope.selected = {};
 
     $scope.ok = function () {
@@ -15,13 +15,13 @@ angular.module('planillasApp').controller('ModalAboutCtrl', function ($scope, $r
     $scope.item3 = false;
     $scope.item4 = false;
     $timeout(function () {
-        $scope.item1 = true;
+        $scope.item3 = true;
     }, 500);
     $timeout(function () {
         $scope.item2 = true;
     }, 1000);
     $timeout(function () {
-        $scope.item3 = true;
+        $scope.item1 = true;
     }, 1500);
     $timeout(function () {
         $scope.item4 = true;
