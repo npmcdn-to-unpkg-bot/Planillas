@@ -29,10 +29,11 @@ angular.module('planillasApp')
             (new $API.Contratos()).$get()
                 .then(function (data) {
                     $scope.contracts = data.data;
-                })
+                });
         };
+
         AuthService.getUser()
-            .then(function (user) {
+            .then(function () {
                 $scope.load_contracts();
             });
 

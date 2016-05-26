@@ -10,6 +10,16 @@
 angular.module('planillasApp')
     .controller('MenuCtrl', function ($rootScope, $uibModal, $log) {
 
+
+        $rootScope.openModalRules = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modals/ModalRules.html',
+                controller: 'ModalRulesCtrl',
+                size: 'lg'
+            });
+        };
+
         $rootScope.openModalProfile = function () {
             $uibModal.open({
                 animation: true,

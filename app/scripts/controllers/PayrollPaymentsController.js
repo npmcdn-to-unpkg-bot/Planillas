@@ -8,7 +8,7 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('PayrollPaymentsController', function ($scope, $rootScope, $API, $q, toastr, AuthService, ModelService, $uibModal) {
+    .controller('PayrollPaymentsController', function ($scope, $rootScope, $API, $q, toastr, AuthService, ModelService) {
         $scope.payroll_paymemts = [];
         $scope.payroll_paymemts_model = ModelService.PagosPlanillasModel();
 
@@ -16,10 +16,10 @@ angular.module('planillasApp')
             (new $API.PagosPlanillas()).$get()
                 .then(function (data) {
                     $scope.payroll_paymemts = data.data;
-                })
+                });
         };
         AuthService.getUser()
-            .then(function (user) {
+            .then(function () {
                 $scope.load_payroll_payments();
             });
     });

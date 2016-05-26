@@ -102,11 +102,11 @@ angular.module('planillasApp')
         };
 
         $scope.changeInvoice = function (new_value) {
-            if (new_value == 'Si') {
+            if (new_value === 'Si') {
                 var modalInstance = $uibModal.open({
                     animation: true,
                     templateUrl: 'views/modals/ModalSetInvoice.html',
-                    controller: "ModalSetInvoiceController",
+                    controller: 'ModalSetInvoiceController',
                     size: 'md'
                 });
                 modalInstance.result.then(function (numero) {

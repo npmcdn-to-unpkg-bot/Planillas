@@ -179,11 +179,10 @@ angular.module('planillasApp')
                     {label: 'Descripción', name: 'description', type: 'string', required: true}
                 ];
                 context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
-                context.showFields = ['name'];
-                context.filterFields = ['name'];
+                context.showFields = ['name','description'];
                 context.nameView = 'name';
                 context.config = {title: 'Tipos de usuarios'};
-                context.searchEnabled = true;
+                context.searchEnabled = false;
             }, config);
         };
 
@@ -310,16 +309,18 @@ angular.module('planillasApp')
                         context.id_name = 'id';
                         context.resource = $API.Contratos;
                         context.fields = [
-                            {label: 'Numero', name: 'numero', type: 'number', required: true},
+                            {label: 'Número de contrato', name: 'numero', type: 'number', required: true},
                             {
                                 label: 'Contrato', name: 'contrato', type: 'string', required: true,
                                 custom: function (item, data) {
-
-                                    var url = $API.path + "obtener_contrato?docente=" + data.docente.id;
-                                    return "<a href='" + url + "' download='Contrato docente'><img src='images/pdf_icon.png' width='25px'>Contrato</a>";
+                                    console.log(item, data);
+                                    var url = $API.path + 'obtener_contrato?docente=' + data.docente.id;
+                                    var html = '<a href="' + url + '" download="Contrato docente"><img src="images/pdf_icon.png" width="40px"></a>';
+                                    html += '<a href="' + url + '&word=1' + '" download="Contrato docente"><img src="images/word_icon.png" width="40px"></a>';
+                                    return html;
                                 }
                             },
-                            {label: 'Informacion', name: 'info_contrato', type: 'string', required: true},
+                            {label: 'Información de contrato', name: 'info_contrato', type: 'string', required: true},
                             {label: 'Docente', name: 'docente', type: 'select', required: true, model: new DocentesModel()},
                             {
                                 label: 'Gestion academica',
@@ -330,11 +331,12 @@ angular.module('planillasApp')
                             }
                         ]
                         ;
-                        context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
-                        context.showFields = ['numero', 'contrato', 'info_contrato', 'docente'];
+                        context.extra_fields = [{label: 'Fecha', name: 'updated_at'}];
+                        context.showFields = ['numero', 'docente', 'info_contrato', 'contrato'];
                         context.nameView = 'numero';
                         context.config = {title: 'Contratos docentes'};
                         context.add_new = false;
+                        context.delete = false;
                         context.editable = false;
                         context.searchEnabled = true;
                     }, config
@@ -370,7 +372,7 @@ angular.module('planillasApp')
                     {
                         label: 'Pensul', name: 'pensul', type: 'string',
                         custom: function (data) {
-                            return data.name
+                            return data.name;
                         }
                     },
                     {label: 'Carrera', name: 'especialidad', type: 'select', model: new EspecialidadesModel()},
@@ -379,29 +381,29 @@ angular.module('planillasApp')
                     {
                         label: 'Tipo de pago', name: 'tipo_pago', type: 'string',
                         custom: function (data) {
-                            return data.name
+                            return data.name;
                         }
                     },
                     {
                         label: 'Reintegro', name: 'reintegro', type: 'integer', custom: function (data) {
-                        return data + ' Bs'
+                        return data + ' Bs';
                     }
                     },
                     {
                         label: 'Descuento por valor de atrasos', name: 'total_3', type: 'integer',
                         custom: function (data) {
-                            return data + ' Bs'
+                            return data + ' Bs';
                         }
                     },
                     {
                         label: 'Descuento por valor de impuestos', name: 'total_4', type: 'integer',
                         custom: function (data) {
-                            return data + ' Bs'
+                            return data + ' Bs';
                         }
                     },
                     {
                         label: 'Pagado', name: 'liquido_pagable', type: 'string', custom: function (data) {
-                        return data + ' Bs'
+                        return data + ' Bs';
                     }
                     }
                 ];

@@ -1,0 +1,130 @@
+<div class="modal-header">
+    <h3 class="modal-title">ROLES DE USUARIOS</h3>
+</div>
+<div class="modal-body">
+    <div class="row model-rules-class">
+        <div crud-directive="users_types_model" class="col-md-6"></div>
+        <div class="model-rules-class col-md-6">
+            <div class="panel">
+                <div class="panel-heading text-center">
+                    ROLES
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-info small">
+                        ** Roles no asignados, se consideran que no tienen privilegios para realizar las accioes de
+                        "Ver", "Insertar", "modificar", "Eliminar"
+                    </div>
+                    <div class="alert alert-info text-center" ng-show="!current_user_type">
+                        -- Seleecione tipo de usuario --
+                    </div>
+                    <table class="table table-bordered table-striped" ng-show="current_user_type">
+                        <thead>
+                        <tr>
+                            <th rowspan="2" class="text-center">N</th>
+                            <th rowspan="2" class="text-center">id</th>
+                            <th rowspan="2" class="text-center">Vista</th>
+                            <th colspan="4" class="text-center">"{{current_user_type.name}}" Puede</th>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Ver</th>
+                            <th class="text-center">Ingresar</th>
+                            <th class="text-center">Modificar</th>
+                            <th class="text-center">Eliminar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="rol in roles" context-menu="options_context">
+                            <td ng-bind="$index + 1"></td>
+                            <td ng-bind="rol.id"></td>
+                            <td ng-bind="rol.view"></td>
+                            <td class="text-center">
+                                <button class="btn btn-xs" ng-class="rol.show?'btn-success':'btn-danger'"
+                                        ng-click="update_rol(rol.id, 'show', !rol.show)"
+                                        title="{{rol.show?'Quitar privilegio':'Agregar privilegio'}}">
+                                    <i class="glyphicon" ng-class="rol.show?'glyphicon-ok':'glyphicon-remove'"></i>
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn btn-xs" ng-class="rol.add_new?'btn-success':'btn-danger'"
+                                        ng-click="update_rol(rol.id, 'add_new', !rol.add_new)"
+                                        title="{{rol.add_new?'Quitar privilegio':'Agregar privilegio'}}">
+                                    <i class="glyphicon" ng-class="rol.add_new?'glyphicon-ok':'glyphicon-remove'"></i>
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn btn-xs" ng-class="rol.editable?'btn-success':'btn-danger'"
+                                        ng-click="update_rol(rol.id, 'editable', !rol.editable)"
+                                        title="{{rol.editable?'Quitar privilegio':'Agregar privilegio'}}">
+                                    <i class="glyphicon glyphicon"
+                                       ng-class="rol.editable?'glyphicon-ok':'glyphicon-remove'"></i>
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn btn-xs" ng-class="rol.delete?'btn-success':'btn-danger'"
+                                        ng-click="update_rol(rol.id, 'delete', !rol.delete)"
+                                        title="{{rol.delete?'Quitar privilegio':'Agregar privilegio'}}">
+                                    <i class="glyphicon" ng-class="rol.delete?'glyphicon-ok':'glyphicon-remove'"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <thead>
+                        <tr>
+                            <td colspan="10">
+                                <button type="button" class="btn btn-success btn-sm" ng-click="addRol()">Agregar rol
+                                </button>
+                            </td>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" ng-click="ok()">Aceptar</button>
+</div>
+
+
+<script type="text/ng-template" id="add_new_rol">
+    <div class="modal-header">
+        <h4 class="modal-title">Nuevo Rol</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="vistas" class="col-sm-4">Vista</label>
+                <div class="col-sm-8">
+                    <select id="vistas" data-ng-model="new_row.view" class="form-control small">
+                        <option value="usuarios">Usuarios</option>
+                        <option value="docentes">Docentes</option>
+                        <option value="materias">Materias</option>
+                        <option value="carreras">Carreras</option>
+                        <option value="grados_docentes">Grados de docentes</option>
+                        <option value="logs">Logs</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group"><label class="col-sm-4">Ver</label>
+                <div class="col-sm-8"><input class="form-control small" type="checkbox" ng-model="new_row.show"></div>
+            </div>
+            <div class="form-group"><label class="col-sm-4">Ingresar</label>
+                <div class="col-sm-8"><input class="form-control small" type="checkbox" ng-model="new_row.add_new">
+                </div>
+            </div>
+            <div class="form-group"><label class="col-sm-4">Modificar</label>
+                <div class="col-sm-8"><input class="form-control small" type="checkbox" ng-model="new_row.editable">
+                </div>
+            </div>
+            <div class="form-group"><label class="col-sm-4">Eliminar</label>
+                <div class="col-sm-8"><input class="form-control small" type="checkbox" ng-model="new_row.delete"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-success" ng-click="aceptar()">Aceptar</button>
+        <button type="button" class="btn btn-sm btn-warning" ng-click="cancel()">Cancelar</button>
+    </div>
+</script>

@@ -8,6 +8,6 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('TracingController', function ($scope, $rootScope, $API, $q, toastr, AuthService, URLS, $uibModal, $http) {
+    .controller('TracingController', function () {
 
     });

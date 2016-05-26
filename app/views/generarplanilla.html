@@ -94,16 +94,19 @@
                     <tr>
                         <td class="col-px-250 edit select">
                             <!--<span></span>-->
+                            <!--suppress HtmlUnknownAttribute -->
                             <ui-select ng-model="tmp.tmp_docente"
                                        title="Seleccione docente"
                                        class="add_height45"
-                                       ng-change="nueva_planilla.docente = tmp.tmp_docente.id;
+                                       data-ng-change="nueva_planilla.docente = tmp.tmp_docente.id;
                                                    tmp.docente = tmp.tmp_docente;
                                                    setInfoDocente(tmp.tmp_docente)">
+                                <!--suppress HtmlUnknownAttribute -->
                                 <ui-select-match placeholder="Seleccione docente">
                                     {{$select.selected.nombres + ' '+$select.selected.ap_paterno
                                     +' '+$select.selected.ap_materno }}
                                 </ui-select-match>
+                                <!--suppress HtmlUnknownAttribute -->
                                 <ui-select-choices
                                     refresh="searchCustomDocente($select.search)" refresh-delay="300"
                                     repeat="docente in custom_list_docente">

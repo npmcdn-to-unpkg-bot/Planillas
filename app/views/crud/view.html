@@ -91,12 +91,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="rowItem in Model.dataResponse.data">
+                <tr ng-repeat="rowItem in Model.dataResponse.data" ng-click="Model.onClickRow(rowItem)">
                     <td ng-bind="$index + 1"></td>
                     <td ng-repeat="param in Model.showFields"
                         item-crud="(Model.fields | filter:{name:param})[0]"
                         item-crud-model="rowItem"></td>
-                    <td ng-repeat="param in Model.extra_fields" ng-bind="rowItem[param.name] | CrudFilter:'date'"></td>
+                    <!--<td ng-repeat="param in Model.extra_fields" ng-bind="rowItem[param.name] | CrudFilter:'date'"></td>-->
+                    <td ng-repeat="param in Model.extra_fields" ng-bind="rowItem[param.name] | amTimeAgo"></td>
                     <td data-ng-show="Model.editable || Model.delete">
                         <!--<button class="btn btn-primary btn-xs" title="Detalles" ng-click="openModalDetail(rowItem)"><i
                             class="glyphicon glyphicon-list"></i>
@@ -104,12 +105,12 @@
                         <button class="btn btn-success btn-xs" title="Editar"
                                 ng-click="openModalEdit(rowItem, Model)"
                                 ng-show="Model.editable">
-                            <i class="glyphicon glyphicon-edit"></i>
+                            <i class="glyphicon glyphicon-pencil"></i>
                         </button>
                         <button class="btn btn-danger btn-xs" title="Eliminar"
                                 ng-click="openModalDelete(rowItem, Model)"
                                 ng-show="Model.delete">
-                            <i class="glyphicon glyphicon-remove"></i>
+                            <i class="glyphicon glyphicon-trash"></i>
                         </button>
                     </td>
                 </tr>
