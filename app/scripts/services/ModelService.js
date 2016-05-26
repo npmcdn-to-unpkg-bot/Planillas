@@ -91,13 +91,31 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.Materias;
                 context.fields = [
-                    {label: 'Materia', name: 'name', type: 'string', required: true}
+                    {label: 'Materia', name: 'name', type: 'string', required: true},
+                    {
+                        label: 'Horas de Teoría', name: 'horas_teoria', type: 'number', custom: function (data) {
+                        return data + " Hrs/semana"
+                    }
+                    },
+                    {
+                        label: 'Horas de Práctica', name: 'horas_practica', type: 'number', custom: function (data) {
+                        return data + " Hrs/semana"
+                    }
+                    },
+                    {
+                        label: 'Horas de Laboratorio',
+                        name: 'horas_laboratorio',
+                        type: 'number',
+                        custom: function (data) {
+                            return data + " Hrs/semana"
+                        }
+                    }
                 ];
                 context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
-                context.showFields = ['name'];
+                context.showFields = ['name', 'horas_teoria', 'horas_practica', 'horas_laboratorio'];
                 context.filterFields = ['name'];
                 context.nameView = 'name';
-                context.config = {title: 'Lista de Materias'};
+                context.config = {title: 'Materias'};
                 context.searchEnabled = true;
             }, config);
         };
@@ -179,7 +197,7 @@ angular.module('planillasApp')
                     {label: 'Descripción', name: 'description', type: 'string', required: true}
                 ];
                 context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
-                context.showFields = ['name','description'];
+                context.showFields = ['name', 'description'];
                 context.nameView = 'name';
                 context.config = {title: 'Tipos de usuarios'};
                 context.searchEnabled = false;
@@ -305,44 +323,43 @@ angular.module('planillasApp')
         };
 
         var ContractModel = function (config) {
-                return new BaseModel(function (context) {
-                        context.id_name = 'id';
-                        context.resource = $API.Contratos;
-                        context.fields = [
-                            {label: 'Número de contrato', name: 'numero', type: 'number', required: true},
-                            {
-                                label: 'Contrato', name: 'contrato', type: 'string', required: true,
-                                custom: function (item, data) {
-                                    console.log(item, data);
-                                    var url = $API.path + 'obtener_contrato?docente=' + data.docente.id;
-                                    var html = '<a href="' + url + '" download="Contrato docente"><img src="images/pdf_icon.png" width="40px"></a>';
-                                    html += '<a href="' + url + '&word=1' + '" download="Contrato docente"><img src="images/word_icon.png" width="40px"></a>';
-                                    return html;
-                                }
-                            },
-                            {label: 'Información de contrato', name: 'info_contrato', type: 'string', required: true},
-                            {label: 'Docente', name: 'docente', type: 'select', required: true, model: new DocentesModel()},
-                            {
-                                label: 'Gestion academica',
-                                name: 'gestion_academica',
-                                type: 'select',
-                                required: true,
-                                model: new GestionesAcademicasModel()
+            return new BaseModel(function (context) {
+                    context.id_name = 'id';
+                    context.resource = $API.Contratos;
+                    context.fields = [
+                        {label: 'Número de contrato', name: 'numero_contrato', type: 'number', required: true},
+                        {
+                            label: 'Contrato', name: 'contrato', type: 'string', required: true,
+                            custom: function (item, data) {
+                                console.log(item, data);
+                                var url = $API.path + 'obtener_contrato?docente=' + data.docente.id;
+                                var html = '<a href="' + url + '" download="Contrato docente"><img src="images/pdf_icon.png" width="40px"></a>';
+                                html += '<a href="' + url + '&word=1' + '" download="Contrato docente"><img src="images/word_icon.png" width="40px"></a>';
+                                return html;
                             }
-                        ]
-                        ;
-                        context.extra_fields = [{label: 'Fecha', name: 'updated_at'}];
-                        context.showFields = ['numero', 'docente', 'info_contrato', 'contrato'];
-                        context.nameView = 'numero';
-                        context.config = {title: 'Contratos docentes'};
-                        context.add_new = false;
-                        context.delete = false;
-                        context.editable = false;
-                        context.searchEnabled = true;
-                    }, config
-                );
-            }
-            ;
+                        },
+                        {label: 'Información de contrato', name: 'info_contrato', type: 'string', required: true},
+                        {label: 'Docente', name: 'docente', type: 'select', required: true, model: new DocentesModel()},
+                        {
+                            label: 'Gestion academica',
+                            name: 'gestion_academica',
+                            type: 'select',
+                            required: true,
+                            model: new GestionesAcademicasModel()
+                        }
+                    ]
+                    ;
+                    context.extra_fields = [{label: 'Fecha', name: 'updated_at'}];
+                    context.showFields = ['numero', 'docente', 'info_contrato', 'contrato'];
+                    context.nameView = 'numero';
+                    context.config = {title: 'Contratos docentes'};
+                    context.add_new = false;
+                    context.delete = false;
+                    context.editable = false;
+                    context.searchEnabled = true;
+                }, config
+            );
+        };
 
         var FacturasModel = function (config) {
             return new BaseModel(function (context) {
@@ -432,5 +449,4 @@ angular.module('planillasApp')
             PagosPlanillasModel: PagosPlanillasModel,
             FacturasModel: FacturasModel
         };
-    })
-;
+    });

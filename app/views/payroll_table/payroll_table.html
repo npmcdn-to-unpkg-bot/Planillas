@@ -100,13 +100,7 @@
             </div>
         </td>
         <td width-static="30" class="center editable">
-            <div ng-bind="registro.horas_semanales" ng-if="!editable"></div>
-            <div ng-if="editable" editable-select="registro.horas_semanales"
-                 e-ng-options="item.id as item.name for item in GLOBALS.TIEMPOS_CARGA_HORARIA"
-                 buttons="no" class="edit-label"
-                 onbeforesave="update_item_payroll($data,registro.id,'horas_semanales')"
-                 ng-bind="registro.horas_semanales">
-            </div>
+            <div ng-bind="registro.horas_semanales"></div>
         </td>
         <td width-static="25" class="center editable">
             <div ng-bind="registro.categoria" ng-if="!editable"></div>

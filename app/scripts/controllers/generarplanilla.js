@@ -15,6 +15,7 @@ angular.module('planillasApp')
             $rootScope.GF.load_gradosDocentes(),
             $rootScope.GF.load_unidades_academicas()
         ];
+
         $scope.nueva_planilla = {};
         $scope.enable_nueva_planilla_fields = {
             especialidad: false
@@ -28,24 +29,20 @@ angular.module('planillasApp')
             }
             $scope.filters['gestion_academica'] = user['gestion']['id'];
         });
+
         $scope.load_init_params = function () {
             $q.all(promises)
                 .then(function (datas) {
-                    if (!$rootScope.GF.isSecretaria()) {
-                        $scope.$broadcast('active_editable_payroll');
-                    } else {
-                        $scope.$broadcast('disable_editable_payroll');
-                    }
+                    $scope.$broadcast('active_editable_payroll');
                     var user = datas[0];
+                    $scope.nueva_planilla['especialidad'] = user['especialidad']['id'];
+                    $scope.nueva_planilla['gestion_academica'] = user['gestion']['id'];
                     $scope.nueva_planilla['docente'] = '';
                     $scope.nueva_planilla['materia'] = '';
-
-                    $scope.nueva_planilla['especialidad'] = user['gestion']['especialidad'];
-                    $scope.nueva_planilla['gestion_academica'] = user['gestion']['id'];
                     $scope.nueva_planilla['cuenta_bancaria'] = 'CHEQUE';
                     $scope.nueva_planilla['grado'] = $rootScope.GLOBALS.GRADOS_DOCENTE[0].id;
                     $scope.nueva_planilla['tipo'] = $rootScope.GLOBALS.TIPOS_DOCENCIA[0].id;
-                    $scope.nueva_planilla['horas_semanales'] = $rootScope.GLOBALS.TIEMPOS_CARGA_HORARIA[0].id;
+                    $scope.nueva_planilla['horas_semanales'] = 0;
                     $scope.nueva_planilla['categoria'] = $rootScope.GLOBALS.TIPOS_CATEGORIAS[0].id;
                     $scope.nueva_planilla['reintegro'] = 0;
                     $scope.nueva_planilla['atrasos_periodos'] = 0;
@@ -62,6 +59,43 @@ angular.module('planillasApp')
                     }
                 });
         };
+
+        $scope.load_horas = function (id_materia, id_tipo) {
+            (new $API.Materias).$get({id: id_materia})
+                .then(function (data) {
+                    switch (id_tipo) {
+                        case 1:
+                            $scope.nueva_planilla.horas_semanales = data.horas_teoria;
+                            if (!$scope.nueva_planilla.horas_semanales) {
+                                toastr.warning("Imposible asignar, horas de teoria para la materia es 0");
+                            }
+                            break;
+                        case 2:
+                            $scope.nueva_planilla.horas_semanales = data.horas_practica;
+                            if (!$scope.nueva_planilla.horas_semanales) {
+                                toastr.warning("Imposible asignar, horas de practica para la materia es 0");
+                            }
+                            break;
+                        case 3:
+                            $scope.nueva_planilla.horas_semanales = data.horas_laboratorio;
+                            if (!$scope.nueva_planilla.horas_semanales) {
+                                toastr.warning("Imposible asignar, horas de laboratorio para la materia es 0");
+                            }
+                            break;
+                    }
+                })
+        };
+        $scope.$watch('nueva_planilla.materia', function () {
+            if ($scope.nueva_planilla.materia && $scope.nueva_planilla.tipo) {
+                $scope.load_horas($scope.nueva_planilla.materia, $scope.nueva_planilla.tipo);
+            }
+        });
+        $scope.$watch('nueva_planilla.tipo', function () {
+            if ($scope.nueva_planilla.materia && $scope.nueva_planilla.tipo) {
+                $scope.load_horas($scope.nueva_planilla.materia, $scope.nueva_planilla.tipo);
+            }
+        });
+
         $scope.load_init_params();
 
         $scope.refresh_params_nueva_planilla = function () {
@@ -111,10 +145,7 @@ angular.module('planillasApp')
                 });
                 modalInstance.result.then(function (numero) {
                     $scope.nueva_planilla.numero = numero;
-                    console.log(numero);
-
-                }, function (numero) {
-                    console.log(numero);
+                }, function () {
                     $scope.nueva_planilla.factura = $scope.GLOBALS.FACTURA_ITEMS[1].id; // No
                 });
             }
