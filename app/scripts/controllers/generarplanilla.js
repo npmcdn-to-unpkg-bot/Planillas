@@ -42,7 +42,7 @@ angular.module('planillasApp')
                     $scope.nueva_planilla['cuenta_bancaria'] = 'CHEQUE';
                     $scope.nueva_planilla['grado'] = $rootScope.GLOBALS.GRADOS_DOCENTE[0].id;
                     $scope.nueva_planilla['tipo'] = $rootScope.GLOBALS.TIPOS_DOCENCIA[0].id;
-                    $scope.nueva_planilla['horas_semanales'] = 0;
+                    $scope.nueva_planilla['horas_semanales'] = 1;
                     $scope.nueva_planilla['categoria'] = $rootScope.GLOBALS.TIPOS_CATEGORIAS[0].id;
                     $scope.nueva_planilla['reintegro'] = 0;
                     $scope.nueva_planilla['atrasos_periodos'] = 0;
@@ -60,41 +60,41 @@ angular.module('planillasApp')
                 });
         };
 
-        $scope.load_horas = function (id_materia, id_tipo) {
-            (new $API.Materias).$get({id: id_materia})
-                .then(function (data) {
-                    switch (id_tipo) {
-                        case 1:
-                            $scope.nueva_planilla.horas_semanales = data.horas_teoria;
-                            if (!$scope.nueva_planilla.horas_semanales) {
-                                toastr.warning("Imposible asignar, horas de teoria para la materia es 0");
-                            }
-                            break;
-                        case 2:
-                            $scope.nueva_planilla.horas_semanales = data.horas_practica;
-                            if (!$scope.nueva_planilla.horas_semanales) {
-                                toastr.warning("Imposible asignar, horas de practica para la materia es 0");
-                            }
-                            break;
-                        case 3:
-                            $scope.nueva_planilla.horas_semanales = data.horas_laboratorio;
-                            if (!$scope.nueva_planilla.horas_semanales) {
-                                toastr.warning("Imposible asignar, horas de laboratorio para la materia es 0");
-                            }
-                            break;
-                    }
-                })
-        };
-        $scope.$watch('nueva_planilla.materia', function () {
+        /* $scope.load_horas = function (id_materia, id_tipo) {
+         (new $API.Materias).$get({id: id_materia})
+         .then(function (data) {
+         switch (id_tipo) {
+         case 1:
+         $scope.nueva_planilla.horas_semanales = data.horas_teoria;
+         if (!$scope.nueva_planilla.horas_semanales) {
+         toastr.warning("Imposible asignar, horas de teoria para la materia es 0");
+         }
+         break;
+         case 2:
+         $scope.nueva_planilla.horas_semanales = data.horas_practica;
+         if (!$scope.nueva_planilla.horas_semanales) {
+         toastr.warning("Imposible asignar, horas de practica para la materia es 0");
+         }
+         break;
+         case 3:
+         $scope.nueva_planilla.horas_semanales = data.horas_laboratorio;
+         if (!$scope.nueva_planilla.horas_semanales) {
+         toastr.warning("Imposible asignar, horas de laboratorio para la materia es 0");
+         }
+         break;
+         }
+         })
+         };*/
+       /* $scope.$watch('nueva_planilla.materia', function () {
             if ($scope.nueva_planilla.materia && $scope.nueva_planilla.tipo) {
                 $scope.load_horas($scope.nueva_planilla.materia, $scope.nueva_planilla.tipo);
             }
-        });
-        $scope.$watch('nueva_planilla.tipo', function () {
-            if ($scope.nueva_planilla.materia && $scope.nueva_planilla.tipo) {
-                $scope.load_horas($scope.nueva_planilla.materia, $scope.nueva_planilla.tipo);
-            }
-        });
+        });*/
+        /* $scope.$watch('nueva_planilla.tipo', function () {
+         if ($scope.nueva_planilla.materia && $scope.nueva_planilla.tipo) {
+         $scope.load_horas($scope.nueva_planilla.materia, $scope.nueva_planilla.tipo);
+         }
+         });*/
 
         $scope.load_init_params();
 

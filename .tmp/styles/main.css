@@ -14704,39 +14704,40 @@ td{
 /* line 1088, ../../app/styles/main.scss */
 .ui-select-bootstrap > .ui-select-choices {
   width: auto !important;
+  top: 100% !important;
 }
 
-/* line 1093, ../../app/styles/main.scss */
+/* line 1094, ../../app/styles/main.scss */
 .select-matter-custom .ui-select-container {
   height: 100%;
 }
-/* line 1095, ../../app/styles/main.scss */
+/* line 1096, ../../app/styles/main.scss */
 .select-matter-custom .ui-select-container .ui-select-match {
   height: 100%;
 }
-/* line 1097, ../../app/styles/main.scss */
+/* line 1098, ../../app/styles/main.scss */
 .select-matter-custom .ui-select-container .ui-select-match .ui-select-match-text {
   width: 100%;
 }
-/* line 1099, ../../app/styles/main.scss */
+/* line 1100, ../../app/styles/main.scss */
 .select-matter-custom .ui-select-container .ui-select-match .ui-select-match-text span {
   width: 100%;
   display: inline-block;
   padding-top: 6px !important;
 }
 
-/* line 1109, ../../app/styles/main.scss */
+/* line 1110, ../../app/styles/main.scss */
 .loaders {
   transition: 0.2s all;
   opacity: 1;
 }
 
-/* line 1114, ../../app/styles/main.scss */
+/* line 1115, ../../app/styles/main.scss */
 .loaders.ng-hide {
   opacity: 0;
 }
 
-/* line 1119, ../../app/styles/main.scss */
+/* line 1120, ../../app/styles/main.scss */
 .model-rules-class .panel-heading {
   background-color: #89C4F4 !important;
 }

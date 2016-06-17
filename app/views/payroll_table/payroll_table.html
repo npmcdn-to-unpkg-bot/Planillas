@@ -60,7 +60,7 @@
                  ng-bind="registro.cuenta_bancaria||' -- '">
             </div>
         </td>
-        <td width-static="30" class="center editable">
+        <td width-static="30" class="center editable" title="{{registro.grado.name}}">
             <div ng-bind="registro.grado.short" ng-if="!editable"></div>
             <div ng-if="editable" editable-select="registro.grado"
                  e-ng-options="item.id as item.name for item in GLOBALS.GRADOS_DOCENTE"
@@ -90,7 +90,7 @@
             </ui-select>
 
         </td>
-        <td width-static="30" class="center editable">
+        <td width-static="30" class="center editable" title="{{registro.tipo.name}}">
             <div ng-bind="registro.tipo.short" ng-if="!editable"></div>
             <div ng-if="editable" editable-select="registro.tipo"
                  e-ng-options="item.id as item.name for item in GLOBALS.TIPOS_DOCENCIA"
@@ -125,12 +125,12 @@
             style="{{(registro.error_code==1)?'background: #e74c3c':''}}"
             title="{{(registro.error_code==1)?registro.error_message:''}}"></td>
         <td width-static="35" class="center editable" ng-if="filters.show_atrasos">
-            <div ng-bind="registro.atrasos_periodos ||' -- '" ng-if="!editable"
+            <div ng-bind="registro.atrasos_periodos || ' -- '" ng-if="!editable"
                  title="{{registro.atrasos_periodos?(registro.atrasos_periodos + ' horas atrasadas'):''}}"></div>
             <div ng-if="editable" editable-text="registro.atrasos_periodos"
                  buttons="no" class="edit-label"
                  onbeforesave="update_item_payroll($data,registro.id,'atrasos_periodos')"
-                 ng-bind="registro.atrasos_periodos ||' -- '"
+                 ng-bind="registro.atrasos_periodos || ' -- '"
                  title="{{registro.atrasos_periodos?(registro.atrasos_periodos + (filters.tipo_pago==1?' horas atrasadas':' periodos atrasados')):''}}">
             </div>
         </td>

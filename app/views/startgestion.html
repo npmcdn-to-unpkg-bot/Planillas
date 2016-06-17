@@ -27,7 +27,7 @@
             <form class="form-horizontal col-md-10 col-md-offset-1"
                   ng-submit="iniciar_nueva_gestion(new_gestion)">
                 <div class="form-group">
-                    <label class="col-sm-4">Unidad Acadeémica</label>
+                    <label class="col-sm-4">Unidad Académica</label>
                     <div class="col-sm-8">
                         <label>{{GF.getUnidadAcademicaName()}}</label>
                     </div>
@@ -42,7 +42,7 @@
                     <label class="col-sm-4">Gestión</label>
                     <div class="col-sm-8">
                         <select class="form-control" ng-model="new_gestion.gestion" required>
-                            <option value="">-- Seleccione Gestion --</option>
+                            <option value="">-- Seleccione Gestión --</option>
                             <option value="2015">2015</option>
                             <option value="2016">2016</option>
                             <option value="2017">2017</option>
@@ -56,21 +56,21 @@
                     <label class="col-sm-4">Periodo Gestión</label>
                     <div class="col-sm-8">
                         <select class="form-control" ng-model="new_gestion.periodo_gestion" required>
-                            <option value="">-- Seleccione Periodo --</option>
+                            <option value="">-- Seleccione Periodo Gestión --</option>
                             <option value="I">Gestión I</option>
                             <option value="II">Gestión II</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4">Impuesto a las utilidades</label>
+                    <label class="col-sm-4">Impuesto a las utilidades (%)</label>
                     <div class="col-sm-3">
                         <input class="form-control" type="number" min="0" max="100" step="any" ng-model="new_gestion.iu"
                                required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4">Impuesto a las transacciones</label>
+                    <label class="col-sm-4">Impuesto a las transacciones (%)</label>
                     <div class="col-sm-3">
                         <input class="form-control" type="number" min="0" max="100" step="any" ng-model="new_gestion.it"
                                required>

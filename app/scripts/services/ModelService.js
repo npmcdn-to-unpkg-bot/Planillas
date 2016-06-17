@@ -91,28 +91,10 @@ angular.module('planillasApp')
                 context.id_name = 'id';
                 context.resource = $API.Materias;
                 context.fields = [
-                    {label: 'Materia', name: 'name', type: 'string', required: true},
-                    {
-                        label: 'Horas de Teoría', name: 'horas_teoria', type: 'number', custom: function (data) {
-                        return data + " Hrs/semana"
-                    }
-                    },
-                    {
-                        label: 'Horas de Práctica', name: 'horas_practica', type: 'number', custom: function (data) {
-                        return data + " Hrs/semana"
-                    }
-                    },
-                    {
-                        label: 'Horas de Laboratorio',
-                        name: 'horas_laboratorio',
-                        type: 'number',
-                        custom: function (data) {
-                            return data + " Hrs/semana"
-                        }
-                    }
+                    {label: 'Materia', name: 'name', type: 'string', required: true}
                 ];
                 context.extra_fields = [{label: 'Última modificación', name: 'updated_at'}];
-                context.showFields = ['name', 'horas_teoria', 'horas_practica', 'horas_laboratorio'];
+                context.showFields = ['name'];
                 context.filterFields = ['name'];
                 context.nameView = 'name';
                 context.config = {title: 'Materias'};
@@ -160,7 +142,12 @@ angular.module('planillasApp')
                     {label: 'Apellido paterno', name: 'ap_paterno', type: 'string', required: true},
                     {label: 'Apellido materno', name: 'ap_materno', type: 'string', required: true},
                     {label: 'Nombres', name: 'nombres', type: 'string', required: true},
-                    {label: 'Carnet', name: 'ci', type: 'number', required: true},
+                    {
+                        label: 'Carnet', name: 'ci', type: 'number', required: true, custom: function (result, data) {
+
+                        return result + ' ' + data.departamento.short;
+                    }
+                    },
                     {
                         label: 'Expedido',
                         name: 'departamento',
@@ -419,17 +406,33 @@ angular.module('planillasApp')
                         }
                     },
                     {
-                        label: 'Pagado', name: 'liquido_pagable', type: 'string', custom: function (data) {
-                        return data + ' Bs';
+                        label: 'Pagado', name: 'liquido_pagable', type: 'string',
+                        custom: function (data) {
+                            return data + ' Bs';
+                        }
+                    },
+                    {
+                        label: 'Presenta Factura', name: 'presents_invoice', type: 'string',
+                        custom: function (data) {
+                            return '<select><option>SI</option><option>No</option></select>';
+                        }
                     }
+                    ,
+                    {
+                        label: 'Estado', name: 'status', type: 'string',
+                        custom: function (data) {
+                            return '<span class="btn btn-xs btn-warning">Pago pendiente</span>';
+                        }
                     }
                 ];
                 context.extra_fields = [{label: 'Fecha', name: 'updated_at'}];
-                context.showFields = ['docente', 'especialidad', 'pensul', 'categoria', 'monto', 'factura', 'tipo_pago', 'reintegro', 'total_3', 'total_4', 'liquido_pagable'];
+                context.showFields = ['docente', 'especialidad', 'pensul', 'categoria', 'monto', 'factura', 'tipo_pago', 'reintegro', 'total_3', 'total_4', 'liquido_pagable',
+                    'presents_invoice', 'status'];
                 context.nameView = 'numero';
                 context.config = {title: 'Pago realizados en planillas'};
                 context.add_new = false;
                 context.editable = false;
+                context.delete = false;
                 context.searchEnabled = true;
             }, config);
         };

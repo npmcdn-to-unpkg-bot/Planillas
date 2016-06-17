@@ -1,5 +1,133 @@
 <div ng-controller="PayrollPaymentsController">
-    <div class="container">
+   <!-- <div class="container">
         <div crud-directive="payroll_paymemts_model"></div>
+    </div>
+-->
+    <div class="marginH40">
+        <table class="table-editable">
+            <thead>
+            <tr>
+                <th width-static="21" rowspan="2">N</th>
+                <th width-static="68" rowspan="2">CI</th>
+                <th width-static="95" rowspan="2">Cuenta BU</th>
+                <th width-static="30" rowspan="2" class="rotate90">Grado</th>
+                <th width-static="120" rowspan="2">Apellidos y Nombres</th>
+                <th rowspan="2" ng-if="enable_fields.especialidad">Carrera</th>
+                <th width-static="150" rowspan="2">Materia</th>
+                <th width-static="30" rowspan="2" title="Teoría, Práctica, Laboratorio">Tipo</th>
+                <th width-static="30" rowspan="2" class="rotate90">
+                    Horas <br>{{filters.tipo_pago == 2 ? "Sem.":''}}
+                </th>
+                <th width-static="25" rowspan="2" class="rotate90" title="A, B, C, D">Cat.</th>
+                <th colspan="{{filters.show_reintegro?4:3}}">Ingresos</th>
+                <th width-static="35" rowspan="2" ng-if="filters.show_atrasos" class="rotate90"
+                    title="{{filters.tipo_pago==2?'Nro. Periodos de atraso':'Horas atrasadas'}}">Atrasos
+                </th>
+                <th width-static="45" rowspan="2">TOTAL</th>
+                <th colspan="3">Egresos</th>
+                <th width-static="30" rowspan="2" class="rotate90">Factura</th>
+                <th width-static="30" rowspan="2" class="rotate90" title="Tipo de pago">Pago</th>
+                <th width-static="50" rowspan="2">Liquido Pagable</th>
+                <th width-static="50" rowspan="2">Presenta Factura</th>
+                <th width-static="50" rowspan="2">Estado</th>
+            </tr>
+            <tr>
+                <th width-static="45">Monto</th>
+                <th width-static="45">Total1</th>
+                <th width-static="50" ng-show="filters.show_reintegro">Reintegro</th>
+                <th width-static="45" title="Total 1 + Reintegro">Total2</th>
+                <th width-static="45" title="Impuesto a las utilidades">I.U.</th>
+                <th width-static="45" title="Impuesto a las transacciones">I.T.</th>
+                <th width-static="45" title="Impuesto a las utilidades + Impuesto a las transacciones">
+                    Total
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="registro in planillas_data.data"
+                class="hover-row"
+                style="{{
+                (registro.status == 3)?'background: rgba(0, 250, 100,0.2)':((registro.status == 2)?'background: rgba(250, 0, 0,0.2)':'background: rgba(250, 250, 0,0.1)')
+                }}">
+
+                <td class="center" ng-bind="$index+1"></td>
+                <td class="center" ng-bind="registro.docente.ci"></td>
+                <td width-static="95" class="editable">
+                    <div ng-bind="registro.cuenta_bancaria||' -- '" ng-if="!editable"></div>
+                </td>
+                <td width-static="30" class="center editable" title="{{registro.grado.name}}">
+                    <div ng-bind="registro.grado.short" ng-if="!editable"></div>
+                </td>
+                <td width-static="155"
+                    ng-bind="registro.docente.ap_paterno+' '+registro.docente.ap_materno  + ' '+registro.docente.nombres">
+                </td>
+                <td ng-show="enable_fields.especialidad" ng-bind="registro.especialidad.name"></td>
+                <td class="editable select-matter-custom">
+                    <div ng-if="!editable" ng-bind="registro.materia.name"></div>
+                </td>
+                <td width-static="30" class="center editable" title="{{registro.tipo.name}}">
+                    <div ng-bind="registro.tipo.short" ng-if="!editable"></div>
+                </td>
+                <td width-static="30" class="center editable">
+                    <div ng-bind="registro.horas_semanales"></div>
+                </td>
+                <td width-static="25" class="center editable">
+                    <div ng-bind="registro.categoria" ng-if="!editable"></div>
+                </td>
+                <td class="center" ng-bind="registro.monto|mountC"></td>
+                <td class="center" ng-bind="registro.total_1|mountC"></td>
+                <td width-static="50" class="center editable" ng-if="filters.show_reintegro">
+                    <div ng-bind="registro.reintegro?(registro.reintegro|mountC):' -- '" ng-if="!editable"></div>
+                </td>
+                <td class="center" ng-bind="registro.total_2|mountC"
+                    style="{{(registro.error_code==1)?'background: #e74c3c':''}}"
+                    title="{{(registro.error_code==1)?registro.error_message:''}}"></td>
+                <td width-static="35" class="center editable" ng-if="filters.show_atrasos">
+                    <div ng-bind="registro.atrasos_periodos || ' -- '" ng-if="!editable"
+                         title="{{registro.atrasos_periodos?(registro.atrasos_periodos + ' horas atrasadas'):''}}"></div>
+                </td>
+                <td class="center" ng-bind="registro.total_3|mountC"></td>
+                <td class="center" ng-bind="registro.iu|mountC"></td>
+                <td class="center" ng-bind="registro.it|mountC"></td>
+                <td class="center" ng-bind="registro.total_4|mountC"></td>
+                <td width-static="30" class="center editable">
+                    <div ng-bind="registro.factura" ng-if="!editable"></div>
+
+                    <div ng-if="editable" editable-select="registro.factura"
+                         e-ng-options="item.id as item.name for item in GLOBALS.FACTURA_ITEMS"
+                         buttons="no" class="edit-label"
+                         onbeforesave="update_item_payroll($data,registro.id,'factura')"
+                         ng-bind="registro.factura">
+                    </div>
+                </td>
+                <td width-static="30" class="center editable">
+                    <div ng-bind="registro.tipo_pago.short" ng-if="!editable"></div>
+                </td>
+                <td class="text-right" ng-bind="registro.liquido_pagable|mountC"></td>
+                <td class="text-right center editable">
+                    <select data-ng-model="registro.presenta_factura"
+                            data-ng-change="update_item_payroll(registro.presenta_factura,registro.id,'presenta_factura')">
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td class="text-right center editable">
+                    <select data-ng-model="registro.status"
+                            data-ng-change="update_item_payroll(registro.status,registro.id,'status')">
+                        <option value="1">Pendiente de pago</option>
+                        <option value="2">Resagado</option>
+                        <option value="3">Pagado</option>
+                    </select>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr ng-hide="planillas_data.data.length>0">
+                <td colspan="21" class="text-center">
+                    <p class="alert alert-info"> -- No se encontraron resultados -- </p>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
     </div>
 </div>

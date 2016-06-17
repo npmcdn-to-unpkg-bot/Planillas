@@ -87,7 +87,7 @@
                         <th>Categoria</th>
                         <th>Factura</th>
                         <th>Tipo de pago</th>
-                        <th>Metodo Acad&eacute;mico</th>
+                        <th>Metodo Académico</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -139,6 +139,7 @@
                             <ui-select ng-model="tmp_materia" theme="bootstrap"
                                        title="Seleccione materia"
                                        class="add_height45"
+                                       search-enabled="true"
                                        ng-change="nueva_planilla.materia = tmp_materia.id">
                                 <ui-select-match placeholder="Seleccione materia">
                                     {{$select.selected.name}}
@@ -158,8 +159,8 @@
                         </td>
                         <td class="col-px-70 edit">
                             <select class="fullWidth" ng-model="nueva_planilla.horas_semanales"
-                                    data-ng-disabled="true"
-                                    ng-options="hrs.id as hrs.name for hrs in GLOBALS.TIEMPOS_CARGA_HORARIA">
+                                    ng-options="hrs.id as hrs.name for hrs in GLOBALS.TIEMPOS_CARGA_HORARIA"
+                                    required>
                             </select>
                         </td>
                         <td class="col-px-70 edit">
