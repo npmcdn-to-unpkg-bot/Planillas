@@ -8,7 +8,7 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('PayrollPaymentsController', function ($scope, $rootScope, $API, $q, toastr, AuthService, ModelService) {
+    .controller('PayrollPaymentsController', function ($scope, $rootScope, $API, $q, toastr, AuthService, ModelService, $uibModal) {
         $scope.payroll_paymemts = [];
         $scope.payroll_paymemts_model = ModelService.PagosPlanillasModel();
 
@@ -66,7 +66,8 @@ angular.module('planillasApp')
         $scope.planillas_query_params = {
             page_size: 25,
             page: 1,
-            is_complete_serializer: 1
+            is_complete_serializer: 1,
+            numero_pago: 1
         };
 
         $scope.filters = {};
@@ -230,6 +231,27 @@ angular.module('planillasApp')
             return defer.promise;
         };
 
+        $scope.update_invoice_payroll = function (new_value, number, id, key) {
+            var defer = $q.defer();
+            var update_data = {
+                id: id,
+                numero_factura: number
+            };
+            update_data[key] = new_value;
+            (new $API.PagosPlanillas()).$update(update_data)
+                .then(function (data) {
+                    toastr.clear();
+                    toastr.success('Modificado correctamente');
+                    defer.resolve(data);
+                    $scope.load_planillas();
+                }, function (data) {
+                    toastr.warning('No se pudo modificar');
+                    defer.reject(data);
+                });
+            return defer.promise;
+        };
+
+
         $scope.menusPayrollList = [
             ['Ver mas información', function ($itemScope) {
                 $scope.openDetailModal($itemScope.registro);
@@ -289,4 +311,37 @@ angular.module('planillasApp')
             $scope.editable = true;
         });
 
+        $scope.changeInvoice = function (register, item) {
+            if (register.presenta_factura === 'Si') {
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'views/modals/ModalSetInvoice.html',
+                    controller: 'ModalSetInvoiceController',
+                    size: 'md'
+                });
+                modalInstance.result.then(function (numero) {
+                    console.log(numero);
+                    $scope.update_invoice_payroll(register.presenta_factura, numero, register.id, item);
+                }, function () {
+                    register.presenta_factura = "No";
+                });
+            } else {
+                $scope.update_item_payroll(register.presenta_factura, register.id, item);
+            }
+        };
     });
+
+angular.module('planillasApp').controller('ModalSetInvoiceController', function ($scope, $uibModalInstance) {
+    $scope.numero = '';
+    $scope.ok = function () {
+        console.log($scope.numero);
+        if (($scope.numero + "").length > 3) {
+            $uibModalInstance.close($scope.numero);
+        } else {
+            $uibModalInstance.dismiss(false);
+        }
+    };
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss(false);
+    };
+});

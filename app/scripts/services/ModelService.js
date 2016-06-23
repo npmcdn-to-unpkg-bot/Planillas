@@ -357,7 +357,7 @@ angular.module('planillasApp')
                     {label: 'Docente', name: 'docente', type: 'select', required: true, model: new DocentesModel()}
                 ];
                 context.extra_fields = [{label: 'Fecha de registro', name: 'updated_at'}];
-                context.showFields = ['numero', 'docente'];
+                context.showFields = ['docente', 'numero'];
                 context.nameView = 'numero';
                 context.config = {title: 'Facturas - docente'};
                 context.add_new = false;

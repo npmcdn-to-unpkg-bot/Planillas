@@ -29,16 +29,17 @@
                         <i class="glyphicon glyphicon-list"></i> Planillas <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
 
-                        <li ng-if="CURRENT_USER['gestion']"><a href="#/Contratos">
+                        <li ng-if="CURRENT_USER['gestion'] && CURRENT_USER.roles.show_contract"><a href="#/Contratos">
                             <i class="glyphicon glyphicon-list"></i>
                             <span>  Contratos</span></a>
                         </li>
 
-                        <li ng-if="(GF.isJefeCarrera() || GF.isAdmin())&& CURRENT_USER['gestion']">
+                        <li ng-if="(GF.isJefeCarrera() || GF.isAdmin())&& CURRENT_USER['gestion'] && CURRENT_USER.roles.register_payroll">
                             <a href="#/RegistrarPlanilla">
                                 <i class="glyphicon glyphicon-list"></i><span class="">  Registrar Planillas</span></a>
                         </li>
-                        <li ng-if="CURRENT_USER['gestion']"><a href="#/GenerarPlanilla">
+                        <li ng-if="CURRENT_USER['gestion'] && CURRENT_USER.roles.generate_payroll"><a
+                            href="#/GenerarPlanilla">
                             <i class="glyphicon glyphicon-list"></i>
                             <span>  Generar Planillas</span></a>
                         </li>
@@ -89,30 +90,30 @@
 
                 <li class="dropdown" ng-if="CURRENT_USER['gestion']">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <i class="glyphicon glyphicon-list"></i> <span class="hidden-sm">Datos de pago</span>
+                        <i class="glyphicon glyphicon-list"></i> <span class="hidden-sm"> Datos de pago</span>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="" ng-click="openModalDatosPago()"><i class="glyphicon glyphicon-list-alt"></i>
                             Información</a></li>
-                        <li ng-if="GF.isRoot() || GF.isAdmin()">
+                        <li ng-if="CURRENT_USER.roles.edit_amounts">
                             <a href="" ng-click="openModalUpdateMonto()">
                                 <i class="glyphicon glyphicon-list"></i> Modificar montos de pago</a>
                         </li>
                     </ul>
                 </li>
-                <li ng-if="!GF.isSecretaria()">
+                <li ng-if="CURRENT_USER.roles.edit_sync">
                     <a href="#/Sincronizacion"> <i class="glyphicon glyphicon-arrow-up"></i>
                         <span class="hidden-sm"> Sincronización</span>
                     </a>
                 </li>
-                <li ng-if="GF.isAdmin() || GF.isRoot()">
+                <li>
                     <a href="#/EliminarRegistros"> <i class="glyphicon glyphicon-warning-sign"></i>
                         <span class="hidden-sm hidden-md"> Registros</span>
                     </a>
                 </li>
 
-                <li>
+                <li ng-if="GF.isRoot() || GF.isAdmin()">
                     <a ng-click="openModalRules()">
                         <i class="glyphicon glyphicon-warning-sign"></i>
                         <span class="hidden-sm hidden-md"> Roles de usuarios</span>

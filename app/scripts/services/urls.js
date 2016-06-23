@@ -46,6 +46,7 @@ angular.module('planillasApp')
 
             SINCRONIZACION_CATEGORIAS_DOCENTES: SERVER + 'syncronize/CategoriasDocentes',
             SINCRONIZACION_CARGA_HORARIA: SERVER + 'syncronize/CargaHoraria',
+            TRACING: SERVER + 'api/tracing/',
 
             LISTA_DOCENTES: SERVER + 'docentes',
             LISTA_MATERIAS: SERVER + 'materias',

@@ -85,11 +85,11 @@ angular.module('planillasApp')
          }
          })
          };*/
-       /* $scope.$watch('nueva_planilla.materia', function () {
-            if ($scope.nueva_planilla.materia && $scope.nueva_planilla.tipo) {
-                $scope.load_horas($scope.nueva_planilla.materia, $scope.nueva_planilla.tipo);
-            }
-        });*/
+        /* $scope.$watch('nueva_planilla.materia', function () {
+         if ($scope.nueva_planilla.materia && $scope.nueva_planilla.tipo) {
+         $scope.load_horas($scope.nueva_planilla.materia, $scope.nueva_planilla.tipo);
+         }
+         });*/
         /* $scope.$watch('nueva_planilla.tipo', function () {
          if ($scope.nueva_planilla.materia && $scope.nueva_planilla.tipo) {
          $scope.load_horas($scope.nueva_planilla.materia, $scope.nueva_planilla.tipo);
@@ -117,15 +117,16 @@ angular.module('planillasApp')
                     if (data['data'].length > 0) {
                         var info = data['data'][0];
                         $scope.nueva_planilla_disabled['cuenta_bancaria'] = info['cuenta_bancaria'] ? true : false;
+                        $scope.nueva_planilla_disabled['grado'] = true;
                         $scope.nueva_planilla_disabled['categoria'] = true;
                         $scope.nueva_planilla_disabled['factura'] = true;
-                        $scope.nueva_planilla_disabled['grado'] = true;
                         $scope.nueva_planilla_disabled['tipo_pago'] = true;
 
                         $scope.nueva_planilla['cuenta_bancaria'] = info['cuenta_bancaria'];
+                        $scope.nueva_planilla['grado'] = info['grado']['id'];
                         $scope.nueva_planilla['categoria'] = info['categoria'];
                         $scope.nueva_planilla['factura'] = info['factura'];
-                        $scope.nueva_planilla['grado'] = info['grado']['id'];
+                        $scope.nueva_planilla['tipo_pago'] = info['tipo_pago']['id'];
                     } else {
                         var disabled = ['cuenta_bancaria', 'categoria', 'factura', 'grado', 'pensul', 'tipo_pago'];
                         for (var i = 0; i < disabled.length; i++) {
@@ -133,22 +134,6 @@ angular.module('planillasApp')
                         }
                     }
                 });
-        };
-
-        $scope.changeInvoice = function (new_value) {
-            if (new_value === 'Si') {
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'views/modals/ModalSetInvoice.html',
-                    controller: 'ModalSetInvoiceController',
-                    size: 'md'
-                });
-                modalInstance.result.then(function (numero) {
-                    $scope.nueva_planilla.numero = numero;
-                }, function () {
-                    $scope.nueva_planilla.factura = $scope.GLOBALS.FACTURA_ITEMS[1].id; // No
-                });
-            }
         };
 
         $scope.id_new_payroll_register = 0;
@@ -161,6 +146,7 @@ angular.module('planillasApp')
                     $scope.id_new_payroll_register = data.id;
                     toastr.clear();
                     toastr.success('Registro ingresado');
+                    $scope.setInfoDocente({id: planilla.docente});
                     $scope.$broadcast('load_planillas_event', $scope.filters);
                 }, function () {
                     toastr.warning('No se pudo guardar');
@@ -172,13 +158,3 @@ angular.module('planillasApp')
             periodo_gestion: true
         };
     });
-
-angular.module('planillasApp').controller('ModalSetInvoiceController', function ($scope, $uibModalInstance) {
-    $scope.numero = '';
-    $scope.ok = function () {
-        $uibModalInstance.close($scope.numero);
-    };
-    $scope.cancel = function () {
-        $uibModalInstance.dismiss(false);
-    };
-});
