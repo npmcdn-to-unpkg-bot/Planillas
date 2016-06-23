@@ -16,25 +16,30 @@ angular.module('planillasApp')
                 search: search_value,
                 page_size: 10
             };
+            data = $.extend({}, data, $scope.filter_contracts);
             (new $API.Docentes()).$get(data)
                 .then(function (data) {
                     $scope.custom_list_docente = data['data'];
                 });
         };
 
-
+        $scope.filter_contracts = {gestion_academica: 0};
         $scope.contracts = [];
 
         $scope.load_contracts = function () {
-            (new $API.Contratos()).$get()
+            (new $API.Contratos()).$get($scope.filter_contracts)
                 .then(function (data) {
                     $scope.contracts = data.data;
                 });
         };
 
+
         AuthService.getUser()
-            .then(function () {
+            .then(function (user) {
+                $scope.filter_contracts = {gestion_academica: user['gestion']['id']};
+                $scope.contracts_model = new ModelService.ContractModel({
+                    query_params: $scope.filter_contracts
+                });
                 $scope.load_contracts();
             });
-
     });

@@ -10,7 +10,9 @@
 angular.module('planillasApp')
     .controller('InvoicesController', function ($scope, ModelService, AuthService) {
         AuthService.getUser()
-            .then(function () {
-                $scope.invoice_model = new ModelService.FacturasModel();
+            .then(function (user) {
+                $scope.invoice_model = new ModelService.FacturasModel({
+                    query_params: {gestion_academica: user['gestion']['id']}
+                });
             });
     });

@@ -232,7 +232,6 @@ angular.module('planillasApp')
                     element.html(text || '--');
                     $compile(element.contents())(scope);
                 }
-
                 //noinspection JSUnresolvedVariable
                 if (scope.itemCrud.custom) {
                     var bindObject = $filter('CrudFilter')(scope.itemCrudModel[scope.itemCrud.name], scope.itemCrud.type);

@@ -114,6 +114,7 @@ angular.module('planillasApp')
                                 $scope.filters.unidad_academica = user['gestion']['unidad_academica'];
                                 $scope.filters.especialidad = user['gestion']['especialidad'];
                                 $scope.filters.gestion = user['gestion']['gestion'];
+                                $scope.filters.gestion_academica = user['gestion']['id'];
                                 $scope.filters.periodo_gestion = user['gestion']['periodo_gestion'];
                             } else {
                                 $scope.filters.unidad_academica = user['unidad_academica']['id'];

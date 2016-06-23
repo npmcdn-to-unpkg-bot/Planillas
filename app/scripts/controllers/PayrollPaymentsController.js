@@ -12,16 +12,14 @@ angular.module('planillasApp')
         $scope.payroll_paymemts = [];
         $scope.payroll_paymemts_model = ModelService.PagosPlanillasModel();
 
+        $scope.filter_payroll_payments = {};
+
         $scope.load_payroll_payments = function () {
-            (new $API.PagosPlanillas()).$get()
+            (new $API.PagosPlanillas()).$get($scope.filters)
                 .then(function (data) {
                     $scope.payroll_paymemts = data.data;
                 });
         };
-        AuthService.getUser()
-            .then(function () {
-                $scope.load_payroll_payments();
-            });
 
         var promises = [
             $rootScope.GF.load_especialidades(),
@@ -94,7 +92,16 @@ angular.module('planillasApp')
             return defer.promise;
         };
 
-        $scope.load_planillas();
+        AuthService.getUser()
+            .then(function (user) {
+                $scope.filters['gestion_academica'] = user['gestion']['id'];
+                $scope.payroll_paymemts_model = ModelService.PagosPlanillasModel({
+                    query_params: $scope.filters
+                });
+                $scope.load_payroll_payments();
+                $scope.load_planillas();
+            });
+
         $scope.enable_fields = {
             especialidad: false,
             status: false,
@@ -123,7 +130,7 @@ angular.module('planillasApp')
                                 tipo_pago: 1,
                                 horas_or_semanas: 1,
                                 habilitado: '',
-                                pensul: ''
+                                pensul: '',
                             };
 
                             if (user['gestion']) {
@@ -131,11 +138,13 @@ angular.module('planillasApp')
                                 $scope.filters.especialidad = user['gestion']['especialidad'];
                                 $scope.filters.gestion = user['gestion']['gestion'];
                                 $scope.filters.periodo_gestion = user['gestion']['periodo_gestion'];
+                                $scope.filters.gestion_academica = user['gestion']['id'];
                             } else {
                                 $scope.filters.unidad_academica = user['unidad_academica']['id'];
                                 $scope.filters.especialidad = user['especialidad']['id'];
                                 $scope.filters.gestion = 2015;
                                 $scope.filters.periodo_gestion = 'I';
+                                $scope.filters.gestion_academica = 0;
                             }
                             if (filters_force) {
                                 $scope.filters = angular.copy(filters_force);

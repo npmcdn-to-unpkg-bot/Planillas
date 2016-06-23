@@ -9,7 +9,7 @@
  */
 
 angular.module('planillasApp')
-    .service('ModelService', function ($API) {
+    .service('ModelService', function ($API, $rootScope) {
         /**
          #Model object example:
          {
@@ -314,21 +314,25 @@ angular.module('planillasApp')
                     context.id_name = 'id';
                     context.resource = $API.Contratos;
                     context.fields = [
-                        {label: 'Número de contrato', name: 'numero_contrato', type: 'number', required: true},
                         {
-                            label: 'Contrato', name: 'contrato', type: 'string', required: true,
+                            label: 'Contrato', name: 'contrato', type: 'number', required: true,
                             custom: function (item, data) {
-                                console.log(item, data);
                                 var url = $API.path + 'obtener_contrato?docente=' + data.docente.id;
-                                var html = '<a href="' + url + '" download="Contrato docente"><img src="images/pdf_icon.png" width="40px"></a>';
-                                html += '<a href="' + url + '&word=1' + '" download="Contrato docente"><img src="images/word_icon.png" width="40px"></a>';
+                                var html = '<a href="' + url + '" download="Contrato docente" target="_blank"><img src="images/pdf_icon.png" width="40px"></a>';
+                                html += '<a href="' + url + '&word=1' + '" download="Contrato docente" target="_blank"><img src="images/word_icon.png" width="40px"></a>';
                                 return html;
+                            }
+                        },
+                        {
+                            label: 'Número de contrato', name: 'numero', type: 'number', required: true,
+                            custom: function (item, data) {
+                                return $rootScope.CURRENT_USER['gestion']['periodo_gestion'] + '-' + $rootScope.CURRENT_USER['gestion']['gestion'] + ' / 00' + item;
                             }
                         },
                         {label: 'Información de contrato', name: 'info_contrato', type: 'string', required: true},
                         {label: 'Docente', name: 'docente', type: 'select', required: true, model: new DocentesModel()},
                         {
-                            label: 'Gestion academica',
+                            label: 'Gestión académica',
                             name: 'gestion_academica',
                             type: 'select',
                             required: true,
@@ -337,7 +341,7 @@ angular.module('planillasApp')
                     ]
                     ;
                     context.extra_fields = [{label: 'Fecha', name: 'updated_at'}];
-                    context.showFields = ['numero', 'docente', 'info_contrato', 'contrato'];
+                    context.showFields = ['docente', 'numero', 'contrato'];
                     context.nameView = 'numero';
                     context.config = {title: 'Contratos docentes'};
                     context.add_new = false;
