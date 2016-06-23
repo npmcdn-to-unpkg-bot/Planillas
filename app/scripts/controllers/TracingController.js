@@ -32,7 +32,7 @@ angular.module('planillasApp')
         $scope.tracing_list = [];
         $scope.sum_total = 0;
         $scope.load_tracing = function () {
-            $http.get(URLS.TRACING + "?docente=" + $scope.filters.docente)
+            $http.get(URLS.TRACING + '?docente=' + $scope.filters.docente)
                 .then(function (data) {
                     $scope.tracing_list = data.data.data;
                     $scope.sum_total = 0;
@@ -40,37 +40,37 @@ angular.module('planillasApp')
                         $scope.sum_total +=$scope.tracing_list[i].liquido_pagable;
                         switch ($scope.tracing_list[i].numero_pago) {
                             case 1:
-                                $scope.tracing_list[i].numero_pago = "Primer Pago";
+                                $scope.tracing_list[i].numero_pago = 'Primer Pago';
                                 break;
                             case 2:
-                                $scope.tracing_list[i].numero_pago = "Segund Pago";
+                                $scope.tracing_list[i].numero_pago = 'Segund Pago';
                                 break;
                             case 3:
-                                $scope.tracing_list[i].numero_pago = "Tercer Pago";
+                                $scope.tracing_list[i].numero_pago = 'Tercer Pago';
                                 break;
                             case 4:
-                                $scope.tracing_list[i].numero_pago = "Cuarto Pago";
+                                $scope.tracing_list[i].numero_pago = 'Cuarto Pago';
                                 break;
                             case 5:
-                                $scope.tracing_list[i].numero_pago = "Quinto Pago";
+                                $scope.tracing_list[i].numero_pago = 'Quinto Pago';
                                 break;
                             case 6:
-                                $scope.tracing_list[i].numero_pago = "Sexto Pago";
+                                $scope.tracing_list[i].numero_pago = 'Sexto Pago';
                                 break;
                             case 7:
-                                $scope.tracing_list[i].numero_pago = "Septimo Pago";
+                                $scope.tracing_list[i].numero_pago = 'Septimo Pago';
                                 break;
                             case 8:
-                                $scope.tracing_list[i].numero_pago = "Octavo Pago";
+                                $scope.tracing_list[i].numero_pago = 'Octavo Pago';
                                 break;
                             case 9:
-                                $scope.tracing_list[i].numero_pago = "Noveno Pago";
+                                $scope.tracing_list[i].numero_pago = 'Noveno Pago';
                                 break;
                         }
                     }
                 }, function () {
-                    toastr.warning("No se pudo conectar con servidor");
-                })
+                    toastr.warning('No se pudo conectar con servidor');
+                });
         };
 
     });

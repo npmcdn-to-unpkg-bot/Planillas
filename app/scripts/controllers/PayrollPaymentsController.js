@@ -8,7 +8,7 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('PayrollPaymentsController', function ($scope, $rootScope, $API, $q, toastr, AuthService, ModelService, $uibModal) {
+    .controller('PayrollPaymentsController', function ($scope, $rootScope, $API, $q, toastr, AuthService, ModelService, $uibModal, URLS, $http) {
         $scope.payroll_paymemts = [];
         $scope.payroll_paymemts_model = ModelService.PagosPlanillasModel();
 
@@ -323,7 +323,7 @@ angular.module('planillasApp')
                     console.log(numero);
                     $scope.update_invoice_payroll(register.presenta_factura, numero, register.id, item);
                 }, function () {
-                    register.presenta_factura = "No";
+                    register.presenta_factura = 'No';
                 });
             } else {
                 $scope.update_item_payroll(register.presenta_factura, register.id, item);
@@ -335,7 +335,7 @@ angular.module('planillasApp').controller('ModalSetInvoiceController', function 
     $scope.numero = '';
     $scope.ok = function () {
         console.log($scope.numero);
-        if (($scope.numero + "").length > 3) {
+        if (($scope.numero + '').length > 3) {
             $uibModalInstance.close($scope.numero);
         } else {
             $uibModalInstance.dismiss(false);

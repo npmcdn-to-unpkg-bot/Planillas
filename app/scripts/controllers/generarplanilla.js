@@ -8,7 +8,7 @@
  * Controller of the planillasApp
  */
 angular.module('planillasApp')
-    .controller('GenerarplanillaCtrl', function ($scope, $rootScope, $q, $http, ModelService, $timeout, AuthService, $API, $location, $uibModal) {
+    .controller('GenerarplanillaCtrl', function ($scope, $rootScope, $q, $http, ModelService, $timeout, AuthService, $API, $location) {
         var promises = [
             AuthService.getUser(),
             $rootScope.GF.load_especialidades(),
